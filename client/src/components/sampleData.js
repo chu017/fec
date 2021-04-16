@@ -383,12 +383,12 @@ const sampleData = {
   },
   related: {
     relatedIds:
-      [
-        23146,
-        23147,
-        23152,
-        23151,
-      ],
+            [
+              23146,
+              23147,
+              23152,
+              23151,
+            ],
     relatedInformation: [
       {
         id: 23146,

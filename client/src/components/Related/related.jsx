@@ -1,15 +1,21 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Carousel from './subcomponents/carousel/Carousel.jsx';
 
 class Related extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
 
-  render () {
+  render() {
     return (
-      <div>Hello World from Related!</div>
-    )
+      <div>
+        <Carousel />
+      </div>
+    );
   }
 }
 

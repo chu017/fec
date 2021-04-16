@@ -1,20 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Overview extends React.Component {
-  constructor (props) {
-    super(props)
+const Overview = class extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
   }
 
   render() {
-
-    return(
-      <div>
-      <h1>Hellow World from Overview</h1>
-      <h3>{this.props.data.product.id}</h3>
-      </div>
-    )
+    return <div>{this.props.data.product.id}</div>;
   }
-}
+};
 
 export default Overview;

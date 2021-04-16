@@ -4,14 +4,19 @@
 /* eslint-disable react/destructuring-assignment */
 
 import React from 'react';
+<<<<<<< HEAD
 import styles from './SubComponents/styles.js';
 import QuestionRenderer from './SubComponents/QuestionRenderer.jsx';
 import Search from './SubComponents/Search.jsx';
+=======
+import QuestionRenderer from './QuestionRenderer.jsx';
+>>>>>>> Add Preliminary Question & Answer Handling
 
 class QA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       questionList: this.props.data.qa.results,
       filteredQuestions: this.props.data.qa.results,
     };
@@ -26,10 +31,14 @@ class QA extends React.Component {
       }
     }
     this.setState({ filteredQuestions });
+=======
+    };
+>>>>>>> Add Preliminary Question & Answer Handling
   }
 
   render() {
     return (
+<<<<<<< HEAD
       <styles.QA>
         <styles.Title>
           <div>QUESTIONS & ANSWERS</div>
@@ -43,6 +52,19 @@ class QA extends React.Component {
           ))}
         </div>
       </styles.QA>
+=======
+      <div>
+        <div>Questions & Answers</div>
+        <br />
+        <div>SEARCH BAR</div>
+        <br />
+        <div>
+          {this.props.data.qa.results.map((question) => (
+            <QuestionRenderer question={question} />
+          ))}
+        </div>
+      </div>
+>>>>>>> Add Preliminary Question & Answer Handling
     );
   }
 }

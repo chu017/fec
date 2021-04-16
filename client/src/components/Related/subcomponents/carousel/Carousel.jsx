@@ -1,17 +1,24 @@
+<<<<<<< HEAD
 /* eslint-disable react/prop-types */
+=======
+>>>>>>> created subcomponents for carousel
 /* eslint-disable import/extensions */
 import React from 'react';
 import Next from './Next.jsx';
 import Prev from './Prev.jsx';
 import Card from '../card/Card.jsx';
+<<<<<<< HEAD
 import CardOutfit from '../card/CardOutfit.jsx';
 import styles from '../../styled.js';
 import ModalCompare from '../card/ModalCompare.jsx';
+=======
+>>>>>>> created subcomponents for carousel
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
+<<<<<<< HEAD
     this.scroll = this.scroll.bind(this);
 
     this.scrollRef = React.createRef();
@@ -186,6 +193,17 @@ class Carousel extends React.Component {
             />
           ) : null}
         </styles.carouselWrapperDiv>
+=======
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div>
+        <Prev />
+        <Card />
+        <Next />
+>>>>>>> created subcomponents for carousel
       </div>
     );
   }

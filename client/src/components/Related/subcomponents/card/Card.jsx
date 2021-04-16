@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable react/prop-types */
 import React from 'react';
 // eslint-disable-next-line import/extensions
@@ -21,6 +22,18 @@ const Card = ({
 
     <span>{price}</span>
   </styles.cardComponentDiv>
+=======
+import React from 'react';
+
+const Card = () => (
+  <div className="cardComponent">
+    <span>NAME</span>
+    <br />
+    <span>DESCRIPTION</span>
+    <br />
+    <span>PRICE</span>
+  </div>
+>>>>>>> created subcomponents for carousel
 );
 
 export default Card;

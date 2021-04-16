@@ -2,6 +2,13 @@
 /* eslint-disable import/no-unresolved */
 
 import React from 'react';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+// import ReactDOM from 'react-dom';
+=======
+>>>>>>> created subcomponents for carousel
+>>>>>>> created subcomponents for carousel
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
@@ -15,6 +22,14 @@ class App extends React.Component {
     this.state = {
 
     };
+
+  componentDidMount() {
+    const URL = window.location.href;
+    const productID = URL.split('products/')[1].split('/')[0];
+    $.ajax({
+      url: `/api/products/${productID}`,
+      success: (responseData) => this.setState({ data: responseData }),
+    });
   }
 
   render() {

@@ -1,18 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import QuestionRenderer from './QuestionRenderer.jsx';
 
 class QA extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      qa: this.props.data.qa,
-      reviews: this.props.data.reviews
-    }
+    };
   }
-  render () {
+
+  render() {
     return (
-      <div>Hello World from QA!</div>
-    )
+      <div>
+        <div>Questions & Answers</div>
+        <br />
+        <div>SEARCH BAR</div>
+        <br />
+        <div>
+          {this.props.data.qa.results.map((question) => (
+            <QuestionRenderer question={question} />
+          ))}
+        </div>
+      </div>
+    );
   }
 }
 

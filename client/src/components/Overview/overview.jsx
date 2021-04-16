@@ -1,6 +1,10 @@
 import React from 'react';
+import ProductInformation from './productInformation.jsx';
+import ImageGallery from './imageGallery.jsx';
+import StyleSelector from './styleSelector.jsx';
+import AddToCart from './addToCart.jsx';
 
-const Overview = class extends React.PureComponent {
+const Overview = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,7 +13,15 @@ const Overview = class extends React.PureComponent {
   }
 
   render() {
-    return <div>{this.props.data.product.id}</div>;
+    return (
+      <div>
+        <ImageGallery />
+        <ProductInformation />
+        <StyleSelector />
+        <AddToCart />
+        <br />
+      </div>
+    );
   }
 };
 

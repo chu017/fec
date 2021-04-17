@@ -27,7 +27,12 @@ const AnswerText = styled.div`
 
 const QuestionBlock = styled.div`
   border: solid 1px;
+  margin-bottom: 10px;
 `;
 
-const styles = { Title, Title2, QuestionText, AnswerText, QuestionBlock };
+const AnswerBlock = styled.div`
+  border: solid 1px;
+`;
+
+const styles = { Title, Title2, QuestionText, AnswerText, QuestionBlock, AnswerBlock };
 export default styles;

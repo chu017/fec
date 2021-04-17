@@ -1,5 +1,8 @@
+import styles from "./styles.js"
 import React from 'react';
 import QuestionRenderer from './QuestionRenderer.jsx';
+
+
 
 class QA extends React.Component {
   constructor(props) {
@@ -11,9 +14,13 @@ class QA extends React.Component {
   render() {
     return (
       <div>
-        <div>Questions & Answers</div>
+        <styles.Title>
+          <div>Questions & Answers</div>
+          <div>
+          <styles.QuestionText>Search Bar</styles.QuestionText>
+          </div>
+          </styles.Title>
         <br />
-        <div>SEARCH BAR</div>
         <br />
         <div>
           {this.props.data.qa.results.map((question) => (

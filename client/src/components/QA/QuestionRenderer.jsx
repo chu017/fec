@@ -1,17 +1,19 @@
 import React from 'react';
 import AnswerRenderer from './AnswerRenderer.jsx';
+import styles from "./styles.js"
+
 
 const QuestionRenderer = (props) => (
-  <div>
-    <div>
+  <styles.QuestionBlock>
+    <styles.QuestionText>
       Q:
       {' '}
       {props.question.question_body}
-    </div>
+    </styles.QuestionText>
     <div>
       <AnswerRenderer answers={props.question.answers} />
     </div>
-  </div>
+  </styles.QuestionBlock>
 );
 
 export default QuestionRenderer;

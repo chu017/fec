@@ -10,9 +10,9 @@ const QuestionRenderer = (props) => (
       {' '}
       {props.question.question_body}
     </styles.QuestionText>
-    <div>
+    <styles.AnswerBlock>
       <AnswerRenderer answers={props.question.answers} />
-    </div>
+    </styles.AnswerBlock>
   </styles.QuestionBlock>
 );
 

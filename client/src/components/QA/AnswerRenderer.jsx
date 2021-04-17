@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./styles.js"
+const moment = require('moment');
 
 const AnswerRenderer = (props) => {
   const { answers } = props;
@@ -22,7 +23,7 @@ const AnswerRenderer = (props) => {
       <styles.AnswerText>
         {answerBody}
         {' '}
-        {answerDate}
+        {moment(answerDate).fromNow()}
         {' '}
         {answererName}
       </styles.AnswerText>

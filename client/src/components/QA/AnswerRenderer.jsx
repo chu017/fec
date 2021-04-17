@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from "./styles.js"
 
 const AnswerRenderer = (props) => {
   const { answers } = props;
@@ -18,13 +19,13 @@ const AnswerRenderer = (props) => {
     const answerDate = answersObject.answerDate[i];
     const answererName = answersObject.answererName[i];
     return (
-      <div>
+      <styles.AnswerText>
         {answerBody}
         {' '}
         {answerDate}
         {' '}
         {answererName}
-      </div>
+      </styles.AnswerText>
     );
   };
   return (

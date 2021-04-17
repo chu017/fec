@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 
+=======
+import styles from "./styles.js"
+>>>>>>> Add Styling to Question Component
 import React from 'react';
 <<<<<<< HEAD
 import styles from './SubComponents/styles.js';
@@ -11,6 +15,8 @@ import Search from './SubComponents/Search.jsx';
 =======
 import QuestionRenderer from './QuestionRenderer.jsx';
 >>>>>>> Add Preliminary Question & Answer Handling
+
+
 
 class QA extends React.Component {
   constructor(props) {
@@ -54,9 +60,13 @@ class QA extends React.Component {
       </styles.QA>
 =======
       <div>
-        <div>Questions & Answers</div>
+        <styles.Title>
+          <div>Questions & Answers</div>
+          <div>
+          <styles.QuestionText>Search Bar</styles.QuestionText>
+          </div>
+          </styles.Title>
         <br />
-        <div>SEARCH BAR</div>
         <br />
         <div>
           {this.props.data.qa.results.map((question) => (

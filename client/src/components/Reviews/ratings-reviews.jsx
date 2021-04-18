@@ -1,11 +1,15 @@
 import React from 'react';
+<<<<<<< HEAD
 import helpers from './helpers.js';
 import Star from './star.jsx';
 import RatingsCount from './ratings-count.jsx';
+=======
+>>>>>>> Base component structure, and some dynamic data added.
 
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.reviews = this.props.data.reviews;
 
     this.state = {};
@@ -213,6 +217,18 @@ class RatingsReviews extends React.Component {
             </div>
           </div>
         </div>
+=======
+
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Ratings and Reviews</h2>
+>>>>>>> Base component structure, and some dynamic data added.
       </div>
     );
   }

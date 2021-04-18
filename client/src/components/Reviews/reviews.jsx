@@ -4,18 +4,26 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+<<<<<<< HEAD
+=======
+// import ReactDOM from 'react-dom';
+>>>>>>> Base component structure, and some dynamic data added.
 import RatingsReviews from './ratings-reviews.jsx';
 import SortBy from './sort-by.jsx';
 import ReviewPosts from './review-posts.jsx';
 import MoreReviews from './more-reviews.jsx';
 import AddReview from './add-review.jsx';
+<<<<<<< HEAD
 // import helpers from './helpers.js';
 import ReviewForm from './review-form.jsx';
+=======
+>>>>>>> Base component structure, and some dynamic data added.
 
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
+<<<<<<< HEAD
     this.reviews = this.props.data.reviews;
 
     this.state = {
@@ -147,6 +155,27 @@ class Reviews extends React.Component {
             />
             {this.renderReviewForm()}
             <AddReview changeFormState={this.changeFormState} data={this.props.data} />
+=======
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <div className="reviews">
+        <div className="reviews-col-1">
+          <RatingsReviews data={this.props.data} />
+        </div>
+        <div className="reviews-col-2">
+          <SortBy data={this.props.data} />
+            {
+              this.props.data.reviews.reviews.results.map( result => <ReviewPosts data={this.props.data} title={result.summary} body={result.body} /> )
+            }
+          <div className="reviews-btn-row">
+            <MoreReviews data={this.props.data} />
+            <AddReview data={this.props.data} />
+>>>>>>> Base component structure, and some dynamic data added.
           </div>
         </div>
       </div>

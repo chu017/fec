@@ -16,7 +16,21 @@ const QuestionRenderer = (props) => (
         {props.question.question_body}
         {console.log(props)}
       </styles.QuestionText>
-      <div>Helpful? Yes(25) | Add Answer</div>
+      <styles.QuestionSubtitle>
+        <div>
+          Helpful?
+          {' '}
+          <styles.HyperLink href="http://google.com">
+            Yes
+          </styles.HyperLink>
+          {' '}
+          (
+          {props.question.question_helpfulness}
+          ) |
+          {' '}
+          <styles.HyperLink href="http://google.com">Add Answer</styles.HyperLink>
+        </div>
+      </styles.QuestionSubtitle>
     </styles.QuestionLine>
     <styles.AnswerBlock>
       <AnswerRenderer answers={props.question.answers} />

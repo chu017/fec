@@ -17,18 +17,26 @@ const QuestionBlock = styled.div`
   margin-bottom: 10px;
   font-size: 0.8em;
   color: #454444;
+  width: 50%;
 `;
 const QuestionLine = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const QuestionText = styled.div`
   font-weight: 350;
   font-style: Bold;
-  color: #454444;
   padding-left: 5px;
   margin-bottom: 15px;
   padding-right: 5px;
+  text-align: left;
+`;
+
+const QuestionSubtitle = styled.div`
+  text-align: right;
+  font-size: 0.4em;
+  color: #858383;
 `;
 
 const AnswerText = styled.div`
@@ -45,7 +53,20 @@ const SearchBar = styled.input`
   margin-top: 5px;
 `;
 
+const HyperLink = styled.a`
+  color: #858383;
+`;
+
 const styles = {
-  Title, QuestionBlock, QuestionLine, QuestionText, AnswerText, AnswerBlock, QA, SearchBar,
+  Title,
+  QuestionBlock,
+  QuestionLine,
+  QuestionText,
+  QuestionSubtitle,
+  AnswerText,
+  AnswerBlock,
+  QA,
+  SearchBar,
+  HyperLink,
 };
 export default styles;

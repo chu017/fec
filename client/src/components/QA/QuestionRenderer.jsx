@@ -10,12 +10,13 @@ import styles from './styles.js';
 const QuestionRenderer = (props) => (
   <styles.QuestionBlock>
     <styles.QuestionLine>
-      <styles.QuestionText>
-        Q:
-        {' '}
-        {props.question.question_body}
-        {console.log(props)}
-      </styles.QuestionText>
+      <styles.BoldedText>
+        <styles.QuestionText>
+          Q:
+          {' '}
+          {props.question.question_body}
+        </styles.QuestionText>
+      </styles.BoldedText>
       <styles.QuestionSubtitle>
         <div>
           Helpful?

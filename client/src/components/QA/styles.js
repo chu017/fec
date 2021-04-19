@@ -1,22 +1,37 @@
 import styled from 'styled-components';
 
+const primarySize = '1.1em';
+const secondarySize = '0.75em';
+const primaryColor = '#454444';
+const secondaryColor = '#858383';
+const primaryFont = 'Helvetica Neue';
+
 const QA = styled.div`
   margin-left: 40%;
 `;
 
 const Title = styled.div`
   margin-top: 5px;
-  font-family: Helvetica Neue;
+  font-family: ${primaryFont};
   font-weight: 200;
-  color: #454444;
+  color: ${primaryColor};
+  font-size: ${primarySize};
+`;
+
+const BoldedText = styled.div`
+  font-weight: 450;
+  font-style: Bold;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
 `;
 
 const QuestionBlock = styled.div`
-  font-family: Helvetica Neue;
+  font-family: ${primaryFont};
   margin-top:5px;
   margin-bottom: 10px;
-  font-size: 0.8em;
-  color: #454444;
+  font-size: ${primarySize};
+  color: ${primaryColor};
   width: 50%;
 `;
 const QuestionLine = styled.div`
@@ -25,17 +40,12 @@ const QuestionLine = styled.div`
 `;
 
 const QuestionText = styled.div`
-  font-weight: 350;
-  font-style: Bold;
-  padding-left: 5px;
   margin-bottom: 15px;
-  padding-right: 5px;
-  text-align: left;
 `;
 
 const QuestionSubtitle = styled.div`
   text-align: right;
-  font-size: 0.4em;
+  font-size: ${secondarySize};
   color: #858383;
 `;
 
@@ -43,6 +53,14 @@ const AnswerText = styled.div`
   font-weight: 200;
   padding-left: 10px;
   display: flex;
+`;
+
+const AnswerSubtitle = styled.div`
+  padding-top: 2px;
+  padding-left: 32px;
+  margin-bottom: 8px;
+  font-size: ${secondarySize};
+  color: #858383;
 `;
 
 const AnswerBlock = styled.div`
@@ -54,16 +72,18 @@ const SearchBar = styled.input`
 `;
 
 const HyperLink = styled.a`
-  color: #858383;
+  color: ${secondaryColor};
 `;
 
 const styles = {
   Title,
+  BoldedText,
   QuestionBlock,
   QuestionLine,
   QuestionText,
   QuestionSubtitle,
   AnswerText,
+  AnswerSubtitle,
   AnswerBlock,
   QA,
   SearchBar,

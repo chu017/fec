@@ -13,29 +13,50 @@ const AnswerRenderer = (props) => {
     answererName: [],
     answerBody: [],
     answerDate: [],
+    answerHelpfulness: [],
+    answerID: [],
   };
   for (let i = 0; i < Object.keys(answers).length; i += 1) {
     const currentAnswer = answers[Object.keys(answers)[i]];
     answersObject.answererName.push(currentAnswer.answerer_name);
     answersObject.answerBody.push(currentAnswer.body);
     answersObject.answerDate.push(currentAnswer.date);
+    answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
+    answersObject.answerID.push(currentAnswer.id);
   }
 
   const parseAnswers = (answerBody, i) => {
     const answerDate = answersObject.answerDate[i];
     const answererName = answersObject.answererName[i];
+    const answerHelpfulness = answersObject.answerHelpfulness[i];
     return (
-      <styles.AnswerText>
-        <styles.QuestionText>
-          A:
+      <div>
+        <styles.AnswerText>
+          <styles.BoldedText>
+            A:
+            {' '}
+          </styles.BoldedText>
+          {answerBody}
+        </styles.AnswerText>
+        <styles.AnswerSubtitle>
+          by
           {' '}
-        </styles.QuestionText>
-        {answerBody}
-        {' '}
-        {moment(answerDate).fromNow()}
-        {' '}
-        {answererName}
-      </styles.AnswerText>
+          {answererName}
+          ,
+          {' '}
+          {moment(answerDate).fromNow()}
+          {'  |  '}
+          Helpful?
+          {' '}
+          <styles.HyperLink href="http://google.com">Yes</styles.HyperLink>
+          {' '}
+          (
+          {answerHelpfulness}
+          )
+          {'  |  '}
+          <styles.HyperLink href="http://google.com">Report</styles.HyperLink>
+        </styles.AnswerSubtitle>
+      </div>
     );
   };
   return (

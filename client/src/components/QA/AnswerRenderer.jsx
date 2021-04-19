@@ -1,5 +1,10 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/prop-types */
+
 import React from 'react';
-import styles from "./styles.js"
+import styles from './styles.js';
+
 const moment = require('moment');
 
 const AnswerRenderer = (props) => {
@@ -21,6 +26,10 @@ const AnswerRenderer = (props) => {
     const answererName = answersObject.answererName[i];
     return (
       <styles.AnswerText>
+        <styles.QuestionText>
+          A:
+          {' '}
+        </styles.QuestionText>
         {answerBody}
         {' '}
         {moment(answerDate).fromNow()}

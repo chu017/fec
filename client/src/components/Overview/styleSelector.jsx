@@ -1,4 +1,11 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable import/extensions */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+// import styled from 'styled-components';
+import StyleSelectorItem from './styleSelectorItem.jsx';
 
 const StyleSelector = class extends React.Component {
   constructor(props) {
@@ -10,18 +17,16 @@ const StyleSelector = class extends React.Component {
 
   render() {
     return (
-      <div>
-        <h4>Style Selector</h4>
-        <div>Style Selector</div>
-        <div>Style Selector</div>
-        <div>Style Selector</div>
-        <div>Style Selector</div>
-        <div>Style Selector</div>
-        <div>Style Selector</div>
+      <div className="style-selector">
+        <h5>STYLE - SELECTED STYLE</h5>
+        {this.props.data.styles.results.map((item, i) => (
+            <StyleSelectorItem item={item} key={i} />
+        ))}
       </div>
 
     );
   }
 };
 
+// eslint-disable-next-line eol-last
 export default StyleSelector;

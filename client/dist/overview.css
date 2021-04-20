@@ -1,0 +1,155 @@
+/* for overview */
+
+.overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 8vh 82vh 15vh;
+  grid-gap: 10px;
+  grid-template-areas:
+    "header header header header header header"
+    "main main main main sidebar sidebar"
+    "footer footer footer footer footer footer"
+}
+
+.header {
+  grid-area: header;
+  text-align: center;
+  font-size: small;
+  padding: 3px;
+}
+
+.navbar {
+  background-color: black;
+  height: 25px;
+  text-align: left;
+  color: white;
+  padding: 5px;
+}
+
+.search {
+  display: grid;
+  text-align: right;
+}
+
+/* .body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
+} */
+
+.main {
+  grid-area: main;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.slider {
+  position: relative;
+  height: 82vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 82vh;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 2rem;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 2rem;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.product-information {
+  display: block;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.style-selector {
+  display: block;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.circle {
+  display: inline-block;
+}
+
+.add-to-cart {
+  display: block;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.select-size {
+  width: 150px;
+  height: 30px;
+  padding: 2px;
+  margin: 2px;
+}
+
+.select-quantity {
+  width: 150px;
+  height: 30px;
+  padding: 2px;
+  margin: 2px;
+}
+
+.button-bag {
+  width: 220px;
+  height: 50px;
+  padding: 2px;
+  margin: 2px;
+  background-color: black;
+  color: white;
+}
+
+.button-outfit {
+  width: 80px;
+  height: 50px;
+  padding: 2px;
+  margin: 2px;
+}
+
+.footer {
+  grid-area: footer;
+  /* border: 2px solid red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+.product-information-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 10px;
+}

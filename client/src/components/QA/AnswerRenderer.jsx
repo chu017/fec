@@ -7,28 +7,31 @@ import styles from './styles.js';
 
 const moment = require('moment');
 
-const AnswerRenderer = (props) => {
-  const { answers } = props;
-  const answersObject = {
-    answererName: [],
-    answerBody: [],
-    answerDate: [],
-    answerHelpfulness: [],
-    answerID: [],
-  };
-  for (let i = 0; i < Object.keys(answers).length; i += 1) {
-    const currentAnswer = answers[Object.keys(answers)[i]];
-    answersObject.answererName.push(currentAnswer.answerer_name);
-    answersObject.answerBody.push(currentAnswer.body);
-    answersObject.answerDate.push(currentAnswer.date);
-    answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
-    answersObject.answerID.push(currentAnswer.id);
+class AnswerRenderer extends React.Component {
+  constructor(props) {
+    super(props);
+    const { answers } = props;
+    this.answersObject = {
+      answererName: [],
+      answerBody: [],
+      answerDate: [],
+      answerHelpfulness: [],
+      answerID: [],
+    };
+    for (let i = 0; i < Object.keys(answers).length; i += 1) {
+      const currentAnswer = answers[Object.keys(answers)[i]];
+      this.answersObject.answererName.push(currentAnswer.answerer_name);
+      this.answersObject.answerBody.push(currentAnswer.body);
+      this.answersObject.answerDate.push(currentAnswer.date);
+      this.answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
+      this.answersObject.answerID.push(currentAnswer.id);
+    }
   }
 
-  const parseAnswers = (answerBody, i) => {
-    const answerDate = answersObject.answerDate[i];
-    const answererName = answersObject.answererName[i];
-    const answerHelpfulness = answersObject.answerHelpfulness[i];
+  parseAnswers(answerBody, i) {
+    const answerDate = this.answersObject.answerDate[i];
+    const answererName = this.answersObject.answererName[i];
+    const answerHelpfulness = this.answersObject.answerHelpfulness[i];
     return (
       <div>
         <styles.AnswerText>
@@ -58,12 +61,15 @@ const AnswerRenderer = (props) => {
         </styles.AnswerSubtitle>
       </div>
     );
-  };
-  return (
-    <div>
-      {answersObject.answerBody.map((answerBody, i) => parseAnswers(answerBody, i))}
-    </div>
-  );
-};
+  }
+
+  render() {
+    return (
+      <div>
+        {this.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
+      </div>
+    );
+  }
+}
 
 export default AnswerRenderer;

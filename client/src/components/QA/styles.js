@@ -60,7 +60,16 @@ const AnswerSubtitle = styled.div`
   padding-left: 32px;
   margin-bottom: 8px;
   font-size: ${secondarySize};
-  color: #858383;
+  color: ${secondaryColor};
+`;
+
+const LoadMoreAnswers = styled.div`
+  padding-top: 2px;
+  padding-left: 32px;
+  margin-bottom: 8px;
+  font-size: ${secondarySize};
+  color: ${secondaryColor};
+  text-decoration: underline;
 `;
 
 const AnswerBlock = styled.div`
@@ -86,6 +95,7 @@ const styles = {
   AnswerText,
   AnswerSubtitle,
   AnswerBlock,
+  LoadMoreAnswers,
   QA,
   SearchBar,
   HyperLink,

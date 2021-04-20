@@ -82,7 +82,7 @@ class AnswerRenderer extends React.Component {
       return (
         <div>
           {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-          <styles.HyperLink onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.HyperLink>
+          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.LoadMoreAnswers>
         </div>
       );
     }

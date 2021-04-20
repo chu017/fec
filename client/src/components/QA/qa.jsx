@@ -26,7 +26,7 @@ class QA extends React.Component {
       }
     }
     this.setState({ filteredQuestions });
-  };
+  }
 
   render() {
     return (

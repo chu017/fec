@@ -34,7 +34,7 @@ const QuestionRenderer = (props) => (
       </styles.QuestionSubtitle>
     </styles.QuestionLine>
     <styles.AnswerBlock>
-      <AnswerRenderer answers={props.question.answers} key={Math.random() * 1000000}/>
+      <AnswerRenderer answers={props.question.answers} key={Math.random() * 1000000} />
     </styles.AnswerBlock>
   </styles.QuestionBlock>
 );

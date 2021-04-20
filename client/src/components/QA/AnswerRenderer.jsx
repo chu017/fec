@@ -26,6 +26,9 @@ class AnswerRenderer extends React.Component {
       this.answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
       this.answersObject.answerID.push(currentAnswer.id);
     }
+    this.state = {
+      showAllAnswers: false,
+    };
   }
 
   parseAnswers(answerBody, i) {
@@ -63,10 +66,28 @@ class AnswerRenderer extends React.Component {
     );
   }
 
+  showAllAnswers() {
+    this.setState({ showAllAnswers: true });
+  }
+
   render() {
+    if (this.answersObject.answerBody.length === 0) {
+      return (
+        <div>No Answers Available for this Question.</div>
+      );
+    }
+    if (this.state.showAllAnswers === true) {
+      return (
+        <div>
+          {this.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
+        </div>
+      );
+    }
+
     return (
       <div>
-        {this.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
+        {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+        <styles.HyperLink onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.HyperLink>
       </div>
     );
   }

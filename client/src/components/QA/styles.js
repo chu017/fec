@@ -73,6 +73,7 @@ const SearchBar = styled.input`
 
 const HyperLink = styled.a`
   color: ${secondaryColor};
+  text-decoration: underline;
 `;
 
 const styles = {

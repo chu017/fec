@@ -71,11 +71,6 @@ class AnswerRenderer extends React.Component {
   }
 
   render() {
-    if (this.answersObject.answerBody.length === 0) {
-      return (
-        <div>No Answers Available for this Question.</div>
-      );
-    }
     if (this.state.showAllAnswers === true) {
       return (
         <div>
@@ -83,13 +78,19 @@ class AnswerRenderer extends React.Component {
         </div>
       );
     }
-
-    return (
-      <div>
-        {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-        <styles.HyperLink onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.HyperLink>
-      </div>
-    );
+    if (this.answersObject.answerBody.length > 0) {
+      return (
+        <div>
+          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+          <styles.HyperLink onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.HyperLink>
+        </div>
+      );
+    }
+    if (this.answersObject.answerBody.length === 0) {
+      return (
+        <div>No Answers Available for this Question.</div>
+      );
+    }
   }
 }
 

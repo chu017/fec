@@ -6,12 +6,17 @@ const helpers = {
   averageOfRatings: (ratingsObj) => {
     const toAverage = [];
     for (let rating in ratingsObj){
+<<<<<<< HEAD
       if(+ratingsObj[rating].length > 1) {
+=======
+      if(+ratingsObj[rating] > 1) {
+>>>>>>> Star rating complete, font awesome library added
         for (let i = 0; i < +ratingsObj[rating]; i++) toAverage.push(+rating);
       } else {
         toAverage.push(+rating);
       }
     }
+<<<<<<< HEAD
     return helpers.average(toAverage).toFixed(2);
   },
 
@@ -33,6 +38,11 @@ const helpers = {
     }
     return total;
   }
+=======
+    return helpers.average(toAverage);
+  },
+
+>>>>>>> Star rating complete, font awesome library added
 };
 
 export default helpers;

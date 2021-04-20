@@ -14,10 +14,14 @@ import ReviewPosts from './review-posts.jsx';
 import MoreReviews from './more-reviews.jsx';
 import AddReview from './add-review.jsx';
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import helpers from './helpers.js';
 import ReviewForm from './review-form.jsx';
 =======
 >>>>>>> Base component structure, and some dynamic data added.
+=======
+import helpers from './helpers.js';
+>>>>>>> Star rating complete, font awesome library added
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -169,9 +173,9 @@ class Reviews extends React.Component {
         </div>
         <div className="reviews-col-2">
           <SortBy data={this.props.data} />
-            {
-              this.props.data.reviews.reviews.results.map( result => <ReviewPosts data={this.props.data} title={result.summary} body={result.body} /> )
-            }
+          {this.props.data.reviews.reviews.results
+            .map( result => <ReviewPosts data={this.props.data}
+            title={result.summary} body={result.body} /> )}
           <div className="reviews-btn-row">
             <MoreReviews data={this.props.data} />
             <AddReview data={this.props.data} />

@@ -88,7 +88,7 @@ class AnswerRenderer extends React.Component {
     }
     if (this.answersObject.answerBody.length === 0) {
       return (
-        <div>No Answers Available for this Question.</div>
+        <styles.AnswerText>No Answers Available for this Question.</styles.AnswerText>
       );
     }
   }

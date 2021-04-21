@@ -31,6 +31,7 @@ const helpers = {
     return percentages;
   },
 
+<<<<<<< HEAD
   getTotal: (ratingsObj) => {
     let total = 0;
     for (let rating in ratingsObj) {
@@ -43,6 +44,9 @@ const helpers = {
   },
 
 >>>>>>> Star rating complete, font awesome library added
+=======
+  getTotal: (ratingsObj) => Object.values(ratingsObj).length,
+>>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
 };
 
 export default helpers;

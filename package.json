@@ -24,7 +24,10 @@
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "jquery": "^3.6.0",
+=======
+>>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
     "moment": "^2.29.1",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",

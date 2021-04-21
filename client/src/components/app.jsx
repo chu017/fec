@@ -2,13 +2,7 @@
 /* eslint-disable import/no-unresolved */
 
 import React from 'react';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-// import ReactDOM from 'react-dom';
-=======
->>>>>>> created subcomponents for carousel
->>>>>>> created subcomponents for carousel
+
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
@@ -35,7 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview data={this.state.data} key={Math.random() * 1000000} />
+       <Overview data={this.state.data} key={Math.random() * 1000000} />
         <Related data={this.state.data} key={Math.random() * 1000000} />
         <QA data={this.state.data} key={Math.random() * 1000000} />
         <Reviews data={this.state.data} key={Math.random() * 1000000} />

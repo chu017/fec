@@ -10,6 +10,7 @@ import React from 'react';
 import {
   AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
 } from 'react-icons/Ai';
+import { BsArrowsFullscreen } from 'react-icons/Bs';
 import ImageGalleryItem from './imageGalleryItem.jsx';
 
 const ImageGallery = class extends React.Component {
@@ -23,6 +24,7 @@ const ImageGallery = class extends React.Component {
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
     this.reSetCurrent = this.reSetCurrent.bind(this);
+    this.expand = this.expand.bind(this);
   }
 
   nextSlide() {
@@ -43,12 +45,17 @@ const ImageGallery = class extends React.Component {
     });
   }
 
+  expand() {
+    this.props.expandView();
+  }
+
   render() {
     return (
       <div>
         <section className="slider">
           <AiOutlineArrowLeft className="left-arrow" onClick={this.prevSlide} />
           <AiOutlineArrowRight className="right-arrow" onClick={this.nextSlide} />
+          <BsArrowsFullscreen className="expand-view" onClick={this.expand} />
 
           <section className="slider-vertical">
             {/* <AiOutlineArrowUp type="button" className="up-arrow" />

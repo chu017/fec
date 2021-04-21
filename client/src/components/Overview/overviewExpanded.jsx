@@ -1,0 +1,46 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable no-unneeded-ternary */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/extensions */
+import React from 'react';
+// import styled from 'styled-components';
+import Header from './header.jsx';
+import ImageGallery from './imageGallery.jsx';
+import ProductInfoTwo from './productInfoTwo.jsx';
+
+const OverViewExpanded = class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <div className="overview-expanded">
+        <div className="header">
+          <Header data={this.props.data} />
+        </div>
+
+        <div className="main-expanded">
+          <ImageGallery
+            data={this.props.style}
+            expandView={this.props.expandView}
+          />
+        </div>
+
+        <div className="footer">
+          <ProductInfoTwo data={this.props.data} />
+        </div>
+
+        <br />
+      </div>
+    );
+  }
+};
+
+export default OverViewExpanded;

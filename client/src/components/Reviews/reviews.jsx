@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 /* eslint-disable no-unused-labels */
 /* eslint-disable arrow-parens */
+=======
+>>>>>>> Setup filtering functionality for review list
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -161,22 +164,49 @@ class Reviews extends React.Component {
             <AddReview changeFormState={this.changeFormState} data={this.props.data} />
 =======
     this.state = {
-
+      filterBy: null,
     };
+
+    this.filterReviews = this.filterReviews.bind(this);
+  }
+
+  filterReviews(filterBy) {
+    this.setState({
+      filterBy,
+    });
   }
 
   render() {
+    const renderReviewPosts = () => {
+      if (this.state.filterBy) {
+        return this.props.data.reviews.reviews.results
+          .filter(result => result.rating === this.state.filterBy)
+          .map(result => <ReviewPosts
+            data={this.props.data}
+            title={result.summary}
+            body={result.body}
+            user={result.reviewer_name}
+            date={result.date}
+            rating={result.rating} />);
+      }
+      return this.props.data.reviews.reviews.results
+        .map(result => <ReviewPosts
+          data={this.props.data}
+          title={result.summary}
+          body={result.body}
+          user={result.reviewer_name}
+          date={result.date}
+          rating={result.rating} />);
+    };
+
     return (
       <div className="reviews">
         <div className="reviews-col-1">
-          <RatingsReviews data={this.props.data} />
+          <RatingsReviews filter={this.filterReviews} data={this.props.data} />
         </div>
         <div className="reviews-col-2">
           <SortBy data={this.props.data} />
-          {this.props.data.reviews.reviews.results
-            .map( result => <ReviewPosts data={this.props.data}
-            title={result.summary} body={result.body} user={result.reviewer_name}
-            date={result.date} rating={result.rating} /> )}
+          {renderReviewPosts()}
           <div className="reviews-btn-row">
             <MoreReviews data={this.props.data} />
             <AddReview data={this.props.data} />

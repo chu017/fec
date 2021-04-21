@@ -9,9 +9,13 @@ class RatingsCount extends React.Component {
 
     this.getTotalStarRatings = this.getTotalStarRatings.bind(this);
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.ratingFilter = this.ratingFilter.bind(this);
 =======
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+    this.ratingFilter = this.ratingFilter.bind(this);
+>>>>>>> Setup filtering functionality for review list
   }
 
   getTotalStarRatings(currentRating) {
@@ -32,6 +36,10 @@ class RatingsCount extends React.Component {
 =======
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
 
+  ratingFilter() {
+    this.props.filter(this.props.stars);
+  }
+
   render() {
     const elWidth = {
       width: this.props.width
@@ -42,8 +50,12 @@ class RatingsCount extends React.Component {
       <div onClick={this.ratingFilter} className="individual-ratings">
 =======
       <div className="individual-ratings">
+<<<<<<< HEAD
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
         <div className="ratings-pop-up underline">{this.props.stars + ' stars'}</div>
+=======
+        <div onClick={this.ratingFilter} className="ratings-pop-up underline">{this.props.stars + ' stars'}</div>
+>>>>>>> Setup filtering functionality for review list
         <div className="star-review-scale">
           <div style={elWidth} className="star-review-scale-inner"></div>
         </div>

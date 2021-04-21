@@ -22,15 +22,22 @@ class RatingsReviews extends React.Component {
 =======
     this.reviews = this.props.data.reviews;
 
+<<<<<<< HEAD
     this.state = this.getRatings();
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+    this.state = {};
+>>>>>>> Setup filtering functionality for review list
 
     this.getRatingPercentage = this.getRatingPercentage.bind(this);
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
     this.getRatings = this.getRatings.bind(this);
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
+=======
+>>>>>>> Setup filtering functionality for review list
   }
 
   componentDidMount() {
@@ -39,6 +46,7 @@ class RatingsReviews extends React.Component {
       rating: ratings.rating,
       fit: ratings.fit,
       comfort: ratings.comfort,
+<<<<<<< HEAD
       length: ratings.length,
       quality: ratings.quality,
       recommendationPercentage: ratings.recommendationPercentage,
@@ -51,6 +59,13 @@ class RatingsReviews extends React.Component {
 
   getRecommendationPercentage () {
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+      recommendationPercentage: ratings.recommendationPercentage,
+    });
+  }
+
+  getRecommendationPercentage() {
+>>>>>>> Setup filtering functionality for review list
     const recommendationArray = [];
     for (let result of this.reviews.reviews.results) {
       if (result.recommend) recommendationArray.push(1);
@@ -94,19 +109,27 @@ class RatingsReviews extends React.Component {
     return { rating, fit, comfort, recommendationPercentage };
   }
 
+<<<<<<< HEAD
   getRatingPercentage () {
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+  getRatingPercentage() {
+>>>>>>> Setup filtering functionality for review list
     let percentage = this.state.rating / 5;
     percentage = percentage * 100;
     return `${Math.round(percentage / 10) * 10}%`;
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   createRatingsCountBars() {
 =======
   createRatingsCountBars () {
     //should be percentage of total reviews
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+  createRatingsCountBars() {
+>>>>>>> Setup filtering functionality for review list
     const ratingsPercentages = helpers.findReviewPercentage(this.props.data.reviews.reviewMeta.ratings);
     const ratingsCountBars = [];
     let width;
@@ -115,6 +138,7 @@ class RatingsReviews extends React.Component {
       else {
         width = 0;
       }
+<<<<<<< HEAD
 <<<<<<< HEAD
       ratingsCountBars.push(
         <RatingsCount
@@ -128,6 +152,9 @@ class RatingsReviews extends React.Component {
 =======
       ratingsCountBars.push(<RatingsCount reviews={this.reviews} width={width + '%'} stars={i}/>);
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+      ratingsCountBars.push(<RatingsCount filter={this.props.filter} reviews={this.reviews} width={width + '%'} stars={i}/>);
+>>>>>>> Setup filtering functionality for review list
     }
     return ratingsCountBars;
   }
@@ -156,6 +183,7 @@ class RatingsReviews extends React.Component {
   render() {
     const starInnerWidth = {
       width: this.getRatingPercentage(),
+<<<<<<< HEAD
     };
 
     const positionCarrot1 = {
@@ -172,15 +200,17 @@ class RatingsReviews extends React.Component {
 
     const positionCarrot4 = {
       left: `${this.state.quality}%`,
+=======
+>>>>>>> Setup filtering functionality for review list
     };
 
     const positionCarrot1 = {
-      left: this.state.fit + '%'
-    }
+      left: `${this.state.fit}%`,
+    };
 
     const positionCarrot2 = {
-      left: this.state.comfort + '%'
-    }
+      left: `${this.state.comfort}%`,
+    };
 
     return (
       <div>

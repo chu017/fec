@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
@@ -14,8 +15,20 @@ const Overview = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      style_photos: this.props.data.styles.results[0],
     };
+
+    this.selectStyle = this.selectStyle.bind(this);
+  }
+
+  // compoentDidMount() {
+
+  // }
+
+  selectStyle(photos) {
+    this.setState({
+      style_photos: photos,
+    });
   }
 
   render() {
@@ -27,13 +40,22 @@ const Overview = class extends React.Component {
 
         {/* <div className="body"> */}
         <div className="main">
-          <ImageGallery data={this.props.data} />
+          <ImageGallery
+            data={this.state.style_photos}
+          />
         </div>
 
         <div className="sidebar">
-          <ProductInfoOne data={this.props.data} />
+          <ProductInfoOne
+            data={this.props.data}
+            photos={this.state.style_photos}
+          />
           <br />
-          <StyleSelector data={this.props.data} />
+          <StyleSelector
+            photos={this.state.style_photos}
+            data={this.props.data}
+            selectStyle={this.selectStyle}
+          />
           <br />
           <AddToCart data={this.props.data} />
         </div>

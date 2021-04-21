@@ -1,12 +1,6 @@
 import React from 'react';
 // import styled from 'styled-components';
 
-// const SImage = styled.img`
-//   display: inline-block;
-//   height: 80%;
-//   width: 80%;
-// `;
-
 const Header = class extends React.Component {
   constructor(props) {
     super(props);
@@ -33,5 +27,4 @@ const Header = class extends React.Component {
   }
 };
 
-// eslint-disable-next-line eol-last
 export default Header;

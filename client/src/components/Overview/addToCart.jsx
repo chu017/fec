@@ -55,5 +55,4 @@ const AddToCart = class extends React.Component {
   }
 };
 
-// eslint-disable-next-line eol-last
 export default AddToCart;

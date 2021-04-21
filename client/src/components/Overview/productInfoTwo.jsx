@@ -1,5 +1,14 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable import/extensions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+import ProductInfoTwoItem from './productInfoTwoItem.jsx';
+
+const Ltext = styled.div`
+font-size: 1.5rem;
+`;
 
 const ProductInfoTwo = class extends React.Component {
   constructor(props) {
@@ -12,17 +21,15 @@ const ProductInfoTwo = class extends React.Component {
   render() {
     return (
       <div>
-        <div>Product Slogan. Pithy Description or Catchphrase</div>
+        <Ltext>{this.props.data.product.slogan}</Ltext>
         <div className="product-information-footer">
           <p>
-            The So Fatigues will wake you up and fit you in.
-            This high energy camo will have you blending in
-            to even the wildest surroundings.
+            {this.props.data.product.description}
           </p>
           <ul>
-            <li>GMO and Pesticide free</li>
-            <li>Made with 100% Genertic Modification</li>
-            <li>This is made up</li>
+            {this.props.data.product.features.map((feature, index) => (
+              <ProductInfoTwoItem feature={feature} key={index} />
+            ))}
           </ul>
         </div>
       </div>
@@ -31,5 +38,4 @@ const ProductInfoTwo = class extends React.Component {
   }
 };
 
-// eslint-disable-next-line eol-last
 export default ProductInfoTwo;

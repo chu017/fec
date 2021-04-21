@@ -24,12 +24,11 @@ const ImageGalleryItem = class extends React.Component {
   render() {
     return (
       <div className="image-vertical">
-        <img alt="" src={this.props.item.photos[0].url} />
+        <img alt="" src={this.props.item.thumbnail_url} />
       </div>
 
     );
   }
 };
 
-// eslint-disable-next-line eol-last
 export default ImageGalleryItem;

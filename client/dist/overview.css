@@ -85,26 +85,26 @@
 
 .image-vertical {
   /* border: 2px solid red; */
-  max-width: 4%;
-  max-height: 4%;
+  max-width: 15%;
+  max-height: 15%;
   padding: 5px;
 }
 
-.up-arrow {
-  /* border: 2px solid red; */
+/* .up-arrow {
+  border: 2px solid red;
   position: absolute;
-  top: -5%;
-  left: 2%;
+  top: -4%;
+  left: 6%;
   font-size: 1rem;
 }
 
 .down-arrow {
-  /* border: 2px solid red; */
+  border: 2px solid red;
   position: absolute;
   top: 100%;
-  left: 2%;
+  left: 6%;
   font-size: 1rem;
-}
+} */
 
 img {
   max-width: 100%;

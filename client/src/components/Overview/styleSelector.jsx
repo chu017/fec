@@ -4,8 +4,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import StyleSelectorItem from './styleSelectorItem.jsx';
+
+const Sname = styled.div`
+font-size: 1rem;
+`;
 
 const StyleSelector = class extends React.Component {
   constructor(props) {
@@ -18,9 +22,16 @@ const StyleSelector = class extends React.Component {
   render() {
     return (
       <div className="style-selector">
-        <h5>STYLE - SELECTED STYLE</h5>
+        <h5>
+          selected style:
+           <Sname>{this.props.photos.name}</Sname>
+        </h5>
         {this.props.data.styles.results.map((item, i) => (
-            <StyleSelectorItem item={item} key={i} />
+            <StyleSelectorItem
+              item={item}
+              key={i}
+              selectStyle={this.props.selectStyle}
+            />
         ))}
       </div>
 
@@ -28,5 +39,4 @@ const StyleSelector = class extends React.Component {
   }
 };
 
-// eslint-disable-next-line eol-last
 export default StyleSelector;

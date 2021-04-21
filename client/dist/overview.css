@@ -42,12 +42,15 @@
   /* border: 2px solid red; */
   padding: 5px;
   margin: 5px;
+  /* display: grid;
+  grid-template-columns: 2fr 1fr; */
 }
 
 .slider {
   position: relative;
-  height: 82vh;
+  height: 80vh;
   display: flex;
+  /* border: 2px solid red; */
   justify-content: center;
   align-items: center;
 }
@@ -69,6 +72,38 @@
   top: 50%;
   right: 32px;
   font-size: 2rem;
+  z-index: 10;
+}
+
+.slider-vertical {
+  position: absolute;
+  display: inline-block;
+  /* border: 2px solid red; */
+  top: 20%;
+  left: 10%;
+}
+
+.image-vertical {
+  /* border: 2px solid red; */
+  max-width: 4%;
+  max-height: 4%;
+  padding: 5px;
+}
+
+.up-arrow {
+  /* border: 2px solid red; */
+  position: absolute;
+  top: -5%;
+  left: 2%;
+  font-size: 1rem;
+}
+
+.down-arrow {
+  /* border: 2px solid red; */
+  position: absolute;
+  top: 100%;
+  left: 2%;
+  font-size: 1rem;
 }
 
 img {

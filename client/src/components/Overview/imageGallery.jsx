@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/prop-types */
@@ -5,7 +6,10 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 // import styled from 'styled-components';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/Ai';
+import {
+  AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
+} from 'react-icons/Ai';
+import ImageGalleryItem from './imageGalleryItem.jsx';
 
 // const SImage = styled.img`
 //   display: inline-block;
@@ -45,21 +49,45 @@ const ImageGallery = class extends React.Component {
 
   render() {
     return (
-      <section className="slider">
-        <AiOutlineArrowLeft className="left-arrow" onClick={this.prevSlide} />
-        <AiOutlineArrowRight className="right-arrow" onClick={this.nextSlide} />
+      <div>
+        <section className="slider">
+          <AiOutlineArrowLeft className="left-arrow" onClick={this.prevSlide} />
+          <AiOutlineArrowRight className="right-arrow" onClick={this.nextSlide} />
 
-        {this.props.data.styles.results.map((item, index) => (
+          <section className="slider-vertical">
+            <AiOutlineArrowUp type="button" className="up-arrow" />
+            <AiOutlineArrowDown type="button" className="down-arrow" />
 
-          <div className={index === this.state.current ? 'slide-active' : 'slide'} key={index}>
-            {index === this.state.current && (<img alt="" src={item.photos[0].url} className="image" />
-            )}
-          </div>
-        ))}
-      </section>
+            {this.props.data.styles.results.map((item, index) => (
+              <ImageGalleryItem item={item} key={index} />
+            ))}
+          </section>
+
+          {this.props.data.styles.results.map((item, index) => (
+
+            <div className={index === this.state.current ? 'slide-active' : 'slide'} key={index}>
+              {index === this.state.current && (<img alt="" src={item.photos[0].url} className="image" />
+              )}
+            </div>
+          ))}
+        </section>
+
+      </div>
+
     );
   }
 };
 
 // eslint-disable-next-line eol-last
 export default ImageGallery;
+
+/*
+        <section className="slider-vertical">
+          <AiOutlineArrowUp type="button" className="up-arrow" />
+          <AiOutlineArrowDown type="button" className="down-arrow" />
+
+          {this.props.data.styles.results.map((item, index) => (
+            <ImageGalleryItem item={item} key={index} />
+          ))}
+        </section>
+*/

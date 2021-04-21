@@ -10,6 +10,10 @@ const Ltext = styled.div`
 font-size: 1.5rem;
 `;
 
+const ConInfo = styled.div`
+margin: 10px;
+`;
+
 const ProductInfoTwo = class extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +24,7 @@ const ProductInfoTwo = class extends React.Component {
 
   render() {
     return (
-      <div>
+      <ConInfo>
         <Ltext>{this.props.data.product.slogan}</Ltext>
         <div className="product-information-footer">
           <p>
@@ -32,7 +36,7 @@ const ProductInfoTwo = class extends React.Component {
             ))}
           </ul>
         </div>
-      </div>
+      </ConInfo>
 
     );
   }

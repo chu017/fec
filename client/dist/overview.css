@@ -93,6 +93,11 @@
   transform: scale(2);
 }
 
+.img-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
 .left-arrow {
   position: absolute;
   top: 50%;

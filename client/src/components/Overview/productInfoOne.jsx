@@ -23,10 +23,10 @@ const ProductInfoOne = class extends React.Component {
         <br />
         <div>CATEGORY: {this.props.data.product.category}</div>
         <h1>{this.props.data.product.name}</h1>
-        <div>{this.props.photos.original_price}</div>
+        <div>${this.props.photos.original_price}</div>
         <div>
           {(this.props.photos.sale_price)
-          && <Rtext>Sale: {this.props.photos.sale_price}</Rtext>}
+          && <Rtext>Sale: ${this.props.photos.sale_price}</Rtext>}
         </div>
       </div>
 

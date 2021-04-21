@@ -22,6 +22,7 @@ const ImageGallery = class extends React.Component {
 
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
+    this.reSetCurrent = this.reSetCurrent.bind(this);
   }
 
   nextSlide() {
@@ -33,6 +34,12 @@ const ImageGallery = class extends React.Component {
   prevSlide() {
     this.setState({
       current: this.state.current === 0 ? this.state.length - 1 : this.state.current - 1,
+    });
+  }
+
+  reSetCurrent(num) {
+    this.setState({
+      current: num,
     });
   }
 
@@ -48,7 +55,12 @@ const ImageGallery = class extends React.Component {
             <AiOutlineArrowDown type="button" className="down-arrow" /> */}
 
             {this.props.data.photos.map((item, index) => (
-              <ImageGalleryItem item={item} key={index} />
+              <ImageGalleryItem
+                item={item}
+                num={index}
+                key={index}
+                reSetCurrent={this.reSetCurrent}
+              />
             ))}
           </section>
 

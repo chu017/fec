@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+
 import React from 'react';
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
@@ -15,10 +18,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview data={sampleData} />
+        {/* <Overview data={sampleData} /> */}
         <Related data={sampleData} />
-        <QA data={sampleData} />
-        <Reviews data={sampleData} />
+        {/* <QA data={sampleData} />
+        <Reviews data={sampleData} /> */}
       </div>
     );
   }

@@ -29,6 +29,7 @@ const OverViewExpanded = class extends React.Component {
         <div className="main-expanded">
           <ImageGallery
             data={this.props.style}
+            defaultView={this.props.defaultView}
             expandView={this.props.expandView}
           />
         </div>

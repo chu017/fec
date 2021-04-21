@@ -74,7 +74,7 @@ const ImageGallery = class extends React.Component {
           {this.props.data.photos.map((item, index) => (
 
             <div className={index === this.state.current ? 'slide-active' : 'slide'} key={index}>
-              {index === this.state.current && (<img alt="" src={item.url} className="image" />
+              {index === this.state.current && (<img alt="" src={item.url} className={this.props.defaultView === true ? 'image' : 'image-expanded'} />
               )}
             </div>
           ))}

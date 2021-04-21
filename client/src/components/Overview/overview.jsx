@@ -46,6 +46,7 @@ const Overview = class extends React.Component {
           data={this.props.data}
           style={this.state.style_photos}
           selectStyle={this.selectStyle}
+          defaultView={this.state.defaultView}
           expandView={this.expandView}
         />
         )}
@@ -54,7 +55,7 @@ const Overview = class extends React.Component {
         <OverViewExpanded
           data={this.props.data}
           style={this.state.style_photos}
-          view={this.state.defaultView}
+          defaultView={this.state.defaultView}
           expandView={this.expandView}
         />
         )}

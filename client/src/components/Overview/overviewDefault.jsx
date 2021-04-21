@@ -32,6 +32,7 @@ const OverviewDefault = class extends React.Component {
         <div className="main">
           <ImageGallery
             data={this.props.style}
+            defaultView={this.props.defaultView}
             expandView={this.props.expandView}
           />
         </div>

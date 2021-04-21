@@ -4,9 +4,9 @@
 /* eslint-disable react/destructuring-assignment */
 
 import React from 'react';
-import styles from './styles.js';
-import QuestionRenderer from './QuestionRenderer.jsx';
-import Search from './Search.jsx';
+import styles from './SubComponents/styles.js';
+import QuestionRenderer from './SubComponents/QuestionRenderer.jsx';
+import Search from './SubComponents/Search.jsx';
 
 class QA extends React.Component {
   constructor(props) {

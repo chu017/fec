@@ -1,8 +1,10 @@
 const express = require('express');
-const app = express();
+
 const path = require('path');
+
+const app = express();
 const port = 3000;
-const APIControllers = require('./APIControllers.js')
+const APIControllers = require('./APIControllers.js');
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 

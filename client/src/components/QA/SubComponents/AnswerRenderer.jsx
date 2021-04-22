@@ -78,11 +78,18 @@ class AnswerRenderer extends React.Component {
         </div>
       );
     }
-    if (this.answersObject.answerBody.length > 0) {
+    if (this.answersObject.answerBody.length > 2) {
       return (
         <div>
           {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
           <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
+        </div>
+      );
+    }
+    if (this.answersObject.answerBody.length > 0) {
+      return (
+        <div>
+          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
         </div>
       );
     }

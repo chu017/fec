@@ -54,13 +54,13 @@ class AnswerRenderer extends React.Component {
           {'  |  '}
           Helpful?
           {' '}
-          <styles.HyperLink href="http://google.com">Yes</styles.HyperLink>
+          <styles.HyperLink>Yes</styles.HyperLink>
           {' '}
           (
           {answerHelpfulness}
           )
           {'  |  '}
-          <styles.HyperLink href="http://google.com">Report</styles.HyperLink>
+          <styles.HyperLink>Report</styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
     );

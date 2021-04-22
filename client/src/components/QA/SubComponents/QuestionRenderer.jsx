@@ -42,7 +42,7 @@ class QuestionRenderer extends React.Component {
               {this.props.question.question_helpfulness}
               ) |
               {' '}
-              <styles.HyperLink href="http://google.com">Add Answer</styles.HyperLink>
+              <styles.HyperLink>Add Answer</styles.HyperLink>
             </div>
           </styles.QuestionSubtitle>
         </styles.QuestionLine>

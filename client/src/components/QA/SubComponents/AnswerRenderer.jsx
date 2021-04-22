@@ -69,6 +69,7 @@ class AnswerRenderer extends React.Component {
     const answerHelpfulness = this.answersObject.answerHelpfulness[i];
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
       <styles.AnswerText>
         {answerBody}
         {' '}
@@ -80,6 +81,10 @@ class AnswerRenderer extends React.Component {
       <div>
         <styles.AnswerText>
 >>>>>>> Add Non-Functioning Helpfulness Handling
+=======
+      <div key={Math.random() * 100000}>
+        <styles.AnswerText data-testid="AnswerText">
+>>>>>>> Write Initial Testing for Q&A
           <styles.BoldedText>
             A:
             {' '}
@@ -138,7 +143,12 @@ class AnswerRenderer extends React.Component {
     if (this.state.answersObject.answerBody.length > 0) {
       return (
         <div>
+<<<<<<< HEAD
           {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+=======
+          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
+>>>>>>> Write Initial Testing for Q&A
         </div>
       );
     }

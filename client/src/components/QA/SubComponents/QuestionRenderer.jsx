@@ -48,10 +48,14 @@ class QuestionRenderer extends React.Component {
         <styles.QuestionLine>
           <styles.BoldedText>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <styles.QuestionText data-testid="QuestionText">
 =======
             <styles.QuestionText>
 >>>>>>> Add Non-Functioning Helpfulness Handling
+=======
+            <styles.QuestionText data-testid="QuestionText">
+>>>>>>> Write Initial Testing for Q&A
               Q:
               {' '}
               {this.props.question.question_body}

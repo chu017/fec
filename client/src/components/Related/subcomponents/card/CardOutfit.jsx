@@ -1,16 +1,25 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+// eslint-disable-next-line import/extensions
+import styles from '../../styled.js';
 
-const CardOutfit = ({ name, category, price, image }) => (
-  <div className="cardComponent">
+const CardOutfit = ({
+  name, category, price, image, toggleModal,
+}) => (
+  <styles.cardComponentDiv>
+
     <span>{name}</span>
+    <button id="starButton" type="button" onClick={() => { toggleModal(); }}>Remove From Outfit</button>
     <br />
-    <img src={image} alt="" />
+
+    <styles.cardImg src={image} alt="" />
     <br />
+
     <span>{category}</span>
     <br />
+
     <span>{price}</span>
-  </div>
+  </styles.cardComponentDiv>
 );
 
 export default CardOutfit;

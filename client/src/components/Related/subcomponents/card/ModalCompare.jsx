@@ -6,7 +6,7 @@ import styles from '../../styled.js';
 const ModalCompare = ({ toggleModal }) => (
   <styles.modalDiv>
     <div onClick={() => { toggleModal(); }}>X</div>
-    <table>
+    <table id="table">
       <tbody>
         <tr>
           <th scope="col">Main Product</th>

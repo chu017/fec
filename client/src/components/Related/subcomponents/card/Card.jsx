@@ -6,6 +6,7 @@ import styles from '../../styled.js';
 const Card = ({
   name, category, price, image, toggleModal,
 }) => (
+
   <styles.cardComponentDiv>
 
     <span>{name}</span>

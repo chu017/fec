@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "server-dev": "nodemon server/index.js",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "test-jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "nodemon": "^2.0.7",
     "react": "^17.0.0",
     "react-dom": "^16.14.0",
+    "react-icons": "^4.2.0",
     "styled-components": "^5.2.3",
     "webpack": "^5.32.0",
     "webpack-cli": "^4.6.0"

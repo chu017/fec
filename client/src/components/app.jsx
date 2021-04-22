@@ -10,29 +10,35 @@ import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
 import sampleData from './sampleData.js';
+import sampleDataOutfit from './sampleData_outfit.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: null,
-      quantity: null,
+      outfits: sampleDataOutfit.outfits,
     };
+
+    this.getOutfit = this.getOutfit.bind(this);
   }
 
   componentDidMount() {
-    const size = localStorage.getItem('size');
-    const quantity = localStorage.getItem('quanity');
-    console.log('component Mount');
-    console.log(size, quantity);
-    this.setState({ size, quantity });
+    this.getOutfit();
+  }
+
+  getOutfit() {
+    const outfit = JSON.parse(localStorage.getItem('outfit'));
+    console.log(outfit);
+    if (outfit) {
+      this.setState({ outfits: [outfit, ...this.state.outfits] });
+    }
   }
 
   render() {
     return (
       <div>
-        <Overview data={sampleData} />
-        <Related data={sampleData} newItem={this.state.size} />
+        <Overview data={sampleData} getOutfit={this.getOutfit} />
+        <Related data={sampleData} newItem={this.state.outfits} />
         <QA data={sampleData} />
         <Reviews data={sampleData} />
       </div>

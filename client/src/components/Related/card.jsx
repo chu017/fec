@@ -12,9 +12,9 @@ class Card extends React.Component {
   render() {
     return (
       <div className="card">
-        <img className="card-img" alt="" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" />
-        <h2>{this.props.item.results[0].name}</h2>
-        <div>{this.props.item.results[0].original_price}</div>
+        <img className="card-img" alt="" src={this.props.item.photos[0].url} />
+        <h2>{this.props.item.name}</h2>
+        <div>{this.props.item.original_price}</div>
       </div>
     );
   }

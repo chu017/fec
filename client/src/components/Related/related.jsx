@@ -16,11 +16,11 @@ class Related extends React.Component {
     return (
       <div className="card-container">
 
-        {this.props.data.related.relatedStyles.map((item, index) => (
+        {this.props.newItem.map((item, index) => (
           <Card item={item} key={index} />
         ))}
 
-        {this.props.newItem !== null && (<Cardx item={this.props.newItem} />)}
+        {/* {this.props.newItem !== null && (<Cardx item={this.props.newItem} />)} */}
 
       </div>
     );

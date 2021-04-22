@@ -18,8 +18,15 @@ const OverviewDefault = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      outfit: null,
     };
+
+    this.addOutfit = this.addOutfit.bind(this);
+  }
+
+  addOutfit(newOutfit) {
+    const outfit = newOutfit;
+    this.setState({ outfit });
   }
 
   render() {
@@ -44,12 +51,18 @@ const OverviewDefault = class extends React.Component {
           />
           <br />
           <StyleSelector
-            photos={this.props.style}
             data={this.props.data}
+            photos={this.props.style}
             selectStyle={this.props.selectStyle}
+            addOutfit={this.addOutfit}
           />
           <br />
-          <AddToCart data={this.props.data} />
+          <AddToCart
+            data={this.props.data}
+            photos={this.props.style}
+            getOutfit={this.props.getOutfit}
+            outfit={this.state.outfit}
+          />
         </div>
 
         <div className="footer">

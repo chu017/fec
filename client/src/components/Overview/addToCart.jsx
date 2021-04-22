@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-undef */
 import React from 'react';
 
@@ -14,10 +16,12 @@ const AddToCart = class extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // const { size, quantity } = this.state;
+
   handleSubmit() {
-    const { size, quantity } = this.state;
-    localStorage.setItem('size', size);
-    localStorage.setItem('quentity', quantity);
+    const outfit = this.props.outfit;
+    localStorage.setItem('outfit', JSON.stringify(outfit));
+    this.props.getOutfit();
   }
 
   render() {
@@ -55,7 +59,13 @@ const AddToCart = class extends React.Component {
         </select>
         <br />
 
-        <button type="button" className="button-bag">Add to Bag</button>
+        <button
+          type="button"
+          className="button-bag"
+        >
+          Add to Bag
+        </button>
+
         <button
           type="button"
           className="button-outfit"
@@ -71,3 +81,13 @@ const AddToCart = class extends React.Component {
 };
 
 export default AddToCart;
+
+/*
+    const outfit = { name: 'Super Comfortable', original_price: '140.00', photos: [
+      {
+        thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+        url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+      }
+      ]
+    }
+*/

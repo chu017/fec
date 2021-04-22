@@ -48,6 +48,7 @@ const Overview = class extends React.Component {
           selectStyle={this.selectStyle}
           defaultView={this.state.defaultView}
           expandView={this.expandView}
+          getOutfit={this.props.getOutfit}
         />
         )}
 

@@ -4,6 +4,8 @@
 
 import React from 'react';
 import styles from './styles.js';
+import AnswerHelpfulPost from './APIHandlers/AnswerHelpfulPost';
+import AnswerReport from './APIHandlers/AnswerReport';
 
 const moment = require('moment');
 
@@ -27,14 +29,26 @@ class AnswerRenderer extends React.Component {
       this.answersObject.answerID.push(currentAnswer.id);
     }
     this.state = {
+      answersObject: this.answersObject,
       showAllAnswers: false,
     };
   }
 
+  AnswerHelpful(answerID, identifier) {
+    AnswerHelpfulPost(answerID, () => {
+      let answersObject = this.state.answersObject;
+      this.setState({})
+    });
+  }
+
+  AnswerReport(answerID) {
+    AnswerReport(answerID);
+  }
+
   parseAnswers(answerBody, i) {
-    const answerDate = this.answersObject.answerDate[i];
-    const answererName = this.answersObject.answererName[i];
-    const answerHelpfulness = this.answersObject.answerHelpfulness[i];
+    const answerDate = this.state.answersObject.answerDate[i];
+    const answererName = this.state.answersObject.answererName[i];
+    const answerHelpfulness = this.state.answersObject.answerHelpfulness[i];
     return (
       <div key={Math.random() * 100000}>
         <styles.AnswerText data-testid="AnswerText">
@@ -54,13 +68,15 @@ class AnswerRenderer extends React.Component {
           {'  |  '}
           Helpful?
           {' '}
-          <styles.HyperLink>Yes</styles.HyperLink>
+          <styles.HyperLink onClick={() => this.AnswerHelpful.bind(this)(this.state.answersObject.answerID[i], i)}>
+            Yes
+          </styles.HyperLink>
           {' '}
           (
           {answerHelpfulness}
           )
           {'  |  '}
-          <styles.HyperLink>Report</styles.HyperLink>
+          <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i])}>Report</styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
     );
@@ -74,26 +90,26 @@ class AnswerRenderer extends React.Component {
     if (this.state.showAllAnswers === true) {
       return (
         <div>
-          {this.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
+          {this.state.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
         </div>
       );
     }
-    if (this.answersObject.answerBody.length > 2) {
+    if (this.state.answersObject.answerBody.length > 2) {
       return (
         <div>
-          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
           <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
         </div>
       );
     }
-    if (this.answersObject.answerBody.length > 0) {
+    if (this.state.answersObject.answerBody.length > 0) {
       return (
         <div>
-          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
+          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
         </div>
       );
     }
-    if (this.answersObject.answerBody.length === 0) {
+    if (this.state.answersObject.answerBody.length === 0) {
       return (
         <styles.AnswerText data-testid="NoAnswer">No Answers Available for this Question.</styles.AnswerText>
       );

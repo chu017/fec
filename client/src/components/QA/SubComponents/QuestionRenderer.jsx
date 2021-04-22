@@ -7,7 +7,7 @@ import React from 'react';
 import AnswerRenderer from './AnswerRenderer.jsx';
 import styles from './styles.js';
 import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost'
-
+import QuestionReport from './APIHandlers/QuestionReport'
 
 class QuestionRenderer extends React.Component {
   constructor(props) {
@@ -15,9 +15,13 @@ class QuestionRenderer extends React.Component {
     this.state = {};
   }
 
-  QuestionHelpful (event) {
+  QuestionHelpful() {
     QuestionHelpfulPost(this.props.question.question_id);
-  };
+  }
+
+  QuestionReport() {
+    QuestionReport(this.props.question.question_id);
+  }
 
   render() {
     return (
@@ -43,6 +47,8 @@ class QuestionRenderer extends React.Component {
               ) |
               {' '}
               <styles.HyperLink>Add Answer</styles.HyperLink>
+              {'  |  '}
+              <styles.HyperLink onClick={this.QuestionReport.bind(this)}>Report</styles.HyperLink>
             </div>
           </styles.QuestionSubtitle>
         </styles.QuestionLine>

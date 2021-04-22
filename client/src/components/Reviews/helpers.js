@@ -32,6 +32,9 @@ const helpers = {
   },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> more reviews button functionality created
   getTotal: (ratingsObj) => {
     let total = 0;
     for (let rating in ratingsObj) {
@@ -39,6 +42,7 @@ const helpers = {
     }
     return total;
   }
+<<<<<<< HEAD
 =======
     return helpers.average(toAverage);
   },
@@ -47,6 +51,8 @@ const helpers = {
 =======
   getTotal: (ratingsObj) => Object.values(ratingsObj).length,
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
+=======
+>>>>>>> more reviews button functionality created
 };
 
 export default helpers;

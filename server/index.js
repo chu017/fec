@@ -30,20 +30,11 @@ app.put('/qa/answers/:answer_id/helpful', APIControllers.answerHelpful);
 
 app.put('/reviews/:review_id/helpful', APIControllers.reviewHelpful);
 
-app.put('/qa/questions/:question_id/report', (req, res) => {
-  console.log(req.params);
-  res.send('HELP');
-});
+app.put('/qa/questions/:question_id/report', APIControllers.questionReport);
 
-app.put('/qa/answers/:answer_id/report', (req, res) => {
-  console.log(req.params);
-  res.send('HELP');
-});
+app.put('/qa/answers/:answer_id/report', APIControllers.answerReport);
 
-app.put('/reviews/:review_id/report', (req, res) => {
-  console.log(req.params);
-  res.send('HELP');
-});
+app.put('/reviews/:review_id/report', APIControllers.reviewReport);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

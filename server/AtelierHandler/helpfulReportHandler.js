@@ -32,6 +32,39 @@ const reviewHelpful = (req, res) => {
     .then(() => res.end());
 };
 
+const questionReport = (req, res) => {
+  const questionID = req.params.question_id;
+  axios({
+    method: 'put',
+    url: `${baseURL}/qa/questions/${questionID}/report`,
+    headers: { Authorization: API_KEY },
+  })
+    .then(() => res.end());
+};
+
+const answerReport = (req, res) => {
+  const answerID = req.params.answer_id;
+  axios({
+    method: 'put',
+    url: `${baseURL}/qa/answers/${answerID}/report`,
+    headers: { Authorization: API_KEY },
+  })
+    .then(() => res.end());
+};
+
+const reviewReport = (req, res) => {
+  const reviewID = req.params.review_id;
+  axios({
+    method: 'put',
+    url: `${baseURL}/reviews/${reviewID}/report`,
+    headers: { Authorization: API_KEY },
+  })
+    .then(() => res.end());
+};
+
 module.exports.questionHelpful = questionHelpful;
 module.exports.answerHelpful = answerHelpful;
 module.exports.reviewHelpful = reviewHelpful;
+module.exports.questionReport = questionReport;
+module.exports.answerReport = answerReport;
+module.exports.reviewReport = reviewReport;

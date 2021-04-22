@@ -33,3 +33,8 @@ it('renders an option to load more answers if more than two are present', () => 
   const { getByTestId } = render(<AnswerRenderer answers={sampleData.qa.results[1].answers} />);
   expect(getByTestId('LoadMoreAnswers')).toHaveTextContent('LOAD MORE ANSWERS');
 });
+
+it('should not render more than two answers', () => {
+  const { queryByText } = render(<AnswerRenderer answers={sampleData.qa.results[1].answers} />);
+  expect(queryByText('I wouldn\'t machine wash it')).toBeNull();
+});

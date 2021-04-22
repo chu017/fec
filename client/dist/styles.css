@@ -141,7 +141,7 @@ a {
 }
 
 .star-review-scale-inner {
-  background: #000;
+  background: green;
   height: 8px;
   border-radius: 2px;
   top: 0;
@@ -273,4 +273,12 @@ h4 {
   height: 60%;
   z-index: 999;
   background-color: #fff;
+}
+
+.filters-applied-title {
+  margin: 15px 0 5px 0;
+}
+
+.remove-filters {
+  margin: 5px 0;
 }

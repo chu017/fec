@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
@@ -8,10 +8,6 @@ import styles from './styles.js';
 import AnswerHelpfulPost from './APIHandlers/AnswerHelpfulPost';
 import AnswerReport from './APIHandlers/AnswerReport';
 
-=======
-import React from 'react';
-import styles from "./styles.js"
->>>>>>> Add Non-Functioning Helpfulness Handling
 const moment = require('moment');
 
 class AnswerRenderer extends React.Component {
@@ -33,7 +29,6 @@ class AnswerRenderer extends React.Component {
       this.answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
       this.answersObject.answerID.push(currentAnswer.id);
     }
-<<<<<<< HEAD
     this.state = {
       answersObject: this.answersObject,
       showAllAnswers: false,
@@ -45,7 +40,7 @@ class AnswerRenderer extends React.Component {
       let answersObject = this.state.answersObject;
       let currentHelpfulness = answersObject.answerHelpfulness[identifier];
       answersObject.answerHelpfulness[identifier] = currentHelpfulness + 1;
-      this.setState({answersObject})
+      this.setState({ answersObject })
     });
   }
 
@@ -60,31 +55,6 @@ class AnswerRenderer extends React.Component {
     return (
       <div key={Math.random() * 100000}>
         <styles.AnswerText data-testid="AnswerText">
-=======
-  }
-
-  parseAnswers(answerBody, i) {
-    const answerDate = this.answersObject.answerDate[i];
-    const answererName = this.answersObject.answererName[i];
-    const answerHelpfulness = this.answersObject.answerHelpfulness[i];
-    return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <styles.AnswerText>
-        {answerBody}
-        {' '}
-        {moment(answerDate).fromNow()}
-        {' '}
-        {answererName}
-      </styles.AnswerText>
-=======
-      <div>
-        <styles.AnswerText>
->>>>>>> Add Non-Functioning Helpfulness Handling
-=======
-      <div key={Math.random() * 100000}>
-        <styles.AnswerText data-testid="AnswerText">
->>>>>>> Write Initial Testing for Q&A
           <styles.BoldedText>
             A:
             {' '}
@@ -101,19 +71,14 @@ class AnswerRenderer extends React.Component {
           {'  |  '}
           Helpful?
           {' '}
-<<<<<<< HEAD
           <styles.HyperLink onClick={() => this.AnswerHelpful.bind(this)(this.state.answersObject.answerID[i], i)}>
             Yes
           </styles.HyperLink>
-=======
-          <styles.HyperLink href="http://google.com">Yes</styles.HyperLink>
->>>>>>> Add Non-Functioning Helpfulness Handling
           {' '}
           (
           {answerHelpfulness}
           )
           {'  |  '}
-<<<<<<< HEAD
           <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i])}>Report</styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
@@ -143,12 +108,7 @@ class AnswerRenderer extends React.Component {
     if (this.state.answersObject.answerBody.length > 0) {
       return (
         <div>
-<<<<<<< HEAD
           {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-=======
-          {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
->>>>>>> Write Initial Testing for Q&A
         </div>
       );
     }
@@ -157,21 +117,6 @@ class AnswerRenderer extends React.Component {
         <styles.AnswerText data-testid="NoAnswer">No Answers Available for this Question.</styles.AnswerText>
       );
     }
-=======
-          <styles.HyperLink href="http://google.com">Report</styles.HyperLink>
-        </styles.AnswerSubtitle>
-      </div>
->>>>>>> Add Answer Helpfulness & Improve CSS Styling Reusability
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
-      </div>
-    );
->>>>>>> Add Non-Functioning Helpfulness Handling
   }
 }
 

@@ -34,10 +34,15 @@ class RatingsReviews extends React.Component {
     this.getRatings = this.getRatings.bind(this);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
 =======
 >>>>>>> Setup filtering functionality for review list
+=======
+    this.filtersApplied = this.filtersApplied.bind(this);
+    this.showFilters = this.showFilters.bind(this);
+>>>>>>> Edited ratings and reviews structure
   }
 
   componentDidMount() {

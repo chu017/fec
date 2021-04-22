@@ -10,9 +10,24 @@ import QA from './QA/qa.jsx';
 import sampleData from './sampleData.js'
 
 class App extends React.Component {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> Edited ratings and reviews structure
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Edited ratings and reviews structure
+  constructor (props) {
+    super(props);
+>>>>>>> Base component structure, and some dynamic data added.
+>>>>>>> Edited ratings and reviews structure
       data: sampleData,
     };
   };
@@ -35,6 +50,26 @@ class App extends React.Component {
         <Reviews data={this.state.data} key={Math.random() * 1000000} />
       </div>
     )
+<<<<<<< HEAD
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+>>>>>>> Base component structure, and some dynamic data added.
+  }
+
+  render() {
+    return (
+      <div>
+        <Overview data={sampleData} />
+        <Related data={sampleData} />
+        <QA data={sampleData} />
+        <Reviews data={sampleData} />
+      </div>
+    );
+>>>>>>> Edited ratings and reviews structure
   }
 }
 

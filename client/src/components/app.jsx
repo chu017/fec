@@ -26,10 +26,10 @@ class App extends React.Component {
   render () {
   return (
     <div>
-      <Overview data={this.state.data}/>
-      <Related data={this.state.data}/>
-      <QA data={this.state.data}/>
-      <Reviews data={this.state.data} />
+      <Overview data={this.state.data} key={Math.random() * 1000000} />
+      <Related data={this.state.data} key={Math.random() * 1000000} />
+      <QA data={this.state.data} key={Math.random() * 1000000} />
+      <Reviews data={this.state.data} key={Math.random() * 1000000} />
     </div>
     )
   }

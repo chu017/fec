@@ -13,7 +13,9 @@ class Carousel extends React.Component {
     super(props);
 
     this.scroll = this.scroll.bind(this);
+
     this.scrollRef = React.createRef();
+
     this.scrollOutfit = this.scrollOutfit.bind(this);
     this.scrollOutfitRef = React.createRef();
     this.checkButtons = this.checkButtons.bind(this);

@@ -25,15 +25,15 @@ const carouselDiv = styled.div`
   `;
 
 const cardComponentDiv = styled.div`
-  padding: 5px 5px;
+  padding: 2px 2px;
   background: #f7f7f7;
   text-align: center;
   border-radius: 4px;
   font-family: Verdana;
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 250px;
+  min-width: 250px;
   height: 100%;
-  box-shadow: -1.5rem 0 3rem #000;
+  box-shadow: -1rem 0 3rem #000;
   flex-direction: column;
   padding: 1.5rem;
   transition: 0.2s;
@@ -57,7 +57,9 @@ const prevComponentDiv = styled.div`
 const cardImg = styled.img`
   height: 80%;
   width: 80%;
-  object-fit: contain;`;
+  object-fit: contain;
+  border-radius: 4px;
+  `;
 
 const navButtons = styled.button`
   background-color: midnightblue;

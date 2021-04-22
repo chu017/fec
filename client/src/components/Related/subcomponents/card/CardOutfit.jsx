@@ -4,7 +4,7 @@ import React from 'react';
 import styles from '../../styled.js';
 
 const CardOutfit = ({
-  name, category, price, image, toggleModal,
+  name, category, price, image,
 }) => (
   <styles.cardComponentDiv>
 

@@ -1,5 +1,7 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';

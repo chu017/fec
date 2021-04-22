@@ -24,7 +24,7 @@ class QuestionRenderer extends React.Component {
       <styles.QuestionBlock>
         <styles.QuestionLine>
           <styles.BoldedText>
-            <styles.QuestionText>
+            <styles.QuestionText data-testid="QuestionText">
               Q:
               {' '}
               {this.props.question.question_body}

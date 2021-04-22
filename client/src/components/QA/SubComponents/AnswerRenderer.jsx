@@ -36,8 +36,8 @@ class AnswerRenderer extends React.Component {
     const answererName = this.answersObject.answererName[i];
     const answerHelpfulness = this.answersObject.answerHelpfulness[i];
     return (
-      <div>
-        <styles.AnswerText>
+      <div key={Math.random() * 100000}>
+        <styles.AnswerText data-testid="AnswerText">
           <styles.BoldedText>
             A:
             {' '}
@@ -82,13 +82,13 @@ class AnswerRenderer extends React.Component {
       return (
         <div>
           {this.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)}>LOAD MORE ANSWERS</styles.LoadMoreAnswers>
+          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
         </div>
       );
     }
     if (this.answersObject.answerBody.length === 0) {
       return (
-        <styles.AnswerText>No Answers Available for this Question.</styles.AnswerText>
+        <styles.AnswerText data-testid="NoAnswer">No Answers Available for this Question.</styles.AnswerText>
       );
     }
   }

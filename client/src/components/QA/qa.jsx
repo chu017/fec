@@ -39,7 +39,7 @@ class QA extends React.Component {
         </div>
         <div>
           {this.state.filteredQuestions.map((question) => (
-            <QuestionRenderer question={question} />
+            <QuestionRenderer question={question} key={Math.random() * 100000}/>
           ))}
         </div>
       </styles.QA>

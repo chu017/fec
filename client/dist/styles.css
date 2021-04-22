@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 body {
   background-color: #f7f7f7;
 }
@@ -272,4 +273,16 @@ h4 {
 >>>>>>> 96e5909... Edited ratings and reviews structure
 =======
 >>>>>>> workd on cards, scroll buttons, and related products modal. Modal needs work, and I need a place to store outfit data
+<<<<<<< HEAD
 >>>>>>> workd on cards, scroll buttons, and related products modal. Modal needs work, and I need a place to store outfit data
+=======
+=======
+body {
+  height: fit-content;
+}
+
+.disabled {
+  pointer-events: none;
+}
+>>>>>>> one card scrolling movement, hidden scroll buttons implemented
+>>>>>>> one card scrolling movement, hidden scroll buttons implemented

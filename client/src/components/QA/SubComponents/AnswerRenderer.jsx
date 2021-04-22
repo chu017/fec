@@ -37,7 +37,9 @@ class AnswerRenderer extends React.Component {
   AnswerHelpful(answerID, identifier) {
     AnswerHelpfulPost(answerID, () => {
       let answersObject = this.state.answersObject;
-      this.setState({})
+      let currentHelpfulness = answersObject.answerHelpfulness[identifier];
+      answersObject.answerHelpfulness[identifier] = currentHelpfulness + 1;
+      this.setState({answersObject})
     });
   }
 

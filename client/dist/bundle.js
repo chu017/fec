@@ -204,7 +204,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerReport = function AnswerReport(answerID) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/helpful\"),\n    type: 'PUT',\n    success: function success(data) {\n      return console.log(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerReport.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerReport = function AnswerReport(answerID) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/report\"),\n    type: 'PUT',\n    success: function success(data) {\n      return console.log(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerReport.js?");
 
 /***/ }),
 

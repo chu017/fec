@@ -225,6 +225,7 @@ class RatingsReviews extends React.Component {
         </div>
         <div className="individual-ratings-container">
           <h4>Ratings Breakdown:</h4>
+<<<<<<< HEAD
           <h4 className="recommendation-percentage">{this.state.recommendationPercentage}
           of reviews recommend this product out of {this.reviews.reviews.results.length} total reviews</h4>
           {this.createRatingsCountBars().map(ratingsCountBar => ratingsCountBar)}
@@ -383,6 +384,8 @@ class RatingsReviews extends React.Component {
             <a href="#">1 stars</a>
             <div className="star-review-scale"></div></div>
 =======
+=======
+>>>>>>> Filter by rating feature edited
           <h4 className="recommendation-percentage">{this.state.recommendationPercentage}
           of reviews recommend this product out of {this.reviews.reviews.results.length} total reviews</h4>
           {this.createRatingsCountBars().map(ratingsCountBar => ratingsCountBar)}

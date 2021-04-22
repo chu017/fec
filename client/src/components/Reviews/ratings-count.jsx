@@ -47,6 +47,7 @@ class RatingsCount extends React.Component {
 
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div onClick={this.ratingFilter} className="individual-ratings">
 =======
       <div className="individual-ratings">
@@ -56,6 +57,10 @@ class RatingsCount extends React.Component {
 =======
         <div onClick={this.ratingFilter} className="ratings-pop-up underline">{this.props.stars + ' stars'}</div>
 >>>>>>> Setup filtering functionality for review list
+=======
+      <div onClick={this.ratingFilter} className="individual-ratings">
+        <div className="ratings-pop-up underline">{this.props.stars + ' stars'}</div>
+>>>>>>> Filter by rating feature edited
         <div className="star-review-scale">
           <div style={elWidth} className="star-review-scale-inner"></div>
         </div>

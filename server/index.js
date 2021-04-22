@@ -26,15 +26,9 @@ app.get('/api/products/:product_id', (req, res) => {
 
 app.put('/qa/questions/:question_id/helpful', APIControllers.questionHelpful);
 
-app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  console.log(req.params);
-  res.send('HELP');
-});
+app.put('/qa/answers/:answer_id/helpful', APIControllers.answerHelpful);
 
-app.put('/reviews/:review_id/helpful', (req, res) => {
-  console.log(req.params);
-  res.send('HELP');
-});
+app.put('/reviews/:review_id/helpful', APIControllers.reviewHelpful);
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
   console.log(req.params);

@@ -12,4 +12,26 @@ const questionHelpful = (req, res) => {
     .then(() => res.end());
 };
 
+const answerHelpful = (req, res) => {
+  const answerID = req.params.answer_id;
+  axios({
+    method: 'put',
+    url: `${baseURL}/qa/answers/${answerID}/helpful`,
+    headers: { Authorization: API_KEY },
+  })
+    .then(() => res.end());
+};
+
+const reviewHelpful = (req, res) => {
+  const reviewID = req.params.review_id;
+  axios({
+    method: 'put',
+    url: `${baseURL}/reviews/${reviewID}/helpful`,
+    headers: { Authorization: API_KEY },
+  })
+    .then(() => res.end());
+};
+
 module.exports.questionHelpful = questionHelpful;
+module.exports.answerHelpful = answerHelpful;
+module.exports.reviewHelpful = reviewHelpful;

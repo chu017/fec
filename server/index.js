@@ -24,6 +24,33 @@ app.get('/api/products/:product_id', (req, res) => {
   }, (productData) => res.send(productData));
 });
 
+app.put('/qa/questions/:question_id/helpful', APIControllers.questionHelpful);
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  console.log(req.params);
+  res.send('HELP');
+});
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  console.log(req.params);
+  res.send('HELP');
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  console.log(req.params);
+  res.send('HELP');
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  console.log(req.params);
+  res.send('HELP');
+});
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  console.log(req.params);
+  res.send('HELP');
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

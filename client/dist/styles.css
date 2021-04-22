@@ -31,10 +31,19 @@ body {
   align-items: center;
 }
 
+.sort-by-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .sort-by {
   display: flex;
   align-self: self-start;
   margin: 8px 0;
+}
+
+.sort-by-label {
+  margin: 7px 3px 0 0;
 }
 
 a {
@@ -243,4 +252,25 @@ small {
 
 h4 {
   font-size: 18px;
+}
+
+.form-cover {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: .7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.form {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 60%;
+  z-index: 999;
+  background-color: #fff;
 }

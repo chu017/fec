@@ -79,24 +79,26 @@ border-radius: 4px;
 font-family: Verdana;
 height: 100%;
 flex-direction: column;
-padding: 1.5rem;
+padding: 5px;
 transition: 1s;
 height: 500px;
 z-index: 100;
 position: fixed;
-border: 2px;
+border: 4px solid black;
+box-shadow: -1.5rem 0 3rem #000;
+right:40%;
 `;
 
 const table = styled.table`
-border: 1px;
+border: 1px solid black;
 `;
 
 const tableData = styled.td`
-border: 1px;
+border: 1px solid black;
 `;
 
 const tableHeader = styled.th`
-border: 1px;
+border: 1px solid black;
 `;
 
 const styles = {

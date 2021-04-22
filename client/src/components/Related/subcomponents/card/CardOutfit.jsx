@@ -9,7 +9,7 @@ const CardOutfit = ({
   <styles.cardComponentDiv>
 
     <span>{name}</span>
-    <button id="starButton" type="button" onClick={() => { toggleModal(); }}>Remove From Outfit</button>
+    <button id="starButton" type="button">Remove From Outfit</button>
     <br />
 
     <styles.cardImg src={image} alt="" />

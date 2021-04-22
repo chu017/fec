@@ -7,16 +7,23 @@ const helpers = {
     const toAverage = [];
     for (let rating in ratingsObj){
 <<<<<<< HEAD
+<<<<<<< HEAD
       if(+ratingsObj[rating].length > 1) {
 =======
       if(+ratingsObj[rating] > 1) {
 >>>>>>> Star rating complete, font awesome library added
+=======
+      if(+ratingsObj[rating].length > 1) {
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
         for (let i = 0; i < +ratingsObj[rating]; i++) toAverage.push(+rating);
       } else {
         toAverage.push(+rating);
       }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
     return helpers.average(toAverage).toFixed(2);
   },
 

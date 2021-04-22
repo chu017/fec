@@ -3789,6 +3789,7 @@ const sampleData = {
           date: '2019-01-01T00:00:00.000Z',
           reviewer_name: 'funtime',
           helpfulness: 9,
+<<<<<<< HEAD
           photos: [],
         },
         {
@@ -3849,6 +3850,8 @@ const sampleData = {
           date: '2021-02-19T00:00:00.000Z',
           reviewer_name: 'anonymous',
           helpfulness: 8,
+=======
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
           photos: [],
         },
         {
@@ -3858,9 +3861,9 @@ const sampleData = {
           recommend: false,
           response: '',
           body: 'I really did not like this product solely because I am tiny and do not fit into it.',
-          date: '2019-01-11T00:00:00.000Z',
+          date: '2020-01-11T00:00:00.000Z',
           reviewer_name: 'screwge',
-          helpfulness: 2,
+          helpfulness: 1,
           photos: [],
         },
         {
@@ -3870,9 +3873,9 @@ const sampleData = {
           recommend: true,
           response: '',
           body: 'I really did or did not like this product based on whether it was sustainably sourced. Then I found out that its made from nothing at all.',
-          date: '2019-01-01T00:00:00.000Z',
+          date: '2021-02-19T00:00:00.000Z',
           reviewer_name: 'floydmaywether',
-          helpfulness: 8,
+          helpfulness: 7,
           photos: [],
         },
         {
@@ -3884,6 +3887,30 @@ const sampleData = {
           body: 'I really did or did not like this product based on whether it was sustainably sourced. Then I found out that its made from nothing at all.',
           date: '2019-01-01T00:00:00.000Z',
           reviewer_name: 'floydmaywether',
+          helpfulness: 12,
+          photos: [],
+        },
+        {
+          review_id: 308890,
+          rating: 5,
+          summary: 'This product was dope',
+          recommend: true,
+          response: '',
+          body: 'I really did not like this product solely because I am tiny and do not fit into it.',
+          date: '2021-02-19T00:00:00.000Z',
+          reviewer_name: 'somebody',
+          helpfulness: 6,
+          photos: [],
+        },
+        {
+          review_id: 308891,
+          rating: 5,
+          summary: 'This product was LIT',
+          recommend: true,
+          response: '',
+          body: 'I really did not like this product solely because I am tiny and do not fit into it.',
+          date: '2021-02-19T00:00:00.000Z',
+          reviewer_name: 'anonymous',
           helpfulness: 8,
           photos: [],
         },

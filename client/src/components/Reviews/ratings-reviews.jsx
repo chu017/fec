@@ -93,7 +93,7 @@ class RatingsReviews extends React.Component {
   getRatingPercentage() {
 =======
     }
-    return `${helpers.average(recommendationArray) * 100}%`;
+    return `${(helpers.average(recommendationArray) * 100).toFixed(2)}%`;
   }
 
   getRatings() {
@@ -140,6 +140,9 @@ class RatingsReviews extends React.Component {
       }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
       ratingsCountBars.push(
         <RatingsCount
           addPosts={this.props.addPosts}
@@ -149,12 +152,15 @@ class RatingsReviews extends React.Component {
           stars={i}
         />,
       );
+<<<<<<< HEAD
 =======
       ratingsCountBars.push(<RatingsCount reviews={this.reviews} width={width + '%'} stars={i}/>);
 >>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
 =======
       ratingsCountBars.push(<RatingsCount filter={this.props.filter} reviews={this.reviews} width={width + '%'} stars={i}/>);
 >>>>>>> Setup filtering functionality for review list
+=======
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
     }
     return ratingsCountBars;
   }

@@ -1,21 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* eslint-disable no-unused-labels */
-/* eslint-disable arrow-parens */
-=======
->>>>>>> Setup filtering functionality for review list
-=======
-/* eslint-disable no-unused-labels */
-/* eslint-disable arrow-parens */
->>>>>>> more reviews button functionality created
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-<<<<<<< HEAD
-=======
 // import ReactDOM from 'react-dom';
->>>>>>> Base component structure, and some dynamic data added.
 import RatingsReviews from './ratings-reviews.jsx';
 import SortBy from './sort-by.jsx';
 import ReviewPosts from './review-posts.jsx';
@@ -169,57 +156,39 @@ class Reviews extends React.Component {
             <AddReview changeFormState={this.changeFormState} data={this.props.data} />
 =======
     this.state = {
-      filterBy: [],
-      showPosts: 2,
+      filterBy: null,
     };
 
     this.filterReviews = this.filterReviews.bind(this);
-    this.addPosts = this.addPosts.bind(this);
   }
 
-  filterReviews(newFilter) {
-    const filterByArr = this.state.filterBy;
-    if (filterByArr.includes(newFilter)) {
-      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
-    } else {
-      filterByArr.push(newFilter);
-    }
+  filterReviews(filterBy) {
     this.setState({
-      filterBy: filterByArr,
-    });
-  }
-
-  addPosts(prevPosts) {
-    this.setState({
-      showPosts: prevPosts + 2,
+      filterBy,
     });
   }
 
   render() {
     const renderReviewPosts = () => {
-      if (this.state.filterBy.length) {
+      if (this.state.filterBy) {
         return this.props.data.reviews.reviews.results
-          .filter(result => this.state.filterBy.includes(result.rating))
-          .slice(0, this.state.showPosts)
+          .filter(result => result.rating === this.state.filterBy)
           .map(result => <ReviewPosts
             data={this.props.data}
             title={result.summary}
             body={result.body}
             user={result.reviewer_name}
             date={result.date}
-            rating={result.rating}
-          />);
+            rating={result.rating} />);
       }
       return this.props.data.reviews.reviews.results
-        .slice(0, this.state.showPosts)
         .map(result => <ReviewPosts
           data={this.props.data}
           title={result.summary}
           body={result.body}
           user={result.reviewer_name}
           date={result.date}
-          rating={result.rating}
-        />);
+          rating={result.rating} />);
     };
 
     return (
@@ -231,11 +200,7 @@ class Reviews extends React.Component {
           <SortBy data={this.props.data} />
           {renderReviewPosts()}
           <div className="reviews-btn-row">
-            <MoreReviews
-              prevPosts={this.state.showPosts}
-              addPosts={this.addPosts}
-              data={this.props.data}
-            />
+            <MoreReviews data={this.props.data} />
             <AddReview data={this.props.data} />
 >>>>>>> Base component structure, and some dynamic data added.
           </div>

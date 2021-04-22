@@ -34,6 +34,7 @@ class MoreReviews extends React.Component {
       <div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <button onClick={this.handleClick} className="review-btn" type="button">More Reviews</button>
 =======
         <button className="review-btn" type="button">Review Posts</button>
@@ -41,6 +42,9 @@ class MoreReviews extends React.Component {
 =======
         <button onClick={this.handleClick} className="review-btn" type="button">Review Posts</button>
 >>>>>>> more reviews button functionality created
+=======
+        <button onClick={this.handleClick} className="review-btn" type="button">More Reviews</button>
+>>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
       </div>
     );
   }

@@ -2,7 +2,7 @@ const axios = require('axios');
 const API_KEY = require('../config.js');
 const baseURL = require('./AtelierConfig.js');
 
-const resourceHandler = (productID, callback) => {
+const resourceHandler = (productID, errorCB, successCB) => {
   const productData = {};
   axios({
     method: 'get',
@@ -78,8 +78,11 @@ const resourceHandler = (productID, callback) => {
     })
     .then((response) => {
       productData.qa = response.data;
-      callback(productData);
-    });
+      successCB(productData);
+    })
+    .catch((response) => {
+      errorCB(response);
+    })
 };
 
 module.exports = resourceHandler;

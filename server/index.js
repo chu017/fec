@@ -18,7 +18,10 @@ app.get('/products/:product_id/jquery.js', (req, res) => (
 ));
 
 app.get('/api/products/:product_id', (req, res) => {
-  APIControllers.resourceHandler(req.params.product_id, (productData) => res.send(productData));
+  APIControllers.resourceHandler(req.params.product_id, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
 });
 
 app.listen(port, () => {

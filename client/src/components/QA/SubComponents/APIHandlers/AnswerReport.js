@@ -2,7 +2,7 @@ const AnswerReport = (answerID) => {
   $.ajax({
     url: `/qa/answers/${answerID}/report`,
     type: 'PUT',
-    success: (data) => console.log(data)
+    success: (data) => cb(data)
  });
 };
 

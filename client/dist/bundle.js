@@ -193,7 +193,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerHelpfulPost = function AnswerHelpfulPost(answerID, cb) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/helpful\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    },\n    error: function error(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerHelpfulPost);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerHelpfulPost.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerHelpfulPost = function AnswerHelpfulPost(answerID, cb) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/helpful\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerHelpfulPost);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerHelpfulPost.js?");
 
 /***/ }),
 
@@ -204,7 +204,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerReport = function AnswerReport(answerID) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/report\"),\n    type: 'PUT',\n    success: function success(data) {\n      return console.log(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerReport.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar AnswerReport = function AnswerReport(answerID) {\n  $.ajax({\n    url: \"/qa/answers/\".concat(answerID, \"/report\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/AnswerReport.js?");
 
 /***/ }),
 
@@ -215,7 +215,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar QuestionHelpfulPost = function QuestionHelpfulPost(questionID, cb) {\n  $.ajax({\n    url: \"/qa/questions/\".concat(questionID, \"/helpful\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    },\n    error: function error(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionHelpfulPost);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/QuestionHelpfulPost.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar QuestionHelpfulPost = function QuestionHelpfulPost(questionID, cb) {\n  $.ajax({\n    url: \"/qa/questions/\".concat(questionID, \"/helpful\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionHelpfulPost);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/QuestionHelpfulPost.js?");
 
 /***/ }),
 
@@ -226,7 +226,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar QuestionReport = function QuestionReport(questionID) {\n  $.ajax({\n    url: \"/qa/questions/\".concat(questionID, \"/report\"),\n    type: 'PUT',\n    success: function success(data) {\n      return console.log(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/QuestionReport.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar QuestionReport = function QuestionReport(questionID) {\n  $.ajax({\n    url: \"/qa/questions/\".concat(questionID, \"/report\"),\n    type: 'PUT',\n    success: function success(data) {\n      return cb(data);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionReport);\n\n//# sourceURL=webpack://fec/./client/src/components/QA/SubComponents/APIHandlers/QuestionReport.js?");
 
 /***/ }),
 

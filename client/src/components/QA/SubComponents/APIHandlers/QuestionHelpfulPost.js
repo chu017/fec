@@ -3,7 +3,6 @@ const QuestionHelpfulPost = (questionID, cb) => {
     url: `/qa/questions/${questionID}/helpful`,
     type: 'PUT',
     success: (data) => cb(data),
-    error: (data) => cb(data)
  });
 };
 

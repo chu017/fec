@@ -12,11 +12,17 @@ import QuestionReport from './APIHandlers/QuestionReport'
 class QuestionRenderer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      question_helpfulness: this.props.question.question_helpfulness,
+    };
   }
 
   QuestionHelpful() {
-    QuestionHelpfulPost(this.props.question.question_id);
+    QuestionHelpfulPost(this.props.question.question_id, () => {
+      let currentHelpfulness = this.state.question_helpfulness;
+      let question_helpfulness = currentHelpfulness + 1;
+      this.setState({question_helpfulness});
+    });
   }
 
   QuestionReport() {
@@ -43,7 +49,7 @@ class QuestionRenderer extends React.Component {
               </styles.HyperLink>
               {' '}
               (
-              {this.props.question.question_helpfulness}
+              {this.state.question_helpfulness}
               ) |
               {' '}
               <styles.HyperLink>Add Answer</styles.HyperLink>

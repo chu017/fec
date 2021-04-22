@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 
 const AddToCart = class extends React.Component {
@@ -9,6 +10,14 @@ const AddToCart = class extends React.Component {
       // eslint-disable-next-line react/no-unused-state
       quantity: 1,
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    const { size, quantity } = this.state;
+    localStorage.setItem('size', size);
+    localStorage.setItem('quentity', quantity);
   }
 
   render() {
@@ -47,7 +56,13 @@ const AddToCart = class extends React.Component {
         <br />
 
         <button type="button" className="button-bag">Add to Bag</button>
-        <button type="button" className="button-outfit">Outfit</button>
+        <button
+          type="button"
+          className="button-outfit"
+          onClick={this.handleSubmit}
+        >
+          Outfit
+        </button>
 
       </div>
 

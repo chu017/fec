@@ -3789,7 +3789,6 @@ const sampleData = {
           date: '2019-01-01T00:00:00.000Z',
           reviewer_name: 'funtime',
           helpfulness: 9,
-<<<<<<< HEAD
           photos: [],
         },
         {
@@ -3850,8 +3849,6 @@ const sampleData = {
           date: '2021-02-19T00:00:00.000Z',
           reviewer_name: 'anonymous',
           helpfulness: 8,
-=======
->>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
           photos: [],
         },
         {

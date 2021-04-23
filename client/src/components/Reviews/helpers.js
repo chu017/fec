@@ -5,25 +5,13 @@ const helpers = {
 
   averageOfRatings: (ratingsObj) => {
     const toAverage = [];
-    for (let rating in ratingsObj){
-<<<<<<< HEAD
-<<<<<<< HEAD
-      if(+ratingsObj[rating].length > 1) {
-=======
-      if(+ratingsObj[rating] > 1) {
->>>>>>> Star rating complete, font awesome library added
-=======
-      if(+ratingsObj[rating].length > 1) {
->>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
+    for (let rating in ratingsObj) {
+      if (+ratingsObj[rating].length > 1) {
         for (let i = 0; i < +ratingsObj[rating]; i++) toAverage.push(+rating);
       } else {
         toAverage.push(+rating);
       }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> added sorting feature, fixed bugs in ratings and reviews section, added form component
     return helpers.average(toAverage).toFixed(2);
   },
 
@@ -38,10 +26,6 @@ const helpers = {
     return percentages;
   },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> more reviews button functionality created
   getTotal: (ratingsObj) => {
     let total = 0;
     for (let rating in ratingsObj) {
@@ -49,17 +33,6 @@ const helpers = {
     }
     return total;
   }
-<<<<<<< HEAD
-=======
-    return helpers.average(toAverage);
-  },
-
->>>>>>> Star rating complete, font awesome library added
-=======
-  getTotal: (ratingsObj) => Object.values(ratingsObj).length,
->>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
-=======
->>>>>>> more reviews button functionality created
 };
 
 export default helpers;

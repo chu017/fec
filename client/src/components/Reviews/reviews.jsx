@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -8,21 +9,13 @@ import SortBy from './sort-by.jsx';
 import ReviewPosts from './review-posts.jsx';
 import MoreReviews from './more-reviews.jsx';
 import AddReview from './add-review.jsx';
-<<<<<<< HEAD
-<<<<<<< HEAD
-// import helpers from './helpers.js';
 import ReviewForm from './review-form.jsx';
-=======
->>>>>>> Base component structure, and some dynamic data added.
-=======
 import helpers from './helpers.js';
->>>>>>> Star rating complete, font awesome library added
 
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
-<<<<<<< HEAD
     this.reviews = this.props.data.reviews;
 
     this.state = {
@@ -154,55 +147,6 @@ class Reviews extends React.Component {
             />
             {this.renderReviewForm()}
             <AddReview changeFormState={this.changeFormState} data={this.props.data} />
-=======
-    this.state = {
-      filterBy: null,
-    };
-
-    this.filterReviews = this.filterReviews.bind(this);
-  }
-
-  filterReviews(filterBy) {
-    this.setState({
-      filterBy,
-    });
-  }
-
-  render() {
-    const renderReviewPosts = () => {
-      if (this.state.filterBy) {
-        return this.props.data.reviews.reviews.results
-          .filter(result => result.rating === this.state.filterBy)
-          .map(result => <ReviewPosts
-            data={this.props.data}
-            title={result.summary}
-            body={result.body}
-            user={result.reviewer_name}
-            date={result.date}
-            rating={result.rating} />);
-      }
-      return this.props.data.reviews.reviews.results
-        .map(result => <ReviewPosts
-          data={this.props.data}
-          title={result.summary}
-          body={result.body}
-          user={result.reviewer_name}
-          date={result.date}
-          rating={result.rating} />);
-    };
-
-    return (
-      <div className="reviews">
-        <div className="reviews-col-1">
-          <RatingsReviews filter={this.filterReviews} data={this.props.data} />
-        </div>
-        <div className="reviews-col-2">
-          <SortBy data={this.props.data} />
-          {renderReviewPosts()}
-          <div className="reviews-btn-row">
-            <MoreReviews data={this.props.data} />
-            <AddReview data={this.props.data} />
->>>>>>> Base component structure, and some dynamic data added.
           </div>
         </div>
       </div>

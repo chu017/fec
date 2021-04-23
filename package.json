@@ -24,27 +24,10 @@
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "jquery": "^3.6.0",
-=======
->>>>>>> Added stars, date, and username to individual review posts. Adjusted rating bars to reflect percentage of total ratings.
     "moment": "^2.29.1",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
-<<<<<<< HEAD
-=======
-    "react-dev": "^0.0.1",
->>>>>>> workd on cards, scroll buttons, and related products modal. Modal needs work, and I need a place to store outfit data
-    "react-dom": "^16.14.0",
-    "react-icons": "^4.2.0",
-    "styled-components": "^5.2.3",
-    "webpack": "^5.32.0",
-    "webpack-cli": "^4.6.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
-    "@babel/preset-react": "^7.13.13",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "babel-loader": "^8.2.2",

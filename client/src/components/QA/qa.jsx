@@ -35,7 +35,7 @@ class QA extends React.Component {
           <div>QUESTIONS & ANSWERS</div>
         </styles.Title>
         <div>
-          <Search searchFilter={this.searchFilter.bind(this)}/>
+          <Search searchFilter={this.searchFilter.bind(this)} />
         </div>
         <div>
           {this.state.filteredQuestions.map((question) => (

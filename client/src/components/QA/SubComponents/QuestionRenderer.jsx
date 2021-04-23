@@ -1,3 +1,4 @@
+
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
@@ -21,7 +22,7 @@ class QuestionRenderer extends React.Component {
     QuestionHelpfulPost(this.props.question.question_id, () => {
       let currentHelpfulness = this.state.question_helpfulness;
       let question_helpfulness = currentHelpfulness + 1;
-      this.setState({question_helpfulness});
+      this.setState({ question_helpfulness });
     });
   }
 

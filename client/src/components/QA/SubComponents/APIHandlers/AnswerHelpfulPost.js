@@ -1,8 +1,8 @@
-const AnswerHelpfulPost = (answerID, cb) => {
+const AnswerHelpfulPost = (answerID) => {
   $.ajax({
     url: `/qa/answers/${answerID}/helpful`,
     type: 'PUT',
-    success: (data) => cb(data)
+    success: (data) => console.log(data)
  });
 };
 

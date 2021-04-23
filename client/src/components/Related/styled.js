@@ -25,15 +25,15 @@ const carouselDiv = styled.div`
   `;
 
 const cardComponentDiv = styled.div`
-  padding: 2px 2px;
+  padding: 5px 5px;
   background: #f7f7f7;
   text-align: center;
   border-radius: 4px;
   font-family: Verdana;
-  max-width: 250px;
-  min-width: 250px;
+  max-width: 300px;
+  min-width: 300px;
   height: 100%;
-  box-shadow: -1rem 0 3rem #000;
+  box-shadow: -1.5rem 0 3rem #000;
   flex-direction: column;
   padding: 1.5rem;
   transition: 0.2s;
@@ -57,9 +57,7 @@ const prevComponentDiv = styled.div`
 const cardImg = styled.img`
   height: 80%;
   width: 80%;
-  object-fit: contain;
-  border-radius: 4px;
-  `;
+  object-fit: contain;`;
 
 const navButtons = styled.button`
   background-color: midnightblue;
@@ -81,26 +79,24 @@ border-radius: 4px;
 font-family: Verdana;
 height: 100%;
 flex-direction: column;
-padding: 5px;
+padding: 1.5rem;
 transition: 1s;
 height: 500px;
 z-index: 100;
 position: fixed;
-border: 4px solid black;
-box-shadow: -1.5rem 0 3rem #000;
-right:40%;
+border: 2px;
 `;
 
 const table = styled.table`
-border: 1px solid black;
+border: 1px;
 `;
 
 const tableData = styled.td`
-border: 1px solid black;
+border: 1px;
 `;
 
 const tableHeader = styled.th`
-border: 1px solid black;
+border: 1px;
 `;
 
 const styles = {

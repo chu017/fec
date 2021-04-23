@@ -7,6 +7,7 @@ import React from 'react';
 import styles from './SubComponents/styles.js';
 import QuestionRenderer from './SubComponents/QuestionRenderer.jsx';
 import Search from './SubComponents/Search.jsx';
+import AnswerModal from './SubComponents/Modals/NewAnswer.jsx';
 
 class QA extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class QA extends React.Component {
     this.state = {
       questionList: this.props.data.qa.results,
       filteredQuestions: this.props.data.qa.results,
+      showAnswerCreate: false,
+      showQuestionCreate: false,
     };
   }
 
@@ -31,6 +34,7 @@ class QA extends React.Component {
   render() {
     return (
       <styles.QA>
+        <AnswerModal />
         <styles.Title>
           <div>QUESTIONS & ANSWERS</div>
         </styles.Title>

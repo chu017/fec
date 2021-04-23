@@ -7,7 +7,6 @@ import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
-import sampleData from './sampleData.js'
 
 class App extends React.Component {
   constructor(props) {

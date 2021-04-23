@@ -13,11 +13,11 @@ class Carousel extends React.Component {
     super(props);
 
     this.scroll = this.scroll.bind(this);
-
     this.scrollRef = React.createRef();
 
     this.scrollOutfit = this.scrollOutfit.bind(this);
     this.scrollOutfitRef = React.createRef();
+
     this.checkButtons = this.checkButtons.bind(this);
     this.checkOutfitButtons = this.checkOutfitButtons.bind(this);
     this.nextRef = React.createRef();
@@ -47,26 +47,6 @@ class Carousel extends React.Component {
     });
   }
 
-  checkButtons() {
-    const scrollBarWidth = this.scrollRef.current.clientWidth - 196;
-    console.log(this.scrollRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollRef.current.scrollLeft >= 196;
-    this.setState({
-      prevVisible: prevBool,
-      nextVisible: this.scrollRef.current.scrollLeft < scrollBarWidth,
-    });
-  }
-
-  checkOutfitButtons() {
-    const scrollBarWidth = this.scrollOutfitRef.current.clientWidth - 196;
-    console.log(this.scrollOutfitRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollOutfitRef.current.scrollLeft >= 196;
-    this.setState({
-      prevOutfitVisible: prevBool,
-      nextOutfitVisible: this.scrollOutfitRef.current.scrollLeft < scrollBarWidth,
-    });
-  }
-
   scroll(distance) {
     this.setState({
       buttonDisable: true,
@@ -82,6 +62,16 @@ class Carousel extends React.Component {
     }, 400);
   }
 
+  checkButtons() {
+    const scrollBarWidth = this.scrollRef.current.clientWidth - 196;
+    console.log(this.scrollRef.current.scrollWidth, scrollBarWidth);
+    const prevBool = this.scrollRef.current.scrollLeft >= 196;
+    this.setState({
+      prevVisible: prevBool,
+      nextVisible: this.scrollRef.current.scrollLeft < scrollBarWidth,
+    });
+  }
+
   scrollOutfit(distance) {
     this.setState({
       buttonDisable: true,
@@ -95,6 +85,16 @@ class Carousel extends React.Component {
         buttonDisable: false,
       });
     }, 400);
+  }
+
+  checkOutfitButtons() {
+    const scrollBarWidth = this.scrollOutfitRef.current.clientWidth - 196;
+    console.log(this.scrollOutfitRef.current.scrollWidth, scrollBarWidth);
+    const prevBool = this.scrollOutfitRef.current.scrollLeft >= 196;
+    this.setState({
+      prevOutfitVisible: prevBool,
+      nextOutfitVisible: this.scrollOutfitRef.current.scrollLeft < scrollBarWidth,
+    });
   }
 
   toggleModal() {

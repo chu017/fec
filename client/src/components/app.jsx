@@ -20,17 +20,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <Overview data={this.state.data} key={Math.random() * 1000000} />
         <Related data={this.state.data} key={Math.random() * 1000000} />
         <QA data={this.state.data} key={Math.random() * 1000000} />
         <Reviews data={this.state.data} key={Math.random() * 1000000} />
-=======
-        <Overview data={sampleData} />
-        <Related data={sampleData} />
-        <QA data={sampleData} />
-        <Reviews data={sampleData} />
->>>>>>> Edited ratings and reviews structure
       </div>
     );
   }

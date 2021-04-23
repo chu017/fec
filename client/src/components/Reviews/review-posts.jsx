@@ -31,10 +31,6 @@ class ReviewPosts extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-
-=======
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
     const starInnerWidth = {
       width: this.getRatingPercentage(),
     };
@@ -50,12 +46,8 @@ class ReviewPosts extends React.Component {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
 
             <div className="username-date">{`${this.props.user}, ${moment(this.props.date).format('DD/MM/YYYY')}`}</div>
-=======
-            <div className="username-date">{`${this.props.user}, ${moment(this.props.date).format('MM/DD/YYYY')}`}</div>
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
           </div>
           <h3 className="review-post-title">{this.props.title}</h3>
           <p className="review-post-body">{this.props.body}</p>

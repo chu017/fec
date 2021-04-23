@@ -5,13 +5,8 @@ const helpers = {
 
   averageOfRatings: (ratingsObj) => {
     const toAverage = [];
-<<<<<<< HEAD
     for (let rating in ratingsObj) {
       if (+ratingsObj[rating].length > 1) {
-=======
-    for (let rating in ratingsObj){
-      if(+ratingsObj[rating].length > 1) {
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
         for (let i = 0; i < +ratingsObj[rating]; i++) toAverage.push(+rating);
       } else {
         toAverage.push(+rating);
@@ -37,7 +32,7 @@ const helpers = {
       total += Number(ratingsObj[rating]);
     }
     return total;
-  }
+  },
 };
 
 export default helpers;

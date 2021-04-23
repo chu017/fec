@@ -22,8 +22,4 @@ class MoreReviews extends React.Component {
   }
 }
 
-<<<<<<< HEAD
 export default MoreReviews;
-=======
-export default MoreReviews;
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd

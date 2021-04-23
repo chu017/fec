@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-=======
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
 import helpers from './helpers.js';
 import Star from './star.jsx';
 import RatingsCount from './ratings-count.jsx';
@@ -10,26 +6,17 @@ import RatingsCount from './ratings-count.jsx';
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
 
     this.reviews = this.props.data.reviews;
 
     this.state = this.getRatings();
-=======
-    this.reviews = this.props.data.reviews;
-
-    this.state = {};
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
 
     this.getRatingPercentage = this.getRatingPercentage.bind(this);
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
     this.getRatings = this.getRatings.bind(this);
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
-<<<<<<< HEAD
     this.removeFilter = this.removeFilter.bind(this);
-=======
->>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
   }
 
   componentDidMount() {

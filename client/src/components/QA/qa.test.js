@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { render } from '@testing-library/react';
 import sampleData from '../sampleData';
-import QA from './qa';
+import QA from './qa.jsx';
 import QuestionRenderer from './SubComponents/QuestionRenderer';
 import AnswerRenderer from './SubComponents/AnswerRenderer';
 

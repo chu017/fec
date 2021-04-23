@@ -17,6 +17,7 @@ class RatingsReviews extends React.Component {
     this.getRatings = this.getRatings.bind(this);
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
+    this.removeFilter = this.removeFilter.bind(this);
   }
 
   componentDidMount() {
@@ -85,11 +86,16 @@ class RatingsReviews extends React.Component {
 
   filtersApplied() {
     const filtersArr = [];
+    if (this.props.filterBy === []) return;
     this.props.filterBy.forEach(filter => filtersArr
       .push(
         <div className="filters-applied">{filter} star reviews</div>,
       ));
     return filtersArr;
+  }
+
+  removeFilter() {
+    this.props.filter(null, this.showFilters);
   }
 
   showFilters() {
@@ -98,10 +104,11 @@ class RatingsReviews extends React.Component {
         <div>
           <div className="underline filters-applied-title">Filters Applied:</div>
           {this.filtersApplied()}
-          <div className="underline remove-filters">Remove Filters</div>
+          <div onClick={this.removeFilter} className="underline remove-filters">Remove Filters</div>
         </div>
       );
     }
+    return <div />;
   }
 
   render() {

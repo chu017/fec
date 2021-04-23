@@ -1,34 +1,3 @@
-
-Search or jump to…
-
-Pulls
-Issues
-Marketplace
-Explore
-
-@Grantschaeffer
-Weyland - Software - Group
-  /
-  fec
-Private
-0
-0
-4
-Code
-Issues
-Pull requests
-2
-Actions
-Projects
-More
-fec / client / src / components / Related / subcomponents / carousel / Carousel.jsx /
-@dootMaster
-dootMaster commiting for test server
-Latest commit ea1e72e 18 hours ago
-History
-1 contributor
-194 lines(176 sloc)  5.43 KB
-
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React from 'react';

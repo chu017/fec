@@ -39,8 +39,10 @@ class Reviews extends React.Component {
   }
 
   filterReviews(newFilter) {
-    const filterByArr = this.state.filterBy;
-    if (filterByArr.includes(newFilter)) {
+    let filterByArr = this.state.filterBy;
+    if (!newFilter) {
+      filterByArr = [];
+    } else if (filterByArr.includes(newFilter)) {
       filterByArr.splice(filterByArr.indexOf(newFilter), 1);
     } else {
       filterByArr.push(newFilter);

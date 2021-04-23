@@ -22,4 +22,8 @@ class AddReview extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default AddReview;
+=======
+export default AddReview;
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd

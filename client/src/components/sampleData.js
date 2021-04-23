@@ -2174,6 +2174,7 @@ const sampleData = {
           },
         ],
       },
+<<<<<<< HEAD
       //----
       {
         product_id: '23146',
@@ -3759,6 +3760,8 @@ const sampleData = {
           },
         ],
       },
+=======
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
     ],
   },
   reviews: {
@@ -3848,6 +3851,7 @@ const sampleData = {
           body: 'I really did not like this product solely because I am tiny and do not fit into it.',
           date: '2021-02-19T00:00:00.000Z',
           reviewer_name: 'anonymous',
+<<<<<<< HEAD
           helpfulness: 8,
           photos: [],
         },
@@ -3908,6 +3912,8 @@ const sampleData = {
           body: 'I really did not like this product solely because I am tiny and do not fit into it.',
           date: '2021-02-19T00:00:00.000Z',
           reviewer_name: 'anonymous',
+=======
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
           helpfulness: 8,
           photos: [],
         },

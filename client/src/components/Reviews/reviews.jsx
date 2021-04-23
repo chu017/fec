@@ -1,16 +1,29 @@
+<<<<<<< HEAD
 /* eslint-disable react/jsx-closing-tag-location */
+=======
+/* eslint-disable no-unused-labels */
+/* eslint-disable arrow-parens */
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+<<<<<<< HEAD
 // import ReactDOM from 'react-dom';
+=======
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
 import RatingsReviews from './ratings-reviews.jsx';
 import SortBy from './sort-by.jsx';
 import ReviewPosts from './review-posts.jsx';
 import MoreReviews from './more-reviews.jsx';
 import AddReview from './add-review.jsx';
+<<<<<<< HEAD
 import ReviewForm from './review-form.jsx';
 import helpers from './helpers.js';
+=======
+// import helpers from './helpers.js';
+import ReviewForm from './review-form.jsx';
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
 
 class Reviews extends React.Component {
   constructor(props) {

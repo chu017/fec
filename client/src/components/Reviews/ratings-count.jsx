@@ -9,7 +9,10 @@ class RatingsCount extends React.Component {
 
     this.getTotalStarRatings = this.getTotalStarRatings.bind(this);
     this.ratingFilter = this.ratingFilter.bind(this);
+<<<<<<< HEAD
     this.ratingFilter = this.ratingFilter.bind(this);
+=======
+>>>>>>> 96e59099fdd0b78fef2438b979266a988b645edd
   }
 
   getTotalStarRatings(currentRating) {

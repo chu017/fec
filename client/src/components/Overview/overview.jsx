@@ -8,6 +8,8 @@ import React from 'react';
 // import styled from 'styled-components';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
+import ShoppingCart from './shoppingCart.jsx';
+import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {
   constructor(props) {
@@ -15,10 +17,13 @@ const Overview = class extends React.Component {
     this.state = {
       style_photos: this.props.data.styles.results[0],
       defaultView: true,
+      show: false,
+      cart: sampleDataOutfit.outfits,
     };
 
     this.selectStyle = this.selectStyle.bind(this);
     this.expandView = this.expandView.bind(this);
+    this.showCart = this.showCart.bind(this);
   }
 
   // compoentDidMount() {
@@ -38,28 +43,54 @@ const Overview = class extends React.Component {
     });
   }
 
+  showCart() {
+    this.setState({
+      show: !this.state.show,
+    });
+  }
+
   render() {
     return (
       <div>
-        {this.state.defaultView === true && (
-        <OverviewDefault
-          data={this.props.data}
-          style={this.state.style_photos}
-          selectStyle={this.selectStyle}
-          defaultView={this.state.defaultView}
-          expandView={this.expandView}
-          getOutfit={this.props.getOutfit}
-        />
+
+        {this.state.show === false && (
+        <div>
+          {this.state.defaultView === true && (
+            <OverviewDefault
+              data={this.props.data}
+              style={this.state.style_photos}
+              selectStyle={this.selectStyle}
+              defaultView={this.state.defaultView}
+              expandView={this.expandView}
+              getOutfit={this.props.getOutfit}
+              showCart={this.showCart}
+            />
+          )}
+
+            {this.state.defaultView === false && (
+            <OverViewExpanded
+              data={this.props.data}
+              style={this.state.style_photos}
+              defaultView={this.state.defaultView}
+              expandView={this.expandView}
+              showCart={this.showCart}
+            />
+            )}
+        </div>
         )}
 
-        {this.state.defaultView === false && (
-        <OverViewExpanded
-          data={this.props.data}
-          style={this.state.style_photos}
-          defaultView={this.state.defaultView}
-          expandView={this.expandView}
-        />
+        {this.state.show === true && (
+          <div>
+            <ShoppingCart
+              show={this.state.show}
+              onClose={this.showCart}
+              newItem={this.state.cart}
+            >
+              My Shopping Cart
+            </ShoppingCart>
+          </div>
         )}
+
       </div>
     );
   }

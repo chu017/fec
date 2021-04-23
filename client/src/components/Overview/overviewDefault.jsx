@@ -33,7 +33,10 @@ const OverviewDefault = class extends React.Component {
     return (
       <div className="overview-default">
         <div className="header">
-          <Header data={this.props.data} />
+          <Header
+            data={this.props.data}
+            showCart={this.props.showCart}
+          />
         </div>
 
         <div className="main">

@@ -1,3 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable import/extensions */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-undef */
 import React from 'react';
@@ -52,6 +56,7 @@ const Header = class extends React.Component {
           <button
             type="button"
             className="shopping-bag"
+            onClick={this.props.showCart}
           >
             Bag
           </button>

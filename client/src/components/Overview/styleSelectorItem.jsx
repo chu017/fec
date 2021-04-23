@@ -24,7 +24,7 @@ const StyleSelectorItem = class extends React.Component {
 
   handleClick() {
     const photos = this.props.item;
-    console.log(this.props.item);
+    // console.log(this.props.item);
     this.props.selectStyle(photos);
     this.props.addOutfit(photos);
   }

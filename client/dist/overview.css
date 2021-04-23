@@ -30,7 +30,7 @@
 .header {
   grid-area: header;
   text-align: center;
-  font-size: small;
+  font-size: medium;
   padding: 3px;
 }
 
@@ -50,9 +50,33 @@
   padding: 3px;
 }
 
-.search {
-  display: grid;
+.button-dark {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+}
+
+.header-right {
+  display: block;
   text-align: right;
+}
+
+.shopping-bag {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+}
+
+.search {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+}
+
+.header-below {
+  text-align: center;
+  font-size: small;
+  padding: 3px;
 }
 
 /* .body {

@@ -7,7 +7,7 @@ import React from 'react';
 import styles from './SubComponents/styles.js';
 import QuestionRenderer from './SubComponents/QuestionRenderer.jsx';
 import Search from './SubComponents/Search.jsx';
-import AnswerModal from './SubComponents/Modals/NewAnswer.jsx';
+import QuestionModal from './SubComponents/Modals/NewQuestion.jsx';
 
 class QA extends React.Component {
   constructor(props) {
@@ -15,13 +15,12 @@ class QA extends React.Component {
     this.state = {
       questionList: this.props.data.qa.results,
       filteredQuestions: this.props.data.qa.results,
-      showAnswerCreate: false,
-      showQuestionCreate: false,
+      showQuestionCreate: true,
     };
   }
 
   searchFilter(value) {
-    let filteredQuestions = [];
+    const filteredQuestions = [];
     for (let i = 0; i < this.state.questionList.length; i += 1) {
       const question = this.state.questionList[i];
       if (question.question_body.toLowerCase().includes(value.toLowerCase())) {
@@ -31,10 +30,14 @@ class QA extends React.Component {
     this.setState({ filteredQuestions });
   }
 
+  toggleModal() {
+    const currentView = !this.state.showQuestionCreate;
+    this.setState({showQuestionCreate: currentView});
+  }
+
   render() {
     return (
       <styles.QA>
-        <AnswerModal />
         <styles.Title>
           <div>QUESTIONS & ANSWERS</div>
         </styles.Title>
@@ -43,9 +46,12 @@ class QA extends React.Component {
         </div>
         <div>
           {this.state.filteredQuestions.map((question) => (
-            <QuestionRenderer question={question} key={Math.random() * 100000}/>
+            <QuestionRenderer question={question} key={Math.random() * 100000} />
           ))}
         </div>
+        <styles.AddQuestionButton>Load More Questions</styles.AddQuestionButton>
+        <styles.AddQuestionButton onClick={this.toggleModal.bind(this)}>Add A Question</styles.AddQuestionButton>
+        <QuestionModal show={this.state.showQuestionCreate} toggleView={this.toggleModal.bind(this)} productInformation={this.props}/>
       </styles.QA>
     );
   }

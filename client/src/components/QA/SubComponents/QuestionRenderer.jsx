@@ -7,8 +7,8 @@
 import React from 'react';
 import AnswerRenderer from './AnswerRenderer.jsx';
 import styles from './styles.js';
-import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost'
-import QuestionReport from './APIHandlers/QuestionReport'
+import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost';
+import QuestionReport from './APIHandlers/QuestionReport';
 
 class QuestionRenderer extends React.Component {
   constructor(props) {

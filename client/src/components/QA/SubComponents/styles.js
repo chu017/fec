@@ -13,7 +13,15 @@ const QA = styled.div`
 const Title = styled.div`
   margin-top: 5px;
   font-family: ${primaryFont};
-  font-weight: 200;
+  font-weight: 250;
+  color: ${primaryColor};
+  font-size: ${primarySize};
+`;
+
+const SubTitle = styled.div`
+  margin-top: 5px;
+  font-family: ${primaryFont};
+  font-weight: 100;
   color: ${primaryColor};
   font-size: ${primarySize};
 `;
@@ -85,8 +93,13 @@ const HyperLink = styled.a`
   text-decoration: underline;
 `;
 
+const AddQuestionButton = styled.button`
+  color: ${secondaryColor};
+`;
+
 const styles = {
   Title,
+  SubTitle,
   BoldedText,
   QuestionBlock,
   QuestionLine,
@@ -99,5 +112,6 @@ const styles = {
   QA,
   SearchBar,
   HyperLink,
+  AddQuestionButton,
 };
 export default styles;

@@ -24,6 +24,18 @@ app.get('/api/products/:product_id', (req, res) => {
   }, (productData) => res.send(productData));
 });
 
+app.put('/qa/questions/:question_id/helpful', APIControllers.questionHelpful);
+
+app.put('/qa/answers/:answer_id/helpful', APIControllers.answerHelpful);
+
+app.put('/reviews/:review_id/helpful', APIControllers.reviewHelpful);
+
+app.put('/qa/questions/:question_id/report', APIControllers.questionReport);
+
+app.put('/qa/answers/:answer_id/report', APIControllers.answerReport);
+
+app.put('/reviews/:review_id/report', APIControllers.reviewReport);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

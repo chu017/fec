@@ -15,29 +15,29 @@ const carouselWrapperDiv = styled.div`
 `;
 
 const carouselDiv = styled.div`
-  width: 100%;
+  width: 40%;
   overflow-x: hidden;
   display: flex;
   scroll-behavior: smooth;
   position: relative;
   height: fit-content;
   border-radius: 4px;
+  margin-left: 30%;
+  margin-right: 30%;
   `;
 
 const cardComponentDiv = styled.div`
-  padding: 5px 5px;
   background: #f7f7f7;
   text-align: center;
   border-radius: 4px;
   font-family: Verdana;
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 20%;
+  min-width: 20%;
   height: 100%;
   box-shadow: -1.5rem 0 3rem #000;
   flex-direction: column;
-  padding: 1.5rem;
   transition: 0.2s;
-  height: 350px;
+  margin-right: 5%;
   `;
 
 const nextComponentDiv = styled.div`

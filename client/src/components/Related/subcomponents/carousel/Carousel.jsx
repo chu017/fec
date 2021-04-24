@@ -12,7 +12,8 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.scroll = this.scroll.bind(this);
+    this.scrollNext = this.scrollNext.bind(this);
+    this.scrollPrev = this.scrollPrev.bind(this);
     this.scrollRef = React.createRef();
 
     this.scrollOutfit = this.scrollOutfit.bind(this);
@@ -47,10 +48,11 @@ class Carousel extends React.Component {
   }
 
   checkButtons() {
-    const { clientWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
-    console.log(scrollWidth, clientWidth, scrollLeft);
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
+    console.log('currentvalues: ', scrollWidth, offsetWidth, scrollLeft);
+    console.log('refcurrent: ', this.scrollRef.current);
     const prevVisible = scrollLeft !== 0;
-    const nextVisible = scrollLeft < (scrollWidth - clientWidth);
+    const nextVisible = scrollLeft < (scrollWidth - offsetWidth);
     this.setState({
       prevVisible,
       nextVisible,
@@ -58,21 +60,42 @@ class Carousel extends React.Component {
   }
 
   checkOutfitButtons() {
-    const { clientWidth, scrollWidth, scrollLeft } = this.scrollOutfitRef.current;
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollOutfitRef.current;
     const prevOutfitVisible = scrollLeft !== 0;
-    const nextOutfitVisible = scrollLeft < (scrollWidth - clientWidth);
+    const nextOutfitVisible = scrollLeft < (scrollWidth - offsetWidth);
     this.setState({
       prevOutfitVisible,
       nextOutfitVisible,
     });
   }
 
-  scroll(distance) {
+  scrollNext() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
+    const distance = (scrollWidth / sortedData.length);
     if (this.scrollRef && this.scrollRef.current) {
       this.scrollRef.current.scrollLeft += distance;
+    }
+    setTimeout(() => {
+      this.checkButtons();
+      this.setState({
+        buttonDisable: false,
+      });
+    }, 400);
+  }
+
+  scrollPrev() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
+    this.setState({
+      buttonDisable: true,
+    });
+    const distance = (scrollWidth / sortedData.length);
+    if (this.scrollRef && this.scrollRef.current) {
+      this.scrollRef.current.scrollLeft -= distance;
     }
     setTimeout(() => {
       this.checkButtons();
@@ -116,7 +139,7 @@ class Carousel extends React.Component {
         <styles.carouselWrapperDiv>
           {prevVisible ? (
             <Prev
-              scroll={this.scroll}
+              scroll={this.scrollPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
@@ -144,7 +167,7 @@ class Carousel extends React.Component {
           </styles.carouselDiv>
           {nextVisible ? (
             <Next
-              scroll={this.scroll}
+              scroll={this.scrollNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}

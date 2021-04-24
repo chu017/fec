@@ -45,10 +45,21 @@ class Modal extends React.Component {
     }
   }
 
-  postQuestion () {
-    console.log(this.state);
-    this.setState({warningText: 'Your question has been successfully submitted' });
-    setTimeout(this.props.toggleView, 2000);
+  postQuestion() {
+    $.ajax({
+      type: 'POST',
+      url: '/qa/questions',
+      data: {
+        body: this.state.question,
+        name: this.state.nickname,
+        email: this.state.email,
+        product_id: this.props.productInformation.data.product.id,
+      },
+      success: () => {
+        this.setState({ warningText: 'Your question has been successfully submitted' });
+        setTimeout(this.props.toggleView, 2000);
+      },
+    });
   }
 
   dataIsValid() {

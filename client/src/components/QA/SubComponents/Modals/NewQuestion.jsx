@@ -10,6 +10,7 @@ class Modal extends React.Component {
       nickname: '',
       email: '',
       warningText: '',
+      successText: '',
     };
   }
 
@@ -31,17 +32,19 @@ class Modal extends React.Component {
       this.setState({ warningText: '' });
       this.postQuestion();
     } else {
-      let warningText = '';
+      let warningText = 'You must enter the following: ';
       if (!boolQuestion) {
-        warningText += ' Please input a valid Question.';
+        warningText += 'question, ';
       }
       if (!boolNick) {
-        warningText += ' Please input a valid Nickname.';
+        warningText += 'nickname, ';
       }
       if (!boolEmail) {
-        warningText += ' Please input a valid E-Mail Address.';
+        warningText += 'email, ';
       }
-      this.setState({ warningText });
+      const lastComma = warningText.lastIndexOf(', ');
+      const finalWarningText = warningText.substring(0, lastComma) + '.';
+      this.setState({ warningText: finalWarningText });
     }
   }
 
@@ -56,7 +59,7 @@ class Modal extends React.Component {
         product_id: this.props.productInformation.data.product.id,
       },
       success: () => {
-        this.setState({ warningText: 'Your question has been successfully submitted' });
+        this.setState({ successText: 'Your question has been successfully submitted' });
         setTimeout(this.props.toggleView, 2000);
       },
     });
@@ -85,6 +88,11 @@ class Modal extends React.Component {
         <styles.ModalBackdrop>
           <styles.ModalContentWrapper>
             <styles.ModalContent>
+              <styles.ModalExit>
+                <secondaryStyles.SubTitle onClick={this.props.toggleView}>
+                  x
+                </secondaryStyles.SubTitle>
+              </styles.ModalExit>
               <secondaryStyles.Title>Ask Your Question</secondaryStyles.Title>
               <secondaryStyles.SubTitle>
                 About the
@@ -105,12 +113,12 @@ class Modal extends React.Component {
               <secondaryStyles.AddQuestionButton onClick={this.submitQuestion.bind(this)}>
                 Submit Question
               </secondaryStyles.AddQuestionButton>
-              <secondaryStyles.TertiaryTitle>
+              <styles.WarningText>
                 {this.state.warningText}
-              </secondaryStyles.TertiaryTitle>
-              <secondaryStyles.AddQuestionButton onClick={this.props.toggleView}>
-                x
-              </secondaryStyles.AddQuestionButton>
+              </styles.WarningText>
+              <styles.SuccessText>
+                {this.state.successText}
+              </styles.SuccessText>
             </styles.ModalContent>
           </styles.ModalContentWrapper>
         </styles.ModalBackdrop>

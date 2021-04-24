@@ -40,6 +40,10 @@ const ModalContent = styled.div`
   justify-content: center;
 `;
 
+const ModalExit = styled.div`
+  text-align: right;
+`;
+
 const LargeInput = styled.input`
   width: 80%;
   height: 40%;
@@ -51,12 +55,32 @@ const NormalInput = styled.input`
   height: 40%;
   margin-bottom: 2px;
 `;
+
+const WarningText = styled.div`
+  margin-top: 5px;
+  font-family: ${primaryFont};
+  font-weight: 200;
+  color: red;
+  font-size: ${secondarySize};
+`;
+
+const SuccessText = styled.div`
+  margin-top: 5px;
+  font-family: ${primaryFont};
+  font-weight: 200;
+  color: green;
+  font-size: ${secondarySize};
+`;
+
 const styles = {
   ModalBackdrop,
   ModalContentWrapper,
   ModalContent,
+  ModalExit,
   LargeInput,
   NormalInput,
+  WarningText,
+  SuccessText,
 };
 
 export default styles;

@@ -1,3 +1,4 @@
+
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 
@@ -9,7 +10,7 @@ import QA from './QA/qa.jsx';
 import sampleData from './sampleData.js'
 
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       data: sampleData,
@@ -21,19 +22,19 @@ class App extends React.Component {
     const productID = URL.split('products/')[1].split('/')[0];
     $.ajax({
       url: `/api/products/${productID}`,
-      success: (responseData) => this.setState({data: responseData}),
+      success: (responseData) => this.setState({ data: responseData }),
     });
   }
 
-  render () {
-  return (
-    <div>
-      <Overview data={this.state.data} key={Math.random() * 1000000} />
-      <Related data={this.state.data} key={Math.random() * 1000000} />
-      <QA data={this.state.data} key={Math.random() * 1000000} />
-      <Reviews data={this.state.data} key={Math.random() * 1000000} />
-    </div>
-    )
+  render() {
+    return (
+      <div>
+        <Overview data={this.state.data} key={Math.random() * 1000009} />
+        <Related data={this.state.data} key={Math.random() * 1000007} />
+        <QA data={this.state.data} key={Math.random() * 1000005} />
+        <Reviews data={this.state.data} key={Math.random() * 1000002} />
+      </div>
+    );
   }
 }
 

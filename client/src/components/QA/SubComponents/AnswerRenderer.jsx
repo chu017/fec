@@ -1,3 +1,4 @@
+
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
@@ -39,7 +40,7 @@ class AnswerRenderer extends React.Component {
       let answersObject = this.state.answersObject;
       let currentHelpfulness = answersObject.answerHelpfulness[identifier];
       answersObject.answerHelpfulness[identifier] = currentHelpfulness + 1;
-      this.setState({answersObject})
+      this.setState({ answersObject })
     });
   }
 

@@ -12,7 +12,8 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.scroll = this.scroll.bind(this);
+    this.scrollNext = this.scrollNext.bind(this);
+    this.scrollPrev = this.scrollPrev.bind(this);
     this.scrollRef = React.createRef();
 
     this.scrollOutfit = this.scrollOutfit.bind(this);
@@ -20,7 +21,6 @@ class Carousel extends React.Component {
 
     this.checkButtons = this.checkButtons.bind(this);
     this.checkOutfitButtons = this.checkOutfitButtons.bind(this);
-    this.nextRef = React.createRef();
 
     this.toggleModal = this.toggleModal.bind(this);
 
@@ -40,17 +40,42 @@ class Carousel extends React.Component {
     const { relatedIds, relatedInformation, relatedStyles } = data.related;
     const newSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
-      newSort.push([relatedInformation[i], relatedStyles[i]]);
+      newSort.push({ relatedInformation: relatedInformation[i], relatedStyles: relatedStyles[i] });
     }
     this.setState({
       sortedData: newSort,
     });
   }
 
-  scroll(distance) {
+  checkButtons() {
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
+    console.log('currentvalues: ', scrollWidth, offsetWidth, scrollLeft);
+    console.log('refcurrent: ', this.scrollRef.current);
+    const prevVisible = scrollLeft !== 0;
+    const nextVisible = scrollLeft < (scrollWidth - offsetWidth);
+    this.setState({
+      prevVisible,
+      nextVisible,
+    });
+  }
+
+  checkOutfitButtons() {
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollOutfitRef.current;
+    const prevOutfitVisible = scrollLeft !== 0;
+    const nextOutfitVisible = scrollLeft < (scrollWidth - offsetWidth);
+    this.setState({
+      prevOutfitVisible,
+      nextOutfitVisible,
+    });
+  }
+
+  scrollNext() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
+    const distance = (scrollWidth / sortedData.length);
     if (this.scrollRef && this.scrollRef.current) {
       this.scrollRef.current.scrollLeft += distance;
     }
@@ -62,14 +87,22 @@ class Carousel extends React.Component {
     }, 400);
   }
 
-  checkButtons() {
-    const scrollBarWidth = this.scrollRef.current.clientWidth - 196;
-    console.log(this.scrollRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollRef.current.scrollLeft >= 196;
+  scrollPrev() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
     this.setState({
-      prevVisible: prevBool,
-      nextVisible: this.scrollRef.current.scrollLeft < scrollBarWidth,
+      buttonDisable: true,
     });
+    const distance = (scrollWidth / sortedData.length);
+    if (this.scrollRef && this.scrollRef.current) {
+      this.scrollRef.current.scrollLeft -= distance;
+    }
+    setTimeout(() => {
+      this.checkButtons();
+      this.setState({
+        buttonDisable: false,
+      });
+    }, 400);
   }
 
   scrollOutfit(distance) {
@@ -85,16 +118,6 @@ class Carousel extends React.Component {
         buttonDisable: false,
       });
     }, 400);
-  }
-
-  checkOutfitButtons() {
-    const scrollBarWidth = this.scrollOutfitRef.current.clientWidth - 196;
-    console.log(this.scrollOutfitRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollOutfitRef.current.scrollLeft >= 196;
-    this.setState({
-      prevOutfitVisible: prevBool,
-      nextOutfitVisible: this.scrollOutfitRef.current.scrollLeft < scrollBarWidth,
-    });
   }
 
   toggleModal() {
@@ -116,7 +139,7 @@ class Carousel extends React.Component {
         <styles.carouselWrapperDiv>
           {prevVisible ? (
             <Prev
-              scroll={this.scroll}
+              scroll={this.scrollPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
@@ -130,13 +153,13 @@ class Carousel extends React.Component {
               </styles.modalDiv>
             ) : null}
 
-            {sortedData.map((item) => (
+            {sortedData.map(({ relatedInformation, relatedStyles }) => (
               <Card
-                name={item[0].name}
-                category={item[0].category}
-                price={item[0].default_price}
-                image={item[1].results[0].photos[0].thumbnail_url}
-                key={item[0].id}
+                name={relatedInformation.name}
+                category={relatedInformation.category}
+                price={relatedInformation.default_price}
+                image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
               />
@@ -144,7 +167,7 @@ class Carousel extends React.Component {
           </styles.carouselDiv>
           {nextVisible ? (
             <Next
-              scroll={this.scroll}
+              scroll={this.scrollNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
@@ -167,13 +190,13 @@ class Carousel extends React.Component {
               </styles.modalDiv>
             ) : null}
 
-            {sortedData.map((item) => (
-              <CardOutfit
-                name={item[0].name}
-                category={item[0].category}
-                price={item[0].default_price}
-                image={item[1].results[0].photos[0].thumbnail_url}
-                key={item[0].id}
+            {sortedData.map(({ relatedInformation, relatedStyles }) => (
+              <Card
+                name={relatedInformation.name}
+                category={relatedInformation.category}
+                price={relatedInformation.default_price}
+                image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
               />

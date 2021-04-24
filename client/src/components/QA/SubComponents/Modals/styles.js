@@ -8,11 +8,11 @@ const primaryFont = 'Helvetica Neue';
 
 const ModalBackdrop = styled.div`
   position: fixed;
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,0.6)
+  background: rgba(0,0,0,0.2)
 `;
 
 const ModalContentWrapper = styled.div`
@@ -35,12 +35,28 @@ const ModalContent = styled.div`
   font-size: ${primarySize};
   color: ${primaryColor};
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
+const LargeInput = styled.input`
+  width: 80%;
+  height: 40%;
+  margin-bottom: 2px;
+`;
+
+const NormalInput = styled.input`
+  width: 80%;
+  height: 40%;
+  margin-bottom: 2px;
+`;
 const styles = {
   ModalBackdrop,
   ModalContentWrapper,
   ModalContent,
+  LargeInput,
+  NormalInput,
 };
 
 export default styles;

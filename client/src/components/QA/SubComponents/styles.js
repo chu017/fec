@@ -26,6 +26,22 @@ const SubTitle = styled.div`
   font-size: ${primarySize};
 `;
 
+const TertiaryTitle = styled.div`
+  margin-top: 5px;
+  font-family: ${primaryFont};
+  font-weight: 200;
+  color: ${primaryColor};
+  font-size: ${secondarySize};
+`;
+
+const QuarternaryTitle = styled.div`
+margin-top: 5px;
+font-family: ${primaryFont};
+font-weight: 200;
+color: ${primaryColor};
+font-size: 0.6em;
+`;
+
 const BoldedText = styled.div`
   font-weight: 450;
   font-style: Bold;
@@ -93,13 +109,25 @@ const HyperLink = styled.a`
   text-decoration: underline;
 `;
 
-const AddQuestionButton = styled.button`
-  color: ${secondaryColor};
+const ButtonContainer = styled.div`
+  margin-top: 5px;
+  display: flex;
+  margin-left: 10%;
+`;
+
+const AddQuestionButton = styled.div`
+  margin: 5px;
+  font-size: ${secondarySize};
+  background: none;
+  padding: 1%;
+  border: 1.5px solid #252222;
 `;
 
 const styles = {
   Title,
   SubTitle,
+  TertiaryTitle,
+  QuarternaryTitle,
   BoldedText,
   QuestionBlock,
   QuestionLine,
@@ -112,6 +140,7 @@ const styles = {
   QA,
   SearchBar,
   HyperLink,
+  ButtonContainer,
   AddQuestionButton,
 };
 export default styles;

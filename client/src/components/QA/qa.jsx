@@ -49,9 +49,17 @@ class QA extends React.Component {
             <QuestionRenderer question={question} key={Math.random() * 100000} />
           ))}
         </div>
-        <styles.AddQuestionButton>Load More Questions</styles.AddQuestionButton>
-        <styles.AddQuestionButton onClick={this.toggleModal.bind(this)}>Add A Question</styles.AddQuestionButton>
-        <QuestionModal show={this.state.showQuestionCreate} toggleView={this.toggleModal.bind(this)} productInformation={this.props}/>
+        <styles.ButtonContainer>
+          <styles.AddQuestionButton>Load More Questions</styles.AddQuestionButton>
+          <styles.AddQuestionButton onClick={this.toggleModal.bind(this)}>
+            Add A Question
+          </styles.AddQuestionButton>
+        </styles.ButtonContainer>
+        <QuestionModal
+          show={this.state.showQuestionCreate}
+          toggleView={this.toggleModal.bind(this)}
+          productInformation={this.props}
+        />
       </styles.QA>
     );
   }

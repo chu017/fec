@@ -28,17 +28,45 @@
 
 .shopping-container {
   width: auto;
-  height: 500px;
-  display: flex;
+  max-height:  1000px;
+  display: inline-block;
+  position: relative;
+  left: 350px;
 }
 
-.toggle-button {
+.cart {
+  display: flex;
+  top: auto;
+  margin: 10px;
+  padding: 3px;
+  width: 450px;
+  height: 200px;
+  border: 1px solid black;
+  background-color: white;
+  text-align: right;
+  font-size: small;
+}
+
+.cart-img {
   display: block;
-  top: 100px;
-  left: 10px;
-  margin: 50px;
+  width: 120px;
+  height: 200px;
+}
+
+.cart-text {
+  display: block;
+  position: absolute;
+  left: 200px;
+  margin: 20px;
+}
+
+.shopping-button {
+  display: block;
+  /* top: 100px;
+  left: 10px; */
+  margin: 20px;
   width: 50px;
-  height: 100px;
+  height: 30px;
 }
 
 /* .modal {

@@ -15,7 +15,7 @@ class FirstOutfitCard extends React.Component {
   render() {
     const { overviewProduct, image } = this.props;
     return (
-      <styles.cardComponentDiv>
+      <styles.outfitCardComponentDiv>
         Click here to add
         {' '}
         {overviewProduct}
@@ -23,7 +23,7 @@ class FirstOutfitCard extends React.Component {
         to your Outfit.
         <styles.cardImg src={image} alt="" />
         <br />
-      </styles.cardComponentDiv>
+      </styles.outfitCardComponentDiv>
     );
   }
 }

@@ -5,7 +5,7 @@ import styles from '../../../styled.js';
 
 const PrevOutfit = ({ scroll, className }) => (
   <styles.prevComponentDiv className={className}>
-    <styles.navButtons type="button" onClick={() => { scroll(); }}>{'<'}</styles.navButtons>
+    <styles.navOutfitButtons type="button" onClick={() => { scroll(); }}>{'<'}</styles.navOutfitButtons>
   </styles.prevComponentDiv>
 );
 

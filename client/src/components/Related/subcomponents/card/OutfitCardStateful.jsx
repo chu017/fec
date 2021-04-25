@@ -2,9 +2,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styles from '../../styled.js';
-import ModalCompare from './ModalCompare.jsx';
 
-class CardStateful extends React.Component {
+class OutfitCardStateful extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +16,6 @@ class CardStateful extends React.Component {
   }
 
   componentDidMount() {
-    this.sortModalData();
   }
 
   toggleModal() {
@@ -34,6 +32,8 @@ class CardStateful extends React.Component {
       overviewFeatures,
       cardProductFeatures,
     } = this.props;
+
+    // console.log(overviewFeatures, cardProductFeatures);
 
     const dataForTable = [];
 
@@ -60,10 +60,6 @@ class CardStateful extends React.Component {
         dataForTable.push({ featureToCompare: cardItem.feature, cardValue: cardItem.value });
       }
     });
-
-    this.setState({
-      comparisonData: dataForTable,
-    });
   }
 
   render() {
@@ -74,10 +70,9 @@ class CardStateful extends React.Component {
       salePrice,
       image,
     } = this.props;
-    const { modalVisible, comparisonData } = this.state;
     return (
-      <styles.cardComponentDiv>
-        <button id="starButton" type="button" onClick={() => { this.toggleModal(); }}>STAR</button>
+      <styles.outfitCardComponentDiv>
+        <button id="starButton" type="button">REMOVE FROM OUTFIT</button>
         <br />
 
         <span>{name}</span>
@@ -95,14 +90,8 @@ class CardStateful extends React.Component {
           </div>
         ) : <span>{defaultPrice}</span>}
 
-        { modalVisible ? (
-          <ModalCompare
-            toggleModal={this.toggleModal}
-            comparisonData={comparisonData}
-          />
-        ) : null}
-      </styles.cardComponentDiv>
+      </styles.outfitCardComponentDiv>
     );
   }
 }
-export default CardStateful;
+export default OutfitCardStateful;

@@ -8,6 +8,7 @@ import NextOutfit from './buttons/NextOutfit.jsx';
 import PrevOutfit from './buttons/PrevOutfit.jsx';
 import CardStateful from '../card/CardStateful.jsx';
 import FirstOutfitCard from '../card/FirstOutfitCard.jsx';
+import OutfitCardStateful from '../card/OutfitCardStateful.jsx';
 import styles from '../../styled.js';
 
 class Carousel extends React.Component {
@@ -27,7 +28,6 @@ class Carousel extends React.Component {
 
     this.state = {
       sortedData: [],
-      sortedOutfitData: [],
       modalVisible: false,
       prevVisible: false,
       nextVisible: true,
@@ -135,7 +135,7 @@ class Carousel extends React.Component {
     this.setState({
       buttonDisable: true,
     });
-    const distance = (scrollWidth / sortedData.length);
+    const distance = (scrollWidth / (sortedData.length + 1));
     if (this.scrollOutfitRef && this.scrollOutfitRef.current) {
       this.scrollOutfitRef.current.scrollLeft += distance;
     }
@@ -148,14 +148,14 @@ class Carousel extends React.Component {
   }
 
   scrollOutfitPrev() {
-    const { scrollWidth } = this.scrollRef.current;
+    const { scrollWidth } = this.scrollOutfitRef.current;
     const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
-    const distance = (scrollWidth / sortedData.length);
-    if (this.scrollRef && this.scrollRef.current) {
-      this.scrollRef.current.scrollLeft -= distance;
+    const distance = (scrollWidth / (sortedData.length + 1));
+    if (this.scrollOutfitRef && this.scrollOutfitRef.current) {
+      this.scrollOutfitRef.current.scrollLeft -= distance;
     }
     setTimeout(() => {
       this.checkOutfitButtons();
@@ -168,7 +168,6 @@ class Carousel extends React.Component {
   render() {
     const {
       sortedData,
-      sortedOutfitData,
       modalVisible,
       prevVisible,
       nextVisible,
@@ -216,17 +215,17 @@ class Carousel extends React.Component {
         <styles.OutfitWrapperDiv>
           {prevOutfitVisible ? (
             <PrevOutfit
-              scroll={this.scrollPrev}
+              scroll={this.scrollOutfitPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
-          <styles.carouselDiv ref={this.scrollRef}>
+          <styles.carouselDiv ref={this.scrollOutfitRef}>
             <FirstOutfitCard
               overviewProduct={name}
               image={results[0].photos[0].thumbnail_url}
             />
-            {sortedOutfitData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
-              <CardStateful
+            {sortedData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
+              <OutfitCardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
                 defaultPrice={defaultStyle.original_price}
@@ -242,7 +241,7 @@ class Carousel extends React.Component {
           </styles.carouselDiv>
           {nextOutfitVisible ? (
             <NextOutfit
-              scroll={this.scrollNext}
+              scroll={this.scrollOutfitNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}

@@ -19,8 +19,15 @@ app.get('/products/:product_id/jquery.js', (req, res) => (
   res.sendFile(path.resolve(__dirname, '..', 'node_modules', 'jquery', 'dist', 'jquery.js'))
 ));
 
-app.get('/api/products/:product_id', (req, res) => {
-  APIControllers.resourceHandler(req.params.product_id, (err) => {
+app.get('/api/overview/:product_id', (req, res) => {
+  APIControllers.overviewHandler(req.params.product_id, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
+});
+
+app.get('/api/information/:product_id', (req, res) => {
+  APIControllers.informationHandler(req.params.product_id, (err) => {
     res.status(404);
     res.end();
   }, (productData) => res.send(productData));

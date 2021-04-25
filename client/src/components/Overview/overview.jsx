@@ -52,7 +52,7 @@ const Overview = class extends React.Component {
   render() {
     return (
       <div>
-
+        {console.log(this.props.data.product)}
         {this.state.show === false && (
         <div>
           {this.state.defaultView === true && (

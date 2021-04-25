@@ -1,4 +1,3 @@
-
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 
@@ -37,7 +36,7 @@ class App extends React.Component {
         <Overview data={this.state.data} key={Math.random() * 1000000} />
         <Related data={this.state.data} key={Math.random() * 1000000} />
         <QA data={this.state.data} key={Math.random() * 1000000} />
-        <Reviews data={this.state.data} key={Math.random() * 1000000} />
+        {/* <Reviews data={this.state.data} key={Math.random() * 1000000} /> */}
       </div>
     );
   }

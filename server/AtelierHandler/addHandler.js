@@ -3,13 +3,16 @@ const API_KEY = require('../config.js');
 const baseURL = require('./AtelierConfig.js');
 
 const questionAdd = (req, res) => {
+  const questionData = req.body;
+  questionData.product_id = parseInt(questionData.product_id);
   axios({
     method: 'post',
-    data: req.body,
+    data: questionData,
     url: `${baseURL}/qa/questions`,
     headers: { Authorization: API_KEY },
   })
-    .then(() => res.end());
+    .then(() => res.end())
+    .catch((data) => res.send(data));
 };
 
 const answerAdd = (req, res) => {

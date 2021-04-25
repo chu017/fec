@@ -1,7 +1,10 @@
+/* eslint-disable one-var-declaration-per-line */
+/* eslint-disable one-var */
 import React from 'react';
 import helpers from './helpers.js';
 import Star from './star.jsx';
 import RatingsCount from './ratings-count.jsx';
+import ProductBreakdown from './product-breakdown.jsx'
 
 class RatingsReviews extends React.Component {
   constructor(props) {
@@ -9,26 +12,30 @@ class RatingsReviews extends React.Component {
 
     this.reviews = this.props.data.reviews;
 
-    this.state = this.getRatings();
+    this.state = {
+      productBreakdownComponents: [],
+    };
 
-    this.getRatingPercentage = this.getRatingPercentage.bind(this);
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
-    this.getRatings = this.getRatings.bind(this);
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
+    this.renderProductBreakdown = this.renderProductBreakdown.bind(this);
   }
 
   componentDidMount() {
     const ratings = this.getRatings();
     this.setState({
+      ratingPercentage: this.props.ratingPercentage,
       rating: ratings.rating,
-      fit: ratings.fit,
-      comfort: ratings.comfort,
-      length: ratings.length,
-      quality: ratings.quality,
       recommendationPercentage: ratings.recommendationPercentage,
-    });
+      productDetails: [
+        { fit: ratings.fit },
+        { comfort: ratings.comfort },
+        { length: ratings.length },
+        { quality: ratings.quality },
+      ],
+    }, () => this.renderProductBreakdown());
   }
 
   getRecommendationPercentage() {
@@ -42,10 +49,22 @@ class RatingsReviews extends React.Component {
 
   getRatings() {
     let rating = helpers.averageOfRatings(this.reviews.reviewMeta.ratings);
-    let fit = this.reviews.reviewMeta.characteristics.Fit.value / 5;
-    let comfort = this.reviews.reviewMeta.characteristics.Comfort.value / 5;
-    let length = this.reviews.reviewMeta.characteristics.Length.value / 5;
-    let quality = this.reviews.reviewMeta.characteristics.Quality.value / 5;
+    let fit = null;
+    let comfort = null;
+    let length = null;
+    let quality = null;
+    if (this.reviews.reviewMeta.characteristics.Fit) {
+      fit = this.reviews.reviewMeta.characteristics.Fit.value / 5;
+    }
+    if (this.reviews.reviewMeta.characteristics.Fit) {
+      comfort = this.reviews.reviewMeta.characteristics.Comfort.value / 5;
+    }
+    if (this.reviews.reviewMeta.characteristics.Fit) {
+      length = this.reviews.reviewMeta.characteristics.Length.value / 5;
+    }
+    if (this.reviews.reviewMeta.characteristics.Fit) {
+      quality = this.reviews.reviewMeta.characteristics.Quality.value / 5;
+    }
     const recommendationPercentage = this.getRecommendationPercentage();
     fit = fit * 94, comfort = comfort * 94, length = length * 94, quality = quality * 94;
 
@@ -58,7 +77,9 @@ class RatingsReviews extends React.Component {
   getRatingPercentage() {
     let percentage = this.state.rating / 5;
     percentage = percentage * 100;
-    return `${Math.round(percentage / 10) * 10}%`;
+    this.setState({
+      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
+    });
   }
 
   createRatingsCountBars() {
@@ -110,25 +131,24 @@ class RatingsReviews extends React.Component {
     return <div />;
   }
 
+  renderProductBreakdown() {
+    const productArray = this.state.productDetails
+    const components = [];
+    for (let i = 0; i < productArray.length; i++) {
+      let currentVal = Object.values(productArray[i]);
+      let currentKey = Object.keys(productArray[i]);
+      if (currentVal[0] !== null) {
+        components.push(<ProductBreakdown detailType={currentKey[0]} position={currentVal[0]} />);
+      }
+    }
+    this.setState({
+      productBreakdownComponents: components,
+    });
+  }
+
   render() {
     const starInnerWidth = {
-      width: this.getRatingPercentage(),
-    };
-
-    const positionCarrot1 = {
-      left: `${this.state.fit}%`,
-    };
-
-    const positionCarrot2 = {
-      left: `${this.state.comfort}%`,
-    };
-
-    const positionCarrot3 = {
-      left: `${this.state.length}%`,
-    };
-
-    const positionCarrot4 = {
-      left: `${this.state.quality}%`,
+      width: this.state.ratingPercentage,
     };
 
     return (
@@ -150,76 +170,7 @@ class RatingsReviews extends React.Component {
           <div>{this.showFilters()}</div>
         </div>
         <div className="size-comfort-scale">
-          <div className="size-comfort-container">
-            <span className="size-comfort-heading">Fit</span>
-            <i style={positionCarrot1} className="fas fa-caret-down size-comfort-carrot"></i>
-            <div className="size-comfort">
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Too small</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Perfect</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Too large</small>
-              </div>
-            </div>
-          </div>
-          <div className="size-comfort-container">
-            <span className="size-comfort-heading">Comfort</span>
-            <i style={positionCarrot2} className="fas fa-caret-down size-comfort-carrot"></i>
-            <div className="size-comfort">
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Poor</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Great</small>
-              </div>
-            </div>
-          </div>
-          <div className="size-comfort-container">
-            <span className="size-comfort-heading">Length</span>
-            <i style={positionCarrot3} className="fas fa-caret-down size-comfort-carrot"></i>
-            <div className="size-comfort">
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Too small</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Perfect</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Too large</small>
-              </div>
-            </div>
-          </div>
-          <div className="size-comfort-container">
-            <span className="size-comfort-heading">Quality</span>
-            <i style={positionCarrot4} className="fas fa-caret-down size-comfort-carrot"></i>
-            <div className="size-comfort">
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Poor</small>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-              </div>
-              <div className="size-comfort-sub-container">
-                <div className="size-comfort-box"></div>
-                <small>Great</small>
-              </div>
-            </div>
-          </div>
+          {this.state.productBreakdownComponents.map(component => component)}
         </div>
       </div>
     );

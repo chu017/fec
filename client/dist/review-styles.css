@@ -199,35 +199,6 @@ small {
   margin: 8px 0 0 8px;
 }
 
-.stars-outer {
-  font-size: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-
-.stars-inner {
-  font-size: 12px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.stars-outer::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 200;
-}
-
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #000;
-}
-
 .total-star-ratings {
   position: relative;
   left: 3px;
@@ -248,11 +219,30 @@ small {
 
 h4 {
   font-size: 18px;
+  text-align: center;
+}
+
+.form-inputs-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 85%;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.form-stars-and-description {
+  flex-direction: column;
 }
 
 .form-cover {
-  height: 100%;
-  width: 100%;
+  height: 1750px;
+  width: 2200px;
   background-color: #000;
   opacity: .7;
   position: absolute;
@@ -263,12 +253,19 @@ h4 {
 
 .form {
   position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 60%;
+  bottom: -140%;
+  left: 10%;
+  width: 85%;
+  height: 120%;
   z-index: 999;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border: 2px solid #000;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 .filters-applied-title {
@@ -277,4 +274,122 @@ h4 {
 
 .remove-filters {
   margin: 5px 0;
+}
+
+.exit-form {
+  display: flex;
+  align-self: flex-end;
+}
+
+.write-review-heading {
+  margin: 8px 0;
+}
+
+.form-label {
+  display: flex;
+  justify-content: center;
+  margin: 6px 12px 6px 0
+}
+
+.submit-form {
+  background-color: green;
+  color: #fff;
+  width: 100px;
+  height: 30px;
+  margin-top: 30px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.form-stars-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 55px;
+}
+
+.form-stars-outer {
+  margin-top: 1px;
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-stars-inner {
+  margin-top: 1px;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.form-stars-outer::before {
+  content: "\f005";
+  font-family: 'Font Awesome 5 Free';
+}
+
+.form-stars-inner::before {
+  content: "\f005";
+  font-family: 'Font Awesome 5 Free';
+  color: #000;
+}
+
+.ratings-description {
+  font-size: 12px;
+  position: absolute;
+  left: 65%;
+  top: 22%;
+  width: 65%;
+  text-decoration: none;
+}
+
+.form-stars-header {
+  margin-right: 6px;
+}
+
+.radio-buttons-row {
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.product-characteristics-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
+
+.product-characteristics-radio {
+  display: flex;
+  flex-direction: column;
+  margin: 0 8px;
+  width: 20%;
+}
+
+.section-heading {
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.text-input-label {
+  flex-direction: column;
+  text-align: center;
+}
+
+.text-inputs {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  align-self: center;
+  margin: 5px 0;
+}
+
+.review-body {
+  height: 150%;
 }

@@ -132,6 +132,7 @@ class Reviews extends React.Component {
             addPosts={this.addPosts}
             filter={this.filterReviews}
             data={this.props.data}
+            ratingPercentage={this.props.ratingPercentage}
           />
         </div>
         <div className="reviews-col-2">

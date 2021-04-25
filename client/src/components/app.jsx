@@ -7,6 +7,7 @@ import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
 import sampleData from './sampleData.js';
+import helpers from '../components/Reviews/helpers.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,9 @@ class App extends React.Component {
       qa: false,
       reviews: false,
     };
+
+    this.getRating = this.getRating.bind(this);
+    this.ratingPercentage = this.ratingPercentage.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +29,8 @@ class App extends React.Component {
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');
     $.ajax({
-      url: `/api/overview/${productID}`,
-    })
+      url: `/api/products/${productID}`,
+      })
       .then((responseData) => {
         this.setState({ data: responseData, show: true, overview: true });
         $.ajax({
@@ -38,7 +42,7 @@ class App extends React.Component {
             currentData.qa = informationData.qa;
             this.setState({
               data: currentData,
-            });
+            }, () => this.getRating());
             $.ajax({
               url: '/outfit',
               type: 'POST',
@@ -69,6 +73,24 @@ class App extends React.Component {
       });
   }
 
+  getRating() {
+    let avgRating = helpers.averageOfRatings(this.state.data.reviews.reviewMeta.ratings);
+    if (avgRating.toString().length === 1) {
+      avgRating = avgRating.toString() + '.0';
+    }
+    this.setState({
+      avgRating,
+    }, () => this.ratingPercentage());
+  }
+
+  ratingPercentage() {
+    let percentage = this.state.avgRating / 5;
+    percentage = percentage * 100;
+    this.setState({
+      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
+    });
+  }
+
   render() {
     if (this.state.show === false) {
       return (
@@ -87,7 +109,11 @@ class App extends React.Component {
           ? <QA data={this.state.data} key={Math.random() * 1000000} />
           : <div />}
         {this.state.reviews
-          ? <Reviews data={this.state.data} key={Math.random() * 1000000} />
+          ? <Reviews
+              data={this.state.data}
+              key={Math.random() * 1000000}
+              ratingPercentage={this.state.ratingPercentage}
+            />
           : <div />}
       </div>
     );

@@ -1,4 +1,3 @@
-
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
@@ -38,10 +37,10 @@ class AnswerRenderer extends React.Component {
 
   AnswerHelpful(answerID, identifier) {
     AnswerHelpfulPost(answerID, () => {
-      let answersObject = this.state.answersObject;
-      let currentHelpfulness = answersObject.answerHelpfulness[identifier];
+      const { answersObject } = this.state;
+      const currentHelpfulness = answersObject.answerHelpfulness[identifier];
       answersObject.answerHelpfulness[identifier] = currentHelpfulness + 1;
-      this.setState({ answersObject })
+      this.setState({ answersObject });
     });
   }
 
@@ -91,33 +90,31 @@ class AnswerRenderer extends React.Component {
   }
 
   render() {
-    if (this.state.showAllAnswers === true) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length > 2) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length > 0) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length === 0) {
-      return (
-        <styles.AnswerText data-testid="NoAnswer">No Answers Available for this Question.</styles.AnswerText>
-      );
-    }
+    return (
+      <div>
+        { this.state.showAllAnswers
+          ? (
+            <div>
+              {this.state.answersObject.answerBody.map(
+                (answerBody, i) => this.parseAnswers(answerBody, i),
+              )}
+            </div>
+          )
+          : (
+            <div>
+              {this.state.answersObject.answerBody.slice(0, 2).map(
+                (answerBody, i) => this.parseAnswers(answerBody, i),
+              )}
+            </div>
+          )}
+        { this.state.showAllAnswers || this.state.answersObject.answerBody.length < 3
+          ? <div />
+          : <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>}
+        {this.state.answersObject.answerBody.length === 0
+          ? <styles.AnswerText data-testid="NoAnswer"> No Answers Available for this Question.</styles.AnswerText>
+          : <div />}
+      </div>
+    );
   }
 }
 

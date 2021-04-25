@@ -59,7 +59,7 @@ class QA extends React.Component {
             ))}
         </div>
         <styles.ButtonContainer>
-          {this.state.showAllQuestions || this.state.filteredQuestions.length < 2
+          {this.state.showAllQuestions || this.state.filteredQuestions.length < 3
             ? <div />
             : (
               <styles.AddQuestionButton onClick={this.showAllQuestions.bind(this)}>

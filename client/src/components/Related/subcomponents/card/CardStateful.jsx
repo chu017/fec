@@ -18,6 +18,9 @@ class CardStateful extends React.Component {
 
   componentDidMount() {
     this.sortModalData();
+    setTimeout(() => {
+      console.log('Table Data: ', this.state.comparisonData);
+    }, 1000);
   }
 
   toggleModal() {
@@ -35,7 +38,7 @@ class CardStateful extends React.Component {
       cardProductFeatures,
     } = this.props;
 
-    console.log(overviewFeatures, cardProductFeatures);
+    // console.log(overviewFeatures, cardProductFeatures);
 
     const dataForTable = [];
 
@@ -47,14 +50,25 @@ class CardStateful extends React.Component {
       cardProductFeatures.forEach((cardItem) => {
         if (cardItem.feature === dataForTable[i].featureToCompare) {
           dataForTable[i].cardValue = cardItem.value;
-        } else if (cardItem.feature !== dataForTable[i].feature) {
-          dataForTable.push({ featureToCompare: cardItem.feature, cardValue: cardItem.value });
         }
       });
     }
-    // cardProductFeatures.forEach((cardItem) => {
 
-    // });
+    cardProductFeatures.forEach((cardItem) => {
+      let unique = true;
+      for (let i = 0; i < dataForTable.length; i += 1) {
+        if (cardItem.feature === dataForTable[i].featureToCompare) {
+          unique = false;
+        }
+      }
+      if (unique === true) {
+        dataForTable.push({ featureToCompare: cardItem.feature, cardValue: cardItem.value });
+      }
+    });
+
+    this.setState({
+      comparisonData: dataForTable,
+    });
   }
 
   render() {
@@ -67,7 +81,7 @@ class CardStateful extends React.Component {
       cardProductFeatures,
       overviewFeatures,
     } = this.props;
-    const { modalVisible } = this.state;
+    const { modalVisible, comparisonData } = this.state;
     return (
       <styles.cardComponentDiv>
         <button id="starButton" type="button" onClick={() => { this.toggleModal(); }}>STAR</button>
@@ -91,8 +105,7 @@ class CardStateful extends React.Component {
         { modalVisible ? (
           <ModalCompare
             toggleModal={this.toggleModal}
-            cardProductFeatures={cardProductFeatures}
-            overviewFeatures={overviewFeatures}
+            comparisonData={comparisonData}
           />
         ) : null}
       </styles.cardComponentDiv>

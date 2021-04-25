@@ -53,6 +53,12 @@ app.put('/qa/answers/:answer_id/report', APIControllers.answerReport);
 
 app.put('/reviews/:review_id/report', APIControllers.reviewReport);
 
+app.post('/qa/questions', APIControllers.questionAdd);
+
+app.post('/qa/questions/:question_id/answers', APIControllers.answerAdd);
+
+app.post('/reviews', APIControllers.reviewAdd);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

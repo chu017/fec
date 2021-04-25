@@ -1,4 +1,12 @@
 body {
   background-color: #f7f7f7;
+  font-family: helvetica;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
+button {
+  font-size: .1em;
+}

@@ -15,8 +15,13 @@ class QA extends React.Component {
     this.state = {
       questionList: this.props.data.qa.results,
       filteredQuestions: this.props.data.qa.results,
-      showQuestionCreate: true,
+      showAllQuestions: false,
+      showQuestionCreate: false,
     };
+  }
+
+  showAllQuestions() {
+    this.setState({ showAllQuestions: true });
   }
 
   searchFilter(value) {
@@ -32,7 +37,7 @@ class QA extends React.Component {
 
   toggleModal() {
     const currentView = !this.state.showQuestionCreate;
-    this.setState({showQuestionCreate: currentView});
+    this.setState({ showQuestionCreate: currentView });
   }
 
   render() {
@@ -45,12 +50,22 @@ class QA extends React.Component {
           <Search searchFilter={this.searchFilter.bind(this)} />
         </div>
         <div>
-          {this.state.filteredQuestions.map((question) => (
-            <QuestionRenderer question={question} key={Math.random() * 100000} />
-          ))}
+          {this.state.showAllQuestions
+            ? this.state.filteredQuestions.map((question) => (
+              <QuestionRenderer question={question} key={Math.random() * 100000} />
+            ))
+            : this.state.filteredQuestions.slice(0, 2).map((question) => (
+              <QuestionRenderer question={question} key={Math.random() * 100000} />
+            ))}
         </div>
         <styles.ButtonContainer>
-          <styles.AddQuestionButton>Load More Questions</styles.AddQuestionButton>
+          {this.state.showAllQuestions || this.state.filteredQuestions.length < 2
+            ? <div />
+            : (
+              <styles.AddQuestionButton onClick={this.showAllQuestions.bind(this)}>
+                Load More Questions
+              </styles.AddQuestionButton>
+            )}
           <styles.AddQuestionButton onClick={this.toggleModal.bind(this)}>
             Add A Question
           </styles.AddQuestionButton>

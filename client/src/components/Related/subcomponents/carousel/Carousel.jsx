@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React from 'react';
@@ -6,7 +7,7 @@ import Prev from './buttons/Prev.jsx';
 import NextOutfit from './buttons/NextOutfit.jsx';
 import PrevOutfit from './buttons/PrevOutfit.jsx';
 import CardStateful from '../card/CardStateful.jsx';
-import CardOutfit from '../card/CardOutfit.jsx';
+import FirstOutfitCard from '../card/FirstOutfitCard.jsx';
 import styles from '../../styled.js';
 
 class Carousel extends React.Component {
@@ -37,9 +38,12 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    const { data, outfitData } = this.props;
+    const { data } = this.props; // outfitData
     const { features } = data.product;
-    const { relatedIds, relatedInformation, relatedStyles } = data.related;
+    const {
+      relatedIds, relatedInformation, relatedStyles, relatedReviews,
+    } = data.related;
+    console.log(relatedReviews);
     const newSort = [];
     const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
@@ -173,6 +177,8 @@ class Carousel extends React.Component {
       buttonDisable,
       overviewFeatures,
     } = this.state;
+    const { name } = this.props.data.product;
+    const { results } = this.props.data.styles;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -210,35 +216,33 @@ class Carousel extends React.Component {
         <styles.OutfitWrapperDiv>
           {prevOutfitVisible ? (
             <PrevOutfit
-              scroll={this.scrollOutfit}
+              scroll={this.scrollPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
-          <styles.carouselDiv ref={this.scrollOutfitRef}>
-
-            {modalVisible ? (
-              <styles.modalDiv>
-                <ModalCompare
-                  toggleModal={this.toggleModal}
-                />
-              </styles.modalDiv>
-            ) : null}
-
-            {sortedOutfitData.map(({ relatedInformation, relatedStyles }) => (
+          <styles.carouselDiv ref={this.scrollRef}>
+            <FirstOutfitCard
+              overviewProduct={name}
+              image={results[0].photos[0].thumbnail_url}
+            />
+            {sortedOutfitData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
               <CardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
-                price={relatedInformation.default_price}
+                defaultPrice={defaultStyle.original_price}
+                salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
-                key={`${relatedInformation.id}oufit`}
+                key={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
+                cardProductFeatures={relatedInformation.features}
+                overviewFeatures={overviewFeatures}
               />
             ))}
           </styles.carouselDiv>
           {nextOutfitVisible ? (
             <NextOutfit
-              scroll={this.scrollOutfit}
+              scroll={this.scrollNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}

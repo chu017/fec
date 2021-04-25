@@ -18,9 +18,6 @@ class CardStateful extends React.Component {
 
   componentDidMount() {
     this.sortModalData();
-    setTimeout(() => {
-      console.log('Table Data: ', this.state.comparisonData);
-    }, 1000);
   }
 
   toggleModal() {
@@ -78,8 +75,6 @@ class CardStateful extends React.Component {
       defaultPrice,
       salePrice,
       image,
-      cardProductFeatures,
-      overviewFeatures,
     } = this.props;
     const { modalVisible, comparisonData } = this.state;
     return (

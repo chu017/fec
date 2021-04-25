@@ -29,8 +29,8 @@ class App extends React.Component {
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');
     $.ajax({
-      url: `/api/products/${productID}`,
-      })
+      url: `/api/overview/${productID}`,
+    })
       .then((responseData) => {
         this.setState({ data: responseData, show: true, overview: true });
         $.ajax({

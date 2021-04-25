@@ -33,6 +33,14 @@ const helpers = {
     }
     return total;
   },
+
+  productCharacteristicsTable: [
+    ['Size', 'A size too small', ' 1/2 size too small', 'Perfect', '1/2 size too big', 'A size too big'],
+    ['Width', 'Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+    ['Comfort', 'Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+    ['Quality', 'Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+    ['Fit', 'Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
+  ],
 };
 
 export default helpers;

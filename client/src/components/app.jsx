@@ -29,7 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview data={this.state.data} key={Math.random() * 1000009} />
+        {/* <Overview data={this.state.data} key={Math.random() * 1000009} /> */}
         <Related data={this.state.data} key={Math.random() * 1000007} />
         <QA data={this.state.data} key={Math.random() * 1000005} />
         <Reviews data={this.state.data} key={Math.random() * 1000002} />

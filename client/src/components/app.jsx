@@ -1,4 +1,3 @@
-
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 
@@ -15,15 +14,33 @@ class App extends React.Component {
     this.state = {
       show: false,
     };
-  };
+  }
 
   componentDidMount() {
     const URL = window.location.href;
     const productID = URL.split('products/')[1].split('/')[0];
+    const outfitIDs = localStorage.getItem('outfit');
     $.ajax({
       url: `/api/products/${productID}`,
-      success: (responseData) => this.setState({data: responseData, show: true}),
-    });
+    })
+      .then((responseData) => {
+        this.setState({ data: responseData, show: true });
+        $.ajax({
+          url: '/outfit',
+          type: 'POST',
+          data: { outfitIDs },
+          success: (data) => {
+            const currentData = this.state.data;
+            currentData.outfit = data.outfit;
+            this.setState({ data: currentData });
+          },
+          error: (data) => {
+            const currentData = this.state.data;
+            currentData.outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
+            this.setState({ data: currentData });
+          },
+        });
+      });
   }
 
   render() {

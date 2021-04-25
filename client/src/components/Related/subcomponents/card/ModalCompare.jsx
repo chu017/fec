@@ -1,4 +1,3 @@
-
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
@@ -6,26 +5,24 @@ import React from 'react';
 // eslint-disable-next-line import/extensions
 import styles from '../../styled.js';
 
-const ModalCompare = ({ toggleModal }) => (
+const ModalCompare = ({ toggleModal, comparisonData }) => (
   <styles.modalDiv>
-    <div onClick={() => { toggleModal(); }}>X</div>
+    <styles.closeModal onClick={() => { toggleModal(); }}>X</styles.closeModal>
+    <styles.modalTitle>Comparing</styles.modalTitle>
     <styles.table id="table">
       <tbody>
         <tr>
-          <styles.tableHeader scope="col">Main Product</styles.tableHeader>
-          <styles.tableHeader scope="col">Feature</styles.tableHeader>
-          <styles.tableHeader scope="col">Card Product</styles.tableHeader>
+          <styles.modalFirstRow scope="col">Overview Product</styles.modalFirstRow>
+          <styles.modalFirstRow scope="col">Feature</styles.modalFirstRow>
+          <styles.modalFirstRow scope="col">This Product</styles.modalFirstRow>
         </tr>
-        <tr>
-          <styles.tableData>$1</styles.tableData>
-          <styles.tableHeader scope="row">Price</styles.tableHeader>
-          <styles.tableData>$100,000</styles.tableData>
-        </tr>
-        <tr>
-          <styles.tableData>false</styles.tableData>
-          <styles.tableHeader scope="row">BoojiBlingBling</styles.tableHeader>
-          <styles.tableData>true</styles.tableData>
-        </tr>
+        {comparisonData.map(({ featureToCompare, overviewValue, cardValue }) => (
+          <tr>
+            <styles.tableData>{overviewValue}</styles.tableData>
+            <styles.tableHeader>{featureToCompare}</styles.tableHeader>
+            <styles.tableData>{cardValue}</styles.tableData>
+          </tr>
+        ))}
       </tbody>
     </styles.table>
   </styles.modalDiv>

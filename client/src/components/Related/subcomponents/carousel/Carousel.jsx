@@ -1,31 +1,32 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React from 'react';
-import Next from './Next.jsx';
-import Prev from './Prev.jsx';
-import Card from '../card/Card.jsx';
+import Next from './buttons/Next.jsx';
+import Prev from './buttons/Prev.jsx';
+import NextOutfit from './buttons/NextOutfit.jsx';
+import PrevOutfit from './buttons/PrevOutfit.jsx';
+import CardStateful from '../card/CardStateful.jsx';
 import CardOutfit from '../card/CardOutfit.jsx';
 import styles from '../../styled.js';
-import ModalCompare from '../card/ModalCompare.jsx';
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.scroll = this.scroll.bind(this);
-
     this.scrollRef = React.createRef();
-
-    this.scrollOutfit = this.scrollOutfit.bind(this);
     this.scrollOutfitRef = React.createRef();
-    this.checkButtons = this.checkButtons.bind(this);
-    this.checkOutfitButtons = this.checkOutfitButtons.bind(this);
-    this.nextRef = React.createRef();
 
-    this.toggleModal = this.toggleModal.bind(this);
+    this.checkButtons = this.checkButtons.bind(this);
+    this.scrollPrev = this.scrollPrev.bind(this);
+    this.scrollNext = this.scrollNext.bind(this);
+
+    this.checkOutfitButtons = this.checkOutfitButtons.bind(this);
+    this.scrollOutfitPrev = this.scrollOutfitPrev.bind(this);
+    this.scrollOutfitNext = this.scrollOutfitNext.bind(this);
 
     this.state = {
       sortedData: [],
+      sortedOutfitData: [],
       modalVisible: false,
       prevVisible: false,
       nextVisible: true,
@@ -36,41 +37,55 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    const { data } = this.props;
+    const { data, outfitData } = this.props;
+    const { features } = data.product;
     const { relatedIds, relatedInformation, relatedStyles } = data.related;
     const newSort = [];
+    const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
-      newSort.push([relatedInformation[i], relatedStyles[i]]);
+      for (let ii = 0; ii < relatedStyles[i].results.length; ii += 1) {
+        if (relatedStyles[i].results[ii]['default?'] === true) {
+          newSort.push({
+            relatedInformation: relatedInformation[i],
+            relatedStyles: relatedStyles[i],
+            defaultStyle: relatedStyles[i].results[ii],
+          });
+          break;
+        } else if (ii === relatedStyles[i].results.length - 1 && newSort[i] === undefined) {
+          newSort.push({
+            relatedInformation: relatedInformation[i],
+            relatedStyles: relatedStyles[i],
+            defaultStyle: relatedStyles[i].results[0],
+          });
+        }
+      }
     }
     this.setState({
       sortedData: newSort,
+      sortedOutfitData: newOutfitSort,
+      overviewFeatures: features,
     });
   }
 
   checkButtons() {
-    const scrollBarWidth = this.scrollRef.current.clientWidth - 196;
-    console.log(this.scrollRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollRef.current.scrollLeft >= 196;
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
+    console.log('currentvalues: ', scrollWidth, offsetWidth, scrollLeft);
+    console.log('refcurrent: ', this.scrollRef.current);
+    const prevVisible = scrollLeft !== 0;
+    const nextVisible = scrollLeft < (scrollWidth - offsetWidth);
     this.setState({
-      prevVisible: prevBool,
-      nextVisible: this.scrollRef.current.scrollLeft < scrollBarWidth,
+      prevVisible,
+      nextVisible,
     });
   }
 
-  checkOutfitButtons() {
-    const scrollBarWidth = this.scrollOutfitRef.current.clientWidth - 196;
-    console.log(this.scrollOutfitRef.current.scrollWidth, scrollBarWidth);
-    const prevBool = this.scrollOutfitRef.current.scrollLeft >= 196;
-    this.setState({
-      prevOutfitVisible: prevBool,
-      nextOutfitVisible: this.scrollOutfitRef.current.scrollLeft < scrollBarWidth,
-    });
-  }
-
-  scroll(distance) {
+  scrollNext() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
+    const distance = (scrollWidth / sortedData.length);
     if (this.scrollRef && this.scrollRef.current) {
       this.scrollRef.current.scrollLeft += distance;
     }
@@ -82,10 +97,41 @@ class Carousel extends React.Component {
     }, 400);
   }
 
-  scrollOutfit(distance) {
+  scrollPrev() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
+    const distance = (scrollWidth / sortedData.length);
+    if (this.scrollRef && this.scrollRef.current) {
+      this.scrollRef.current.scrollLeft -= distance;
+    }
+    setTimeout(() => {
+      this.checkButtons();
+      this.setState({
+        buttonDisable: false,
+      });
+    }, 400);
+  }
+
+  checkOutfitButtons() {
+    const { offsetWidth, scrollWidth, scrollLeft } = this.scrollOutfitRef.current;
+    const prevOutfitVisible = scrollLeft !== 0;
+    const nextOutfitVisible = scrollLeft < (scrollWidth - offsetWidth);
+    this.setState({
+      prevOutfitVisible,
+      nextOutfitVisible,
+    });
+  }
+
+  scrollOutfitNext() {
+    const { scrollWidth } = this.scrollOutfitRef.current;
+    const { sortedData } = this.state;
+    this.setState({
+      buttonDisable: true,
+    });
+    const distance = (scrollWidth / sortedData.length);
     if (this.scrollOutfitRef && this.scrollOutfitRef.current) {
       this.scrollOutfitRef.current.scrollLeft += distance;
     }
@@ -97,62 +143,73 @@ class Carousel extends React.Component {
     }, 400);
   }
 
-  toggleModal() {
-    const { modalVisible } = this.state;
-    if (modalVisible === true) {
-      this.setState({ modalVisible: false });
-    } else {
-      this.setState({ modalVisible: true });
+  scrollOutfitPrev() {
+    const { scrollWidth } = this.scrollRef.current;
+    const { sortedData } = this.state;
+    this.setState({
+      buttonDisable: true,
+    });
+    const distance = (scrollWidth / sortedData.length);
+    if (this.scrollRef && this.scrollRef.current) {
+      this.scrollRef.current.scrollLeft -= distance;
     }
+    setTimeout(() => {
+      this.checkOutfitButtons();
+      this.setState({
+        buttonDisable: false,
+      });
+    }, 400);
   }
 
   render() {
     const {
-      sortedData, modalVisible, prevVisible, nextVisible, buttonDisable, prevOutfitVisible,
+      sortedData,
+      sortedOutfitData,
+      modalVisible,
+      prevVisible,
+      nextVisible,
+      prevOutfitVisible,
       nextOutfitVisible,
+      buttonDisable,
+      overviewFeatures,
     } = this.state;
     return (
       <div>
         <styles.carouselWrapperDiv>
           {prevVisible ? (
             <Prev
-              scroll={this.scroll}
+              scroll={this.scrollPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
           <styles.carouselDiv ref={this.scrollRef}>
 
-            {modalVisible ? (
-              <styles.modalDiv>
-                <ModalCompare
-                  toggleModal={this.toggleModal}
-                />
-              </styles.modalDiv>
-            ) : null}
-
-            {sortedData.map((item) => (
-              <Card
-                name={item[0].name}
-                category={item[0].category}
-                price={item[0].default_price}
-                image={item[1].results[0].photos[0].thumbnail_url}
-                key={item[0].id}
+            {sortedData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
+              <CardStateful
+                name={relatedInformation.name}
+                category={relatedInformation.category}
+                defaultPrice={defaultStyle.original_price}
+                salePrice={defaultStyle.sale_price}
+                image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
+                cardProductFeatures={relatedInformation.features}
+                overviewFeatures={overviewFeatures}
               />
             ))}
           </styles.carouselDiv>
           {nextVisible ? (
             <Next
-              scroll={this.scroll}
+              scroll={this.scrollNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
         </styles.carouselWrapperDiv>
         <br />
-        <styles.carouselWrapperDiv>
+        <styles.OutfitWrapperDiv>
           {prevOutfitVisible ? (
-            <Prev
+            <PrevOutfit
               scroll={this.scrollOutfit}
               className={buttonDisable ? 'disabled' : null}
             />
@@ -167,29 +224,28 @@ class Carousel extends React.Component {
               </styles.modalDiv>
             ) : null}
 
-            {sortedData.map((item) => (
-              <CardOutfit
-                name={item[0].name}
-                category={item[0].category}
-                price={item[0].default_price}
-                image={item[1].results[0].photos[0].thumbnail_url}
-                key={item[0].id}
+            {sortedOutfitData.map(({ relatedInformation, relatedStyles }) => (
+              <CardStateful
+                name={relatedInformation.name}
+                category={relatedInformation.category}
+                price={relatedInformation.default_price}
+                image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={`${relatedInformation.id}oufit`}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
               />
             ))}
           </styles.carouselDiv>
           {nextOutfitVisible ? (
-            <Next
+            <NextOutfit
               scroll={this.scrollOutfit}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
-        </styles.carouselWrapperDiv>
+        </styles.OutfitWrapperDiv>
       </div>
     );
   }
 }
-
 
 export default Carousel;

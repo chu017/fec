@@ -1,7 +1,11 @@
-const resourceHandler = require ('./AtelierHandler/resourceHandler.js');
+const overviewHandler = require('./AtelierHandler/overviewHandler.js');
+const informationHandler = require('./AtelierHandler/informationHandler.js');
+const outfitHandler = require('./AtelierHandler/outfitHandler.js');
 const helpfulReportHandler = require('./AtelierHandler/helpfulReportHandler');
 
-module.exports.resourceHandler = resourceHandler;
+module.exports.overviewHandler = overviewHandler;
+module.exports.informationHandler = informationHandler;
+module.exports.outfitHandler = outfitHandler;
 module.exports.questionHelpful = helpfulReportHandler.questionHelpful;
 module.exports.answerHelpful = helpfulReportHandler.answerHelpful;
 module.exports.reviewHelpful = helpfulReportHandler.reviewHelpful;

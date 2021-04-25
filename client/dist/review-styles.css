@@ -199,35 +199,6 @@ small {
   margin: 8px 0 0 8px;
 }
 
-.stars-outer {
-  font-size: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-
-.stars-inner {
-  font-size: 12px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.stars-outer::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 200;
-}
-
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #000;
-}
-
 .total-star-ratings {
   position: relative;
   left: 3px;

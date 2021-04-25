@@ -11,9 +11,7 @@ class RatingsReviews extends React.Component {
 
     this.state = this.getRatings();
 
-    this.getRatingPercentage = this.getRatingPercentage.bind(this);
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
-    this.getRatings = this.getRatings.bind(this);
     this.filtersApplied = this.filtersApplied.bind(this);
     this.showFilters = this.showFilters.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
@@ -22,6 +20,7 @@ class RatingsReviews extends React.Component {
   componentDidMount() {
     const ratings = this.getRatings();
     this.setState({
+      ratingPercentage: this.props.ratingPercentage,
       rating: ratings.rating,
       fit: ratings.fit,
       comfort: ratings.comfort,
@@ -58,7 +57,9 @@ class RatingsReviews extends React.Component {
   getRatingPercentage() {
     let percentage = this.state.rating / 5;
     percentage = percentage * 100;
-    return `${Math.round(percentage / 10) * 10}%`;
+    this.setState({
+      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
+    });
   }
 
   createRatingsCountBars() {
@@ -112,7 +113,7 @@ class RatingsReviews extends React.Component {
 
   render() {
     const starInnerWidth = {
-      width: this.getRatingPercentage(),
+      width: this.state.ratingPercentage,
     };
 
     const positionCarrot1 = {

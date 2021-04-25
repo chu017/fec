@@ -53,6 +53,18 @@ const resourceHandler = (productID, errorCB, successCB) => {
       for (let i = 0; i < response.length; i += 1) {
         productData.related.relatedStyles.push(response[i].data);
       }
+      const relatedReviewRequests = productData.related.relatedIds.map((id) => axios({
+        method: 'get',
+        url: `${baseURL}/reviews?product_id=${id}&sort=newest&count=100&page=1`,
+        headers: { Authorization: API_KEY },
+      }));
+      return axios.all(relatedReviewRequests);
+    })
+    .then((response) => {
+      productData.related.relatedReviews = [];
+      for (let i = 0; i < response.length; i += 1) {
+        productData.related.relatedReviews.push(response[i].data);
+      }
       return axios({
         method: 'get',
         url: `${baseURL}/reviews?product_id=${productID}&sort=newest&count=100&page=1`,

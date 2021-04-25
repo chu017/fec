@@ -5,10 +5,9 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
-// import styled from 'styled-components';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
-import ShoppingCart from './shoppingCart.jsx';
+import ShoppingCart from './addToCart/shoppingCart.jsx';
 import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {
@@ -26,10 +25,6 @@ const Overview = class extends React.Component {
     this.showCart = this.showCart.bind(this);
   }
 
-  // compoentDidMount() {
-
-  // }
-
   selectStyle(photos) {
     this.setState({
       style_photos: photos,
@@ -38,7 +33,6 @@ const Overview = class extends React.Component {
 
   expandView() {
     this.setState({
-      // eslint-disable-next-line react/no-unused-state
       defaultView: this.state.defaultView === true ? false : true,
     });
   }
@@ -52,7 +46,6 @@ const Overview = class extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.props.data.product)}
         {this.state.show === false && (
         <div>
           {this.state.defaultView === true && (

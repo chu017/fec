@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-// import styled from 'styled-components';
 
 const ProductInfoTwoItem = class extends React.Component {
   constructor(props) {

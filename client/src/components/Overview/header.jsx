@@ -5,7 +5,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-undef */
 import React from 'react';
-// import styled from 'styled-components';
 
 const Header = class extends React.Component {
   constructor(props) {

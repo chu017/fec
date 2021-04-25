@@ -6,13 +6,12 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
-// import styled from 'styled-components';
 import Header from './header.jsx';
-import ProductInfoOne from './productInfoOne.jsx';
-import ImageGallery from './imageGallery.jsx';
-import StyleSelector from './styleSelector.jsx';
-import AddToCart from './addToCart.jsx';
-import ProductInfoTwo from './productInfoTwo.jsx';
+import ProductInfoOne from './productInfo/productInfoOne.jsx';
+import ImageGallery from './imageGallery/imageGallery.jsx';
+import StyleSelector from './styleSelector/styleSelector.jsx';
+import AddToCart from './addToCart/addToCart.jsx';
+import ProductInfoTwo from './productInfo/productInfoTwo.jsx';
 
 const Overview = class extends React.Component {
   constructor(props) {
@@ -38,7 +37,6 @@ const Overview = class extends React.Component {
 
   expandView() {
     this.setState({
-      // eslint-disable-next-line react/no-unused-state
       defaultView: this.state.defaultView === true ? false : true,
     });
   }
@@ -50,7 +48,6 @@ const Overview = class extends React.Component {
           <Header data={this.props.data} />
         </div>
 
-        {/* <div className="body"> */}
         <div className="main">
           <ImageGallery
             data={this.state.style_photos}
@@ -72,7 +69,6 @@ const Overview = class extends React.Component {
           <br />
           <AddToCart data={this.props.data} />
         </div>
-        {/* </div> */}
 
         <div className="footer">
           <ProductInfoTwo data={this.props.data} />

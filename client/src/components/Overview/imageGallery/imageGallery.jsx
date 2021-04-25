@@ -6,7 +6,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-// import styled from 'styled-components';
 import {
   AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
 } from 'react-icons/Ai';
@@ -58,8 +57,6 @@ const ImageGallery = class extends React.Component {
           <BsArrowsFullscreen className="expand-view" onClick={this.expand} />
 
           <section className="slider-vertical">
-            {/* <AiOutlineArrowUp type="button" className="up-arrow" />
-            <AiOutlineArrowDown type="button" className="down-arrow" /> */}
 
             {this.props.data.photos.map((item, index) => (
               <ImageGalleryItem
@@ -90,14 +87,3 @@ const ImageGallery = class extends React.Component {
 };
 
 export default ImageGallery;
-
-/*
-        <section className="slider-vertical">
-          <AiOutlineArrowUp type="button" className="up-arrow" />
-          <AiOutlineArrowDown type="button" className="down-arrow" />
-
-          {this.props.data.styles.results.map((item, index) => (
-            <ImageGalleryItem item={item} key={index} />
-          ))}
-        </section>
-*/

@@ -6,7 +6,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import Cart from './subcomponents/cart.jsx';
+import Cart from '../subcomponents/cart.jsx';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -48,28 +48,3 @@ class ShoppingCart extends React.Component {
 }
 
 export default ShoppingCart;
-
-/*
-      <div className="cart">
-        <img className="cart-img" alt="" src={this.props.item.photos[0].url} />
-        <h2>{this.props.item.name}</h2>
-        <div>{this.props.item.original_price}</div>
-      </div>
-
-      <div>
-        {this.props.show === true && (
-        <div className="modal" id="modal">
-          <div className="content">{this.props.children}</div>
-          <div className="actions">
-            <button
-              type="button"
-              className="toggle-button"
-              onClick={this.onClose}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-        )}
-      </div>
-*/

@@ -2,33 +2,16 @@ const axios = require('axios');
 const API_KEY = require('../config.js');
 const baseURL = require('./AtelierConfig.js');
 
-const resourceHandler = (productID, errorCB, successCB) => {
+const informationHandler = (productID, errorCB, successCB) => {
   const productData = {};
   axios({
     method: 'get',
-    url: `${baseURL}/products/${productID}`,
+    url: `${baseURL}/products/${productID}/related`,
     headers: { Authorization: API_KEY },
   })
     .then((response) => {
-      productData.product = response.data;
-      return axios({
-        method: 'get',
-        url: `${baseURL}/products/${productID}/styles`,
-        headers: { Authorization: API_KEY },
-      });
-    })
-    .then((response) => {
-      productData.styles = response.data;
-      return axios({
-        method: 'get',
-        url: `${baseURL}/products/${productID}/related`,
-        headers: { Authorization: API_KEY },
-      });
-    })
-    .then((response) => {
       productData.related = {};
       productData.related.relatedIds = response.data;
-      /* Creating Multiple Axios Requests for Related Information */
       const relatedInformationRequests = productData.related.relatedIds.map((id) => axios({
         method: 'get',
         url: `${baseURL}/products/${id}`,
@@ -94,7 +77,7 @@ const resourceHandler = (productID, errorCB, successCB) => {
     })
     .catch((response) => {
       errorCB(response);
-    })
+    });
 };
 
-module.exports = resourceHandler;
+module.exports = informationHandler;

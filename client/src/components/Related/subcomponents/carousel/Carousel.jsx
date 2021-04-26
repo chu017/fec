@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React from 'react';
@@ -6,7 +7,8 @@ import Prev from './buttons/Prev.jsx';
 import NextOutfit from './buttons/NextOutfit.jsx';
 import PrevOutfit from './buttons/PrevOutfit.jsx';
 import CardStateful from '../card/CardStateful.jsx';
-import CardOutfit from '../card/CardOutfit.jsx';
+import FirstOutfitCard from '../card/FirstOutfitCard.jsx';
+import OutfitCardStateful from '../card/OutfitCardStateful.jsx';
 import styles from '../../styled.js';
 
 class Carousel extends React.Component {
@@ -26,7 +28,6 @@ class Carousel extends React.Component {
 
     this.state = {
       sortedData: [],
-      sortedOutfitData: [],
       modalVisible: false,
       prevVisible: false,
       nextVisible: true,
@@ -37,11 +38,12 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    const { data, outfitData } = this.props;
+    const { data } = this.props; // outfitData
     const { features } = data.product;
-    const { relatedIds, relatedInformation, relatedStyles } = data.related;
+    const {
+      relatedIds, relatedInformation, relatedStyles, relatedReviews,
+    } = data.related;
     const newSort = [];
-    const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
       for (let ii = 0; ii < relatedStyles[i].results.length; ii += 1) {
         if (relatedStyles[i].results[ii]['default?'] === true) {
@@ -49,6 +51,7 @@ class Carousel extends React.Component {
             relatedInformation: relatedInformation[i],
             relatedStyles: relatedStyles[i],
             defaultStyle: relatedStyles[i].results[ii],
+            reviews: relatedReviews[i],
           });
           break;
         } else if (ii === relatedStyles[i].results.length - 1 && newSort[i] === undefined) {
@@ -56,21 +59,19 @@ class Carousel extends React.Component {
             relatedInformation: relatedInformation[i],
             relatedStyles: relatedStyles[i],
             defaultStyle: relatedStyles[i].results[0],
+            reviews: relatedReviews[i],
           });
         }
       }
     }
     this.setState({
       sortedData: newSort,
-      sortedOutfitData: newOutfitSort,
       overviewFeatures: features,
     });
   }
 
   checkButtons() {
     const { offsetWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
-    console.log('currentvalues: ', scrollWidth, offsetWidth, scrollLeft);
-    console.log('refcurrent: ', this.scrollRef.current);
     const prevVisible = scrollLeft !== 0;
     const nextVisible = scrollLeft < (scrollWidth - offsetWidth);
     this.setState({
@@ -131,7 +132,7 @@ class Carousel extends React.Component {
     this.setState({
       buttonDisable: true,
     });
-    const distance = (scrollWidth / sortedData.length);
+    const distance = (scrollWidth / (sortedData.length + 1));
     if (this.scrollOutfitRef && this.scrollOutfitRef.current) {
       this.scrollOutfitRef.current.scrollLeft += distance;
     }
@@ -144,14 +145,14 @@ class Carousel extends React.Component {
   }
 
   scrollOutfitPrev() {
-    const { scrollWidth } = this.scrollRef.current;
+    const { scrollWidth } = this.scrollOutfitRef.current;
     const { sortedData } = this.state;
     this.setState({
       buttonDisable: true,
     });
-    const distance = (scrollWidth / sortedData.length);
-    if (this.scrollRef && this.scrollRef.current) {
-      this.scrollRef.current.scrollLeft -= distance;
+    const distance = (scrollWidth / (sortedData.length + 1));
+    if (this.scrollOutfitRef && this.scrollOutfitRef.current) {
+      this.scrollOutfitRef.current.scrollLeft -= distance;
     }
     setTimeout(() => {
       this.checkOutfitButtons();
@@ -164,7 +165,6 @@ class Carousel extends React.Component {
   render() {
     const {
       sortedData,
-      sortedOutfitData,
       modalVisible,
       prevVisible,
       nextVisible,
@@ -173,6 +173,8 @@ class Carousel extends React.Component {
       buttonDisable,
       overviewFeatures,
     } = this.state;
+    const { name } = this.props.data.product;
+    const { results } = this.props.data.styles;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -184,18 +186,21 @@ class Carousel extends React.Component {
           ) : null}
           <styles.carouselDiv ref={this.scrollRef}>
 
-            {sortedData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
+            {sortedData.map(({
+              relatedInformation, relatedStyles, defaultStyle, reviews,
+            }) => (
               <CardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
-                key={relatedInformation.id}
+                id={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
+                reviews={reviews}
               />
             ))}
           </styles.carouselDiv>
@@ -210,35 +215,34 @@ class Carousel extends React.Component {
         <styles.OutfitWrapperDiv>
           {prevOutfitVisible ? (
             <PrevOutfit
-              scroll={this.scrollOutfit}
+              scroll={this.scrollOutfitPrev}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}
           <styles.carouselDiv ref={this.scrollOutfitRef}>
-
-            {modalVisible ? (
-              <styles.modalDiv>
-                <ModalCompare
-                  toggleModal={this.toggleModal}
-                />
-              </styles.modalDiv>
-            ) : null}
-
-            {sortedOutfitData.map(({ relatedInformation, relatedStyles }) => (
-              <CardStateful
+            <FirstOutfitCard
+              overviewProduct={name}
+              image={results[0].photos[0].thumbnail_url}
+            />
+            {sortedData.map(({
+              relatedInformation, relatedStyles, defaultStyle, reviews,
+            }) => (
+              <OutfitCardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
-                price={relatedInformation.default_price}
+                defaultPrice={defaultStyle.original_price}
+                salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
-                key={`${relatedInformation.id}oufit`}
-                modalVisible={modalVisible}
-                toggleModal={this.toggleModal}
+                id={relatedInformation.id}
+                cardProductFeatures={relatedInformation.features}
+                overviewFeatures={overviewFeatures}
+                reviews={reviews}
               />
             ))}
           </styles.carouselDiv>
           {nextOutfitVisible ? (
             <NextOutfit
-              scroll={this.scrollOutfit}
+              scroll={this.scrollOutfitNext}
               className={buttonDisable ? 'disabled' : null}
             />
           ) : null}

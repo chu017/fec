@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
 
 const body = styled.body`
@@ -48,11 +49,27 @@ const cardComponentDiv = styled.div`
   min-width: 20%;
   min-height: 95%;
   max-height: 95%;
-  box-shadow: -2rem -2rem 3rem #100e17;
+  box-shadow: -1.5rem -2rem 3rem midnightblue;
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
   padding-top: 2%;
+  `;
+
+const outfitCardComponentDiv = styled.div`
+  background: #f7f7f7;
+  text-align: center;
+  border-radius: 4px;
+  font-family: Verdana;
+  max-width: 20%;
+  min-width: 20%;
+  min-height: 95%;
+  max-height: 95%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  font-size: .2em;
+  padding-top: 2%;
+  box-shadow: -1.5rem -2rem 3rem #100e17;
   `;
 
 const nextComponentDiv = styled.div`
@@ -199,6 +216,7 @@ const styles = {
   tableHeader,
   salePrice,
   defaultPriceStrike,
+  outfitCardComponentDiv,
 };
 
 export default styles;

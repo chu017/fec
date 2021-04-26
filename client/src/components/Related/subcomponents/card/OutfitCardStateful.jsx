@@ -6,12 +6,10 @@ import styles from '../../styled.js';
 import ModalCompare from './ModalCompare.jsx';
 import Stars from './Stars.jsx';
 
-class CardStateful extends React.Component {
+class OutfitCardStateful extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleModal = this.toggleModal.bind(this);
-    this.sortModalData = this.sortModalData.bind(this);
     this.calculateReviews = this.calculateReviews.bind(this);
 
     this.state = {
@@ -21,54 +19,7 @@ class CardStateful extends React.Component {
   }
 
   componentDidMount() {
-    this.sortModalData();
     this.calculateReviews();
-  }
-
-  toggleModal() {
-    const { modalVisible } = this.state;
-    if (modalVisible === true) {
-      this.setState({ modalVisible: false });
-    } else {
-      this.setState({ modalVisible: true });
-    }
-  }
-
-  sortModalData() {
-    const {
-      overviewFeatures,
-      cardProductFeatures,
-    } = this.props;
-
-    const dataForTable = [];
-
-    overviewFeatures.forEach((item) => {
-      dataForTable.push({ featureToCompare: item.feature, overviewValue: item.value });
-    });
-
-    for (let i = 0; i < dataForTable.length; i += 1) {
-      cardProductFeatures.forEach((cardItem) => {
-        if (cardItem.feature === dataForTable[i].featureToCompare) {
-          dataForTable[i].cardValue = cardItem.value;
-        }
-      });
-    }
-
-    cardProductFeatures.forEach((cardItem) => {
-      let unique = true;
-      for (let i = 0; i < dataForTable.length; i += 1) {
-        if (cardItem.feature === dataForTable[i].featureToCompare) {
-          unique = false;
-        }
-      }
-      if (unique === true) {
-        dataForTable.push({ featureToCompare: cardItem.feature, cardValue: cardItem.value });
-      }
-    });
-
-    this.setState({
-      comparisonData: dataForTable,
-    });
   }
 
   calculateReviews() {
@@ -118,8 +69,8 @@ class CardStateful extends React.Component {
       modalVisible, comparisonData, starMap, reviewCount,
     } = this.state;
     return (
-      <styles.cardComponentDiv>
-        <i className="fas fa-star-of-life fa-5x" onClick={() => { this.toggleModal(); }} />
+      <styles.outfitCardComponentDiv>
+        <i class="far fa-times-circle fa-5x"></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (
@@ -148,8 +99,8 @@ class CardStateful extends React.Component {
             comparisonData={comparisonData}
           />
         ) : null}
-      </styles.cardComponentDiv>
+      </styles.outfitCardComponentDiv>
     );
   }
 }
-export default CardStateful;
+export default OutfitCardStateful;

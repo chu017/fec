@@ -58,10 +58,13 @@ class OutfitCardStateful extends React.Component {
 
   removeFromOutfit(id) {
     const string = localStorage.getItem('outfit');
-    this.currentOutfit = JSON.parse(string);
-    this.currentOutfit.splice(this.currentOutfit.indexOf(id), 1);
-    localStorage.setItem(this.currentOutfit);
-    console.log(this.currentOutfit);
+    this.currentOutfit = string.split(',');
+    console.log(this.currentOutfit.indexOf(id.toString()));
+    if (this.currentOutfit.indexOf(id.toString()) !== -1) {
+      this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
+      console.log(this.currentOutfit);
+      localStorage.setItem('outfit', this.currentOutfit);
+    }
   }
 
   render() {
@@ -79,7 +82,7 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i class="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit()}}></i>
+        <i class="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit(id)}}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (

@@ -92,7 +92,7 @@ class Carousel extends React.Component {
       sortedOutfitData: newOutfitSort,
       overviewFeatures: features,
     });
-    localStorage.setItem('outfit', JSON.stringify([23145, 23149]));
+    localStorage.setItem('outfit', [23145, 23149, 23148]);
   }
 
   checkButtons() {

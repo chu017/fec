@@ -16,14 +16,11 @@ class FirstOutfitCard extends React.Component {
 
   addToOutfit(id) {
     let string = localStorage.getItem('outfit');
-    console.log(JSON.parse(string));
-    this.currentOutfit = JSON.parse(string);
-    if (this.currentOutfit === null) {
-      this.currentOutfit = [];
-    }
-    if (this.currentOutfit.indexOf(id) === -1) {
-      this.currentOutfit.push(id);
-      localStorage.setItem('outfit', JSON.stringify(this.currentOutfit));
+    console.log(string.split(','));
+    this.currentOutfit = string.split(',');
+    if (this.currentOutfit.indexOf(id.toString()) === -1) {
+      this.currentOutfit.push(id.toString());
+      localStorage.setItem('outfit', this.currentOutfit);
     }
     console.log(this.currentOutfit);
   }

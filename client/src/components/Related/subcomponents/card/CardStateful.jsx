@@ -95,9 +95,9 @@ class CardStateful extends React.Component {
         newStarMap.push(0);
       }
     }
-    if (newStarMap.length === 0) {
-      newStarMap = [0, 0, 0, 0, 0];
-    }
+    // if (newStarMap.length === 0) {
+    //   newStarMap = [0, 0, 0, 0, 0];
+    // }
     this.setState({
       starMap: newStarMap,
       reviewCount: reviewCollection.length,
@@ -125,9 +125,9 @@ class CardStateful extends React.Component {
         {starMap && starMap.length && (
         <Stars
           starMap={starMap}
+          reviewCount={reviewCount}
         />
         )}
-        <div>{reviewCount || '0'}</div>
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />

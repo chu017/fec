@@ -11,6 +11,7 @@ class OutfitCardStateful extends React.Component {
     super(props);
 
     this.calculateReviews = this.calculateReviews.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
 
     this.state = {
       modalVisible: false,
@@ -46,13 +47,25 @@ class OutfitCardStateful extends React.Component {
         newStarMap.push(0);
       }
     }
-    if (newStarMap.length === 0) {
-      newStarMap = [0, 0, 0, 0, 0];
-    }
+    console.log(newStarMap);
+    // if (newStarMap.length === 0) {
+    //   newStarMap = [0, 0, 0, 0, 0];
+    // }
     this.setState({
       starMap: newStarMap,
       reviewCount: reviewCollection.length,
     });
+  }
+
+  removeFromOutfit(id) {
+    const string = localStorage.getItem('outfit');
+    this.currentOutfit = string.split(',');
+    console.log(this.currentOutfit.indexOf(id.toString()));
+    if (this.currentOutfit.indexOf(id.toString()) !== -1) {
+      this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
+      console.log(this.currentOutfit);
+      localStorage.setItem('outfit', this.currentOutfit);
+    }
   }
 
   render() {
@@ -70,15 +83,16 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i class="far fa-times-circle fa-5x"></i>
+        <i className="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit(id)}}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (
         <Stars
           starMap={starMap}
+          reviewCount={reviewCount}
         />
         )}
-        <div>{reviewCount || '0'}</div>
+        {/* <div>{reviewCount}</div> */}
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />
@@ -87,7 +101,7 @@ class OutfitCardStateful extends React.Component {
           <br />
 
           {salePrice ? (
-            <div>
+            <div id="salePriceText">
               <styles.salePrice>{salePrice}</styles.salePrice>
               <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
             </div>

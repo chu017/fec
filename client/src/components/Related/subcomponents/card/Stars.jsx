@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -40,9 +42,11 @@ class Stars extends React.Component {
   }
 
   render() {
+    const { reviewCount } = this.props;
     return (
       <div>
         {this.renderStars()}
+        <div>{reviewCount}</div>
       </div>
     );
   }

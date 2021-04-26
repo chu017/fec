@@ -28,6 +28,7 @@ class Carousel extends React.Component {
 
     this.state = {
       sortedData: [],
+      sortedOutfitData: [],
       modalVisible: false,
       prevVisible: false,
       nextVisible: true,
@@ -38,12 +39,14 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    const { data } = this.props; // outfitData
+    const { data } = this.props;
     const { features } = data.product;
     const {
       relatedIds, relatedInformation, relatedStyles, relatedReviews,
     } = data.related;
+    const { outfitInformation, outfitStyles, outfitReviews } = data.outfit;
     const newSort = [];
+    const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
       for (let ii = 0; ii < relatedStyles[i].results.length; ii += 1) {
         if (relatedStyles[i].results[ii]['default?'] === true) {
@@ -64,10 +67,34 @@ class Carousel extends React.Component {
         }
       }
     }
+    for (let i = 0; i < outfitInformation.length; i += 1) {
+      for (let ii = 0; ii < outfitStyles[i].results.length; ii += 1) {
+        if (outfitStyles[i].results[ii]['default?'] === true) {
+          newOutfitSort.push({
+            outfitInformation: outfitInformation[i],
+            outfitStyles: outfitStyles[i],
+            defaultStyle: outfitStyles[i].results[ii],
+            reviews: outfitReviews[i],
+          });
+          break;
+        } else if (ii === outfitStyles[i].results.length - 1 && newSort[i] === undefined) {
+          newOutfitSort.push({
+            outfitInformation: outfitInformation[i],
+            outfitStyles: outfitStyles[i],
+            defaultStyle: outfitStyles[i].results[0],
+            reviews: outfitReviews[i],
+          });
+        }
+      }
+    }
     this.setState({
       sortedData: newSort,
+      sortedOutfitData: newOutfitSort,
       overviewFeatures: features,
+      nextVisible: relatedInformation.length > 4,
+      nextOutfitVisible: outfitInformation.length > 4,
     });
+    localStorage.setItem('outfit', [23145, 23149, 23148]);
   }
 
   checkButtons() {
@@ -165,6 +192,7 @@ class Carousel extends React.Component {
   render() {
     const {
       sortedData,
+      sortedOutfitData,
       modalVisible,
       prevVisible,
       nextVisible,
@@ -173,7 +201,7 @@ class Carousel extends React.Component {
       buttonDisable,
       overviewFeatures,
     } = this.state;
-    const { name } = this.props.data.product;
+    const { name, id } = this.props.data.product;
     const { results } = this.props.data.styles;
     return (
       <div>
@@ -222,19 +250,20 @@ class Carousel extends React.Component {
           <styles.carouselDiv ref={this.scrollOutfitRef}>
             <FirstOutfitCard
               overviewProduct={name}
+              id={id}
               image={results[0].photos[0].thumbnail_url}
             />
-            {sortedData.map(({
-              relatedInformation, relatedStyles, defaultStyle, reviews,
+            {sortedOutfitData.map(({
+              outfitInformation, outfitStyles, defaultStyle, reviews,
             }) => (
               <OutfitCardStateful
-                name={relatedInformation.name}
-                category={relatedInformation.category}
+                name={outfitInformation.name}
+                category={outfitInformation.category}
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
-                image={relatedStyles.results[0].photos[0].thumbnail_url}
-                id={relatedInformation.id}
-                cardProductFeatures={relatedInformation.features}
+                image={outfitStyles.results[0].photos[0].thumbnail_url}
+                id={outfitInformation.id}
+                cardProductFeatures={outfitInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
               />

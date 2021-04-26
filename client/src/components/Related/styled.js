@@ -9,8 +9,7 @@ const OutfitWrapperDiv = styled.div`
   position: relative;
   width: 100%;
   border-radius: 4px;
-  height: 300px;
-  background-color: midnightblue;
+  height: 320px;
   padding-top 1%;
   padding-bottom 1%;
   display: block;
@@ -21,7 +20,6 @@ const carouselWrapperDiv = styled.div`
   width: 100%;
   border-radius: 4px;
   height: 325px;
-  background-color: #100e17;
   padding-top 1%;
   padding-bottom 1%;
   display: block;
@@ -38,6 +36,7 @@ const carouselDiv = styled.div`
   margin-left: 23%;
   margin-right: 23%;
   display: flex;
+  padding: 1%;
   `;
 
 const cardComponentDiv = styled.div`
@@ -75,7 +74,7 @@ const outfitCardComponentDiv = styled.div`
 const nextComponentDiv = styled.div`
   position: absolute;
   top: 40%;
-  right: 20%;
+  right: 18%;
   z-index: 10;
   `;
 

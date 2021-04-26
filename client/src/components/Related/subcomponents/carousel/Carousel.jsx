@@ -43,9 +43,7 @@ class Carousel extends React.Component {
     const {
       relatedIds, relatedInformation, relatedStyles, relatedReviews,
     } = data.related;
-    console.log(relatedReviews);
     const newSort = [];
-    const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
       for (let ii = 0; ii < relatedStyles[i].results.length; ii += 1) {
         if (relatedStyles[i].results[ii]['default?'] === true) {
@@ -53,6 +51,7 @@ class Carousel extends React.Component {
             relatedInformation: relatedInformation[i],
             relatedStyles: relatedStyles[i],
             defaultStyle: relatedStyles[i].results[ii],
+            reviews: relatedReviews[i],
           });
           break;
         } else if (ii === relatedStyles[i].results.length - 1 && newSort[i] === undefined) {
@@ -60,21 +59,19 @@ class Carousel extends React.Component {
             relatedInformation: relatedInformation[i],
             relatedStyles: relatedStyles[i],
             defaultStyle: relatedStyles[i].results[0],
+            reviews: relatedReviews[i],
           });
         }
       }
     }
     this.setState({
       sortedData: newSort,
-      sortedOutfitData: newOutfitSort,
       overviewFeatures: features,
     });
   }
 
   checkButtons() {
     const { offsetWidth, scrollWidth, scrollLeft } = this.scrollRef.current;
-    console.log('currentvalues: ', scrollWidth, offsetWidth, scrollLeft);
-    console.log('refcurrent: ', this.scrollRef.current);
     const prevVisible = scrollLeft !== 0;
     const nextVisible = scrollLeft < (scrollWidth - offsetWidth);
     this.setState({
@@ -189,7 +186,9 @@ class Carousel extends React.Component {
           ) : null}
           <styles.carouselDiv ref={this.scrollRef}>
 
-            {sortedData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
+            {sortedData.map(({
+              relatedInformation, relatedStyles, defaultStyle, reviews,
+            }) => (
               <CardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
@@ -201,6 +200,7 @@ class Carousel extends React.Component {
                 toggleModal={this.toggleModal}
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
+                reviews={reviews}
               />
             ))}
           </styles.carouselDiv>

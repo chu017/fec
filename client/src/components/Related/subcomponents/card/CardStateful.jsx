@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styles from '../../styled.js';
 import ModalCompare from './ModalCompare.jsx';
+import Stars from './Stars.jsx';
 
 class CardStateful extends React.Component {
   constructor(props) {
@@ -10,14 +12,17 @@ class CardStateful extends React.Component {
 
     this.toggleModal = this.toggleModal.bind(this);
     this.sortModalData = this.sortModalData.bind(this);
+    this.calculateReviews = this.calculateReviews.bind(this);
 
     this.state = {
       modalVisible: false,
+      starMap: [],
     };
   }
 
   componentDidMount() {
     this.sortModalData();
+    this.calculateReviews();
   }
 
   toggleModal() {
@@ -66,6 +71,39 @@ class CardStateful extends React.Component {
     });
   }
 
+  calculateReviews() {
+    const { reviews } = this.props;
+    const reviewCollection = reviews.results;
+    let sum = 0;
+    for (let i = 0; i < reviewCollection.length; i += 1) {
+      sum += reviewCollection[i].rating;
+    }
+    const average = sum / reviewCollection.length;
+    const rawDecimal = average - Math.floor(average);
+    const whole = average - rawDecimal;
+    // eslint-disable-next-line radix
+    const decimal = parseFloat(rawDecimal.toFixed(2));
+    let newStarMap = [];
+    let decimalPushed = false;
+    for (let i = 0; i < 5; i += 1) {
+      if (i < whole) {
+        newStarMap.push(1);
+      } else if (i === whole && decimalPushed === false) {
+        newStarMap.push(decimal);
+        decimalPushed = true;
+      } else if (decimalPushed === true) {
+        newStarMap.push(0);
+      }
+    }
+    if (newStarMap.length === 0) {
+      newStarMap = [0, 0, 0, 0, 0];
+    }
+    this.setState({
+      starMap: newStarMap,
+      reviewCount: reviewCollection.length,
+    });
+  }
+
   render() {
     const {
       name,
@@ -74,14 +112,22 @@ class CardStateful extends React.Component {
       salePrice,
       image,
     } = this.props;
-    const { modalVisible, comparisonData } = this.state;
+
+    const {
+      modalVisible, comparisonData, starMap, reviewCount,
+    } = this.state;
+    console.log('cardRender: ', starMap);
     return (
       <styles.cardComponentDiv>
-        <button id="starButton" type="button" onClick={() => { this.toggleModal(); }}>STAR</button>
+        <i class="fas fa-star" onClick={() => { this.toggleModal(); }} />
         <br />
-
         <span>{name}</span>
 
+        {starMap && starMap.length && (
+        <Stars
+          starMap={starMap}
+        />
+        )}
         <styles.cardImg src={image} alt="" />
         <br />
 
@@ -106,3 +152,5 @@ class CardStateful extends React.Component {
   }
 }
 export default CardStateful;
+
+{ /* <button id="starButton" type="button" onClick={() => { this.toggleModal(); }}>STAR</button> */ }

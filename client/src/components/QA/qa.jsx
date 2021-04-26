@@ -12,9 +12,11 @@ import QuestionModal from './SubComponents/Modals/NewQuestion.jsx';
 class QA extends React.Component {
   constructor(props) {
     super(props);
+    const sortedQuestions = this.props.data.qa.results;
+    sortedQuestions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
     this.state = {
-      questionList: this.props.data.qa.results,
-      filteredQuestions: this.props.data.qa.results,
+      questionList: sortedQuestions,
+      filteredQuestions: sortedQuestions,
       showAllQuestions: false,
       showQuestionCreate: false,
     };

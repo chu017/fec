@@ -18,10 +18,12 @@ class App extends React.Component {
       related: false,
       qa: false,
       reviews: false,
+      outfits: [],
     };
 
     this.getRating = this.getRating.bind(this);
     this.ratingPercentage = this.ratingPercentage.bind(this);
+    this.getOutfit = this.getOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -88,6 +90,13 @@ class App extends React.Component {
     }, () => this.ratingPercentage());
   }
 
+  getOutfit() {
+    const outfit = JSON.parse(localStorage.getItem('outfit'));
+    if (outfit) {
+      this.setState({ outfits: [outfit, ...this.state.outfits] });
+    }
+  }
+
   ratingPercentage() {
     let percentage = this.state.avgRating / 5;
     percentage = percentage * 100;
@@ -95,6 +104,8 @@ class App extends React.Component {
       ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
     });
   }
+
+
 
   render() {
     if (this.state.show === false) {
@@ -110,7 +121,7 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               ratingPercentage={this.state.ratingPercentage}
-              avgRating={this.state.avgRating}
+              getOutfit={this.getOutfit}
             />
           )
           : <div />}

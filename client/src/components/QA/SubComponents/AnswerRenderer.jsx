@@ -72,7 +72,7 @@ class AnswerRenderer extends React.Component {
           {answererName}
           ,
           {' '}
-          {moment(answerDate).fromNow()}
+          {moment(answerDate).format('MMMM DD, YYYY')}
           {'  |  '}
           Helpful?
           {' '}

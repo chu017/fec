@@ -60,7 +60,7 @@ class QA extends React.Component {
                 key={Math.random() * 100000}
               />
             ))
-            : this.state.filteredQuestions.slice(0, 2).map((question) => (
+            : this.state.filteredQuestions.slice(0, 4).map((question) => (
               <QuestionRenderer
                 question={question}
                 productInformation={this.props}
@@ -69,7 +69,7 @@ class QA extends React.Component {
             ))}
         </div>
         <styles.ButtonContainer>
-          {this.state.showAllQuestions || this.state.filteredQuestions.length < 3
+          {this.state.showAllQuestions || this.state.filteredQuestions.length < 5
             ? <div />
             : (
               <styles.AddQuestionButton onClick={this.showAllQuestions.bind(this)}>

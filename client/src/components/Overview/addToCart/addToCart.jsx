@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-unused-state */
@@ -33,6 +34,7 @@ const AddToCart = class extends React.Component {
         <select
           className="select-size"
           onChange={(e) => {
+            // console.log(e.target.value);
             this.setState({
               size: e.target.value,
             });
@@ -41,7 +43,12 @@ const AddToCart = class extends React.Component {
           <option value="" disabled selected hidden>select size</option>
 
           {Func.convertObjToArray(this.props.style.skus).map((item, index) => (
-            <option key={index} value={item.size}>{item.size}</option>
+            <option
+              key={index}
+              value={item.size}
+            >
+              {item.size}
+            </option>
           ))}
 
         </select>
@@ -61,6 +68,10 @@ const AddToCart = class extends React.Component {
           <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
 
         </select>
         <br />

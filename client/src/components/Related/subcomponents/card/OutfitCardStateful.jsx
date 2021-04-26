@@ -11,6 +11,7 @@ class OutfitCardStateful extends React.Component {
     super(props);
 
     this.calculateReviews = this.calculateReviews.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
 
     this.state = {
       modalVisible: false,
@@ -55,6 +56,14 @@ class OutfitCardStateful extends React.Component {
     });
   }
 
+  removeFromOutfit(id) {
+    const string = localStorage.getItem('outfit');
+    this.currentOutfit = JSON.parse(string);
+    this.currentOutfit.splice(this.currentOutfit.indexOf(id), 1);
+    localStorage.setItem(this.currentOutfit);
+    console.log(this.currentOutfit);
+  }
+
   render() {
     const {
       name,
@@ -70,7 +79,7 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i class="far fa-times-circle fa-5x"></i>
+        <i class="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit()}}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (
@@ -87,7 +96,7 @@ class OutfitCardStateful extends React.Component {
           <br />
 
           {salePrice ? (
-            <div>
+            <div id="salePriceText">
               <styles.salePrice>{salePrice}</styles.salePrice>
               <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
             </div>

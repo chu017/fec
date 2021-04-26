@@ -105,7 +105,14 @@ class App extends React.Component {
     return (
       <div>
         {this.state.overview
-          ? <Overview data={this.state.data} key={Math.random() * 1000000} />
+          ? (
+            <Overview
+              data={this.state.data}
+              key={Math.random() * 1000000}
+              ratingPercentage={this.state.ratingPercentage}
+              avgRating={this.state.avgRating}
+            />
+          )
           : <div />}
         {this.state.related
           ? <Related data={this.state.data} key={Math.random() * 1000000} />

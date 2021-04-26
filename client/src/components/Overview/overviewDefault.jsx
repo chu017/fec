@@ -50,6 +50,7 @@ const OverviewDefault = class extends React.Component {
           <ProductInfoOne
             data={this.props.data}
             photos={this.props.style}
+            ratingPercentage={this.props.ratingPercentage}
           />
           <br />
           <StyleSelector

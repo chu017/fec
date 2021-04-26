@@ -57,6 +57,7 @@ const Overview = class extends React.Component {
               expandView={this.expandView}
               getOutfit={this.props.getOutfit}
               showCart={this.showCart}
+              ratingPercentage={this.props.ratingPercentage}
             />
           )}
 

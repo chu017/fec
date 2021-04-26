@@ -1,9 +1,9 @@
-const QuestionReport = (questionID) => {
+const QuestionReport = (questionID, callback) => {
   $.ajax({
     url: `/qa/questions/${questionID}/report`,
     type: 'PUT',
-    success: (data) => console.log(data)
- });
+    success: (data) => callback(data),
+  });
 };
 
 export default QuestionReport;

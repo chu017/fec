@@ -47,9 +47,10 @@ class OutfitCardStateful extends React.Component {
         newStarMap.push(0);
       }
     }
-    if (newStarMap.length === 0) {
-      newStarMap = [0, 0, 0, 0, 0];
-    }
+    console.log(newStarMap);
+    // if (newStarMap.length === 0) {
+    //   newStarMap = [0, 0, 0, 0, 0];
+    // }
     this.setState({
       starMap: newStarMap,
       reviewCount: reviewCollection.length,
@@ -82,15 +83,16 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i class="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit(id)}}></i>
+        <i className="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit(id)}}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (
         <Stars
           starMap={starMap}
+          reviewCount={reviewCount}
         />
         )}
-        <div>{reviewCount || '0'}</div>
+        {/* <div>{reviewCount}</div> */}
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />

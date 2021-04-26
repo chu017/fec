@@ -18,9 +18,9 @@ const ModalCompare = ({ toggleModal, comparisonData }) => (
         </tr>
         {comparisonData.map(({ featureToCompare, overviewValue, cardValue }) => (
           <tr>
-            <styles.tableData>{overviewValue}</styles.tableData>
+            <styles.tableData>{overviewValue && overviewValue.toString() === 'true' ? <i class="far fa-check-circle"></i> : overviewValue}</styles.tableData>
             <styles.tableHeader>{featureToCompare}</styles.tableHeader>
-            <styles.tableData>{cardValue}</styles.tableData>
+            <styles.tableData>{cardValue && cardValue.toString() === 'true' ? <i class="far fa-check-circle"></i> : cardValue}</styles.tableData>
           </tr>
         ))}
       </tbody>

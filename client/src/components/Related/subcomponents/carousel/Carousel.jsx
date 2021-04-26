@@ -91,6 +91,8 @@ class Carousel extends React.Component {
       sortedData: newSort,
       sortedOutfitData: newOutfitSort,
       overviewFeatures: features,
+      nextVisible: relatedInformation.length > 4,
+      nextOutfitVisible: outfitInformation.length > 4,
     });
     localStorage.setItem('outfit', [23145, 23149, 23148]);
   }

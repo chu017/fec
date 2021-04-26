@@ -116,10 +116,9 @@ class CardStateful extends React.Component {
     const {
       modalVisible, comparisonData, starMap, reviewCount,
     } = this.state;
-    console.log('cardRender: ', starMap);
     return (
       <styles.cardComponentDiv>
-        <i class="fas fa-star" onClick={() => { this.toggleModal(); }} />
+        <i className="fas fa-star" onClick={() => { this.toggleModal(); }} />
         <br />
         <span>{name}</span>
 
@@ -128,6 +127,7 @@ class CardStateful extends React.Component {
           starMap={starMap}
         />
         )}
+        <div>{reviewCount || '0'}</div>
         <styles.cardImg src={image} alt="" />
         <br />
 

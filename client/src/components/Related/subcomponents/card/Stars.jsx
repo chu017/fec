@@ -21,16 +21,16 @@ class Stars extends React.Component {
       }
       if (num < 1 && num > 0) {
         if (num > 0.75) {
-          return (<i className="fas fa-star" />);
+          return (<i className="fas fa-star-half-alt" />);
         }
         if (num >= 0.5 && num < 0.75) {
-          return (<i className="fas fa-star" />);
+          return (<i className="fas fa-star-half-alt" />);
         }
         if (num < 0.5 && num >= 0.25) {
-          return (<i className="fas fa-star" />);
+          return (<i className="fas fa-star-half-alt" />);
         }
         if (num < 0.25) {
-          return (<i className="fas fa-star" />);
+          return (<i className="fas fa-star-half-alt" />);
         }
       }
       if (num === 0) {
@@ -40,11 +40,9 @@ class Stars extends React.Component {
   }
 
   render() {
-    const { starMap } = this.props;
-    console.log('starMap', starMap);
     return (
       <div>
-        {(starMap.length === 0) ? <div>no rating</div> : this.renderStars()}
+        {this.renderStars()}
       </div>
     );
   }

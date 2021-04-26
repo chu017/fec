@@ -13,11 +13,14 @@ class Related extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, outfitData, refreshOutfit } = this.props;
+    console.log(outfitData);
     return (
       <div id="related">
         <Carousel
           data={data}
+          outfitData={outfitData}
+          refreshOutfit={refreshOutfit}
         />
       </div>
     );

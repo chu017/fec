@@ -39,12 +39,12 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    const { data } = this.props;
+    const { data, outfitData } = this.props;
     const { features } = data.product;
     const {
       relatedIds, relatedInformation, relatedStyles, relatedReviews,
     } = data.related;
-    const { outfitInformation, outfitStyles, outfitReviews } = data.outfit;
+    const { outfitInformation, outfitStyles, outfitReviews } = outfitData;
     const newSort = [];
     const newOutfitSort = [];
     for (let i = 0; i < relatedIds.length; i += 1) {
@@ -94,7 +94,7 @@ class Carousel extends React.Component {
       nextVisible: relatedInformation.length > 4,
       nextOutfitVisible: outfitInformation.length > 4,
     });
-    localStorage.setItem('outfit', [23145, 23149, 23148]);
+    // eslint-disable-next-line no-undef
   }
 
   checkButtons() {
@@ -203,6 +203,7 @@ class Carousel extends React.Component {
     } = this.state;
     const { name, id } = this.props.data.product;
     const { results } = this.props.data.styles;
+    const { refreshOutfit } = this.props;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -229,6 +230,7 @@ class Carousel extends React.Component {
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
+                overviewProduct={name}
               />
             ))}
           </styles.carouselDiv>
@@ -252,6 +254,7 @@ class Carousel extends React.Component {
               overviewProduct={name}
               id={id}
               image={results[0].photos[0].thumbnail_url}
+              refreshOutfit={refreshOutfit}
             />
             {sortedOutfitData.map(({
               outfitInformation, outfitStyles, defaultStyle, reviews,
@@ -266,6 +269,7 @@ class Carousel extends React.Component {
                 cardProductFeatures={outfitInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
+                refreshOutfit={refreshOutfit}
               />
             ))}
           </styles.carouselDiv>

@@ -16,12 +16,12 @@ class Cart extends React.Component {
     return (
       <div className="cart">
 
-        <img className="cart-img" alt="" src={this.props.item.photos[0].url} />
+        <img className="cart-img" alt="" src={this.props.item.thumbnail_url} />
 
         <div className="cart-text">
-          <h2>{this.props.item.name}</h2>
-          <div>Sale price: {this.props.item.original_price}</div>
-          <div>Size: 1</div>
+          <h2>Camo Onesie</h2>
+          <div>Sale price: $140</div>
+          <div>Size: S</div>
           <div>Quantity: 1</div>
         </div>
 

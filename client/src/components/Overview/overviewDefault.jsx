@@ -64,6 +64,7 @@ const OverviewDefault = class extends React.Component {
             photos={this.props.style}
             getOutfit={this.props.getOutfit}
             outfit={this.state.outfit}
+            style={this.props.style}
           />
         </div>
 

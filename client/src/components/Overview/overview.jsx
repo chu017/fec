@@ -77,7 +77,7 @@ const Overview = class extends React.Component {
             <ShoppingCart
               show={this.state.show}
               onClose={this.showCart}
-              newItem={this.state.cart}
+              style={this.state.style_photos}
             >
               My Shopping Cart
             </ShoppingCart>

@@ -19,6 +19,7 @@ class AnswerRenderer extends React.Component {
       answerDate: [],
       answerHelpfulness: [],
       answerID: [],
+      answerReport: [],
     };
     for (let i = 0; i < Object.keys(answers).length; i += 1) {
       const currentAnswer = answers[Object.keys(answers)[i]];
@@ -27,6 +28,7 @@ class AnswerRenderer extends React.Component {
       this.answersObject.answerDate.push(currentAnswer.date);
       this.answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
       this.answersObject.answerID.push(currentAnswer.id);
+      this.answersObject.answerReport.push('Report');
     }
     this.state = {
       answersObject: this.answersObject,
@@ -43,8 +45,12 @@ class AnswerRenderer extends React.Component {
     });
   }
 
-  AnswerReport(answerID) {
-    AnswerReport(answerID);
+  AnswerReport(answerID, identifier) {
+    AnswerReport(answerID, () => {
+      const { answersObject } = this.state;
+      answersObject.answerReport[identifier] = 'Reported';
+      this.setState({ answersObject });
+    });
   }
 
   parseAnswers(answerBody, i) {
@@ -78,7 +84,7 @@ class AnswerRenderer extends React.Component {
           {answerHelpfulness}
           )
           {'  |  '}
-          <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i])}>Report</styles.HyperLink>
+          <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i], i)}>{this.state.answersObject.answerReport[i]}</styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
     );

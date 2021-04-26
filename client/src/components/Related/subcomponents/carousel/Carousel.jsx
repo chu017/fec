@@ -195,7 +195,7 @@ class Carousel extends React.Component {
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
-                key={relatedInformation.id}
+                id={relatedInformation.id}
                 modalVisible={modalVisible}
                 toggleModal={this.toggleModal}
                 cardProductFeatures={relatedInformation.features}
@@ -224,18 +224,19 @@ class Carousel extends React.Component {
               overviewProduct={name}
               image={results[0].photos[0].thumbnail_url}
             />
-            {sortedData.map(({ relatedInformation, relatedStyles, defaultStyle }) => (
+            {sortedData.map(({
+              relatedInformation, relatedStyles, defaultStyle, reviews,
+            }) => (
               <OutfitCardStateful
                 name={relatedInformation.name}
                 category={relatedInformation.category}
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
-                key={relatedInformation.id}
-                modalVisible={modalVisible}
-                toggleModal={this.toggleModal}
+                id={relatedInformation.id}
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
+                reviews={reviews}
               />
             ))}
           </styles.carouselDiv>

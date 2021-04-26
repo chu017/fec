@@ -21,6 +21,8 @@ class FirstOutfitCard extends React.Component {
         {overviewProduct}
         {' '}
         to your Outfit.
+        <br />
+        <i class="fas fa-plus fa-10x"></i>
         <styles.cardImg src={image} alt="" />
         <br />
       </styles.outfitCardComponentDiv>

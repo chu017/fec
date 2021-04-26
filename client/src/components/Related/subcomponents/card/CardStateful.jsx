@@ -111,6 +111,7 @@ class CardStateful extends React.Component {
       defaultPrice,
       salePrice,
       image,
+      id,
     } = this.props;
 
     const {
@@ -118,29 +119,29 @@ class CardStateful extends React.Component {
     } = this.state;
     return (
       <styles.cardComponentDiv>
-        <i className="fas fa-star" onClick={() => { this.toggleModal(); }} />
+        <i className="fas fa-star-of-life fa-5x" onClick={() => { this.toggleModal(); }} />
         <br />
         <span>{name}</span>
-
         {starMap && starMap.length && (
         <Stars
           starMap={starMap}
         />
         )}
         <div>{reviewCount || '0'}</div>
-        <styles.cardImg src={image} alt="" />
-        <br />
+        <a href={`/products/${id}/`}>
+          <styles.cardImg src={image} alt="" />
+          <br />
 
-        <span>{category}</span>
-        <br />
+          <span>{category}</span>
+          <br />
 
-        {salePrice ? (
-          <div>
-            <styles.salePrice>{salePrice}</styles.salePrice>
-            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-          </div>
-        ) : <span>{defaultPrice}</span>}
-
+          {salePrice ? (
+            <div>
+              <styles.salePrice>{salePrice}</styles.salePrice>
+              <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
+            </div>
+          ) : <span>{defaultPrice}</span>}
+        </a>
         { modalVisible ? (
           <ModalCompare
             toggleModal={this.toggleModal}
@@ -152,5 +153,3 @@ class CardStateful extends React.Component {
   }
 }
 export default CardStateful;
-
-{ /* <button id="starButton" type="button" onClick={() => { this.toggleModal(); }}>STAR</button> */ }

@@ -135,6 +135,7 @@ class Reviews extends React.Component {
         {console.log('reviews:', this.reviews)}
         <div className="reviews-col-1">
           <RatingsReviews
+            avgRating={this.props.avgRating}
             filterBy={this.state.filterBy}
             addPosts={this.addPosts}
             filter={this.filterReviews}

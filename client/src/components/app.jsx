@@ -74,7 +74,12 @@ class App extends React.Component {
   }
 
   getRating() {
-    let avgRating = helpers.averageOfRatings(this.state.data.reviews.reviewMeta.ratings);
+    let avgRating;
+    if (!!Object.values(this.state.data.reviews.reviewMeta.ratings).length) {
+      avgRating = helpers.averageOfRatings(this.state.data.reviews.reviewMeta.ratings);
+    } else {
+      avgRating = 0;
+    }
     if (avgRating.toString().length === 1) {
       avgRating = avgRating.toString() + '.0';
     }
@@ -109,11 +114,14 @@ class App extends React.Component {
           ? <QA data={this.state.data} key={Math.random() * 1000000} />
           : <div />}
         {this.state.reviews
-          ? <Reviews
+          ? (
+            <Reviews
               data={this.state.data}
               key={Math.random() * 1000000}
               ratingPercentage={this.state.ratingPercentage}
+              avgRating={this.state.avgRating}
             />
+          )
           : <div />}
       </div>
     );

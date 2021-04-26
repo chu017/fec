@@ -12,6 +12,7 @@ const helpers = {
         toAverage.push(+rating);
       }
     }
+    if (!toAverage.length) return 0;
     return helpers.average(toAverage).toFixed(2);
   },
 

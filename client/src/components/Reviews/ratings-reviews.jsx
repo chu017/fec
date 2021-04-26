@@ -44,11 +44,14 @@ class RatingsReviews extends React.Component {
       if (result.recommend) recommendationArray.push(1);
       else { recommendationArray.push(0) };
     }
-    return `${(helpers.average(recommendationArray) * 100).toFixed(2)}%`;
+    if (!recommendationArray.length) {
+      return '0 ';
+    }
+    return `${(helpers.average(recommendationArray) * 100).toFixed(2)}% `;
   }
 
   getRatings() {
-    let rating = helpers.averageOfRatings(this.reviews.reviewMeta.ratings);
+    let rating = this.props.avgRating;
     let fit = null;
     let comfort = null;
     let length = null;

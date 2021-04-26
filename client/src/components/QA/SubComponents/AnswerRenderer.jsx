@@ -19,6 +19,7 @@ class AnswerRenderer extends React.Component {
       currentAnswer.answerReport = 'Report';
       answersArray.push(currentAnswer);
     }
+    answersArray.sort((a, b) => b.helpfulness - a.helpfulness);
     this.state = {
       answersArray,
       showAllAnswers: false,

@@ -73,7 +73,7 @@ class QA extends React.Component {
             ? <div />
             : (
               <styles.AddQuestionButton onClick={this.showAllQuestions.bind(this)}>
-                Load More Questions
+                More Answered Questions
               </styles.AddQuestionButton>
             )}
           <styles.AddQuestionButton onClick={this.toggleModal.bind(this)}>

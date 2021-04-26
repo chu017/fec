@@ -76,7 +76,10 @@ class AnswerRenderer extends React.Component {
           {'  |  '}
           Helpful?
           {' '}
-          <styles.HyperLink onClick={() => this.AnswerHelpful.bind(this)(this.state.answersObject.answerID[i], i)}>
+          <styles.HyperLink onClick={
+            () => this.AnswerHelpful.bind(this)(this.state.answersObject.answerID[i], i)
+            }
+          >
             Yes
           </styles.HyperLink>
           {' '}
@@ -84,7 +87,12 @@ class AnswerRenderer extends React.Component {
           {answerHelpfulness}
           )
           {'  |  '}
-          <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i], i)}>{this.state.answersObject.answerReport[i]}</styles.HyperLink>
+          <styles.HyperLink onClick={
+            () => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i], i)
+            }
+          >
+            {this.state.answersObject.answerReport[i]}
+          </styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
     );

@@ -31,7 +31,7 @@ class QuestionRenderer extends React.Component {
 
   QuestionReport() {
     QuestionReport(this.props.question.question_id, () => {
-      this.setState({questionReport: 'Reported'});
+      this.setState({ questionReport: 'Reported' });
     });
   }
 
@@ -66,7 +66,11 @@ class QuestionRenderer extends React.Component {
               {' '}
               <styles.HyperLink onClick={this.toggleModal.bind(this)}>Add Answer</styles.HyperLink>
               {'  |  '}
-              <styles.HyperLink onClick={this.QuestionReport.bind(this)}>{this.state.questionReport}</styles.HyperLink>
+              <styles.HyperLink
+                onClick={this.QuestionReport.bind(this)}
+              >
+                {this.state.questionReport}
+              </styles.HyperLink>
             </div>
           </styles.QuestionSubtitle>
         </styles.QuestionLine>

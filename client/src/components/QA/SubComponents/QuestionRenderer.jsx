@@ -7,14 +7,17 @@
 import React from 'react';
 import AnswerRenderer from './AnswerRenderer.jsx';
 import styles from './styles.js';
-import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost'
-import QuestionReport from './APIHandlers/QuestionReport'
+import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost';
+import QuestionReport from './APIHandlers/QuestionReport';
+import AnswerModal from './Modals/NewAnswer.jsx';
 
 class QuestionRenderer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       question_helpfulness: this.props.question.question_helpfulness,
+      showAnswerCreate: false,
+      questionReport: 'Report',
     };
   }
 
@@ -27,7 +30,14 @@ class QuestionRenderer extends React.Component {
   }
 
   QuestionReport() {
-    QuestionReport(this.props.question.question_id);
+    QuestionReport(this.props.question.question_id, () => {
+      this.setState({ questionReport: 'Reported' });
+    });
+  }
+
+  toggleModal() {
+    const currentView = !this.state.showAnswerCreate;
+    this.setState({ showAnswerCreate: currentView });
   }
 
   render() {
@@ -53,15 +63,25 @@ class QuestionRenderer extends React.Component {
               {this.state.question_helpfulness}
               ) |
               {' '}
-              <styles.HyperLink>Add Answer</styles.HyperLink>
+              <styles.HyperLink onClick={this.toggleModal.bind(this)}>Add Answer</styles.HyperLink>
               {'  |  '}
-              <styles.HyperLink onClick={this.QuestionReport.bind(this)}>Report</styles.HyperLink>
+              <styles.HyperLink
+                onClick={this.QuestionReport.bind(this)}
+              >
+                {this.state.questionReport}
+              </styles.HyperLink>
             </div>
           </styles.QuestionSubtitle>
         </styles.QuestionLine>
         <styles.AnswerBlock>
           <AnswerRenderer answers={this.props.question.answers} key={Math.random() * 1000000} />
         </styles.AnswerBlock>
+        <AnswerModal
+          show={this.state.showAnswerCreate}
+          toggleView={this.toggleModal.bind(this)}
+          productInformation={this.props.productInformation}
+          questionInformation={this.props.question}
+        />
       </styles.QuestionBlock>
     );
   }

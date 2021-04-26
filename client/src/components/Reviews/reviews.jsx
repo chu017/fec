@@ -110,6 +110,9 @@ class Reviews extends React.Component {
             user={result.reviewer_name}
             date={result.date}
             rating={result.rating}
+            photos={result.photos}
+            recommend={result.recommend}
+            response={result.response}
           />);
       }
       return this.state.sortedResults
@@ -121,17 +124,23 @@ class Reviews extends React.Component {
           user={result.reviewer_name}
           date={result.date}
           rating={result.rating}
+          photos={result.photos}
+          recommend={result.recommend}
+          response={result.response}
         />);
     };
 
     return (
       <div className="reviews">
+        {console.log('reviews:', this.reviews)}
         <div className="reviews-col-1">
           <RatingsReviews
+            avgRating={this.props.avgRating}
             filterBy={this.state.filterBy}
             addPosts={this.addPosts}
             filter={this.filterReviews}
             data={this.props.data}
+            ratingPercentage={this.props.ratingPercentage}
           />
         </div>
         <div className="reviews-col-2">
@@ -147,10 +156,10 @@ class Reviews extends React.Component {
               addPosts={this.addPosts}
               data={this.props.data}
             />
-            {this.renderReviewForm()}
             <AddReview changeFormState={this.changeFormState} data={this.props.data} />
           </div>
         </div>
+        {this.renderReviewForm()}
       </div>
     );
   }

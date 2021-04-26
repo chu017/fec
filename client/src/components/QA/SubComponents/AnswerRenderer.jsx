@@ -1,4 +1,3 @@
-
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
@@ -14,44 +13,37 @@ class AnswerRenderer extends React.Component {
   constructor(props) {
     super(props);
     const { answers } = props;
-    this.answersObject = {
-      answererName: [],
-      answerBody: [],
-      answerDate: [],
-      answerHelpfulness: [],
-      answerID: [],
-    };
+    const answersArray = [];
     for (let i = 0; i < Object.keys(answers).length; i += 1) {
       const currentAnswer = answers[Object.keys(answers)[i]];
-      this.answersObject.answererName.push(currentAnswer.answerer_name);
-      this.answersObject.answerBody.push(currentAnswer.body);
-      this.answersObject.answerDate.push(currentAnswer.date);
-      this.answersObject.answerHelpfulness.push(currentAnswer.helpfulness);
-      this.answersObject.answerID.push(currentAnswer.id);
+      currentAnswer.answerReport = 'Report';
+      answersArray.push(currentAnswer);
     }
+    answersArray.sort((a, b) => b.helpfulness - a.helpfulness);
     this.state = {
-      answersObject: this.answersObject,
+      answersArray,
       showAllAnswers: false,
     };
   }
 
   AnswerHelpful(answerID, identifier) {
     AnswerHelpfulPost(answerID, () => {
-      let answersObject = this.state.answersObject;
-      let currentHelpfulness = answersObject.answerHelpfulness[identifier];
-      answersObject.answerHelpfulness[identifier] = currentHelpfulness + 1;
-      this.setState({ answersObject })
+      const { answersArray } = this.state;
+      const currentHelpfulness = answersArray[identifier].helpfulness;
+      answersArray[identifier].helpfulness = currentHelpfulness + 1;
+      this.setState({ answersArray });
     });
   }
 
-  AnswerReport(answerID) {
-    AnswerReport(answerID);
+  AnswerReport(answerID, identifier) {
+    AnswerReport(answerID, () => {
+      const { answersArray } = this.state;
+      answersArray[identifier].answerReport = 'Reported';
+      this.setState({ answersArray });
+    });
   }
 
-  parseAnswers(answerBody, i) {
-    const answerDate = this.state.answersObject.answerDate[i];
-    const answererName = this.state.answersObject.answererName[i];
-    const answerHelpfulness = this.state.answersObject.answerHelpfulness[i];
+  parseAnswers(answer, identifier) {
     return (
       <div key={Math.random() * 100000}>
         <styles.AnswerText data-testid="AnswerText">
@@ -59,64 +51,77 @@ class AnswerRenderer extends React.Component {
             A:
             {' '}
           </styles.BoldedText>
-          {answerBody}
+          {answer.body}
         </styles.AnswerText>
         <styles.AnswerSubtitle>
           by
           {' '}
-          {answererName}
+          {answer.answerer_name}
           ,
           {' '}
-          {moment(answerDate).fromNow()}
+          {moment(answer.date).format('MMMM DD, YYYY')}
           {'  |  '}
           Helpful?
           {' '}
-          <styles.HyperLink onClick={() => this.AnswerHelpful.bind(this)(this.state.answersObject.answerID[i], i)}>
+          <styles.HyperLink onClick={
+            () => this.AnswerHelpful.bind(this)(answer.id, identifier)
+            }
+          >
             Yes
           </styles.HyperLink>
           {' '}
           (
-          {answerHelpfulness}
+          {answer.helpfulness}
           )
           {'  |  '}
-          <styles.HyperLink onClick={() => this.AnswerReport.bind(this)(this.state.answersObject.answerID[i])}>Report</styles.HyperLink>
+          <styles.HyperLink onClick={
+            () => this.AnswerReport.bind(this)(answer.id, identifier)
+            }
+          >
+            {answer.answerReport}
+          </styles.HyperLink>
         </styles.AnswerSubtitle>
       </div>
     );
   }
 
   showAllAnswers() {
-    this.setState({ showAllAnswers: true });
+    const showAnswers = this.state.showAllAnswers;
+    this.setState({ showAllAnswers: !showAnswers });
   }
 
   render() {
-    if (this.state.showAllAnswers === true) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.map((answerBody, i) => this.parseAnswers(answerBody, i))}
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length > 2) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-          <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length > 0) {
-      return (
-        <div>
-          {this.state.answersObject.answerBody.slice(0, 2).map((answerBody, i) => this.parseAnswers(answerBody, i))}
-        </div>
-      );
-    }
-    if (this.state.answersObject.answerBody.length === 0) {
-      return (
-        <styles.AnswerText data-testid="NoAnswer">No Answers Available for this Question.</styles.AnswerText>
-      );
-    }
+    return (
+      <div>
+        { this.state.showAllAnswers
+          ? (
+            <div>
+              {this.state.answersArray.map(
+                (answer, i) => this.parseAnswers(answer, i),
+              )}
+            </div>
+          )
+          : (
+            <div>
+              {this.state.answersArray.slice(0, 2).map(
+                (answer, i) => this.parseAnswers(answer, i),
+              )}
+            </div>
+          )}
+        { this.state.answersArray.length < 3
+          ? <div />
+          : (
+            <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">
+              {this.state.showAllAnswers
+                ? 'COLLAPSE ANSWERS'
+                : 'LOAD MORE ANSWERS'}
+            </styles.LoadMoreAnswers>
+          )}
+        {this.state.answersArray.length === 0
+          ? <styles.AnswerText data-testid="NoAnswer"> No Answers Available for this Question.</styles.AnswerText>
+          : <div />}
+      </div>
+    );
   }
 }
 

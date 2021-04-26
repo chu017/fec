@@ -86,7 +86,8 @@ class AnswerRenderer extends React.Component {
   }
 
   showAllAnswers() {
-    this.setState({ showAllAnswers: true });
+    const showAnswers = this.state.showAllAnswers;
+    this.setState({ showAllAnswers: !showAnswers });
   }
 
   render() {
@@ -107,9 +108,15 @@ class AnswerRenderer extends React.Component {
               )}
             </div>
           )}
-        { this.state.showAllAnswers || this.state.answersArray.length < 3
+        { this.state.answersArray.length < 3
           ? <div />
-          : <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">LOAD MORE ANSWERS</styles.LoadMoreAnswers>}
+          : (
+            <styles.LoadMoreAnswers onClick={this.showAllAnswers.bind(this)} data-testid="LoadMoreAnswers">
+              {this.state.showAllAnswers
+                ? 'COLLAPSE ANSWERS'
+                : 'LOAD MORE ANSWERS'}
+            </styles.LoadMoreAnswers>
+          )}
         {this.state.answersArray.length === 0
           ? <styles.AnswerText data-testid="NoAnswer"> No Answers Available for this Question.</styles.AnswerText>
           : <div />}

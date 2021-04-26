@@ -52,10 +52,18 @@ class QA extends React.Component {
         <div>
           {this.state.showAllQuestions
             ? this.state.filteredQuestions.map((question) => (
-              <QuestionRenderer question={question} key={Math.random() * 100000} />
+              <QuestionRenderer
+                question={question}
+                productInformation={this.props}
+                key={Math.random() * 100000}
+              />
             ))
             : this.state.filteredQuestions.slice(0, 2).map((question) => (
-              <QuestionRenderer question={question} key={Math.random() * 100000} />
+              <QuestionRenderer
+                question={question}
+                productInformation={this.props}
+                key={Math.random() * 100000}
+              />
             ))}
         </div>
         <styles.ButtonContainer>

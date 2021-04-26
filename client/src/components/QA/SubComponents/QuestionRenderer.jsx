@@ -9,12 +9,14 @@ import AnswerRenderer from './AnswerRenderer.jsx';
 import styles from './styles.js';
 import QuestionHelpfulPost from './APIHandlers/QuestionHelpfulPost';
 import QuestionReport from './APIHandlers/QuestionReport';
+import AnswerModal from './Modals/NewAnswer.jsx';
 
 class QuestionRenderer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       question_helpfulness: this.props.question.question_helpfulness,
+      showAnswerCreate: false,
     };
   }
 
@@ -30,7 +32,13 @@ class QuestionRenderer extends React.Component {
     QuestionReport(this.props.question.question_id);
   }
 
+  toggleModal() {
+    const currentView = !this.state.showAnswerCreate;
+    this.setState({ showAnswerCreate: currentView });
+  }
+
   render() {
+    console.log(this.props)
     return (
       <styles.QuestionBlock>
         <styles.QuestionLine>
@@ -53,7 +61,7 @@ class QuestionRenderer extends React.Component {
               {this.state.question_helpfulness}
               ) |
               {' '}
-              <styles.HyperLink>Add Answer</styles.HyperLink>
+              <styles.HyperLink onClick={this.toggleModal.bind(this)}>Add Answer</styles.HyperLink>
               {'  |  '}
               <styles.HyperLink onClick={this.QuestionReport.bind(this)}>Report</styles.HyperLink>
             </div>
@@ -62,6 +70,12 @@ class QuestionRenderer extends React.Component {
         <styles.AnswerBlock>
           <AnswerRenderer answers={this.props.question.answers} key={Math.random() * 1000000} />
         </styles.AnswerBlock>
+        <AnswerModal
+          show={this.state.showAnswerCreate}
+          toggleView={this.toggleModal.bind(this)}
+          productInformation={this.props.productInformation}
+          questionInformation={this.props.question}
+        />
       </styles.QuestionBlock>
     );
   }

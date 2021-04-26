@@ -6,7 +6,6 @@ import React from 'react';
 import styles from './styles.js';
 import AnswerHelpfulPost from './APIHandlers/AnswerHelpfulPost';
 import AnswerReport from './APIHandlers/AnswerReport';
-import AnswerModal from './Modals/NewAnswer.jsx';
 
 const moment = require('moment');
 

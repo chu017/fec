@@ -19,11 +19,13 @@ class App extends React.Component {
       qa: false,
       reviews: false,
       outfitData: [],
+      colorMode: 'light',
     };
 
     this.getRating = this.getRating.bind(this);
     this.ratingPercentage = this.ratingPercentage.bind(this);
     this.refreshOutfit = this.refreshOutfit.bind(this);
+    this.toggleColorMode = this.toggleColorMode.bind(this);
 
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
@@ -92,6 +94,15 @@ class App extends React.Component {
     this.setState({
       avgRating,
     }, () => this.ratingPercentage());
+  }
+
+  toggleColorMode() {
+    const { colorMode } = this.state;
+    if (colorMode === 'light') {
+      this.setState({ colorMode: 'dark' });
+    } else {
+      this.setState({ colorMode: 'light' });
+    }
   }
 
   ratingPercentage() {
@@ -246,6 +257,7 @@ class App extends React.Component {
               key={Math.random() * 1000000}
               outfitData={this.state.outfitData}
               refreshOutfit={this.refreshOutfit}
+              toggleColorMode={this.toggleColorMode}
               ratingPercentage={this.state.ratingPercentage}
             />
           )

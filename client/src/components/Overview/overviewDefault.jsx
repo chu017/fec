@@ -35,6 +35,7 @@ const OverviewDefault = class extends React.Component {
           <Header
             data={this.props.data}
             showCart={this.props.showCart}
+            toggleColorMode={this.props.toggleColorMode}
           />
         </div>
 

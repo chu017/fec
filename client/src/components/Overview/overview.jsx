@@ -70,6 +70,7 @@ const Overview = class extends React.Component {
               ratingPercentage={ratingPercentage}
               style={this.state.style_photos}
               defaultView={this.state.defaultView}
+              toggleColorMode={this.props.toggleColorMode}
               selectStyle={this.selectStyle}
               expandView={this.expandView}
               showCart={this.showCart}

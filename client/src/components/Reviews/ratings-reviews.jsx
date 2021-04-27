@@ -156,7 +156,7 @@ class RatingsReviews extends React.Component {
 
     return (
       <div>
-        <h4>Ratings and Reviews</h4>
+        <h4 className="sub-heading">Ratings and Reviews</h4>
         <div className="star-rating-container">
           <div className="star-rating-header">{this.state.rating}</div>
           <div className="star-container">
@@ -166,7 +166,7 @@ class RatingsReviews extends React.Component {
           </div>
         </div>
         <div className="individual-ratings-container">
-          <h4>Ratings Breakdown:</h4>
+          <h4 className="sub-heading">Ratings Breakdown:</h4>
           <h4 className="recommendation-percentage">{this.state.recommendationPercentage}
           of reviews recommend this product out of {this.reviews.reviews.results.length} total reviews</h4>
           {this.createRatingsCountBars().map(ratingsCountBar => ratingsCountBar)}

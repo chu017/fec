@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ProductInfoTwoItem from './productInfoTwoItem.jsx';
 
 const Ltext = styled.div`
+font-family: "Helvetica", Arial, sans-serif;
 font-size: 1.5rem;
 `;
 
@@ -27,7 +28,7 @@ const ProductInfoTwo = class extends React.Component {
       <ConInfo>
         <Ltext>{this.props.data.product.slogan}</Ltext>
         <div className="product-information-footer">
-          <p>
+          <p className="font-description">
             {this.props.data.product.description}
           </p>
           <ul>

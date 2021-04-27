@@ -23,7 +23,7 @@ const ProductInfoOne = class extends React.Component {
         <div>Read all reviews</div>
         <br />
         <div>CATEGORY: {this.props.data.product.category}</div>
-        <h1>{this.props.data.product.name}</h1>
+        <h1 className="title-size">{this.props.data.product.name}</h1>
         <div>Price: ${this.props.photos.original_price}</div>
         <div>
           {(this.props.photos.sale_price)

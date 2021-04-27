@@ -76,7 +76,7 @@ const AddToCart = class extends React.Component {
             });
           }}
         >
-          <option value="" disabled selected hidden>select size</option>
+          <option className="selection-box-font" value="" disabled selected hidden>select size</option>
           {Func.convertObjToArray(this.props.style.skus).map((item) => (
             <option
               key={item[0]}
@@ -96,7 +96,7 @@ const AddToCart = class extends React.Component {
             });
           }}
         >
-          <option value="" disabled selected hidden>select quantity</option>
+          <option className="selection-box-font" value="" disabled selected hidden>select quantity</option>
 
           {Func.renderNum(this.state.size_num).map((item, index) => {
             if (!item) {

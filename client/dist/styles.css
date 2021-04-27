@@ -3,6 +3,7 @@
 body {
   font-family: helvetica;
 <<<<<<< HEAD
+<<<<<<< HEAD
   height: 100%;
   margin: 0;
 }
@@ -11,6 +12,9 @@ body {
   font-family: 'Bebas Neue', cursive;
 =======
 >>>>>>> Photo upload complete
+=======
+  margin: 0;
+>>>>>>> Styles added
 }
 
 .stars-outer {

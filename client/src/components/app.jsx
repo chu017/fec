@@ -30,7 +30,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('outfit', [23145, 23149]);
     const URL = window.location.href;
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');

@@ -271,11 +271,18 @@ class App extends React.Component {
               addToOutfit={this.addToOutfit}
               removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
+              colorMode={this.state.colorMode}
             />
           )
           : <div />}
         {this.state.qa
-          ? <QA data={this.state.data} key={Math.random() * 1000000} />
+          ? (
+            <QA
+              data={this.state.data}
+              key={Math.random() * 1000000}
+              colorMode={this.state.colorMode}
+            />
+          )
           : <div />}
         {this.state.reviews
           ? (
@@ -284,6 +291,7 @@ class App extends React.Component {
               key={Math.random() * 1000000}
               ratingPercentage={this.state.ratingPercentage}
               avgRating={this.state.avgRating}
+              colorMode={this.state.colorMode}
             />
           )
           : <div />}

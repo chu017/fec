@@ -9,8 +9,11 @@ class ReviewForm extends React.Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       summary: '',
       body: '',
+=======
+>>>>>>> Photo upload complete
       displayPhotoSelector: false,
       reviewSummary: '',
       reviewBody: '',
@@ -28,8 +31,6 @@ class ReviewForm extends React.Component {
     this.setStarRating = this.setStarRating.bind(this);
     this.produceProductCharacteristics = this.produceProductCharacteristics.bind(this);
     this.displayErrorMessage = this.displayErrorMessage.bind(this);
-    this.addCharacteristicsToState = this.addCharacteristicsToState.bind(this);
-    this.updateRecommend = this.updateRecommend.bind(this);
     this.renderPhotoSelector = this.renderPhotoSelector.bind(this);
     this.setPhotoSelectorState = this.setPhotoSelectorState.bind(this);
   }

@@ -433,7 +433,6 @@ h4 {
 .seller-response {
   background-color: #a1e0a6;
   padding: 3px;
-<<<<<<< HEAD
   margin-bottom: 3px;
 }
 
@@ -441,7 +440,6 @@ h4 {
   font-family: 'Bebas Neue', cursive;
   font-size: 1.4em;
   letter-spacing: .1em;
-=======
   margin-bottom: 5px;
 }
 
@@ -472,5 +470,4 @@ h4 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
->>>>>>> Photo upload complete
 }

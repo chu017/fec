@@ -221,6 +221,12 @@ class App extends React.Component {
         {this.state.overview
           ? <Overview data={this.state.data} key={Math.random() * 1000000} />
           : <div />}
+        {this.state.related
+          ? <Related data={this.state.data} key={Math.random() * 1000000} />
+          : <div />}
+        {this.state.qa
+          ? <QA data={this.state.data} key={Math.random() * 1000000} />
+          : <div />} */}
         {this.state.reviews
           ? (
             <Reviews
@@ -257,7 +263,6 @@ class App extends React.Component {
           : <div />}
       </div>
     );
-  }
 }
 
 export default App;

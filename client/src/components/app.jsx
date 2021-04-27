@@ -36,40 +36,49 @@ class App extends React.Component {
     })
       .then((responseData) => {
         this.setState({ data: responseData, show: true, overview: true });
-        $.ajax({
-          url: `/api/information/${productID}`,
-          success: (informationData) => {
-            const currentData = this.state.data;
-            currentData.related = informationData.related;
-            currentData.reviews = informationData.reviews;
-            currentData.qa = informationData.qa;
-            this.setState({
-              data: currentData,
-            }, () => this.getRating());
-            $.ajax({
-              url: '/outfit',
-              type: 'POST',
-              data: { outfitIDs },
-              success: (outfitData) => {
-                this.setState({
-                  outfitData: outfitData.outfit,
-                  related: true,
-                  qa: true,
-                  reviews: true,
-                });
-              },
-              error: (outfitData) => {
-                const outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
-                this.setState({
-                  outfitData: outfit,
-                  related: true,
-                  qa: true,
-                  reviews: true,
-                });
-              },
-            });
-          },
+        return $.ajax({
+          url: `/api/reviews/${productID}`,
         });
+      })
+      .then((data) => {
+        const currentData = this.state.data;
+        currentData.reviews = data.reviews;
+        this.setState({
+          data: currentData,
+          reviews: true,
+        }, () => this.getRating());
+        return $.ajax({
+          url: `/api/qa/${productID}`,
+        });
+      })
+      .then((data) => {
+        const currentData = this.state.data;
+        currentData.qa = data.qa;
+        this.setState({
+          data: currentData,
+          qa: true,
+        });
+        return $.ajax({
+          url: `/api/related/${productID}`,
+        });
+      })
+      .then((data) => {
+        const currentData = this.state.data;
+        currentData.related = data.related;
+        this.setState({
+          data: currentData,
+        });
+        return $.ajax({
+          url: '/outfit',
+          type: 'POST',
+          data: { outfitIDs },
+        });
+      })
+      .then((data) => {
+        this.setState({
+          outfitData: data.outfit,
+          related: true,
+        }, () => console.log(this.state));
       });
   }
 

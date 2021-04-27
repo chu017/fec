@@ -48,31 +48,6 @@ const informationHandler = (productID, errorCB, successCB) => {
       for (let i = 0; i < response.length; i += 1) {
         productData.related.relatedReviews.push(response[i].data);
       }
-      return axios({
-        method: 'get',
-        url: `${baseURL}/reviews?product_id=${productID}&sort=newest&count=100&page=1`,
-        headers: { Authorization: API_KEY },
-      });
-    })
-    .then((response) => {
-      productData.reviews = {};
-      productData.reviews.reviews = response.data;
-      return axios({
-        method: 'get',
-        url: `${baseURL}/reviews/meta?product_id=${productID}`,
-        headers: { Authorization: API_KEY },
-      });
-    })
-    .then((response) => {
-      productData.reviews.reviewMeta = response.data;
-      return axios({
-        method: 'get',
-        url: `${baseURL}/qa/questions?product_id=${productID}&count=100&page=1`,
-        headers: { Authorization: API_KEY },
-      });
-    })
-    .then((response) => {
-      productData.qa = response.data;
       successCB(productData);
     })
     .catch((response) => {

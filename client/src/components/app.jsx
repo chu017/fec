@@ -170,7 +170,6 @@ class App extends React.Component {
       const newOutfitData = {
         outfitInformation: [],
         outfitStyles: [],
-        // defaultStyle = [];
         outfitReviews: [],
       };
       const { outfitInformation, outfitStyles, outfitReviews } = newOutfitData;

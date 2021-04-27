@@ -113,6 +113,8 @@ class Reviews extends React.Component {
             photos={result.photos}
             recommend={result.recommend}
             response={result.response}
+            helpfulness={result.helpfulness}
+            review_id={result.review_id}
           />);
       }
       return this.state.sortedResults
@@ -127,12 +129,14 @@ class Reviews extends React.Component {
           photos={result.photos}
           recommend={result.recommend}
           response={result.response}
+          helpfulness={result.helpfulness}
+          review_id={result.review_id}
         />);
     };
 
     return (
       <div className="reviews">
-        {console.log('reviews:', this.reviews)}
+        {/* {console.log('reviews:', this.reviews)} */}
         <div className="reviews-col-1">
           <RatingsReviews
             filterBy={this.state.filterBy}

@@ -1,5 +1,6 @@
 import React from 'react';
 import helpers from './helpers.js';
+import UpdateHelpfulness from './APIHandlers/updateHelpfulness.js'
 const moment = require('moment');
 
 class ReviewPosts extends React.Component {
@@ -8,12 +9,15 @@ class ReviewPosts extends React.Component {
 
     this.reviews = this.props.data.reviews;
 
-    this.state = {};
+    this.state = {
+      helpfulness: this.props.helpfulness,
+    };
 
     this.getRating = this.getRating.bind(this);
     this.getRatingPercentage = this.getRatingPercentage.bind(this);
     this.renderReviewImages = this.renderReviewImages.bind(this);
     this.renderSellerResponse = this.renderSellerResponse.bind(this);
+    this.updateHelpfulness = this.updateHelpfulness.bind(this);
   }
 
   getRating() {
@@ -32,12 +36,21 @@ class ReviewPosts extends React.Component {
     return `${Math.round(percentage / 10) * 10}%`;
   }
 
+  updateHelpfulness() {
+    UpdateHelpfulness(this.props.review_id, () => {
+      const currentHelpfulness = this.state.helpfulness;
+      this.setState({
+        helpfulness: currentHelpfulness + 1,
+      });
+    });
+  }
+
   renderReviewImages() {
     const photoArr = this.props.photos;
     const imgTags = [];
     if (photoArr.length) {
       photoArr.map(photo => {
-        imgTags.push(<img className="review-post-img" src={photo.url} />)
+        imgTags.push(<img className="review-post-img" src={photo.url} />);
       });
     }
     return imgTags;
@@ -46,7 +59,7 @@ class ReviewPosts extends React.Component {
   renderRecommendation() {
     if (this.props.recommend) {
       return (
-        <div>
+        <div className="recommend-checkbox">
           Yes
           <input type="checkbox" checked />
           No
@@ -55,7 +68,7 @@ class ReviewPosts extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="recommend-checkbox">
         Yes
         <input type="checkbox" />
         No
@@ -97,6 +110,7 @@ class ReviewPosts extends React.Component {
           <h3 className="review-post-title">{this.props.title}</h3>
           <p className="review-post-body">{this.props.body}</p>
           <div className="recommend-product">
+            I recommend this product:
             {this.renderRecommendation()}
           </div>
           <div className="review-post-img-container">
@@ -105,8 +119,8 @@ class ReviewPosts extends React.Component {
           <div>
             {this.renderSellerResponse()}
           </div>
-          <div className="review-post-top-row">
-            Helpful? <a className="helpful" href="#"> Yes </a>
+          <div className="review-post-bottom-row">
+            Helpful? <div onClick={this.updateHelpfulness} className="helpful underline"> Yes({this.state.helpfulness}) </div>
             |
             <a className="helpful" href="#"> Report</a>
           </div>

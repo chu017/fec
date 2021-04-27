@@ -1,17 +1,30 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable import/extensions */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-undef */
 import React from 'react';
-// import styled from 'styled-components';
 
 const Header = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      term: '',
+      outfits: [],
     };
 
+    this.onChange = this.onChange.bind(this);
     this.dark = this.dark.bind(this);
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  onChange(e) {
+    this.setState({
+      term: e.target.value,
+    });
+  }
+
   dark() {
     const element = document.body;
     const nav = document.getElementById('nav');
@@ -21,24 +34,42 @@ const Header = class extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="header">
+
         <nav className="navbar" id="nav">
-          <div>
-            <em>Project Catwalk</em>
-            <div className="search">search</div>
-            <button
-              type="button"
-              className="button-dark"
-              onClick={this.dark}
-            >
-              dark
-            </button>
-          </div>
+          <em>Project Catwalk</em>
         </nav>
 
-        <div className="header">
+        <div className="header-below">
           <div>SITE WIDE ANNOUNCEMENT MESSAGE! - SALE/DISCOUNT OFFER - NEW PRODUCT HIGHLIGHT</div>
         </div>
+
+        <button
+          type="button"
+          className="button-dark"
+          onClick={this.dark}
+        >
+          dark
+        </button>
+
+        <div className="header-right">
+          <button
+            type="button"
+            className="shopping-bag"
+            onClick={this.props.showCart}
+          >
+            Bag
+          </button>
+
+          <div className="search">
+            search:
+            <input
+              value={this.state.term}
+              onChange={this.onChange}
+            />
+          </div>
+        </div>
+
       </div>
     );
   }

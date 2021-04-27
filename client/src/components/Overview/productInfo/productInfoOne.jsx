@@ -19,11 +19,12 @@ const ProductInfoOne = class extends React.Component {
   render() {
     return (
       <div className="product-information">
-        <div>***** - Read all reviews</div>
+        <div className="">{this.props.ratingPercentage}</div>
+        <div>Read all reviews</div>
         <br />
         <div>CATEGORY: {this.props.data.product.category}</div>
         <h1>{this.props.data.product.name}</h1>
-        <div>${this.props.photos.original_price}</div>
+        <div>Price: ${this.props.photos.original_price}</div>
         <div>
           {(this.props.photos.sale_price)
           && <Rtext>Sale: ${this.props.photos.sale_price}</Rtext>}

@@ -6,10 +6,9 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
-// import styled from 'styled-components';
 import Header from './header.jsx';
-import ImageGallery from './imageGallery.jsx';
-import ProductInfoTwo from './productInfoTwo.jsx';
+import ImageGallery from './imageGallery/imageGallery.jsx';
+import ProductInfoTwo from './productInfo/productInfoTwo.jsx';
 
 const OverViewExpanded = class extends React.Component {
   constructor(props) {
@@ -23,7 +22,10 @@ const OverViewExpanded = class extends React.Component {
     return (
       <div className="overview-expanded">
         <div className="header">
-          <Header data={this.props.data} />
+          <Header
+            data={this.props.data}
+            showCart={this.props.showCart}
+          />
         </div>
 
         <div className="main-expanded">

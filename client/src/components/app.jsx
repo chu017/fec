@@ -63,9 +63,9 @@ class App extends React.Component {
           data: currentData,
           qa: true,
         });
-        return $.ajax({
-          url: `/api/related/${productID}`,
-        });
+      })
+      $.ajax({
+        url: `/api/related/${productID}`,
       })
       .then((data) => {
         const currentData = this.state.data;

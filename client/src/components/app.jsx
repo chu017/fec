@@ -262,19 +262,18 @@ class App extends React.Component {
             />
           )
           : <div />}
-        {this.state.related
+        {this.state.reviews
           ? (
-            <Related
+            <Reviews
               data={this.state.data}
-              outfitData={this.state.outfitData}
-              refreshOutfit={this.refreshOutfit}
-              addToOutfit={this.addToOutfit}
-              removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
+              ratingPercentage={this.state.ratingPercentage}
+              avgRating={this.state.avgRating}
               colorMode={this.state.colorMode}
             />
           )
           : <div />}
+
         {this.state.qa
           ? (
             <QA
@@ -284,13 +283,15 @@ class App extends React.Component {
             />
           )
           : <div />}
-        {this.state.reviews
+        {this.state.related
           ? (
-            <Reviews
+            <Related
               data={this.state.data}
+              outfitData={this.state.outfitData}
+              refreshOutfit={this.refreshOutfit}
+              addToOutfit={this.addToOutfit}
+              removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
-              ratingPercentage={this.state.ratingPercentage}
-              avgRating={this.state.avgRating}
               colorMode={this.state.colorMode}
             />
           )

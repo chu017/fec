@@ -18,14 +18,19 @@ class App extends React.Component {
       related: false,
       qa: false,
       reviews: false,
+      outfitData: [],
     };
 
     this.getRating = this.getRating.bind(this);
     this.ratingPercentage = this.ratingPercentage.bind(this);
     this.refreshOutfit = this.refreshOutfit.bind(this);
+
+    this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
   }
 
   componentDidMount() {
+    localStorage.setItem('outfit', [23145, 23149]);
     const URL = window.location.href;
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');
@@ -69,6 +74,10 @@ class App extends React.Component {
           },
         });
       });
+
+    // if (localStorage.getItem('outfit') === null) {
+    //   localStorage.setItem('outfit', ['']);
+    // }
   }
 
   getRating() {
@@ -120,6 +129,109 @@ class App extends React.Component {
     });
   }
 
+  addToOutfit(id) {
+    const { outfitData } = this.state;
+    console.log(outfitData);
+    const {
+      relatedIds, relatedInformation, relatedStyles, relatedReviews,
+    } = this.state.data.related;
+    // eslint-disable-next-line no-undef
+    const string = localStorage.getItem('outfit');
+    console.log('add start:', string.split(','));
+    this.currentOutfit = string.split(',');
+
+    if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
+      this.currentOutfit.push(id.toString());
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('outfit', this.currentOutfit);
+      console.log('add localStorage end: ', this.currentOutfit);
+
+      const productIndex = relatedIds.indexOf(id);
+      const newOutfitData = outfitData;
+      const {
+        outfitInformation, outfitStyles, defaultStyle, outfitReviews,
+      } = newOutfitData;
+      for (let i = 0; i < relatedStyles[productIndex].results.length; i += 1) {
+        if (relatedStyles[productIndex].results[i]['default?'] === true) {
+          outfitInformation.push(relatedInformation[productIndex]);
+          outfitStyles.push(relatedStyles[productIndex]);
+          // defaultStyle.push(relatedStyles[productIndex].results[i]);
+          outfitReviews.push(relatedReviews[productIndex]);
+          break;
+        } else if (i === relatedStyles[productIndex].results.length - 1
+          && newOutfitData[productIndex] === undefined) {
+          outfitInformation.push(relatedInformation[productIndex]);
+          outfitStyles.push(relatedStyles[productIndex]);
+          // defaultStyle.push(relatedStyles[productIndex].results[0]);
+          outfitReviews.push(relatedReviews[productIndex]);
+        }
+      }
+      this.setState({
+        outfitData: newOutfitData,
+      });
+    } else if (this.currentOutfit[0] === '') {
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('outfit', id.toString());
+      console.log('storage empty, added this: ', id.toString());
+
+      const productIndex = relatedIds.indexOf(id);
+      const newOutfitData = {
+        outfitInformation: [],
+        outfitStyles: [],
+        // defaultStyle = [];
+        outfitReviews: [],
+      };
+      const { outfitInformation, outfitStyles, outfitReviews } = newOutfitData;
+      for (let i = 0; i < relatedStyles[productIndex].results.length; i += 1) {
+        if (relatedStyles[productIndex].results[i]['default?'] === true) {
+          outfitInformation.push(relatedInformation[productIndex]);
+          outfitStyles.push(relatedStyles[productIndex]);
+          // defaultStyle.push(relatedStyles[productIndex].results[i]);
+          outfitReviews.push(relatedReviews[productIndex]);
+          break;
+        } else if (i === relatedStyles[productIndex].results.length - 1
+          && newOutfitData[productIndex] === undefined) {
+          outfitInformation.push(relatedInformation[productIndex]);
+          outfitStyles.push(relatedStyles[productIndex]);
+          // defaultStyle.push(relatedStyles[productIndex].results[0]);
+          outfitReviews.push(relatedReviews[productIndex]);
+        }
+      }
+      this.setState({
+        outfitData: newOutfitData,
+      });
+    }
+  }
+
+  removeFromOutfit(id) {
+    const { outfitData } = this.state;
+    // eslint-disable-next-line no-undef
+    const string = localStorage.getItem('outfit');
+    this.currentOutfit = string.split(',');
+    console.log('rmv start: ', this.currentOutfit);
+    if (this.currentOutfit.indexOf(id.toString()) !== -1) {
+      this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('outfit', this.currentOutfit);
+      let productIndex = -1;
+      for (let i = 0; i < outfitData.outfitInformation.length; i += 1) {
+        if (id === outfitData.outfitInformation[i].id) {
+          productIndex = i;
+        }
+      }
+      const newOutfitData = outfitData;
+      console.log('rmv state start: ', newOutfitData, productIndex);
+      newOutfitData.outfitInformation.splice(productIndex, 1);
+      newOutfitData.outfitStyles.splice(productIndex, 1);
+      newOutfitData.outfitReviews.splice(productIndex, 1);
+      this.setState({
+        outfitData: newOutfitData,
+      });
+      console.log('rmv end: ', this.currentOutfit);
+      console.log('rmv state start: ', newOutfitData);
+    }
+  }
+
   render() {
     if (this.state.show === false) {
       return (
@@ -137,6 +249,8 @@ class App extends React.Component {
               data={this.state.data}
               outfitData={this.state.outfitData}
               refreshOutfit={this.refreshOutfit}
+              addToOutfit={this.addToOutfit}
+              removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
             />
           )

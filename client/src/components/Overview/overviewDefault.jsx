@@ -62,10 +62,10 @@ const OverviewDefault = class extends React.Component {
           <br />
           <AddToCart
             data={this.props.data}
-            photos={this.props.style}
+            style={this.props.style}
             getOutfit={this.props.getOutfit}
             outfit={this.state.outfit}
-            style={this.props.style}
+            getCart={this.props.getCart}
           />
         </div>
 

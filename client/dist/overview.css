@@ -327,6 +327,7 @@ img {
 .cart-text {
   display: block;
   position: absolute;
+  text-align: left;
   left: 200px;
   margin: 20px;
 }

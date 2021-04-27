@@ -27,7 +27,7 @@ class ShoppingCart extends React.Component {
 
         <h2>YOUR BAG</h2>
 
-        {this.props.style.photos.map((item, index) => (
+        {this.props.cart.map((item, index) => (
           <Cart item={item} key={index} />
         ))}
 

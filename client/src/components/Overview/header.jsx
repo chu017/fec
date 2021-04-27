@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable import/extensions */
@@ -11,6 +12,7 @@ const Header = class extends React.Component {
     super(props);
     this.state = {
       term: '',
+      outfits: [],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,7 +25,6 @@ const Header = class extends React.Component {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   dark() {
     const element = document.body;
     const nav = document.getElementById('nav');

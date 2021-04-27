@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable react/no-unused-state */
@@ -18,11 +19,20 @@ const Overview = class extends React.Component {
       defaultView: true,
       show: false,
       cart: sampleDataOutfit.outfits,
+      // cart: sampleDataOutfit.outfits,
     };
 
     this.selectStyle = this.selectStyle.bind(this);
     this.expandView = this.expandView.bind(this);
     this.showCart = this.showCart.bind(this);
+    this.getCart = this.getCart.bind(this);
+  }
+
+  getCart() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      this.setState({ cart: [cart, ...this.state.cart] });
+    }
   }
 
   selectStyle(photos) {
@@ -56,6 +66,7 @@ const Overview = class extends React.Component {
               defaultView={this.state.defaultView}
               expandView={this.expandView}
               getOutfit={this.props.getOutfit}
+              getCart={this.getCart}
               showCart={this.showCart}
               ratingPercentage={this.props.ratingPercentage}
             />
@@ -79,6 +90,7 @@ const Overview = class extends React.Component {
               show={this.state.show}
               onClose={this.showCart}
               style={this.state.style_photos}
+              cart={this.state.cart}
             >
               My Shopping Cart
             </ShoppingCart>

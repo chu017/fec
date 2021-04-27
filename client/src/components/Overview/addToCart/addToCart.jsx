@@ -18,10 +18,22 @@ const AddToCart = class extends React.Component {
       quantity: null,
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.addToOutFit = this.addToOutFit.bind(this);
   }
 
-  handleSubmit() {
+  addToCart() {
+    let object = JSON.parse(localStorage.getItem('cart'));
+    console.log(object);
+    this.currentCart = this.currentCart.push(object);
+    const cart = { size: this.state.size, quantity: this.state.quantity };
+    console.log(this.currentCart);
+    localStorage.setItem('cart', currentCart);
+    // localStorage.setItem('cart', JSON.stringify(cart));
+    this.props.getCart();
+  }
+
+  addToOutFit() {
     const outfit = this.props.outfit;
     localStorage.setItem('outfit', JSON.stringify(outfit));
     this.props.getOutfit();
@@ -84,6 +96,7 @@ const AddToCart = class extends React.Component {
         <button
           type="button"
           className="button-bag"
+          onClick={this.addToCart}
         >
           Add to Bag
         </button>
@@ -91,7 +104,7 @@ const AddToCart = class extends React.Component {
         <button
           type="button"
           className="button-outfit"
-          onClick={this.handleSubmit}
+          onClick={this.addToOutFit}
         >
           Outfit
         </button>

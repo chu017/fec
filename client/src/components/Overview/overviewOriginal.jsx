@@ -25,10 +25,6 @@ const Overview = class extends React.Component {
     this.expandView = this.expandView.bind(this);
   }
 
-  // compoentDidMount() {
-
-  // }
-
   selectStyle(photos) {
     this.setState({
       style_photos: photos,

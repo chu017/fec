@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import ProductCharacteristics from './product-characteristics.jsx';
+import PhotoSelector from './photo-selector.jsx';
 import helpers from './helpers.js';
 
 class ReviewForm extends React.Component {
@@ -8,6 +9,7 @@ class ReviewForm extends React.Component {
     super(props);
 
     this.state = {
+      displayPhotoSelector: false,
       reviewSummary: '',
       reviewBody: '',
       email: '',
@@ -23,6 +25,8 @@ class ReviewForm extends React.Component {
     this.setStarRating = this.setStarRating.bind(this);
     this.produceProductCharacteristics = this.produceProductCharacteristics.bind(this);
     this.displayErrorMessage = this.displayErrorMessage.bind(this);
+    this.renderPhotoSelector = this.renderPhotoSelector.bind(this);
+    this.setPhotoSelectorState = this.setPhotoSelectorState.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +40,6 @@ class ReviewForm extends React.Component {
       !this.state.reviewBody.length ||
       !this.state.email.length ||
       !this.state.nickname.length) {
-      console.log('yay');
       this.setState({
         error: errorMessage,
       });
@@ -112,6 +115,28 @@ class ReviewForm extends React.Component {
   displayErrorMessage() {
     if (this.state.error) {
       return this.state.error;
+    }
+  }
+
+  setPhotoSelectorState() {
+    let newState;
+    if (this.state.displayPhotoSelector === true) {
+      newState = false;
+    } else {
+      newState = true;
+    }
+    this.setState({
+      displayPhotoSelector: newState,
+    });
+  }
+
+  renderPhotoSelector() {
+    if (this.state.displayPhotoSelector) {
+      return (
+        <PhotoSelector
+          exit={this.setPhotoSelectorState}
+        />
+      );
     }
   }
 
@@ -209,6 +234,19 @@ class ReviewForm extends React.Component {
             </div>
             <div className="form-row">
               <label className="form-label text-input-label">
+                Upload your photos:
+                <button
+                  className="photo-select-button"
+                  onClick={this.setPhotoSelectorState}
+                  name="photo-select"
+                  type="button"
+                >
+                  Choose Photos
+                </button>
+              </label>
+            </div>
+            <div className="form-row">
+              <label className="form-label text-input-label">
                 What is your nickname?:
                 <input
                   className="text-inputs"
@@ -239,6 +277,7 @@ class ReviewForm extends React.Component {
           <input className="submit-form" type="submit" value="Submit" />
         </form>
         <div onClick={this.hideForm} className="form-cover"></div>
+        <div>{this.renderPhotoSelector()}</div>
       </div>
     );
   }

@@ -26,6 +26,7 @@ const Header = class extends React.Component {
   }
 
   dark() {
+    this.props.toggleColorMode();
     const element = document.body;
     const nav = document.getElementById('nav');
     element.classList.toggle('dark-mode');

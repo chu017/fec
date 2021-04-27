@@ -1,12 +1,8 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-
 import React from 'react';
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
-import sampleData from './sampleData.js';
 import helpers from './Reviews/helpers.js';
 
 class App extends React.Component {
@@ -75,10 +71,6 @@ class App extends React.Component {
           },
         });
       });
-
-    // if (localStorage.getItem('outfit') === null) {
-    //   localStorage.setItem('outfit', ['']);
-    // }
   }
 
   getRating() {
@@ -145,17 +137,12 @@ class App extends React.Component {
     const {
       relatedIds, relatedInformation, relatedStyles, relatedReviews,
     } = this.state.data.related;
-    // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
     console.log('add start:', string.split(','));
     this.currentOutfit = string.split(',');
-
     if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
       this.currentOutfit.push(id.toString());
-      // eslint-disable-next-line no-undef
       localStorage.setItem('outfit', this.currentOutfit);
-      console.log('add localStorage end: ', this.currentOutfit);
-
       const productIndex = relatedIds.indexOf(id);
       const newOutfitData = outfitData;
       const {
@@ -165,14 +152,12 @@ class App extends React.Component {
         if (relatedStyles[productIndex].results[i]['default?'] === true) {
           outfitInformation.push(relatedInformation[productIndex]);
           outfitStyles.push(relatedStyles[productIndex]);
-          // defaultStyle.push(relatedStyles[productIndex].results[i]);
           outfitReviews.push(relatedReviews[productIndex]);
           break;
         } else if (i === relatedStyles[productIndex].results.length - 1
           && newOutfitData[productIndex] === undefined) {
           outfitInformation.push(relatedInformation[productIndex]);
           outfitStyles.push(relatedStyles[productIndex]);
-          // defaultStyle.push(relatedStyles[productIndex].results[0]);
           outfitReviews.push(relatedReviews[productIndex]);
         }
       }
@@ -180,10 +165,7 @@ class App extends React.Component {
         outfitData: newOutfitData,
       });
     } else if (this.currentOutfit[0] === '') {
-      // eslint-disable-next-line no-undef
       localStorage.setItem('outfit', id.toString());
-      console.log('storage empty, added this: ', id.toString());
-
       const productIndex = relatedIds.indexOf(id);
       const newOutfitData = {
         outfitInformation: [],
@@ -196,14 +178,12 @@ class App extends React.Component {
         if (relatedStyles[productIndex].results[i]['default?'] === true) {
           outfitInformation.push(relatedInformation[productIndex]);
           outfitStyles.push(relatedStyles[productIndex]);
-          // defaultStyle.push(relatedStyles[productIndex].results[i]);
           outfitReviews.push(relatedReviews[productIndex]);
           break;
         } else if (i === relatedStyles[productIndex].results.length - 1
           && newOutfitData[productIndex] === undefined) {
           outfitInformation.push(relatedInformation[productIndex]);
           outfitStyles.push(relatedStyles[productIndex]);
-          // defaultStyle.push(relatedStyles[productIndex].results[0]);
           outfitReviews.push(relatedReviews[productIndex]);
         }
       }
@@ -215,13 +195,10 @@ class App extends React.Component {
 
   removeFromOutfit(id) {
     const { outfitData } = this.state;
-    // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
     this.currentOutfit = string.split(',');
-    console.log('rmv start: ', this.currentOutfit);
     if (this.currentOutfit.indexOf(id.toString()) !== -1) {
       this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
-      // eslint-disable-next-line no-undef
       localStorage.setItem('outfit', this.currentOutfit);
       let productIndex = -1;
       for (let i = 0; i < outfitData.outfitInformation.length; i += 1) {
@@ -230,15 +207,12 @@ class App extends React.Component {
         }
       }
       const newOutfitData = outfitData;
-      console.log('rmv state start: ', newOutfitData, productIndex);
       newOutfitData.outfitInformation.splice(productIndex, 1);
       newOutfitData.outfitStyles.splice(productIndex, 1);
       newOutfitData.outfitReviews.splice(productIndex, 1);
       this.setState({
         outfitData: newOutfitData,
       });
-      console.log('rmv end: ', this.currentOutfit);
-      console.log('rmv state start: ', newOutfitData);
     }
   }
 
@@ -273,7 +247,6 @@ class App extends React.Component {
             />
           )
           : <div />}
-
         {this.state.qa
           ? (
             <QA

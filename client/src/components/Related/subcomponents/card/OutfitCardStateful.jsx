@@ -1,3 +1,6 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
@@ -35,7 +38,7 @@ class OutfitCardStateful extends React.Component {
     const whole = average - rawDecimal;
     // eslint-disable-next-line radix
     const decimal = parseFloat(rawDecimal.toFixed(2));
-    let newStarMap = [];
+    const newStarMap = [];
     let decimalPushed = false;
     for (let i = 0; i < 5; i += 1) {
       if (i < whole) {
@@ -47,7 +50,6 @@ class OutfitCardStateful extends React.Component {
         newStarMap.push(0);
       }
     }
-    console.log(newStarMap);
     // if (newStarMap.length === 0) {
     //   newStarMap = [0, 0, 0, 0, 0];
     // }
@@ -58,14 +60,18 @@ class OutfitCardStateful extends React.Component {
   }
 
   removeFromOutfit(id) {
+    // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
+    const { refreshOutfit } = this.props;
     this.currentOutfit = string.split(',');
-    console.log(this.currentOutfit.indexOf(id.toString()));
+    console.log('rmv start: ', this.currentOutfit);
     if (this.currentOutfit.indexOf(id.toString()) !== -1) {
       this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
-      console.log(this.currentOutfit);
+      // eslint-disable-next-line no-undef
       localStorage.setItem('outfit', this.currentOutfit);
+      console.log('rmv end: ', this.currentOutfit);
     }
+    refreshOutfit();
   }
 
   render() {
@@ -83,7 +89,7 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i className="far fa-times-circle fa-5x" onClick={() => {this.removeFromOutfit(id)}}></i>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { this.removeFromOutfit(id); }}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (
@@ -111,6 +117,7 @@ class OutfitCardStateful extends React.Component {
           <ModalCompare
             toggleModal={this.toggleModal}
             comparisonData={comparisonData}
+            name={name}
           />
         ) : null}
       </styles.outfitCardComponentDiv>

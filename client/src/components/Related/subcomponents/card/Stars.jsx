@@ -15,28 +15,28 @@ class Stars extends React.Component {
 
   renderStars() {
     const { starMap } = this.props;
-    return starMap.map((num) => {
+    return starMap.map((num, i) => {
       if (num === 1) {
         return (
-          <i className="fas fa-star" />
+          <i className="fas fa-star" key={`star${i}`}/>
         );
       }
       if (num < 1 && num > 0) {
         if (num > 0.75) {
-          return (<i className="fas fa-star-half-alt" />);
+          return (<i className="fas fa-star-half-alt" key={`star${i}`}/>);
         }
         if (num >= 0.5 && num < 0.75) {
-          return (<i className="fas fa-star-half-alt" />);
+          return (<i className="fas fa-star-half-alt" key={`star${i}`}/>);
         }
         if (num < 0.5 && num >= 0.25) {
-          return (<i className="fas fa-star-half-alt" />);
+          return (<i className="fas fa-star-half-alt" key={`star${i}`}/>);
         }
         if (num < 0.25) {
-          return (<i className="fas fa-star-half-alt" />);
+          return (<i className="fas fa-star-half-alt" key={`star${i}`}/>);
         }
       }
       if (num === 0) {
-        return (<i className="far fa-star" />);
+        return (<i className="far fa-star" key={`star${i}`}/>);
       }
     });
   }

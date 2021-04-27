@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
@@ -83,7 +85,7 @@ class CardStateful extends React.Component {
     const whole = average - rawDecimal;
     // eslint-disable-next-line radix
     const decimal = parseFloat(rawDecimal.toFixed(2));
-    let newStarMap = [];
+    const newStarMap = [];
     let decimalPushed = false;
     for (let i = 0; i < 5; i += 1) {
       if (i < whole) {
@@ -112,40 +114,43 @@ class CardStateful extends React.Component {
       salePrice,
       image,
       id,
+      overviewProduct,
     } = this.props;
 
     const {
       modalVisible, comparisonData, starMap, reviewCount,
     } = this.state;
     return (
-      <styles.cardComponentDiv>
-        <i className="fas fa-star-of-life fa-5x" onClick={() => { this.toggleModal(); }} />
+      <styles.cardComponentDiv key={id}>
+        <i className="fas fa-star fa-5x" id="starModalButton" onClick={() => { this.toggleModal(); }} />
         <br />
         <span>{name}</span>
-        {starMap && starMap.length && (
-        <Stars
-          starMap={starMap}
-          reviewCount={reviewCount}
-        />
-        )}
+        <br />
+        {salePrice ? (
+          <div>
+            <styles.salePrice>{salePrice}</styles.salePrice>
+            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
+          </div>
+        ) : <span>{defaultPrice}</span>}
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />
-
+          {starMap && starMap.length && (
+          <Stars
+            starMap={starMap}
+            reviewCount={reviewCount}
+            id={id}
+          />
+          )}
           <span>{category}</span>
-          <br />
 
-          {salePrice ? (
-            <div>
-              <styles.salePrice>{salePrice}</styles.salePrice>
-              <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-            </div>
-          ) : <span>{defaultPrice}</span>}
         </a>
         { modalVisible ? (
           <ModalCompare
             toggleModal={this.toggleModal}
             comparisonData={comparisonData}
+            overviewProduct={overviewProduct}
+            name={name}
           />
         ) : null}
       </styles.cardComponentDiv>

@@ -45,3 +45,15 @@ button {
 a {
   position: relative;
 }
+
+#starModalButton {
+  position: relative;
+  left: 50%;
+  bottom: 7%;
+}
+
+#removeOutfitButton {
+  position: relative;
+  left: 50%;
+  bottom: 7%;
+}

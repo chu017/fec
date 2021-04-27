@@ -4,6 +4,9 @@ const baseURL = require('./AtelierConfig.js');
 
 const informationHandler = (productID, errorCB, successCB) => {
   const productData = {};
+  let infoLength = 0;
+  let styleLength = 0;
+  let reviewLength = 0;
   axios({
     method: 'get',
     url: `${baseURL}/products/${productID}/related`,
@@ -17,35 +20,32 @@ const informationHandler = (productID, errorCB, successCB) => {
         url: `${baseURL}/products/${id}`,
         headers: { Authorization: API_KEY },
       }));
-      return axios.all(relatedInformationRequests);
-    })
-    .then((response) => {
-      productData.related.relatedInformation = [];
-      for (let i = 0; i < response.length; i += 1) {
-        productData.related.relatedInformation.push(response[i].data);
-      }
       const relatedStyleRequests = productData.related.relatedIds.map((id) => axios({
         method: 'get',
         url: `${baseURL}/products/${id}/styles`,
         headers: { Authorization: API_KEY },
       }));
-      return axios.all(relatedStyleRequests);
-    })
-    .then((response) => {
-      productData.related.relatedStyles = [];
-      for (let i = 0; i < response.length; i += 1) {
-        productData.related.relatedStyles.push(response[i].data);
-      }
       const relatedReviewRequests = productData.related.relatedIds.map((id) => axios({
         method: 'get',
         url: `${baseURL}/reviews?product_id=${id}&sort=newest&count=100&page=1`,
         headers: { Authorization: API_KEY },
       }));
-      return axios.all(relatedReviewRequests);
+      infoLength = relatedInformationRequests.length;
+      styleLength = relatedStyleRequests.length;
+      reviewLength = relatedReviewRequests.length;
+      return axios.all(relatedInformationRequests.concat(relatedStyleRequests, relatedReviewRequests));
     })
     .then((response) => {
+      productData.related.relatedInformation = [];
+      productData.related.relatedStyles = [];
       productData.related.relatedReviews = [];
-      for (let i = 0; i < response.length; i += 1) {
+      for (let i = 0; i < infoLength; i += 1) {
+        productData.related.relatedInformation.push(response[i].data);
+      }
+      for (let i = infoLength; i < infoLength + styleLength; i += 1) {
+        productData.related.relatedStyles.push(response[i].data);
+      }
+      for (let i = infoLength + styleLength; i < infoLength + styleLength + reviewLength; i += 1) {
         productData.related.relatedReviews.push(response[i].data);
       }
       successCB(productData);

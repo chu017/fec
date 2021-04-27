@@ -89,7 +89,7 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i className="far fa-times-circle fa-5x" onClick={() => { this.removeFromOutfit(id); }}></i>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { this.removeFromOutfit(id); }}></i>
         <br />
         <span>{name}</span>
         {starMap && starMap.length && (

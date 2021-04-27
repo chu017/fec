@@ -122,8 +122,10 @@ class CardStateful extends React.Component {
     } = this.state;
     return (
       <styles.cardComponentDiv key={id}>
-        <i className="fas fa-star-of-life fa-5x" onClick={() => { this.toggleModal(); }} />
+        <i className="fas fa-star fa-5x" id="starModalButton" onClick={() => { this.toggleModal(); }} />
+        <br />
         <span>{name}</span>
+        <br />
         {salePrice ? (
           <div>
             <styles.salePrice>{salePrice}</styles.salePrice>

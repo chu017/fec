@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-unknown-property */
@@ -8,13 +9,12 @@ import styles from '../../styled.js';
 import ModalCompare from './ModalCompare.jsx';
 import Stars from './Stars.jsx';
 
-class CardStateful extends React.Component {
+class OutfitCardStateful extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleModal = this.toggleModal.bind(this);
-    this.sortModalData = this.sortModalData.bind(this);
     this.calculateReviews = this.calculateReviews.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
 
     this.state = {
       modalVisible: false,
@@ -23,54 +23,7 @@ class CardStateful extends React.Component {
   }
 
   componentDidMount() {
-    this.sortModalData();
     this.calculateReviews();
-  }
-
-  toggleModal() {
-    const { modalVisible } = this.state;
-    if (modalVisible === true) {
-      this.setState({ modalVisible: false });
-    } else {
-      this.setState({ modalVisible: true });
-    }
-  }
-
-  sortModalData() {
-    const {
-      overviewFeatures,
-      cardProductFeatures,
-    } = this.props;
-
-    const dataForTable = [];
-
-    overviewFeatures.forEach((item) => {
-      dataForTable.push({ featureToCompare: item.feature, overviewValue: item.value });
-    });
-
-    for (let i = 0; i < dataForTable.length; i += 1) {
-      cardProductFeatures.forEach((cardItem) => {
-        if (cardItem.feature === dataForTable[i].featureToCompare) {
-          dataForTable[i].cardValue = cardItem.value;
-        }
-      });
-    }
-
-    cardProductFeatures.forEach((cardItem) => {
-      let unique = true;
-      for (let i = 0; i < dataForTable.length; i += 1) {
-        if (cardItem.feature === dataForTable[i].featureToCompare) {
-          unique = false;
-        }
-      }
-      if (unique === true) {
-        dataForTable.push({ featureToCompare: cardItem.feature, cardValue: cardItem.value });
-      }
-    });
-
-    this.setState({
-      comparisonData: dataForTable,
-    });
   }
 
   calculateReviews() {
@@ -106,6 +59,21 @@ class CardStateful extends React.Component {
     });
   }
 
+  removeFromOutfit(id) {
+    // eslint-disable-next-line no-undef
+    const string = localStorage.getItem('outfit');
+    const { refreshOutfit } = this.props;
+    this.currentOutfit = string.split(',');
+    console.log('rmv start: ', this.currentOutfit);
+    if (this.currentOutfit.indexOf(id.toString()) !== -1) {
+      this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('outfit', this.currentOutfit);
+      console.log('rmv end: ', this.currentOutfit);
+    }
+    refreshOutfit();
+  }
+
   render() {
     const {
       name,
@@ -114,47 +82,46 @@ class CardStateful extends React.Component {
       salePrice,
       image,
       id,
-      overviewProduct,
     } = this.props;
 
     const {
       modalVisible, comparisonData, starMap, reviewCount,
     } = this.state;
     return (
-      <styles.cardComponentDiv key={id}>
-        <i className="fas fa-star fa-5x" id="starModalButton" onClick={() => { this.toggleModal(); }} />
+      <styles.outfitCardComponentDiv>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { this.removeFromOutfit(id); }}></i>
         <br />
         <span>{name}</span>
-        <br />
-        {salePrice ? (
-          <div>
-            <styles.salePrice>{salePrice}</styles.salePrice>
-            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-          </div>
-        ) : <span>{defaultPrice}</span>}
+        {starMap && starMap.length && (
+        <Stars
+          starMap={starMap}
+          reviewCount={reviewCount}
+        />
+        )}
+        {/* <div>{reviewCount}</div> */}
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />
-          {starMap && starMap.length && (
-          <Stars
-            starMap={starMap}
-            reviewCount={reviewCount}
-            id={id}
-          />
-          )}
-          <span>{category}</span>
 
+          <span>{category}</span>
+          <br />
+
+          {salePrice ? (
+            <div id="salePriceText">
+              <styles.salePrice>{salePrice}</styles.salePrice>
+              <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
+            </div>
+          ) : <span>{defaultPrice}</span>}
         </a>
         { modalVisible ? (
           <ModalCompare
             toggleModal={this.toggleModal}
             comparisonData={comparisonData}
-            overviewProduct={overviewProduct}
             name={name}
           />
         ) : null}
-      </styles.cardComponentDiv>
+      </styles.outfitCardComponentDiv>
     );
   }
 }
-export default CardStateful;
+export default OutfitCardStateful;

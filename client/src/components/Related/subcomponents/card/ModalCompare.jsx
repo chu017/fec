@@ -5,16 +5,18 @@ import React from 'react';
 // eslint-disable-next-line import/extensions
 import styles from '../../styled.js';
 
-const ModalCompare = ({ toggleModal, comparisonData }) => (
+const ModalCompare = ({
+  toggleModal, comparisonData, name, overviewProduct,
+}) => (
   <styles.modalDiv>
     <styles.closeModal onClick={() => { toggleModal(); }}>X</styles.closeModal>
     <styles.modalTitle>Comparing</styles.modalTitle>
     <styles.table id="table">
       <tbody>
         <tr>
-          <styles.modalFirstRow scope="col">Overview Product</styles.modalFirstRow>
+          <styles.modalFirstRow scope="col">{overviewProduct}</styles.modalFirstRow>
           <styles.modalFirstRow scope="col">Feature</styles.modalFirstRow>
-          <styles.modalFirstRow scope="col">This Product</styles.modalFirstRow>
+          <styles.modalFirstRow scope="col">{name}</styles.modalFirstRow>
         </tr>
         {comparisonData.map(({ featureToCompare, overviewValue, cardValue }) => (
           <tr>

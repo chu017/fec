@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
 
 const body = styled.body`
@@ -8,8 +9,7 @@ const OutfitWrapperDiv = styled.div`
   position: relative;
   width: 100%;
   border-radius: 4px;
-  height: 300px;
-  background-color: midnightblue;
+  height: 320px;
   padding-top 1%;
   padding-bottom 1%;
   display: block;
@@ -20,7 +20,6 @@ const carouselWrapperDiv = styled.div`
   width: 100%;
   border-radius: 4px;
   height: 325px;
-  background-color: #100e17;
   padding-top 1%;
   padding-bottom 1%;
   display: block;
@@ -37,6 +36,7 @@ const carouselDiv = styled.div`
   margin-left: 23%;
   margin-right: 23%;
   display: flex;
+  padding: 1%;
   `;
 
 const cardComponentDiv = styled.div`
@@ -48,17 +48,33 @@ const cardComponentDiv = styled.div`
   min-width: 20%;
   min-height: 95%;
   max-height: 95%;
-  box-shadow: -2rem -2rem 3rem #100e17;
+  box-shadow: -1.5rem -2rem 3rem midnightblue;
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
   padding-top: 2%;
   `;
 
+const outfitCardComponentDiv = styled.div`
+  background: #f7f7f7;
+  text-align: center;
+  border-radius: 4px;
+  font-family: Verdana;
+  max-width: 20%;
+  min-width: 20%;
+  min-height: 95%;
+  max-height: 95%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  font-size: .2em;
+  padding-top: 2%;
+  box-shadow: -1.5rem -2rem 3rem #100e17;
+  `;
+
 const nextComponentDiv = styled.div`
   position: absolute;
   top: 40%;
-  right: 20%;
+  right: 18%;
   z-index: 10;
   `;
 
@@ -199,6 +215,7 @@ const styles = {
   tableHeader,
   salePrice,
   defaultPriceStrike,
+  outfitCardComponentDiv,
 };
 
 export default styles;

@@ -7,7 +7,7 @@ import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
 import sampleData from './sampleData.js';
-import helpers from '../components/Reviews/helpers.js';
+import helpers from './Reviews/helpers.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
 
     this.getRating = this.getRating.bind(this);
     this.ratingPercentage = this.ratingPercentage.bind(this);
-    this.getOutfit = this.getOutfit.bind(this);
+    this.refreshOutfit = this.refreshOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -50,20 +50,17 @@ class App extends React.Component {
               type: 'POST',
               data: { outfitIDs },
               success: (outfitData) => {
-                const currentData = this.state.data;
-                currentData.outfit = outfitData.outfit;
                 this.setState({
-                  data: currentData,
+                  outfitData: outfitData.outfit,
                   related: true,
                   qa: true,
                   reviews: true,
                 });
               },
               error: (outfitData) => {
-                const currentData = this.state.data;
-                currentData.outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
+                const outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
                 this.setState({
-                  data: currentData,
+                  outfitData: outfit,
                   related: true,
                   qa: true,
                   reviews: true,
@@ -77,13 +74,13 @@ class App extends React.Component {
 
   getRating() {
     let avgRating;
-    if (!!Object.values(this.state.data.reviews.reviewMeta.ratings).length) {
+    if (Object.values(this.state.data.reviews.reviewMeta.ratings).length) {
       avgRating = helpers.averageOfRatings(this.state.data.reviews.reviewMeta.ratings);
     } else {
       avgRating = 0;
     }
     if (avgRating.toString().length === 1) {
-      avgRating = avgRating.toString() + '.0';
+      avgRating = `${avgRating.toString()}.0`;
     }
     this.setState({
       avgRating,
@@ -99,13 +96,37 @@ class App extends React.Component {
 
   ratingPercentage() {
     let percentage = this.state.avgRating / 5;
-    percentage = percentage * 100;
+    percentage *= 100;
     this.setState({
       ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
     });
   }
 
-
+  refreshOutfit() {
+    const outfitIDs = localStorage.getItem('outfit');
+    $.ajax({
+      url: '/outfit',
+      type: 'POST',
+      data: { outfitIDs },
+      success: (outfitData) => {
+        this.setState({
+          outfitData: outfitData.outfit,
+          related: true,
+          qa: true,
+          reviews: true,
+        });
+      },
+      error: (outfitData) => {
+        const outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
+        this.setState({
+          outfitData: outfit,
+          related: true,
+          qa: true,
+          reviews: true,
+        });
+      },
+    });
+  }
 
   render() {
     if (this.state.show === false) {
@@ -126,7 +147,14 @@ class App extends React.Component {
           )
           : <div />}
         {this.state.related
-          ? <Related data={this.state.data} key={Math.random() * 1000000} />
+          ? (
+            <Related
+              data={this.state.data}
+              outfitData={this.state.outfitData}
+              refreshOutfit={this.refreshOutfit}
+              key={Math.random() * 1000000}
+            />
+          )
           : <div />}
         {this.state.qa
           ? <QA data={this.state.data} key={Math.random() * 1000000} />

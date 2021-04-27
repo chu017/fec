@@ -41,3 +41,19 @@ body {
 button {
   font-size: .1em;
 }
+
+a {
+  position: relative;
+}
+
+#starModalButton {
+  position: relative;
+  left: 50%;
+  bottom: 7%;
+}
+
+#removeOutfitButton {
+  position: relative;
+  left: 50%;
+  bottom: 7%;
+}

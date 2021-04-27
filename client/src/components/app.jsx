@@ -45,8 +45,13 @@ class App extends React.Component {
         currentData.reviews = data.reviews;
         this.setState({
           data: currentData,
-          reviews: true,
-        }, () => this.getRating());
+        }, () => {
+          this.getRating();
+          this.setState({
+            reviews: true,
+          });
+        }
+        );
         return $.ajax({
           url: `/api/qa/${productID}`,
         });

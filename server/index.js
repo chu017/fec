@@ -26,8 +26,22 @@ app.get('/api/overview/:product_id', (req, res) => {
   }, (productData) => res.send(productData));
 });
 
-app.get('/api/information/:product_id', (req, res) => {
-  APIControllers.informationHandler(req.params.product_id, (err) => {
+app.get('/api/reviews/:product_id', (req, res) => {
+  APIControllers.reviewHandler(req.params.product_id, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
+});
+
+app.get('/api/qa/:product_id', (req, res) => {
+  APIControllers.qaHandler(req.params.product_id, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
+});
+
+app.get('/api/related/:product_id', (req, res) => {
+  APIControllers.relatedHandler(req.params.product_id, (err) => {
     res.status(404);
     res.end();
   }, (productData) => res.send(productData));

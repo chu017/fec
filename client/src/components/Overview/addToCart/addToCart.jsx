@@ -14,8 +14,8 @@ const AddToCart = class extends React.Component {
     super(props);
     this.state = {
       size: 'XS',
-      quantity: 1,
-      item: 8,
+      size_num: 8,
+      quantity: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,20 +34,21 @@ const AddToCart = class extends React.Component {
         <select
           className="select-size"
           onChange={(e) => {
-            // console.log(e.target.value);
+            const size = JSON.parse(e.target.value).size;
+            const quantity = JSON.parse(e.target.value).quantity;
             this.setState({
-              size: e.target.value,
+              size,
+              size_num: quantity,
             });
           }}
         >
           <option value="" disabled selected hidden>select size</option>
-
-          {Func.convertObjToArray(this.props.style.skus).map((item, index) => (
+          {Func.convertObjToArray(this.props.style.skus).map((item) => (
             <option
-              key={index}
-              value={item.size}
+              key={item[0]}
+              value={JSON.stringify(item[1])}
             >
-              {item.size}
+              {item[1].size}
             </option>
           ))}
 
@@ -62,16 +63,20 @@ const AddToCart = class extends React.Component {
           }}
         >
           <option value="" disabled selected hidden>select quantity</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
+
+          {Func.renderNum(this.state.size_num).map((item, index) => {
+            if (!item) {
+              return <option>OUT OF STOCK</option>;
+            }
+            return (
+              <option
+                key={index}
+                value={item}
+              >
+                {item}
+              </option>
+            );
+          })}
 
         </select>
         <br />

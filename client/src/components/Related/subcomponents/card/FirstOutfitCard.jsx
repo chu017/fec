@@ -10,47 +10,28 @@ class FirstOutfitCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addToOutfit = this.addToOutfit.bind(this);
-
     this.state = {
 
     };
   }
 
-  addToOutfit(id) {
-    const { refreshOutfit } = this.props;
-    // eslint-disable-next-line no-undef
-    const string = localStorage.getItem('outfit');
-    console.log('add start:', string.split(','));
-    this.currentOutfit = string.split(',');
-    if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
-      this.currentOutfit.push(id.toString());
-      // eslint-disable-next-line no-undef
-      localStorage.setItem('outfit', this.currentOutfit);
-      console.log('add end: ', this.currentOutfit);
-    } else {
-      // eslint-disable-next-line no-undef
-      localStorage.setItem('outfit', id.toString());
-      console.log('storage empty, added this: ', id.toString());
-      refreshOutfit();
-    }
-    refreshOutfit();
-  }
-
   render() {
-    const { overviewProduct, image, id } = this.props;
+    const {
+      overviewProduct, image, id, addToOutfit,
+    } = this.props;
     return (
       <styles.outfitCardComponentDiv>
-        <a onClick={() => { this.addToOutfit(id); }}>
+        <a onClick={() => { addToOutfit(id); }} id="addToOutfit">
+          <br />
+          <i className="fas fa-plus fa-8x" />
+          <br />
+          <styles.cardImg src={image} alt="" />
+          <br />
           Click here to add
           {' '}
           {overviewProduct}
           {' '}
           to your Outfit.
-          <br />
-          <i className="fas fa-plus fa-10x" />
-          <styles.cardImg src={image} alt="" />
-          <br />
         </a>
       </styles.outfitCardComponentDiv>
     );

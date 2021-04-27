@@ -143,7 +143,6 @@ class CardStateful extends React.Component {
           />
           )}
           <span>{category}</span>
-
         </a>
         { modalVisible ? (
           <ModalCompare

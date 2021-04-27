@@ -49,11 +49,17 @@ a {
 #starModalButton {
   position: relative;
   left: 50%;
-  bottom: 7%;
+  bottom: 2%;
+  cursor: pointer;
 }
 
 #removeOutfitButton {
   position: relative;
   left: 50%;
-  bottom: 7%;
+  bottom: 2%;
+  cursor: pointer;
+}
+
+#addToOutfit {
+  cursor: pointer;
 }

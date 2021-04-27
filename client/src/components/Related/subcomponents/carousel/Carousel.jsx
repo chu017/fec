@@ -67,33 +67,45 @@ class Carousel extends React.Component {
         }
       }
     }
-    for (let i = 0; i < outfitInformation.length; i += 1) {
-      for (let ii = 0; ii < outfitStyles[i].results.length; ii += 1) {
-        if (outfitStyles[i].results[ii]['default?'] === true) {
-          newOutfitSort.push({
-            outfitInformation: outfitInformation[i],
-            outfitStyles: outfitStyles[i],
-            defaultStyle: outfitStyles[i].results[ii],
-            reviews: outfitReviews[i],
-          });
-          break;
-        } else if (ii === outfitStyles[i].results.length - 1 && newSort[i] === undefined) {
-          newOutfitSort.push({
-            outfitInformation: outfitInformation[i],
-            outfitStyles: outfitStyles[i],
-            defaultStyle: outfitStyles[i].results[0],
-            reviews: outfitReviews[i],
-          });
+    if (outfitInformation !== undefined) {
+      for (let i = 0; i < outfitInformation.length; i += 1) {
+        for (let ii = 0; ii < outfitStyles[i].results.length; ii += 1) {
+          if (outfitStyles[i].results[ii]['default?'] === true) {
+            newOutfitSort.push({
+              outfitInformation: outfitInformation[i],
+              outfitStyles: outfitStyles[i],
+              defaultStyle: outfitStyles[i].results[ii],
+              reviews: outfitReviews[i],
+            });
+            break;
+          } else if (ii === outfitStyles[i].results.length - 1 && newSort[i] === undefined) {
+            newOutfitSort.push({
+              outfitInformation: outfitInformation[i],
+              outfitStyles: outfitStyles[i],
+              defaultStyle: outfitStyles[i].results[0],
+              reviews: outfitReviews[i],
+            });
+          }
         }
       }
     }
-    this.setState({
-      sortedData: newSort,
-      sortedOutfitData: newOutfitSort,
-      overviewFeatures: features,
-      nextVisible: relatedInformation.length > 4,
-      nextOutfitVisible: outfitInformation.length > 4,
-    });
+    if (outfitInformation === undefined) {
+      this.setState({
+        sortedData: newSort,
+        sortedOutfitData: newOutfitSort,
+        overviewFeatures: features,
+        nextVisible: relatedInformation.length > 4,
+        nextOutfitVisible: false,
+      });
+    } else {
+      this.setState({
+        sortedData: newSort,
+        sortedOutfitData: newOutfitSort,
+        overviewFeatures: features,
+        nextVisible: relatedInformation.length > 4,
+        nextOutfitVisible: outfitInformation.length > 4,
+      });
+    }
     // eslint-disable-next-line no-undef
   }
 
@@ -203,7 +215,7 @@ class Carousel extends React.Component {
     } = this.state;
     const { name, id } = this.props.data.product;
     const { results } = this.props.data.styles;
-    const { refreshOutfit } = this.props;
+    const { refreshOutfit, addToOutfit, removeFromOutfit } = this.props;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -226,7 +238,6 @@ class Carousel extends React.Component {
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
                 id={relatedInformation.id}
                 modalVisible={modalVisible}
-                toggleModal={this.toggleModal}
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
@@ -254,6 +265,7 @@ class Carousel extends React.Component {
               overviewProduct={name}
               id={id}
               image={results[0].photos[0].thumbnail_url}
+              addToOutfit={addToOutfit}
               refreshOutfit={refreshOutfit}
             />
             {sortedOutfitData.map(({
@@ -270,6 +282,7 @@ class Carousel extends React.Component {
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
                 refreshOutfit={refreshOutfit}
+                removeFromOutfit={removeFromOutfit}
               />
             ))}
           </styles.carouselDiv>

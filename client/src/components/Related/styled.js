@@ -52,7 +52,6 @@ const cardComponentDiv = styled.div`
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
-  padding-top: 2%;
   `;
 
 const outfitCardComponentDiv = styled.div`
@@ -67,7 +66,6 @@ const outfitCardComponentDiv = styled.div`
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
-  padding-top: 2%;
   box-shadow: -1.5rem -2rem 3rem #100e17;
   `;
 
@@ -88,7 +86,7 @@ const prevComponentDiv = styled.div`
 const cardImg = styled.img`
   height: 70%;
   width: 70%;
-  object-fit: contain;
+  object-fit: cover;
   margin: auto;
   `;
 
@@ -172,12 +170,13 @@ background-color: grey;
 const closeModal = styled.div`
 background-color: maroon;
 height: 3%;
-width: 3%;
+width: 2%;
 font-size: 5em;
 position: fixed;
-right: 23%;
+right: 24%;
 top: 25.2%;
 color: white;
+border-radius: 50% 20% / 10% 40%;
 `;
 
 const modalTitle = styled.div`

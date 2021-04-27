@@ -14,7 +14,6 @@ class OutfitCardStateful extends React.Component {
     super(props);
 
     this.calculateReviews = this.calculateReviews.bind(this);
-    this.removeFromOutfit = this.removeFromOutfit.bind(this);
 
     this.state = {
       modalVisible: false,
@@ -59,21 +58,6 @@ class OutfitCardStateful extends React.Component {
     });
   }
 
-  removeFromOutfit(id) {
-    // eslint-disable-next-line no-undef
-    const string = localStorage.getItem('outfit');
-    const { refreshOutfit } = this.props;
-    this.currentOutfit = string.split(',');
-    console.log('rmv start: ', this.currentOutfit);
-    if (this.currentOutfit.indexOf(id.toString()) !== -1) {
-      this.currentOutfit.splice(this.currentOutfit.indexOf(id.toString()), 1);
-      // eslint-disable-next-line no-undef
-      localStorage.setItem('outfit', this.currentOutfit);
-      console.log('rmv end: ', this.currentOutfit);
-    }
-    refreshOutfit();
-  }
-
   render() {
     const {
       name,
@@ -82,6 +66,7 @@ class OutfitCardStateful extends React.Component {
       salePrice,
       image,
       id,
+      removeFromOutfit,
     } = this.props;
 
     const {
@@ -89,29 +74,26 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { this.removeFromOutfit(id); }}></i>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { removeFromOutfit(id); }}></i>
         <br />
         <span>{name}</span>
-        {starMap && starMap.length && (
-        <Stars
-          starMap={starMap}
-          reviewCount={reviewCount}
-        />
-        )}
-        {/* <div>{reviewCount}</div> */}
+        <br />
+        {salePrice ? (
+          <div id="salePriceText">
+            <styles.salePrice>{salePrice}</styles.salePrice>
+            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
+          </div>
+        ) : <span>{defaultPrice}</span>}
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />
-
+          {starMap && starMap.length && (
+          <Stars
+            starMap={starMap}
+            reviewCount={reviewCount}
+          />
+          )}
           <span>{category}</span>
-          <br />
-
-          {salePrice ? (
-            <div id="salePriceText">
-              <styles.salePrice>{salePrice}</styles.salePrice>
-              <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-            </div>
-          ) : <span>{defaultPrice}</span>}
         </a>
         { modalVisible ? (
           <ModalCompare

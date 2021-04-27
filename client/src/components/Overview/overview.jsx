@@ -1,9 +1,8 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-unneeded-ternary */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable react/prop-types */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React from 'react';
 import OverviewDefault from './overviewDefault.jsx';
@@ -19,13 +18,12 @@ const Overview = class extends React.Component {
       defaultView: true,
       show: false,
       cart: sampleDataOutfit.outfits,
-      // cart: sampleDataOutfit.outfits,
     };
 
+    this.getCart = this.getCart.bind(this);
     this.selectStyle = this.selectStyle.bind(this);
     this.expandView = this.expandView.bind(this);
     this.showCart = this.showCart.bind(this);
-    this.getCart = this.getCart.bind(this);
   }
 
   getCart() {
@@ -54,27 +52,34 @@ const Overview = class extends React.Component {
   }
 
   render() {
+    const {
+      data,
+      outfitData,
+      refreshOutfit,
+      ratingPercentage,
+    } = this.props;
     return (
       <div>
         {this.state.show === false && (
         <div>
           {this.state.defaultView === true && (
             <OverviewDefault
-              data={this.props.data}
+              data={data}
+              outfitData={outfitData}
+              refreshOutfit={refreshOutfit}
+              ratingPercentage={ratingPercentage}
               style={this.state.style_photos}
-              selectStyle={this.selectStyle}
               defaultView={this.state.defaultView}
+              selectStyle={this.selectStyle}
               expandView={this.expandView}
-              getOutfit={this.props.getOutfit}
-              getCart={this.getCart}
               showCart={this.showCart}
-              ratingPercentage={this.props.ratingPercentage}
+              getCart={this.getCart}
             />
           )}
 
             {this.state.defaultView === false && (
             <OverViewExpanded
-              data={this.props.data}
+              data={data}
               style={this.state.style_photos}
               defaultView={this.state.defaultView}
               expandView={this.expandView}
@@ -88,9 +93,9 @@ const Overview = class extends React.Component {
           <div>
             <ShoppingCart
               show={this.state.show}
-              onClose={this.showCart}
               style={this.state.style_photos}
               cart={this.state.cart}
+              onClose={this.showCart}
             >
               My Shopping Cart
             </ShoppingCart>

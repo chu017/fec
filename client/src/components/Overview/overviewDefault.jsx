@@ -63,6 +63,7 @@ const OverviewDefault = class extends React.Component {
           <AddToCart
             data={this.props.data}
             style={this.props.style}
+            refreshOutfit={this.props.refreshOutfit}
             getOutfit={this.props.getOutfit}
             outfit={this.state.outfit}
             getCart={this.props.getCart}

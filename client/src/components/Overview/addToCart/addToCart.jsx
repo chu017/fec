@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-const */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
@@ -19,7 +21,7 @@ const AddToCart = class extends React.Component {
     };
 
     this.addToCart = this.addToCart.bind(this);
-    this.addToOutFit = this.addToOutFit.bind(this);
+    this.addToOutfit = this.addToOutfit.bind(this);
   }
 
   addToCart() {
@@ -33,13 +35,29 @@ const AddToCart = class extends React.Component {
     this.props.getCart();
   }
 
-  addToOutFit() {
-    const outfit = this.props.outfit;
-    localStorage.setItem('outfit', JSON.stringify(outfit));
-    this.props.getOutfit();
+  addToOutfit(id) {
+    const { refreshOutfit } = this.props;
+    const string = localStorage.getItem('outfit');
+    console.log('add start:', id, string, string.split(','));
+
+    this.currentOutfit = string.split(',');
+    if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
+      this.currentOutfit.push(id.toString());
+      localStorage.setItem('outfit', this.currentOutfit);
+      console.log('add end: ', this.currentOutfit);
+    } else {
+      localStorage.setItem('outfit', id.toString());
+      console.log('storage empty, added this: ', id.toString());
+
+      refreshOutfit();
+    }
+
+    refreshOutfit();
   }
 
   render() {
+    const { data } = this.props;
+    const { id } = data.product;
     return (
       <div className="add-to-cart">
 
@@ -104,7 +122,7 @@ const AddToCart = class extends React.Component {
         <button
           type="button"
           className="button-outfit"
-          onClick={this.addToOutFit}
+          onClick={() => { this.addToOutfit(id); }}
         >
           Outfit
         </button>

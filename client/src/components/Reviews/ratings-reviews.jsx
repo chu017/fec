@@ -14,6 +14,8 @@ class RatingsReviews extends React.Component {
 
     this.state = {
       productBreakdownComponents: [],
+      avgRating: 0,
+      ratingPercentage: 0,
     };
 
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
@@ -21,13 +23,13 @@ class RatingsReviews extends React.Component {
     this.showFilters = this.showFilters.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
     this.renderProductBreakdown = this.renderProductBreakdown.bind(this);
+    this.getRating = this.getRating.bind(this);
+    this.getRatingPercentage = this.getRatingPercentage.bind(this);
   }
 
   componentDidMount() {
     const ratings = this.getRatings();
     this.setState({
-      ratingPercentage: this.props.ratingPercentage,
-      rating: ratings.rating,
       recommendationPercentage: ratings.recommendationPercentage,
       productDetails: [
         { fit: ratings.fit },
@@ -35,7 +37,24 @@ class RatingsReviews extends React.Component {
         { length: ratings.length },
         { quality: ratings.quality },
       ],
-    }, () => this.renderProductBreakdown());
+    }, () => this.getRating());
+  }
+
+  getRating() {
+    let avgRating;
+    if (this.reviews) {
+      if (Object.values(this.reviews.reviewMeta.ratings).length) {
+        avgRating = helpers.averageOfRatings(this.reviews.reviewMeta.ratings);
+      } else {
+        avgRating = 0;
+      }
+      if (avgRating.toString().length === 1) {
+        avgRating = `${avgRating.toString()}.0`;
+      }
+      this.setState({
+        avgRating,
+      }, () => this.getRatingPercentage());
+    }
   }
 
   getRecommendationPercentage() {
@@ -51,7 +70,7 @@ class RatingsReviews extends React.Component {
   }
 
   getRatings() {
-    let rating = this.props.avgRating;
+    let rating = this.state.avgRating;
     let fit = null;
     let comfort = null;
     let length = null;
@@ -78,11 +97,11 @@ class RatingsReviews extends React.Component {
   }
 
   getRatingPercentage() {
-    let percentage = this.state.rating / 5;
+    let percentage = this.state.avgRating / 5;
     percentage = percentage * 100;
     this.setState({
       ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
-    });
+    }, () => this.renderProductBreakdown());
   }
 
   createRatingsCountBars() {
@@ -158,7 +177,7 @@ class RatingsReviews extends React.Component {
       <div>
         <h4 className="sub-heading">Ratings and Reviews</h4>
         <div className="star-rating-container">
-          <div className="star-rating-header">{this.state.rating}</div>
+          <div className="star-rating-header">{this.state.avgRating}</div>
           <div className="star-container">
             <div className="stars-outer">
               <div style={starInnerWidth} className="stars-inner"></div>

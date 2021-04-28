@@ -19,7 +19,7 @@ const ModalCompare = ({
           <styles.modalFirstRow scope="col">{name}</styles.modalFirstRow>
         </tr>
         {comparisonData.map(({ featureToCompare, overviewValue, cardValue }) => (
-          <tr>
+          <tr key={featureToCompare}>
             <styles.tableData>{overviewValue}</styles.tableData>
             <styles.tableHeader>{featureToCompare}</styles.tableHeader>
             <styles.tableData>{cardValue}</styles.tableData>

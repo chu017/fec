@@ -223,6 +223,7 @@ class Carousel extends React.Component {
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={relatedInformation.id}
                 id={relatedInformation.id}
                 modalVisible={modalVisible}
                 cardProductFeatures={relatedInformation.features}
@@ -264,6 +265,7 @@ class Carousel extends React.Component {
                 defaultPrice={outfitStyles.results[0].original_price}
                 salePrice={outfitStyles.results[0].sale_price}
                 image={outfitStyles.results[0].photos[0].thumbnail_url}
+                key={outfitInformation.id}
                 id={outfitInformation.id}
                 cardProductFeatures={outfitInformation.features}
                 overviewFeatures={overviewFeatures}

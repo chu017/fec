@@ -36,6 +36,7 @@ const OverviewDefault = class extends React.Component {
             data={this.props.data}
             showCart={this.props.showCart}
             toggleColorMode={this.props.toggleColorMode}
+            clickHandler={this.props.clickHandler}
           />
         </div>
 
@@ -44,6 +45,7 @@ const OverviewDefault = class extends React.Component {
             data={this.props.style}
             defaultView={this.props.defaultView}
             expandView={this.props.expandView}
+            clickHandler={this.props.clickHandler}
           />
         </div>
 
@@ -52,12 +54,14 @@ const OverviewDefault = class extends React.Component {
             data={this.props.data}
             photos={this.props.style}
             ratingPercentage={this.props.ratingPercentage}
+            clickHandler={this.props.clickHandler}
           />
           <br />
           <StyleSelector
             data={this.props.data}
             photos={this.props.style}
             selectStyle={this.props.selectStyle}
+            clickHandler={this.props.clickHandler}
             addOutfit={this.addOutfit}
           />
           <br />
@@ -65,6 +69,7 @@ const OverviewDefault = class extends React.Component {
             data={this.props.data}
             style={this.props.style}
             refreshOutfit={this.props.refreshOutfit}
+            clickHandler={this.props.clickHandler}
             getOutfit={this.props.getOutfit}
             outfit={this.state.outfit}
             getCart={this.props.getCart}

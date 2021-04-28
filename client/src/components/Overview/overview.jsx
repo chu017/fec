@@ -70,6 +70,7 @@ const Overview = class extends React.Component {
               ratingPercentage={ratingPercentage}
               style={this.state.style_photos}
               defaultView={this.state.defaultView}
+              clickHandler={this.props.clickHandler}
               toggleColorMode={this.props.toggleColorMode}
               selectStyle={this.selectStyle}
               expandView={this.expandView}
@@ -83,6 +84,7 @@ const Overview = class extends React.Component {
               data={data}
               style={this.state.style_photos}
               defaultView={this.state.defaultView}
+              clickHandler={this.props.clickHandler}
               expandView={this.expandView}
               showCart={this.showCart}
             />
@@ -95,6 +97,7 @@ const Overview = class extends React.Component {
             <ShoppingCart
               show={this.state.show}
               style={this.state.style_photos}
+              clickHandler={this.props.clickHandler}
               cart={this.state.cart}
               onClose={this.showCart}
             >

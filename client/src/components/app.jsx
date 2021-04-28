@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
@@ -107,6 +108,7 @@ class App extends React.Component {
     }, () => this.ratingPercentage());
   }
 
+  // eslint-disable-next-line class-methods-use-this
   clickHandler(element, widget) {
     const data = {
       element,
@@ -256,7 +258,10 @@ class App extends React.Component {
               removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
-              clickHandler={this.clickHandler}
+              clickHandler={(element) => {
+                this.clickHandler(element, 'Related');
+                console.log(element);
+              }}
             />
           )
           : <div />}

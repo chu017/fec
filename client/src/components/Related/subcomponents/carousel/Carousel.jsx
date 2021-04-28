@@ -202,7 +202,9 @@ class Carousel extends React.Component {
     } = this.state;
     const { name, id } = this.props.data.product;
     const { results } = this.props.data.styles;
-    const { refreshOutfit, addToOutfit, removeFromOutfit } = this.props;
+    const {
+      refreshOutfit, addToOutfit, removeFromOutfit, clickHandler,
+    } = this.props;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -230,6 +232,8 @@ class Carousel extends React.Component {
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
                 overviewProduct={name}
+                overviewId={id}
+                clickHandler={clickHandler}
               />
             ))}
           </styles.carouselDiv>
@@ -255,6 +259,7 @@ class Carousel extends React.Component {
               image={results[0].photos[0].thumbnail_url}
               addToOutfit={addToOutfit}
               refreshOutfit={refreshOutfit}
+              clickHandler={clickHandler}
             />
             {sortedOutfitData.map(({
               outfitInformation, outfitStyles, reviews,
@@ -271,6 +276,7 @@ class Carousel extends React.Component {
                 overviewFeatures={overviewFeatures}
                 reviews={reviews.results}
                 removeFromOutfit={removeFromOutfit}
+                clickHandler={clickHandler}
               />
             ))}
           </styles.carouselDiv>

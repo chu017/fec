@@ -115,6 +115,8 @@ class CardStateful extends React.Component {
       image,
       id,
       overviewProduct,
+      overviewId,
+      clickHandler,
     } = this.props;
 
     const {
@@ -122,9 +124,16 @@ class CardStateful extends React.Component {
     } = this.state;
     return (
       <styles.cardComponentDiv>
-        <i className="fas fa-star fa-5x" id="starModalButton" onClick={() => { this.toggleModal(); }} />
+        <i
+          className="fas fa-star fa-5x"
+          id="starModalButton"
+          onClick={() => {
+            this.toggleModal();
+            clickHandler(`comparing: ${overviewProduct} id: ${overviewId} || ${name} id: ${id}`);
+          }}
+        />
         <br />
-        <a href={`/products/${id}/`}>
+        <a href={`/products/${id}/`} onClick={() => { clickHandler(`nav to product page: ${name} id: ${id}`); }}>
           <span>{name}</span>
           <br />
           {salePrice ? (

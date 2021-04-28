@@ -64,6 +64,7 @@ class OutfitCardStateful extends React.Component {
       image,
       id,
       removeFromOutfit,
+      clickHandler,
     } = this.props;
 
     const {
@@ -71,9 +72,9 @@ class OutfitCardStateful extends React.Component {
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { removeFromOutfit(id); }}></i>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { removeFromOutfit(id); clickHandler(`removed from outfit: ${name} id: ${id}`); }}></i>
         <br />
-        <a href={`/products/${id}/`}>
+        <a href={`/products/${id}/`} onClick={() => { clickHandler(`nav to product page: ${name} id: ${id}`); }}>
           <span>{name}</span>
           <br />
           {salePrice ? (

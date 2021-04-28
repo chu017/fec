@@ -4,6 +4,7 @@ import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
 import helpers from './Reviews/helpers.js';
+
 const moment = require('moment');
 
 class App extends React.Component {
@@ -51,8 +52,7 @@ class App extends React.Component {
           this.setState({
             reviews: true,
           });
-        }
-        );
+        });
         return $.ajax({
           url: `/api/qa/${productID}`,
         });
@@ -85,20 +85,12 @@ class App extends React.Component {
           outfitData: data.outfit,
           related: true,
         });
+      })
+      .catch(() => {
+        this.setState({
+          related: true,
+        });
       });
-  }
-
-  clickHandler(element, widget) {
-    const data = {
-      element,
-      widget,
-      time: moment().format()
-    }
-    $.ajax({
-      url: '/interactions',
-      type: 'POST',
-      data: data,
-    });
   }
 
   getRating() {
@@ -114,6 +106,19 @@ class App extends React.Component {
     this.setState({
       avgRating,
     }, () => this.ratingPercentage());
+  }
+
+  clickHandler(element, widget) {
+    const data = {
+      element,
+      widget,
+      time: moment().format(),
+    };
+    $.ajax({
+      url: '/interactions',
+      type: 'POST',
+      data,
+    });
   }
 
   toggleColorMode() {

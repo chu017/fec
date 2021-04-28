@@ -67,26 +67,13 @@ class Carousel extends React.Component {
         }
       }
     }
-    if (outfitInformation !== undefined) {
+    if (outfitInformation) {
       for (let i = 0; i < outfitInformation.length; i += 1) {
-        for (let ii = 0; ii < outfitStyles[i].results.length; ii += 1) {
-          if (outfitStyles[i].results[ii]['default?'] === true) {
-            newOutfitSort.push({
-              outfitInformation: outfitInformation[i],
-              outfitStyles: outfitStyles[i],
-              defaultStyle: outfitStyles[i].results[ii],
-              reviews: outfitReviews[i],
-            });
-            break;
-          } else if (ii === outfitStyles[i].results.length - 1 && newSort[i] === undefined) {
-            newOutfitSort.push({
-              outfitInformation: outfitInformation[i],
-              outfitStyles: outfitStyles[i],
-              defaultStyle: outfitStyles[i].results[0],
-              reviews: outfitReviews[i],
-            });
-          }
-        }
+        newOutfitSort.push({
+          outfitInformation: outfitInformation[i],
+          outfitStyles: outfitStyles[i],
+          reviews: outfitReviews[i],
+        });
       }
     }
     if (outfitInformation === undefined) {
@@ -269,19 +256,18 @@ class Carousel extends React.Component {
               refreshOutfit={refreshOutfit}
             />
             {sortedOutfitData.map(({
-              outfitInformation, outfitStyles, defaultStyle, reviews,
+              outfitInformation, outfitStyles, reviews,
             }) => (
               <OutfitCardStateful
                 name={outfitInformation.name}
                 category={outfitInformation.category}
-                defaultPrice={defaultStyle.original_price}
-                salePrice={defaultStyle.sale_price}
+                defaultPrice={outfitStyles.results[0].original_price}
+                salePrice={outfitStyles.results[0].sale_price}
                 image={outfitStyles.results[0].photos[0].thumbnail_url}
                 id={outfitInformation.id}
                 cardProductFeatures={outfitInformation.features}
                 overviewFeatures={overviewFeatures}
-                reviews={reviews}
-                refreshOutfit={refreshOutfit}
+                reviews={reviews.results}
                 removeFromOutfit={removeFromOutfit}
               />
             ))}

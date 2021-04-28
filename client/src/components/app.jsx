@@ -147,59 +147,42 @@ class App extends React.Component {
 
   addToOutfit(id) {
     const { outfitData } = this.state;
-    console.log(outfitData);
+    // console.log(outfitData);
     const {
-      relatedIds, relatedInformation, relatedStyles, relatedReviews,
-    } = this.state.data.related;
+      product, styles, reviews,
+    } = this.state.data;
+    // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
-    console.log('add start:', string.split(','));
     this.currentOutfit = string.split(',');
     if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
       this.currentOutfit.push(id.toString());
       localStorage.setItem('outfit', this.currentOutfit);
-      const productIndex = relatedIds.indexOf(id);
+
       const newOutfitData = outfitData;
       const {
-        outfitInformation, outfitStyles, defaultStyle, outfitReviews,
+        outfitInformation, outfitStyles, outfitReviews,
       } = newOutfitData;
-      for (let i = 0; i < relatedStyles[productIndex].results.length; i += 1) {
-        if (relatedStyles[productIndex].results[i]['default?'] === true) {
-          outfitInformation.push(relatedInformation[productIndex]);
-          outfitStyles.push(relatedStyles[productIndex]);
-          outfitReviews.push(relatedReviews[productIndex]);
-          break;
-        } else if (i === relatedStyles[productIndex].results.length - 1
-          && newOutfitData[productIndex] === undefined) {
-          outfitInformation.push(relatedInformation[productIndex]);
-          outfitStyles.push(relatedStyles[productIndex]);
-          outfitReviews.push(relatedReviews[productIndex]);
-        }
-      }
+
+      outfitInformation.push(product);
+      outfitStyles.push(styles);
+      outfitReviews.push(reviews.reviews);
+
       this.setState({
         outfitData: newOutfitData,
       });
     } else if (this.currentOutfit[0] === '') {
       localStorage.setItem('outfit', id.toString());
-      const productIndex = relatedIds.indexOf(id);
       const newOutfitData = {
         outfitInformation: [],
         outfitStyles: [],
         outfitReviews: [],
       };
       const { outfitInformation, outfitStyles, outfitReviews } = newOutfitData;
-      for (let i = 0; i < relatedStyles[productIndex].results.length; i += 1) {
-        if (relatedStyles[productIndex].results[i]['default?'] === true) {
-          outfitInformation.push(relatedInformation[productIndex]);
-          outfitStyles.push(relatedStyles[productIndex]);
-          outfitReviews.push(relatedReviews[productIndex]);
-          break;
-        } else if (i === relatedStyles[productIndex].results.length - 1
-          && newOutfitData[productIndex] === undefined) {
-          outfitInformation.push(relatedInformation[productIndex]);
-          outfitStyles.push(relatedStyles[productIndex]);
-          outfitReviews.push(relatedReviews[productIndex]);
-        }
-      }
+
+      outfitInformation.push(product);
+      outfitStyles.push(styles);
+      outfitReviews.push(reviews.reviews);
+
       this.setState({
         outfitData: newOutfitData,
       });

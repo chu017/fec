@@ -26,11 +26,6 @@ class ShoppingCart extends React.Component {
       <div className="shopping-container">
 
         <h2>YOUR BAG</h2>
-
-        {this.props.cart.map((item, index) => (
-          <Cart item={item} key={index} />
-        ))}
-
         <button
           type="button"
           className="shopping-button"
@@ -38,6 +33,10 @@ class ShoppingCart extends React.Component {
         >
           Back
         </button>
+
+        {this.props.cart.map((item, index) => (
+          <Cart item={item} key={index} />
+        ))}
 
         <br />
 

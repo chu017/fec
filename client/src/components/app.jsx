@@ -260,7 +260,6 @@ class App extends React.Component {
               colorMode={this.state.colorMode}
               clickHandler={(element) => {
                 this.clickHandler(element, 'Related');
-                console.log(element);
               }}
             />
           )

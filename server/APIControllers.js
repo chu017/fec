@@ -5,12 +5,14 @@ const relatedHandler = require('./AtelierHandler/relatedHandler.js');
 const outfitHandler = require('./AtelierHandler/outfitHandler.js');
 const helpfulReportHandler = require('./AtelierHandler/helpfulReportHandler');
 const addHandler = require('./AtelierHandler/addHandler');
+const interactionHandler = require('./AtelierHandler/interactionHandler');
 
 module.exports.overviewHandler = overviewHandler;
 module.exports.reviewHandler = reviewHandler;
 module.exports.qaHandler = qaHandler;
 module.exports.relatedHandler = relatedHandler;
 module.exports.outfitHandler = outfitHandler;
+module.exports.interactionHandler = interactionHandler;
 module.exports.questionHelpful = helpfulReportHandler.questionHelpful;
 module.exports.answerHelpful = helpfulReportHandler.answerHelpful;
 module.exports.reviewHelpful = helpfulReportHandler.reviewHelpful;

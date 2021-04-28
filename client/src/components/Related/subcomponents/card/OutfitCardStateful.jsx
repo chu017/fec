@@ -27,12 +27,11 @@ class OutfitCardStateful extends React.Component {
 
   calculateReviews() {
     const { reviews } = this.props;
-    const reviewCollection = reviews.results;
     let sum = 0;
-    for (let i = 0; i < reviewCollection.length; i += 1) {
-      sum += reviewCollection[i].rating;
+    for (let i = 0; i < reviews.length; i += 1) {
+      sum += reviews[i].rating;
     }
-    const average = sum / reviewCollection.length;
+    const average = sum / reviews.length;
     const rawDecimal = average - Math.floor(average);
     const whole = average - rawDecimal;
     // eslint-disable-next-line radix
@@ -54,7 +53,7 @@ class OutfitCardStateful extends React.Component {
     // }
     this.setState({
       starMap: newStarMap,
-      reviewCount: reviewCollection.length,
+      reviewCount: reviews.length,
     });
   }
 

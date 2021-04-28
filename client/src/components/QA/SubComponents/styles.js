@@ -1,21 +1,29 @@
 import styled from 'styled-components';
 
-const primarySize = '1.1em';
-const secondarySize = '0.75em';
+const titleSize = '1.4em';
+const primarySize = '1.0em';
+const secondarySize = '0.8em';
 const primaryColor = '#454444';
 const secondaryColor = '#858383';
-const primaryFont = 'Helvetica Neue';
+const titleFont = "'Bebas Neue', cursive";
+const primaryFont = 'Helvetica';
 
 const QA = styled.div`
-  margin-left: 40%;
+  padding: 0% 8%;
+  margin-top: 10%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Title = styled.div`
   margin-top: 5px;
-  font-family: ${primaryFont};
+  font-family: ${titleFont};
   font-weight: 250;
   color: ${primaryColor};
-  font-size: ${primarySize};
+  font-size: ${titleSize};
+  letter-spacing: 0.1 em;
 `;
 
 const SubTitle = styled.div`
@@ -56,7 +64,6 @@ const QuestionBlock = styled.div`
   margin-bottom: 10px;
   font-size: ${primarySize};
   color: ${primaryColor};
-  width: 50%;
 `;
 const QuestionLine = styled.div`
   display: flex;
@@ -99,9 +106,15 @@ const LoadMoreAnswers = styled.div`
 const AnswerBlock = styled.div`
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
+
 const SearchBar = styled.input`
-  width: 40%;
   margin-top: 5px;
+  width: 90%;
 `;
 
 const HyperLink = styled.a`
@@ -138,6 +151,7 @@ const styles = {
   AnswerBlock,
   LoadMoreAnswers,
   QA,
+  SearchBarWrapper,
   SearchBar,
   HyperLink,
   ButtonContainer,

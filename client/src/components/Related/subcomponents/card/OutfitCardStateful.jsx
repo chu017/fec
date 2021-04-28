@@ -6,7 +6,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styles from '../../styled.js';
-import ModalCompare from './ModalCompare.jsx';
 import Stars from './Stars.jsx';
 
 class OutfitCardStateful extends React.Component {
@@ -16,7 +15,6 @@ class OutfitCardStateful extends React.Component {
     this.calculateReviews = this.calculateReviews.bind(this);
 
     this.state = {
-      modalVisible: false,
       starMap: [],
     };
   }
@@ -66,42 +64,36 @@ class OutfitCardStateful extends React.Component {
       image,
       id,
       removeFromOutfit,
+      clickHandler,
     } = this.props;
 
     const {
-      modalVisible, comparisonData, starMap, reviewCount,
+      starMap, reviewCount,
     } = this.state;
     return (
       <styles.outfitCardComponentDiv>
-        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { removeFromOutfit(id); }}></i>
+        <i className="far fa-times-circle fa-5x" id="removeOutfitButton" onClick={() => { removeFromOutfit(id); clickHandler(`removed from outfit: ${name} id: ${id}`); }}></i>
         <br />
-        <span>{name}</span>
-        <br />
-        {salePrice ? (
-          <div id="salePriceText">
-            <styles.salePrice>{salePrice}</styles.salePrice>
-            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-          </div>
-        ) : <span>{defaultPrice}</span>}
-        <a href={`/products/${id}/`}>
+        <a href={`/products/${id}/`} onClick={() => { clickHandler(`nav to product page: ${name} id: ${id}`); }}>
+          <span>{name}</span>
+          <br />
+          {salePrice ? (
+            <div id="salePriceText">
+              <styles.salePrice>{`$${salePrice}`}</styles.salePrice>
+              <styles.defaultPriceStrike>{`$${defaultPrice}`}</styles.defaultPriceStrike>
+            </div>
+          ) : <span>{`$${defaultPrice}`}</span>}
           <styles.cardImg src={image} alt="" />
           <br />
-          {starMap.length > 0 ? (
-            <Stars
-              starMap={starMap}
-              reviewCount={reviewCount}
-              id={id}
-            />
-          ) : null}
-          <span>{category}</span>
         </a>
-        { modalVisible ? (
-          <ModalCompare
-            toggleModal={this.toggleModal}
-            comparisonData={comparisonData}
-            name={name}
+        {starMap.length > 0 ? (
+          <Stars
+            starMap={starMap}
+            reviewCount={reviewCount}
+            id={id}
           />
         ) : null}
+        <span>{category}</span>
       </styles.outfitCardComponentDiv>
     );
   }

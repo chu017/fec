@@ -17,11 +17,11 @@ class FirstOutfitCard extends React.Component {
 
   render() {
     const {
-      overviewProduct, image, id, addToOutfit,
+      overviewProduct, image, id, addToOutfit, clickHandler,
     } = this.props;
     return (
       <styles.outfitCardComponentDiv>
-        <a onClick={() => { addToOutfit(id); }} id="addToOutfit">
+        <a onClick={() => { addToOutfit(id); clickHandler(`added to outfit: ${overviewProduct} id: ${id}`); }} id="addToOutfit">
           <br />
           <i className="fas fa-plus fa-8x" />
           <br />

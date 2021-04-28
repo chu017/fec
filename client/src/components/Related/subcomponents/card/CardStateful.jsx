@@ -115,35 +115,44 @@ class CardStateful extends React.Component {
       image,
       id,
       overviewProduct,
+      overviewId,
+      clickHandler,
     } = this.props;
 
     const {
       modalVisible, comparisonData, starMap, reviewCount,
     } = this.state;
     return (
-      <styles.cardComponentDiv key={id}>
-        <i className="fas fa-star fa-5x" id="starModalButton" onClick={() => { this.toggleModal(); }} />
+      <styles.cardComponentDiv>
+        <i
+          className="fas fa-star fa-5x"
+          id="starModalButton"
+          onClick={() => {
+            this.toggleModal();
+            clickHandler(`comparing: ${overviewProduct} id: ${overviewId} || ${name} id: ${id}`);
+          }}
+        />
         <br />
-        <span>{name}</span>
-        <br />
-        {salePrice ? (
-          <div>
-            <styles.salePrice>{salePrice}</styles.salePrice>
-            <styles.defaultPriceStrike>{defaultPrice}</styles.defaultPriceStrike>
-          </div>
-        ) : <span>{defaultPrice}</span>}
-        <a href={`/products/${id}/`}>
+        <a href={`/products/${id}/`} onClick={() => { clickHandler(`nav to product page: ${name} id: ${id}`); }}>
+          <span>{name}</span>
+          <br />
+          {salePrice ? (
+            <div id="salePriceText">
+              <styles.salePrice>{`$${salePrice}`}</styles.salePrice>
+              <styles.defaultPriceStrike>{`$${defaultPrice}`}</styles.defaultPriceStrike>
+            </div>
+          ) : <span>{`$${defaultPrice}`}</span>}
           <styles.cardImg src={image} alt="" />
           <br />
-          {starMap.length > 0 ? (
-            <Stars
-              starMap={starMap}
-              reviewCount={reviewCount}
-              id={id}
-            />
-          ) : null}
-          <span>{category}</span>
         </a>
+        {starMap.length > 0 ? (
+          <Stars
+            starMap={starMap}
+            reviewCount={reviewCount}
+            id={id}
+          />
+        ) : null}
+        <span>{category}</span>
         { modalVisible ? (
           <ModalCompare
             toggleModal={this.toggleModal}

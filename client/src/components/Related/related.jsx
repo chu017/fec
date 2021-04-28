@@ -14,7 +14,7 @@ class Related extends React.Component {
 
   render() {
     const {
-      data, outfitData, refreshOutfit, addToOutfit, removeFromOutfit,
+      data, outfitData, refreshOutfit, addToOutfit, removeFromOutfit, clickHandler,
     } = this.props;
     return (
       <div id="related">
@@ -24,6 +24,7 @@ class Related extends React.Component {
           refreshOutfit={refreshOutfit}
           addToOutfit={addToOutfit}
           removeFromOutfit={removeFromOutfit}
+          clickHandler={clickHandler}
         />
       </div>
     );

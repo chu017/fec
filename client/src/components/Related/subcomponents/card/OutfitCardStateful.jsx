@@ -86,12 +86,13 @@ class OutfitCardStateful extends React.Component {
         <a href={`/products/${id}/`}>
           <styles.cardImg src={image} alt="" />
           <br />
-          {starMap && starMap.length && (
-          <Stars
-            starMap={starMap}
-            reviewCount={reviewCount}
-          />
-          )}
+          {starMap.length > 0 ? (
+            <Stars
+              starMap={starMap}
+              reviewCount={reviewCount}
+              id={id}
+            />
+          ) : null}
           <span>{category}</span>
         </a>
         { modalVisible ? (

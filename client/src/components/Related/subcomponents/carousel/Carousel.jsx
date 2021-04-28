@@ -93,7 +93,6 @@ class Carousel extends React.Component {
         nextOutfitVisible: outfitInformation.length > 4,
       });
     }
-    console.log('carousel: ', outfitData, newOutfitSort);
     // eslint-disable-next-line no-undef
   }
 

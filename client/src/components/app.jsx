@@ -28,8 +28,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('outfit data before', this.state.outfitData);
-    localStorage.setItem('outfit', [23145, 23149, 23148]);
     const URL = window.location.href;
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');
@@ -155,18 +153,15 @@ class App extends React.Component {
     } = this.state.data;
     // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
-    // console.log('add start:', string.split(','));
     this.currentOutfit = string.split(',');
     if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
       this.currentOutfit.push(id.toString());
       localStorage.setItem('outfit', this.currentOutfit);
-      // console.log('add localStorage end: ', this.currentOutfit);
 
       const newOutfitData = outfitData;
       const {
         outfitInformation, outfitStyles, outfitReviews,
       } = newOutfitData;
-      console.log('already has items: ', this.state.data, outfitData);
 
       outfitInformation.push(product);
       outfitStyles.push(styles);
@@ -177,9 +172,6 @@ class App extends React.Component {
       });
     } else if (this.currentOutfit[0] === '') {
       localStorage.setItem('outfit', id.toString());
-      // console.log('storage empty, added this: ', id.toString());
-      // console.log('data: ', this.state.data);
-      // console.log('related: ', this.state.data.related);
       const newOutfitData = {
         outfitInformation: [],
         outfitStyles: [],
@@ -190,8 +182,6 @@ class App extends React.Component {
       outfitInformation.push(product);
       outfitStyles.push(styles);
       outfitReviews.push(reviews.reviews);
-
-      console.log('push to empty: ', newOutfitData);
 
       this.setState({
         outfitData: newOutfitData,

@@ -24,6 +24,8 @@ class Reviews extends React.Component {
       sortedResults: this.reviews.reviews.results,
       selected: 'relavence',
       renderForm: false,
+      avgRating: this.getRating(),
+      ratingPercentage: this.ratingPercentage(),
     };
 
     this.filterReviews = this.filterReviews.bind(this);
@@ -32,30 +34,27 @@ class Reviews extends React.Component {
     this.sortResults = this.sortResults.bind(this);
     this.changeFormState = this.changeFormState.bind(this);
     this.renderReviewForm = this.renderReviewForm.bind(this);
+    this.getRating = this.getRating.bind(this);
+    this.ratingPercentage = this.ratingPercentage.bind(this);
   }
 
   componentDidMount() {
     this.sortResults(this.state.selected);
   }
 
-  filterReviews(newFilter) {
-    let filterByArr = this.state.filterBy;
-    if (!newFilter) {
-      filterByArr = [];
-    } else if (filterByArr.includes(newFilter)) {
-      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
+  getRating() {
+    let avgRating;
+    if (Object.values(this.state.data.reviews.reviewMeta.ratings).length) {
+      avgRating = helpers.averageOfRatings(this.state.data.reviews.reviewMeta.ratings);
     } else {
-      filterByArr.push(newFilter);
+      avgRating = 0;
+    }
+    if (avgRating.toString().length === 1) {
+      avgRating = `${avgRating.toString()}.0`;
     }
     this.setState({
-      filterBy: filterByArr,
-    });
-  }
-
-  addPosts(prevPosts) {
-    this.setState({
-      showPosts: prevPosts + 2,
-    });
+      avgRating,
+    }, () => this.ratingPercentage());
   }
 
   changeSelected(value) {
@@ -87,6 +86,34 @@ class Reviews extends React.Component {
     this.setState({
       renderForm: formState,
     }, () => this.renderReviewForm());
+  }
+
+  ratingPercentage() {
+    let percentage = this.state.avgRating / 5;
+    percentage *= 100;
+    this.setState({
+      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
+    });
+  }
+
+  addPosts(prevPosts) {
+    this.setState({
+      showPosts: prevPosts + 2,
+    });
+  }
+
+  filterReviews(newFilter) {
+    let filterByArr = this.state.filterBy;
+    if (!newFilter) {
+      filterByArr = [];
+    } else if (filterByArr.includes(newFilter)) {
+      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
+    } else {
+      filterByArr.push(newFilter);
+    }
+    this.setState({
+      filterBy: filterByArr,
+    });
   }
 
   renderReviewForm() {
@@ -135,12 +162,12 @@ class Reviews extends React.Component {
         {console.log('reviews:', this.reviews)}
         <div className="reviews-col-1">
           <RatingsReviews
-            avgRating={this.props.avgRating}
+            avgRating={this.state.avgRating}
             filterBy={this.state.filterBy}
             addPosts={this.addPosts}
             filter={this.filterReviews}
             data={this.props.data}
-            ratingPercentage={this.props.ratingPercentage}
+            ratingPercentage={this.state.ratingPercentage}
           />
         </div>
         <div className="reviews-col-2">

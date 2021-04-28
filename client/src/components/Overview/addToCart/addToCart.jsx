@@ -26,8 +26,6 @@ const AddToCart = class extends React.Component {
   }
 
   addToCart() {
-
-
     let object = JSON.parse(localStorage.getItem('cart'));
     console.log(object);
     this.currentCart = this.currentCart.push(object);
@@ -36,7 +34,6 @@ const AddToCart = class extends React.Component {
     localStorage.setItem('cart', currentCart);
     // localStorage.setItem('cart', JSON.stringify(cart));
     this.props.getCart();
-
   }
 
   addToOutfit(id) {

@@ -73,7 +73,6 @@
   right: 20px;
   height: 20px;
   width: 50px;
-  border-radius: 60%;
   font-family: Helvetica;
   font-size: 0.8em;
   background-color: #2ada71;
@@ -246,11 +245,14 @@ img {
   height: 50px;
   padding: 2px;
   margin: 2px;
-  font-family: "Helvetica", Arial, sans-serif;
+  font-family: Helvetica;
   font-size: 0.8em;
   background-color: black;
+  transition: outline 0.1s linear;
   color: white;
 }
+
+.button-bag:hover { background-color: #2ada71; color: black }
 
 .button-outfit {
   width: 80px;
@@ -362,3 +364,15 @@ img {
   text-align: center;
 } */
 
+.border-button {
+  border: 1px solid black;
+  transition: outline 0.1s linear;
+  display: inline-block;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0.3em;
+}
+
+.border-button:hover { border-color: #2ada71; border-width: 2px; }

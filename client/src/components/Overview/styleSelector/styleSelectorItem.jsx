@@ -3,15 +3,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Cimage = styled.img`
-display: inline-block;
-border: 1px solid black;
-text-align: center;
-height: 50px;
-width: 50px;
-border-radius: 50%;
-margin: 5px;
-`;
+// const Cimage = styled.img`
+// display: inline-block;
+// border: 1px solid black;
+// text-align: center;
+// height: 50px;
+// width: 50px;
+// border-radius: 50%;
+// margin: 5px;
+// `;
 
 const StyleSelectorItem = class extends React.Component {
   constructor(props) {
@@ -31,8 +31,9 @@ const StyleSelectorItem = class extends React.Component {
   render() {
     return (
       <div className="circle">
-        <Cimage
+        <img
           alt=""
+          className="border-button"
           src={this.props.item.photos[0].thumbnail_url}
           onClick={this.handleClick}
         />

@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { render } from '@testing-library/react';
 import sampleData from '../sampleData';
-import QA from './qa';
-import QuestionRenderer from './SubComponents/QuestionRenderer';
-import AnswerRenderer from './SubComponents/AnswerRenderer';
+import Reviews from './reviews.jsx';
 
 import '@testing-library/jest-dom/extend-expect';
 

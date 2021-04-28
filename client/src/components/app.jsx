@@ -5,6 +5,8 @@ import Reviews from './Reviews/reviews.jsx';
 import QA from './QA/qa.jsx';
 import helpers from './Reviews/helpers.js';
 
+const moment = require('moment');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -50,8 +52,7 @@ class App extends React.Component {
           this.setState({
             reviews: true,
           });
-        }
-        );
+        });
         return $.ajax({
           url: `/api/qa/${productID}`,
         });
@@ -83,7 +84,12 @@ class App extends React.Component {
         this.setState({
           outfitData: data.outfit,
           related: true,
-        }, () => console.log(this.state));
+        });
+      })
+      .catch(() => {
+        this.setState({
+          related: true,
+        });
       });
   }
 
@@ -100,6 +106,19 @@ class App extends React.Component {
     this.setState({
       avgRating,
     }, () => this.ratingPercentage());
+  }
+
+  clickHandler(element, widget) {
+    const data = {
+      element,
+      widget,
+      time: moment().format(),
+    };
+    $.ajax({
+      url: '/interactions',
+      type: 'POST',
+      data,
+    });
   }
 
   toggleColorMode() {
@@ -229,6 +248,7 @@ class App extends React.Component {
               refreshOutfit={this.refreshOutfit}
               toggleColorMode={this.toggleColorMode}
               ratingPercentage={this.state.ratingPercentage}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}
@@ -240,6 +260,7 @@ class App extends React.Component {
               ratingPercentage={this.state.ratingPercentage}
               avgRating={this.state.avgRating}
               colorMode={this.state.colorMode}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}
@@ -249,6 +270,7 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}
@@ -262,6 +284,7 @@ class App extends React.Component {
               removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}

@@ -73,6 +73,13 @@ app.post('/qa/questions/:question_id/answers', APIControllers.answerAdd);
 
 app.post('/reviews', APIControllers.reviewAdd);
 
+app.post('/interactions', (req, res) => {
+  APIControllers.interactionHandler(req.body, () => {
+    res.status(404);
+    res.end();
+  }, () => res.end());
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

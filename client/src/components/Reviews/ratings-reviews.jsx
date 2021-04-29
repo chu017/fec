@@ -2,7 +2,6 @@
 /* eslint-disable one-var */
 import React from 'react';
 import helpers from './helpers.js';
-import Star from './star.jsx';
 import RatingsCount from './ratings-count.jsx';
 import ProductBreakdown from './product-breakdown.jsx'
 
@@ -14,8 +13,6 @@ class RatingsReviews extends React.Component {
 
     this.state = {
       productBreakdownComponents: [],
-      avgRating: 0,
-      ratingPercentage: 0,
     };
 
     this.createRatingsCountBars = this.createRatingsCountBars.bind(this);
@@ -42,6 +39,7 @@ class RatingsReviews extends React.Component {
 
   getRating() {
     let avgRating;
+    let previousRating = null;
     if (this.reviews) {
       if (Object.values(this.reviews.reviewMeta.ratings).length) {
         avgRating = helpers.averageOfRatings(this.reviews.reviewMeta.ratings);
@@ -51,9 +49,21 @@ class RatingsReviews extends React.Component {
       if (avgRating.toString().length === 1) {
         avgRating = `${avgRating.toString()}.0`;
       }
-      this.setState({
-        avgRating,
-      }, () => this.getRatingPercentage());
+      if (this.state.avgRating) {
+        previousRating = this.state.avgRating;
+      }
+      if (avgRating !== previousRating) {
+        console.log(avgRating, previousRating);
+        this.setState({
+          avgRating,
+          previousRating,
+        }, () => {
+          if (this.state.avgRating !== 0) {
+            console.log(this.state.avgRating)
+            this.getRatingPercentage();
+          }
+        });
+      }
     }
   }
 
@@ -70,7 +80,6 @@ class RatingsReviews extends React.Component {
   }
 
   getRatings() {
-    let rating = this.state.avgRating;
     let fit = null;
     let comfort = null;
     let length = null;
@@ -90,18 +99,20 @@ class RatingsReviews extends React.Component {
     const recommendationPercentage = this.getRecommendationPercentage();
     fit = fit * 94, comfort = comfort * 94, length = length * 94, quality = quality * 94;
 
-    if (rating.toString().length === 1) {
-      rating = rating.toString() + '.0';
-    }
-    return { rating, fit, comfort, recommendationPercentage, length, quality };
+    return { fit, comfort, recommendationPercentage, length, quality };
   }
 
   getRatingPercentage() {
     let percentage = this.state.avgRating / 5;
     percentage = percentage * 100;
-    this.setState({
-      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
-    }, () => this.renderProductBreakdown());
+    if (this.state.ratingPercentage !== `${Math.round(percentage / 10) * 10}%`) {
+      this.setState({
+        ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
+      }, () => {
+        this.renderProductBreakdown();
+        this.props.updateParentPercentage(this.state.ratingPercentage);
+      });
+    }
   }
 
   createRatingsCountBars() {

@@ -18,10 +18,10 @@ class ProductCharacteristics extends React.Component {
   }
 
   setDescription(e) {
-    this.setState({
-      displayDescription: this.state.description[e.target.value],
-    });
-    this.addToFormState(e);
+    // this.setState({
+    //   displayDescription: this.state.description[e.target.value],
+    // });
+    // this.addToFormState(e);
   }
 
   produceRadioButtons() {
@@ -71,6 +71,6 @@ class ProductCharacteristics extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default ProductCharacteristics;

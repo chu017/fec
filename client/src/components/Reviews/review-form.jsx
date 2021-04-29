@@ -46,9 +46,9 @@ class ReviewForm extends React.Component {
       !this.state.body.length ||
       !this.state.email.length ||
       !this.state.nickname.length) {
-      this.setState({
-        error: errorMessage,
-      });
+      // this.setState({
+      //   error: errorMessage,
+      // });
     } else {
       alert('Thank you for your submission');
       this.hideForm();
@@ -60,23 +60,23 @@ class ReviewForm extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    // this.setState({
+    //   [e.target.name]: e.target.value,
+    // });
   }
 
   setStarRating(e) {
-    this.setState({
-      starsToFill: +e.target.id,
-    }, () => this.starProducer());
+    // this.setState({
+    //   starsToFill: +e.target.id,
+    // });
   }
 
   addCharacteristicsToState(name, description) {
     const characteristics = this.state.characteristics;
     characteristics[name] = description;
-    this.setState({
-      characteristics,
-    });
+    // this.setState({
+    //   characteristics,
+    // });
   }
 
   starProducer() {
@@ -108,16 +108,16 @@ class ReviewForm extends React.Component {
         );
       }
     }
-    this.setState({
-      formStars: stars,
-      rating: stars.length,
-    });
+    // this.setState({
+    //   formStars: stars,
+    //   rating: stars.length,
+    // });
   }
 
   updateRecommend(recommendation) {
-    this.setState({
-      recommend: recommendation,
-    });
+    // this.setState({
+    //   recommend: recommendation,
+    // });
   }
 
   produceProductCharacteristics() {
@@ -146,9 +146,9 @@ class ReviewForm extends React.Component {
     } else {
       newState = true;
     }
-    this.setState({
-      displayPhotoSelector: newState,
-    });
+    // this.setState({
+    //   displayPhotoSelector: newState,
+    // });
   }
 
   renderPhotoSelector() {
@@ -298,7 +298,7 @@ class ReviewForm extends React.Component {
           <input className="submit-form" type="submit" value="Submit" />
         </form>
         <div onClick={this.hideForm} className="form-cover"></div>
-        <div>{this.renderPhotoSelector()}</div>
+        {/* <div>{this.renderPhotoSelector()}</div> */}
       </div>
     );
   }

@@ -8,8 +8,8 @@
 import React from 'react';
 import {
   AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
-} from 'react-icons/Ai';
-import { BsArrowsFullscreen } from 'react-icons/Bs';
+} from 'react-icons/ai';
+import { BsArrowsFullscreen } from 'react-icons/bs';
 import ImageGalleryItem from './imageGalleryItem.jsx';
 
 const ImageGallery = class extends React.Component {

@@ -38,33 +38,17 @@ class RatingsReviews extends React.Component {
   }
 
   getRating() {
-    let avgRating;
-    let previousRating = null;
-    if (this.reviews) {
-      if (Object.values(this.reviews.reviewMeta.ratings).length) {
-        avgRating = helpers.averageOfRatings(this.reviews.reviewMeta.ratings);
-      } else {
-        avgRating = 0;
-      }
-      if (avgRating.toString().length === 1) {
-        avgRating = `${avgRating.toString()}.0`;
-      }
-      if (this.state.avgRating) {
-        previousRating = this.state.avgRating;
-      }
-      if (avgRating !== previousRating) {
-        console.log(avgRating, previousRating);
-        this.setState({
-          avgRating,
-          previousRating,
-        }, () => {
-          if (this.state.avgRating !== 0) {
-            console.log(this.state.avgRating)
-            this.getRatingPercentage();
-          }
-        });
-      }
-    }
+    const avgRating = helpers.getRating(this.state.avgRating, this.reviews.reviewMeta.ratings);
+    this.setState({
+      avgRating,
+    }, () => this.getRatingPercentage());
+  }
+
+  getRatingPercentage() {
+    const ratingPercentage = helpers.getRatingPercentage(this.state.avgRating);
+    this.setState({
+      ratingPercentage,
+    }, this.renderProductBreakdown());
   }
 
   getRecommendationPercentage() {
@@ -100,19 +84,6 @@ class RatingsReviews extends React.Component {
     fit = fit * 94, comfort = comfort * 94, length = length * 94, quality = quality * 94;
 
     return { fit, comfort, recommendationPercentage, length, quality };
-  }
-
-  getRatingPercentage() {
-    let percentage = this.state.avgRating / 5;
-    percentage = percentage * 100;
-    if (this.state.ratingPercentage !== `${Math.round(percentage / 10) * 10}%`) {
-      this.setState({
-        ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
-      }, () => {
-        this.renderProductBreakdown();
-        this.props.updateParentPercentage(this.state.ratingPercentage);
-      });
-    }
   }
 
   createRatingsCountBars() {

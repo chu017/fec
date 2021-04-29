@@ -25,30 +25,41 @@ const AddToCart = class extends React.Component {
     this.addToOutfit = this.addToOutfit.bind(this);
   }
 
+  componentDidMount() {
+    // const URL = window.location.href;
+    // console.log(URL);
+    $.ajax({
+      url: '/api/cart',
+      type: 'GET',
+      success: (responseData) => this.setState({ cart: responseData }),
+    });
+  }
+
   addToCart() {
+    // get cart
     let object = JSON.parse(localStorage.getItem('cart'));
     console.log(object);
     this.currentCart = this.currentCart.push(object);
     const cart = { size: this.state.size, quantity: this.state.quantity };
     console.log(this.currentCart);
+    // save cart
     localStorage.setItem('cart', currentCart);
-    // localStorage.setItem('cart', JSON.stringify(cart));
     this.props.getCart();
   }
 
   addToOutfit(id) {
     const { refreshOutfit } = this.props;
     const string = localStorage.getItem('outfit');
-    console.log('add start:', id, string, string.split(','));
+    // console.log('add start:', id, string, string.split(','));
 
     this.currentOutfit = string.split(',');
     if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
       this.currentOutfit.push(id.toString());
       localStorage.setItem('outfit', this.currentOutfit);
-      console.log('add end: ', this.currentOutfit);
+      // console.log('add end: ', this.currentOutfit);
     } else {
       localStorage.setItem('outfit', id.toString());
-      console.log('storage empty, added this: ', id.toString());
+      // console.log('storage empty, added this: ', id.toString());
 
       refreshOutfit();
     }

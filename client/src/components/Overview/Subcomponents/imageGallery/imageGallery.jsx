@@ -1,15 +1,11 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/no-unresolved */
 import React from 'react';
-import {
-  AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
-} from 'react-icons/Ai';
-import { BsArrowsFullscreen } from 'react-icons/Bs';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { BsArrowsFullscreen } from 'react-icons/bs';
 import ImageGalleryItem from './imageGalleryItem.jsx';
 
 const ImageGallery = class extends React.Component {

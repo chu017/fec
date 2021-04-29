@@ -6,9 +6,9 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
-import Header from './header.jsx';
-import ImageGallery from './imageGallery/imageGallery.jsx';
-import ProductInfoTwo from './productInfo/productInfoTwo.jsx';
+import Header from './Subcomponents/header.jsx';
+import ImageGallery from './Subcomponents/imageGallery/imageGallery.jsx';
+import ProductInfoTwo from './Subcomponents/productInfo/productInfoTwo.jsx';
 
 const OverViewExpanded = class extends React.Component {
   constructor(props) {

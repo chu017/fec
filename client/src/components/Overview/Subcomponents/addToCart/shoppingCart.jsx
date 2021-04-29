@@ -6,7 +6,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import Cart from '../subcomponents/cart.jsx';
+import Cart from './cart.jsx';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -35,7 +35,10 @@ class ShoppingCart extends React.Component {
         </button>
 
         {this.props.cart.map((item, index) => (
-          <Cart item={item} key={index} />
+          <Cart
+            item={item}
+            key={index}
+          />
         ))}
 
         <br />

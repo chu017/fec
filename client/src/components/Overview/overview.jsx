@@ -7,7 +7,7 @@
 import React from 'react';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
-import ShoppingCart from './addToCart/shoppingCart.jsx';
+import ShoppingCart from './Subcomponents/addToCart/shoppingCart.jsx';
 import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {

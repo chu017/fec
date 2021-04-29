@@ -6,12 +6,12 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
-import Header from './header.jsx';
-import ProductInfoOne from './productInfo/productInfoOne.jsx';
-import ImageGallery from './imageGallery/imageGallery.jsx';
-import StyleSelector from './styleSelector/styleSelector.jsx';
-import AddToCart from './addToCart/addToCart.jsx';
-import ProductInfoTwo from './productInfo/productInfoTwo.jsx';
+import Header from './Subcomponents/header.jsx';
+import ProductInfoOne from './Subcomponents/productInfo/productInfoOne.jsx';
+import ImageGallery from './Subcomponents/imageGallery/imageGallery.jsx';
+import StyleSelector from './Subcomponents/styleSelector/styleSelector.jsx';
+import AddToCart from './Subcomponents/addToCart/addToCart.jsx';
+import ProductInfoTwo from './Subcomponents/productInfo/productInfoTwo.jsx';
 
 const OverviewDefault = class extends React.Component {
   constructor(props) {

@@ -23,9 +23,9 @@ class App extends React.Component {
 
     this.refreshOutfit = this.refreshOutfit.bind(this);
     this.toggleColorMode = this.toggleColorMode.bind(this);
-
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
+    this.updateRatingPercentage = this.updateRatingPercentage.bind(this);
   }
 
   componentDidMount() {
@@ -111,6 +111,10 @@ class App extends React.Component {
     } else {
       this.setState({ colorMode: 'light' });
     }
+  }
+
+  updateRatingPercentage(percentage) {
+    this.setState({ rating: percentage });
   }
 
   refreshOutfit() {
@@ -233,7 +237,6 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
-              clickHandler={this.clickHandler}
             />
           )
           : <div />}

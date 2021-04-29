@@ -10,12 +10,18 @@ class ProductCharacteristics extends React.Component {
 
     this.produceRadioButtons = this.produceRadioButtons.bind(this);
     this.setDescription = this.setDescription.bind(this);
+    this.addToFormState = this.addToFormState.bind(this);
+  }
+
+  addToFormState(e) {
+    this.props.addToParentState(this.props.name, this.state.description[e.target.value]);
   }
 
   setDescription(e) {
     this.setState({
       displayDescription: this.state.description[e.target.value],
     });
+    this.addToFormState(e);
   }
 
   produceRadioButtons() {

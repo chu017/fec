@@ -8,12 +8,13 @@ class ReviewForm extends React.Component {
     super(props);
 
     this.state = {
-      reviewSummary: '',
-      reviewBody: '',
+      summary: '',
+      body: '',
       email: '',
       nickname: '',
       starInnerWidth: 0,
       formStars: [],
+      characteristics: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +24,8 @@ class ReviewForm extends React.Component {
     this.setStarRating = this.setStarRating.bind(this);
     this.produceProductCharacteristics = this.produceProductCharacteristics.bind(this);
     this.displayErrorMessage = this.displayErrorMessage.bind(this);
+    this.addCharacteristicsToState = this.addCharacteristicsToState.bind(this);
+    this.updateRecommend = this.updateRecommend.bind(this);
   }
 
   componentDidMount() {
@@ -32,8 +35,8 @@ class ReviewForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const errorMessage = 'You must enter the folowing';
-    if (!this.state.reviewSummary.length ||
-      !this.state.reviewBody.length ||
+    if (!this.state.summary.length ||
+      !this.state.body.length ||
       !this.state.email.length ||
       !this.state.nickname.length) {
       console.log('yay');
@@ -60,6 +63,14 @@ class ReviewForm extends React.Component {
     this.setState({
       starsToFill: +e.target.id,
     }, () => this.starProducer());
+  }
+
+  addCharacteristicsToState(name, description) {
+    const characteristics = this.state.characteristics;
+    characteristics[name] = description;
+    this.setState({
+      characteristics,
+    });
   }
 
   starProducer() {
@@ -93,6 +104,13 @@ class ReviewForm extends React.Component {
     }
     this.setState({
       formStars: stars,
+      rating: stars.length,
+    });
+  }
+
+  updateRecommend(recommendation) {
+    this.setState({
+      recommend: recommendation,
     });
   }
 
@@ -103,7 +121,7 @@ class ReviewForm extends React.Component {
     for (let i = 0; i < table.length; i++) {
       currentRow = table[i];
       rows.push(
-        <ProductCharacteristics name={currentRow[0]} description={currentRow} />,
+        <ProductCharacteristics addToParentState={this.addCharacteristicsToState} name={currentRow[0]} description={currentRow} />,
       );
     }
     return rows;
@@ -148,18 +166,17 @@ class ReviewForm extends React.Component {
         <form className="form" onSubmit={this.handleSubmit}>
           <button onClick={this.hideForm} className="exit-form" type="button">X</button>
           <h3 className="write-review-heading">Write Your Review</h3>
-          <h4 style={error}>{this.displayErrorMessage()}</h4>
           <h4>About the product:</h4>
           <div className="form-inputs-container">
             <div className="form-row form-top-row">
               <label className="form-label">
                 Do you recommend this product?:
                 <label className="radio-label">
-                  <input type="radio" value="Yes" name="gender" />
+                  <input onClick={this.updateRecommend(true)} type="radio" value="Yes" name="gender" />
                   Yes
                 </label>
                 <label className="radio-label">
-                  <input type="radio" value="No" name="gender" />
+                  <input onClick={this.updateRecommend(false)} type="radio" value="No" name="gender" />
                   No
                 </label>
               </label>
@@ -183,12 +200,12 @@ class ReviewForm extends React.Component {
                 <textarea
                   className="text-inputs"
                   type="text"
-                  value={this.state.reviewSummary}
+                  value={this.state.summary}
                   placeholder="Example: Best Purchase Ever!"
                   maxLength="60"
                   rows="2"
                   onChange={this.handleChange}
-                  name="reviewSummary"
+                  name="summary"
                 />
               </label>
             </div>
@@ -198,12 +215,12 @@ class ReviewForm extends React.Component {
                 <textarea
                   className="text-inputs review-body"
                   type="text"
-                  value={this.state.reviewBody}
+                  value={this.state.body}
                   placeholder="Why did you like the product or not?"
                   minLength="50"
                   rows="6"
                   onChange={this.handleChange}
-                  name="reviewBody"
+                  name="body"
                 />
               </label>
             </div>
@@ -236,6 +253,7 @@ class ReviewForm extends React.Component {
               </label>
             </div>
           </div>
+          <h4 style={error}>{this.displayErrorMessage()}</h4>
           <input className="submit-form" type="submit" value="Submit" />
         </form>
         <div onClick={this.hideForm} className="form-cover"></div>

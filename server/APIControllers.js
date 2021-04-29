@@ -1,0 +1,24 @@
+const overviewHandler = require('./AtelierHandler/overviewHandler.js');
+const reviewHandler = require('./AtelierHandler/reviewHandler');
+const qaHandler = require('./AtelierHandler/qaHandler.js');
+const relatedHandler = require('./AtelierHandler/relatedHandler.js');
+const outfitHandler = require('./AtelierHandler/outfitHandler.js');
+const helpfulReportHandler = require('./AtelierHandler/helpfulReportHandler');
+const addHandler = require('./AtelierHandler/addHandler');
+const interactionHandler = require('./AtelierHandler/interactionHandler');
+
+module.exports.overviewHandler = overviewHandler;
+module.exports.reviewHandler = reviewHandler;
+module.exports.qaHandler = qaHandler;
+module.exports.relatedHandler = relatedHandler;
+module.exports.outfitHandler = outfitHandler;
+module.exports.interactionHandler = interactionHandler;
+module.exports.questionHelpful = helpfulReportHandler.questionHelpful;
+module.exports.answerHelpful = helpfulReportHandler.answerHelpful;
+module.exports.reviewHelpful = helpfulReportHandler.reviewHelpful;
+module.exports.questionReport = helpfulReportHandler.questionReport;
+module.exports.answerReport = helpfulReportHandler.answerReport;
+module.exports.reviewReport = helpfulReportHandler.reviewReport;
+module.exports.questionAdd = addHandler.questionAdd;
+module.exports.answerAdd = addHandler.answerAdd;
+module.exports.reviewAdd = addHandler.reviewAdd;

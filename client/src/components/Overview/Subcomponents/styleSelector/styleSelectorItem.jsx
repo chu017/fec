@@ -18,7 +18,6 @@ const StyleSelectorItem = class extends React.Component {
     const widget = 'overview';
     const photos = this.props.item;
     this.props.selectStyle(photos);
-    this.props.addOutfit(photos);
     this.props.clickHandler(element, widget);
   }
 

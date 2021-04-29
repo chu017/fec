@@ -31,7 +31,6 @@ const StyleSelector = class extends React.Component {
               item={item}
               key={i}
               selectStyle={this.props.selectStyle}
-              addOutfit={this.props.addOutfit}
               clickHandler={this.props.clickHandler}
             />
         ))}

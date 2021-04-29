@@ -19,51 +19,50 @@ const AddToCart = class extends React.Component {
       size_num: 8,
       quantity: null,
       sku_id: null,
+      style_id: null,
     };
 
     this.addToCart = this.addToCart.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
   }
 
-  componentDidMount() {
-    // const URL = window.location.href;
-    // console.log(URL);
-    $.ajax({
-      url: '/api/cart',
-      type: 'GET',
-      success: (responseData) => this.setState({ cart: responseData }),
-    });
-  }
-
-  addToCart() {
+  addToCart(id) {
     // get cart
-    let object = JSON.parse(localStorage.getItem('cart'));
-    console.log(object);
-    this.currentCart = this.currentCart.push(object);
-    const cart = { size: this.state.size, quantity: this.state.quantity };
-    console.log(this.currentCart);
+    this.setState({ style_id: this.props.style.style_id });
+    const { getCart } = this.props;
+    let string = localStorage.getItem('cart');
+    console.log('current cart: ', string);
     // save cart
-    localStorage.setItem('cart', currentCart);
-    this.props.getCart();
+    if (string === null) {
+      localStorage.setItem('cart', id.toString());
+    } else {
+      this.currentCart = string.split(',');
+      if (this.currentCart.indexOf(id.toString()) === -1) {
+        this.currentCart.push(id.toString());
+        localStorage.setItem('cart', this.currentCart);
+      } else {
+        localStorage.setItem('cart', id.toString());
+      // this.getCart();
+      }
+    }
+    // this.getCart();
   }
 
   addToOutfit(id) {
     const { refreshOutfit } = this.props;
     const string = localStorage.getItem('outfit');
-    // console.log('add start:', id, string, string.split(','));
-
-    this.currentOutfit = string.split(',');
-    if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
-      this.currentOutfit.push(id.toString());
-      localStorage.setItem('outfit', this.currentOutfit);
-      // console.log('add end: ', this.currentOutfit);
-    } else {
+    if (string === null) {
       localStorage.setItem('outfit', id.toString());
-      // console.log('storage empty, added this: ', id.toString());
-
-      refreshOutfit();
+    } else {
+      this.currentOutfit = string.split(',');
+      if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
+        this.currentOutfit.push(id.toString());
+        localStorage.setItem('outfit', this.currentOutfit);
+        refreshOutfit();
+      } else {
+        localStorage.setItem('outfit', id.toString());
+      }
     }
-
     refreshOutfit();
   }
 
@@ -126,7 +125,7 @@ const AddToCart = class extends React.Component {
         <button
           type="button"
           className="button-bag"
-          onClick={this.addToCart}
+          onClick={() => { this.addToCart(id); }}
         >
           Add to Bag
         </button>

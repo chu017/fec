@@ -22,8 +22,8 @@ class Cart extends React.Component {
           <h2>Product: Camo Onesie</h2>
           <div>Style: Camo Onesie</div>
           <div>Sale price: $140</div>
-          <div>Size: {this.props.item.size}</div>
-          <div>Quntity: {this.props.item.quantity}</div>
+          <div>Size: {this.props.item.sku_id}</div>
+          <div>Quntity: {this.props.item.count}</div>
         </div>
 
       </div>

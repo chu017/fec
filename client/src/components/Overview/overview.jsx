@@ -8,7 +8,7 @@ import React from 'react';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
 import ShoppingCart from './Subcomponents/addToCart/shoppingCart.jsx';
-import sampleDataOutfit from '../sampleData_outfit.js';
+// import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ const Overview = class extends React.Component {
       style_photos: this.props.data.styles.results[0],
       defaultView: true,
       show: false,
-      cart: sampleDataOutfit.outfits,
     };
 
     this.getCart = this.getCart.bind(this);
@@ -26,11 +25,16 @@ const Overview = class extends React.Component {
     this.showCart = this.showCart.bind(this);
   }
 
+  componentDidMount() {
+    this.getCart();
+  }
+
   getCart() {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart) {
-      this.setState({ cart: [cart, ...this.state.cart] });
-    }
+    $.ajax({
+      url: '/api/cart',
+      type: 'GET',
+      success: (responseData) => this.setState({ cart: responseData }),
+    });
   }
 
   selectStyle(photos) {

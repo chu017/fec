@@ -47,6 +47,13 @@ app.get('/api/related/:product_id', (req, res) => {
   }, (productData) => res.send(productData));
 });
 
+app.get('/api/cart', (req, res) => {
+  APIControllers.cartHandler(req, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
+});
+
 app.post('/outfit', (req, res) => {
   let outfit = req.body.outfitIDs.split(',');
   APIControllers.outfitHandler(outfit, (err) => {

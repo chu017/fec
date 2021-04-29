@@ -6,6 +6,7 @@ const outfitHandler = require('./AtelierHandler/outfitHandler.js');
 const helpfulReportHandler = require('./AtelierHandler/helpfulReportHandler');
 const addHandler = require('./AtelierHandler/addHandler');
 const interactionHandler = require('./AtelierHandler/interactionHandler');
+const cartHandler = require('./AtelierHandler/cartHandler.js');
 
 module.exports.overviewHandler = overviewHandler;
 module.exports.reviewHandler = reviewHandler;
@@ -22,3 +23,4 @@ module.exports.reviewReport = helpfulReportHandler.reviewReport;
 module.exports.questionAdd = addHandler.questionAdd;
 module.exports.answerAdd = addHandler.answerAdd;
 module.exports.reviewAdd = addHandler.reviewAdd;
+module.exports.cartHandler = cartHandler;

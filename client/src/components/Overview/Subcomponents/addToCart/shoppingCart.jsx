@@ -22,9 +22,9 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
+    const { cart } = this.props.cart;
     return (
       <div className="shopping-container">
-
         <h2>YOUR BAG</h2>
         <button
           type="button"
@@ -34,7 +34,7 @@ class ShoppingCart extends React.Component {
           Back
         </button>
 
-        {this.props.cart.map((item, index) => (
+        {cart.map((item, index) => (
           <Cart
             item={item}
             key={index}

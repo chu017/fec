@@ -17,15 +17,7 @@ const OverviewDefault = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfit: null,
     };
-
-    this.addOutfit = this.addOutfit.bind(this);
-  }
-
-  addOutfit(newOutfit) {
-    const outfit = newOutfit;
-    this.setState({ outfit });
   }
 
   render() {
@@ -62,16 +54,14 @@ const OverviewDefault = class extends React.Component {
             photos={this.props.style}
             selectStyle={this.props.selectStyle}
             clickHandler={this.props.clickHandler}
-            addOutfit={this.addOutfit}
           />
           <br />
           <AddToCart
             data={this.props.data}
             style={this.props.style}
+            outfit={this.state.outfit}
             refreshOutfit={this.props.refreshOutfit}
             clickHandler={this.props.clickHandler}
-            getOutfit={this.props.getOutfit}
-            outfit={this.state.outfit}
             getCart={this.props.getCart}
           />
         </div>

@@ -2,8 +2,11 @@ import $ from 'jquery';
 
 const AddCart = (skuID, cb) => {
   $.ajax({
-    url: `/cart/${skuID}`,
+    url: '/cart',
     type: 'POST',
+    data: {
+      sku_id: skuID,
+    },
     success: (data) => cb(data),
   });
 };

@@ -10,6 +10,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import Func from '../helpers.js';
+import AddCart from '../APIHandlers/addCart.js';
 
 const AddToCart = class extends React.Component {
   constructor(props) {
@@ -17,8 +18,8 @@ const AddToCart = class extends React.Component {
     this.state = {
       size: 'XS',
       size_num: 8,
+      skuID: null,
       quantity: null,
-      sku_id: null,
       style_id: null,
     };
 
@@ -28,6 +29,7 @@ const AddToCart = class extends React.Component {
 
   addToCart(id) {
     // get cart
+    const { skuID } = this.state;
     this.setState({ style_id: this.props.style.style_id });
     const { getCart } = this.props;
     let string = localStorage.getItem('cart');
@@ -42,7 +44,9 @@ const AddToCart = class extends React.Component {
         localStorage.setItem('cart', this.currentCart);
       } else {
         localStorage.setItem('cart', id.toString());
-      // this.getCart();
+
+        AddCart(skuID, () => {});
+        // this.props.getCart(skuID);
       }
     }
     // this.getCart();
@@ -75,11 +79,13 @@ const AddToCart = class extends React.Component {
         <select
           className="select-size"
           onChange={(e) => {
-            const size = JSON.parse(e.target.value).size;
-            const quantity = JSON.parse(e.target.value).quantity;
+            const skuID = JSON.parse(e.target.value)[0];
+            const size = JSON.parse(e.target.value)[1].size;
+            const quantity = JSON.parse(e.target.value)[1].quantity;
             this.setState({
               size,
               size_num: quantity,
+              skuID,
             });
           }}
         >
@@ -87,7 +93,7 @@ const AddToCart = class extends React.Component {
           {Func.convertObjToArray(this.props.style.skus).map((item) => (
             <option
               key={item[0]}
-              value={JSON.stringify(item[1])}
+              value={JSON.stringify(item)}
             >
               {item[1].size}
             </option>
@@ -145,3 +151,18 @@ const AddToCart = class extends React.Component {
 };
 
 export default AddToCart;
+
+/*
+          {Func.convertObjToArray(this.props.style.skus).map((item) => {
+            console.log(item);
+            return (
+              <option
+                key={item[0]}
+                value={JSON.stringify(item)}
+                // value={JSON.stringify(item[1])}
+              >
+                {item[1].size}
+              </option>
+            );
+          })}
+*/

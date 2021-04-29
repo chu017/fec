@@ -47,16 +47,16 @@ app.get('/api/related/:product_id', (req, res) => {
   }, (productData) => res.send(productData));
 });
 
-app.get('/api/cart', (req, res) => {
-  APIControllers.cartHandler(req, (err) => {
+app.post('/outfit', (req, res) => {
+  let outfit = req.body.outfitIDs.split(',');
+  APIControllers.outfitHandler(outfit, (err) => {
     res.status(404);
     res.end();
   }, (productData) => res.send(productData));
 });
 
-app.post('/outfit', (req, res) => {
-  let outfit = req.body.outfitIDs.split(',');
-  APIControllers.outfitHandler(outfit, (err) => {
+app.get('/api/cart', (req, res) => {
+  APIControllers.cartHandler(req, (err) => {
     res.status(404);
     res.end();
   }, (productData) => res.send(productData));
@@ -86,6 +86,8 @@ app.post('/interactions', (req, res) => {
     res.end();
   }, () => res.end());
 });
+
+app.post('/cart', APIControllers.cartAdd);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

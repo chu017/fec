@@ -8,6 +8,7 @@ import React from 'react';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
 import ShoppingCart from './Subcomponents/addToCart/shoppingCart.jsx';
+import AddCart from './Subcomponents/APIHandlers/addCart.js';
 // import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {
@@ -30,16 +31,12 @@ const Overview = class extends React.Component {
   }
 
   getCart() {
+    const cartIDs = localStorage.getItem('cart');
     $.ajax({
       url: '/api/cart',
       type: 'GET',
+      data: { cartIDs },
       success: (responseData) => this.setState({ cart: responseData }),
-    });
-  }
-
-  selectStyle(photos) {
-    this.setState({
-      style_photos: photos,
     });
   }
 
@@ -52,6 +49,12 @@ const Overview = class extends React.Component {
   showCart() {
     this.setState({
       show: !this.state.show,
+    });
+  }
+
+  selectStyle(photos) {
+    this.setState({
+      style_photos: photos,
     });
   }
 

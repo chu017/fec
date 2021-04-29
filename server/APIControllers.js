@@ -24,3 +24,4 @@ module.exports.questionAdd = addHandler.questionAdd;
 module.exports.answerAdd = addHandler.answerAdd;
 module.exports.reviewAdd = addHandler.reviewAdd;
 module.exports.cartHandler = cartHandler;
+module.exports.cartAdd = addHandler.cartAdd;

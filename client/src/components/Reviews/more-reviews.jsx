@@ -11,6 +11,7 @@ class MoreReviews extends React.Component {
 
   handleClick() {
     this.props.addPosts(this.props.prevPosts);
+    this.props.clickTracking('more-reviews-button', 'Reviews');
   }
 
   render() {

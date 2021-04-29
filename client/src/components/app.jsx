@@ -92,6 +92,7 @@ class App extends React.Component {
   }
   // eslint-disable-next-line class-methods-use-this
   clickHandler(element, widget) {
+    console.log('click handler:', element, widget)
     const data = {
       element,
       widget,
@@ -145,11 +146,9 @@ class App extends React.Component {
 
   addToOutfit(id) {
     const { outfitData } = this.state;
-    // console.log(outfitData);
     const {
       product, styles, reviews,
     } = this.state.data;
-    // eslint-disable-next-line no-undef
     const string = localStorage.getItem('outfit');
     this.currentOutfit = string.split(',');
     if (this.currentOutfit[0] !== '' && this.currentOutfit.indexOf(id.toString()) === -1) {
@@ -221,22 +220,17 @@ class App extends React.Component {
         {this.state.overview
           ? <Overview data={this.state.data} key={Math.random() * 1000000} />
           : <div />}
-        {this.state.related
-          ? <Related data={this.state.data} key={Math.random() * 1000000} />
-          : <div />}
-        {this.state.qa
-          ? <QA data={this.state.data} key={Math.random() * 1000000} />
-          : <div />} */}
         {this.state.reviews
           ? (
             <Reviews
               data={this.state.data}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}
-        {this.state.reviews
+        {this.state.qa
           ? (
             <QA
               data={this.state.data}
@@ -263,6 +257,7 @@ class App extends React.Component {
           : <div />}
       </div>
     );
+  }
 }
 
 export default App;

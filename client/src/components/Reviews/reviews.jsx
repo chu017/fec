@@ -64,9 +64,9 @@ class Reviews extends React.Component {
   }
 
   changeFormState(formState) {
-    // this.setState({
-    //   renderForm: formState,
-    // });
+    this.setState({
+      renderForm: formState,
+    });
   }
 
   addPosts(prevPosts) {
@@ -92,7 +92,7 @@ class Reviews extends React.Component {
   renderReviewForm() {
     if (this.state.renderForm) {
       return (
-        <ReviewForm hideForm={this.changeFormState} />
+        <ReviewForm clickTracking={this.props.clickHandler} hideForm={this.changeFormState} />
       );
     }
     return (<div />);
@@ -116,6 +116,7 @@ class Reviews extends React.Component {
             response={result.response}
             helpfulness={result.helpfulness}
             review_id={result.review_id}
+            clickTracking={this.props.clickHandler}
           />);
       }
       return this.state.sortedResults
@@ -132,6 +133,7 @@ class Reviews extends React.Component {
           response={result.response}
           helpfulness={result.helpfulness}
           review_id={result.review_id}
+          clickTracking={this.props.clickHandler}
         />);
     };
 
@@ -139,6 +141,7 @@ class Reviews extends React.Component {
       <div className="reviews">
         <div className="reviews-col-1">
           <RatingsReviews
+            clickTracking={this.props.clickHandler}
             filterBy={this.state.filterBy}
             addPosts={this.addPosts}
             filter={this.filterReviews}
@@ -148,6 +151,7 @@ class Reviews extends React.Component {
         </div>
         <div className="reviews-col-2">
           <SortBy
+            clickTracking={this.props.clickHandler}
             selected={this.state.selected}
             data={this.props.data}
             changeSelected={this.changeSelected}
@@ -155,14 +159,19 @@ class Reviews extends React.Component {
           {renderReviewPosts()}
           <div className="reviews-btn-row">
             <MoreReviews
+              clickTracking={this.props.clickHandler}
               prevPosts={this.state.showPosts}
               addPosts={this.addPosts}
               data={this.props.data}
             />
-            <AddReview changeFormState={this.changeFormState} data={this.props.data} />
+            <AddReview
+              clickTracking={this.props.clickHandler}
+              changeFormState={this.changeFormState}
+              data={this.props.data}
+            />
           </div>
         </div>
-        <ReviewForm hideForm={this.changeFormState} />
+        {this.renderReviewForm()}
       </div>
     );
   }

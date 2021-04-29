@@ -48,7 +48,7 @@ class RatingsReviews extends React.Component {
     const ratingPercentage = helpers.getRatingPercentage(this.state.avgRating);
     this.setState({
       ratingPercentage,
-    }, this.renderProductBreakdown());
+    }, () => this.renderProductBreakdown());
   }
 
   getRecommendationPercentage() {
@@ -124,6 +124,7 @@ class RatingsReviews extends React.Component {
 
   showFilters() {
     if (this.props.filterBy.length) {
+      this.props.clickTracking(`${this.props.filterBy} star rating filter in ratings breakdown`, 'Reviews');
       return (
         <div>
           <div className="underline filters-applied-title">Filters Applied:</div>

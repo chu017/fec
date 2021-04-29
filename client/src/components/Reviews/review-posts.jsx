@@ -43,6 +43,7 @@ class ReviewPosts extends React.Component {
         helpfulness: currentHelpfulness + 1,
       });
     });
+    this.props.clickTracking('helpfulness button inside review posts', 'Reviews');
   }
 
   renderReviewImages() {

@@ -18,7 +18,8 @@ const Overview = class extends React.Component {
       style_photos: this.props.data.styles.results[0],
       defaultView: true,
       show: false,
-      cartData: null,
+      cart: null,
+      dataReady: false,
     };
 
     this.getCart = this.getCart.bind(this);
@@ -28,6 +29,9 @@ const Overview = class extends React.Component {
   }
 
   componentDidMount() {
+    const { cartData } = this.props;
+    console.log('overview DidMount: ', cartData);
+
     this.getCart();
   }
 
@@ -37,7 +41,12 @@ const Overview = class extends React.Component {
       url: '/api/cart',
       type: 'POST',
       data: { cartIDs },
-      success: (responseData) => this.setState({ cartData: responseData }),
+      success: (responseData) => this.setState({
+        cart: responseData,
+      }, () => {
+        this.setState({ dataReady: true });
+        console.log("dataReady");
+      }),
     });
   }
 
@@ -65,8 +74,9 @@ const Overview = class extends React.Component {
       outfitData,
       refreshOutfit,
       ratingPercentage,
+      cartData,
     } = this.props;
-    console.log(this.state.cartData);
+    console.log('overview render: ', cartData, this.state.cart);
 
     return (
       <div>
@@ -85,7 +95,7 @@ const Overview = class extends React.Component {
               selectStyle={this.selectStyle}
               expandView={this.expandView}
               showCart={this.showCart}
-              getCart={this.getCart}
+              // getCart={this.getCart}
             />
           )}
 
@@ -102,11 +112,11 @@ const Overview = class extends React.Component {
         </div>
         )}
 
-        {this.state.show === true && (
+        {this.state.show === true && this.state.dataReady === true && (
           <div>
             <ShoppingCart
               show={this.state.show}
-              cartStyles={cartStyles}
+              cart={this.state.cart}
               style={this.state.style_photos}
               clickHandler={this.props.clickHandler}
               onClose={this.showCart}

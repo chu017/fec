@@ -17,13 +17,18 @@ class ShoppingCart extends React.Component {
     this.onClose = this.onClose.bind(this);
   }
 
+  componentDidMount() {
+    const { cart } = this.props;
+    console.log('shoppingcart DidMount: ', cart);
+  }
+
   onClose() {
     this.props.onClose();
   }
 
   render() {
-    const { cartStyles } = this.props.cartStyles;
-    console.log(cartStyles);
+    const { cart } = this.props.cartData;
+    console.log(cart);
     return (
       <div className="shopping-container">
         <h2>YOUR BAG</h2>

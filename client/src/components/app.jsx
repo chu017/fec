@@ -17,6 +17,7 @@ class App extends React.Component {
       qa: false,
       reviews: false,
       outfitData: [],
+      cartData: [],
       colorMode: 'light',
     };
 
@@ -33,6 +34,7 @@ class App extends React.Component {
     const URL = window.location.href;
     const productID = URL.split('products/')[1].split('/')[0];
     const outfitIDs = localStorage.getItem('outfit');
+    const cartIDs = localStorage.getItem('cart');
     $.ajax({
       url: `/api/overview/${productID}`,
     })
@@ -84,6 +86,16 @@ class App extends React.Component {
         this.setState({
           outfitData: data.outfit,
           related: true,
+        });
+        return $.ajax({
+          url: '/api/cart',
+          type: 'POST',
+          data: { cartIDs },
+        });
+      })
+      .then((data) => {
+        this.setState({
+          cartData: data.cart,
         });
       })
       .catch(() => {
@@ -245,6 +257,7 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               outfitData={this.state.outfitData}
+              cartData={this.state.carData}
               refreshOutfit={this.refreshOutfit}
               addToOutfit={this.addToOutfit}
               toggleColorMode={this.toggleColorMode}

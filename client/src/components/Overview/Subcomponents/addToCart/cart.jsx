@@ -16,13 +16,14 @@ class Cart extends React.Component {
     return (
       <div className="cart">
 
-        <img className="cart-img" alt="" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" />
+        {/* <img className="cart-img" alt="" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" /> */}
 
         <div className="cart-text">
-          <h2>Product: Camo Onesie</h2>
-          <div>Style: Camo Onesie</div>
-          <div>Sale price: $140</div>
-          <div>Size: {this.props.item.sku_id}</div>
+          {/* <h2>Product: Camo Onesie</h2>
+          <div>Style: Camo Onesie</div> */}
+          <div>SKU: {this.props.item.sku_id}</div>
+          {/* <div>Sale price: $140</div>
+          <div>Size: M</div> */}
           <div>Quntity: {this.props.item.count}</div>
         </div>
 

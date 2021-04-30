@@ -42,10 +42,18 @@ const Overview = class extends React.Component {
       type: 'POST',
       data: { cartIDs },
       success: (responseData) => this.setState({
-        cart: responseData,
+        cart: responseData.cart,
       }, () => {
         this.setState({ dataReady: true });
-        console.log("dataReady");
+        console.log("dataReady", this.state.cart);
+      }),
+    });
+
+    $.ajax({
+      url: '/cart',
+      type: 'GET',
+      success: (responseData) => this.setState({
+        cartInfo: responseData.cart,
       }),
     });
   }
@@ -74,9 +82,13 @@ const Overview = class extends React.Component {
       outfitData,
       refreshOutfit,
       ratingPercentage,
-      cartData,
     } = this.props;
-    console.log('overview render: ', cartData, this.state.cart);
+    // const {
+    //   cartInformation,
+    //   cartStyles,
+    // } = this.state.cart;
+
+    console.log('overview render: ', this.state.cart);
 
     return (
       <div>
@@ -96,7 +108,6 @@ const Overview = class extends React.Component {
               selectStyle={this.selectStyle}
               expandView={this.expandView}
               showCart={this.showCart}
-              // getCart={this.getCart}
             />
           )}
 
@@ -117,10 +128,13 @@ const Overview = class extends React.Component {
           <div>
             <ShoppingCart
               show={this.state.show}
+              cartInfo={this.state.cartInfo}
               cart={this.state.cart}
               style={this.state.style_photos}
               clickHandler={this.props.clickHandler}
               onClose={this.showCart}
+              dataReady={this.state.dataReady}
+              // getCart={this.getCart}
             >
               My Shopping Cart
             </ShoppingCart>

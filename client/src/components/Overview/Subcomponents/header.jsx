@@ -55,7 +55,7 @@ const Header = class extends React.Component {
 
         <div className="header-right">
 
-          {this.props.dataReady === true && (
+          {/* {this.props.dataReady === true && ( */}
             <button
               type="button"
               className="shopping-bag"
@@ -63,7 +63,7 @@ const Header = class extends React.Component {
             >
               Bag
             </button>
-          )}
+          {/* )} */}
 
           <div className="search">
             search:

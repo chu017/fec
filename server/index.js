@@ -56,7 +56,14 @@ app.post('/outfit', (req, res) => {
 });
 
 app.post('/api/cart', (req, res) => {
-  APIControllers.cartHandler(req, (err) => {
+  APIControllers.cartPostHandler(req, (err) => {
+    res.status(404);
+    res.end();
+  }, (productData) => res.send(productData));
+});
+
+app.get('/cart', (req, res) => {
+  APIControllers.cartGetHandler(req, (err) => {
     res.status(404);
     res.end();
   }, (productData) => res.send(productData));

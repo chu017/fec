@@ -18,8 +18,13 @@ class ShoppingCart extends React.Component {
   }
 
   componentDidMount() {
+    const cartIDs = localStorage.getItem('cart');
+    const cartID = cartIDs.split(',');
     const { cart } = this.props;
-    console.log('shoppingcart DidMount: ', cart);
+    const { cartInformation, cartStyles } = cart;
+    console.log('shoppingcart DidMount: ', cartID, cartInformation[0]);
+
+    this.setState({ infor: cartInformation[0], style: cartStyles[0] });
   }
 
   onClose() {
@@ -27,10 +32,10 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { cart } = this.props.cartData;
-    console.log(cart);
+    // console.log(this.state.infor);
     return (
       <div className="shopping-container">
+        {this.props.dataReady === true && (<div>Data Ready</div>)}
         <h2>YOUR BAG</h2>
         <button
           type="button"
@@ -40,12 +45,12 @@ class ShoppingCart extends React.Component {
           Back
         </button>
 
-        {/* {cart.map((item, index) => (
+        {this.props.cartInfo.map((item, index) => (
           <Cart
             item={item}
             key={index}
           />
-        ))} */}
+        ))}
 
         <br />
 

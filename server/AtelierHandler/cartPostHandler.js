@@ -2,7 +2,7 @@ const axios = require('axios');
 const API_KEY = require('../config.js');
 const baseURL = require('./AtelierConfig.js');
 
-const cartHandler = (req, errorCB, successCB) => {
+const cartPostHandler = (req, errorCB, successCB) => {
   const cartData = {};
   // console.log(req.body.cartIDs);
   const { cartIDs } = req.body;
@@ -35,26 +35,12 @@ const cartHandler = (req, errorCB, successCB) => {
         // console.log("second loop: ", response[i].data);
         cartData.cart.cartStyles.push(response[i].data);
       }
-      console.log("final data: ", cartData);
+      // console.log("final data: ", cartData);
       successCB(cartData);
     })
     .catch((response) => {
       errorCB(response);
     });
-
-  // axios({
-  //   method: 'get',
-  //   url: `${baseURL}/cart`,
-  //   headers: { Authorization: API_KEY },
-  // })
-  //   .then((response) => {
-  //     console.log(response);
-  //     productData.cart = response.data;
-  //     successCB(productData);
-  //   })
-  //   .catch((response) => {
-  //     errorCB(response);
-  //   });
 };
 
-module.exports = cartHandler;
+module.exports = cartPostHandler;

@@ -229,7 +229,7 @@ class App extends React.Component {
             />
           )
           : <div />}
-        {this.state.reviews
+        {this.state.qa
           ? (
             <QA
               data={this.state.data}

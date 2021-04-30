@@ -10,6 +10,7 @@ class ReviewPosts extends React.Component {
   }
 
   change(e) {
+    console.log(e.target)
     this.props.changeSelected(e.target.value);
     this.props.clickTracking(`${e.target.value} in sort-drop-down`, 'Reviews');
   }

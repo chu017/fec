@@ -226,11 +226,10 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
-              clickHandler={this.clickHandler}
             />
           )
           : <div />}
-        {this.state.qa
+        {this.state.reviews
           ? (
             <QA
               data={this.state.data}

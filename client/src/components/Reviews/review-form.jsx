@@ -76,6 +76,14 @@ class ReviewForm extends React.Component {
     });
   }
 
+  addCharacteristicsToState(name, description) {
+    const characteristics = this.state.characteristics;
+    characteristics[name] = description;
+    this.setState({
+      characteristics,
+    });
+  }
+
   starProducer() {
     const stars = [];
     const darkStar = {

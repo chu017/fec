@@ -89,6 +89,26 @@ class Reviews extends React.Component {
     });
   }
 
+  addPosts(prevPosts) {
+    this.setState({
+      showPosts: prevPosts + 2,
+    });
+  }
+
+  filterReviews(newFilter) {
+    let filterByArr = this.state.filterBy;
+    if (!newFilter) {
+      filterByArr = [];
+    } else if (filterByArr.includes(newFilter)) {
+      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
+    } else {
+      filterByArr.push(newFilter);
+    }
+    this.setState({
+      filterBy: filterByArr,
+    });
+  }
+
   renderReviewForm() {
     if (this.state.renderForm) {
       return (

@@ -46,10 +46,9 @@ const AddToCart = class extends React.Component {
         localStorage.setItem('cart', id.toString());
 
         AddCart(skuID, () => {});
-        // this.props.getCart(skuID);
       }
     }
-    // this.getCart();
+    this.props.getCart();
   }
 
   addToOutfit(id) {

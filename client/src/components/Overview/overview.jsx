@@ -29,8 +29,8 @@ const Overview = class extends React.Component {
   }
 
   componentDidMount() {
-    const { cartData } = this.props;
-    console.log('overview DidMount: ', cartData);
+    // const { cartData } = this.props;
+    // console.log('overview DidMount: ', cartData);
 
     this.getCart();
   }
@@ -45,7 +45,7 @@ const Overview = class extends React.Component {
         cart: responseData.cart,
       }, () => {
         this.setState({ dataReady: true });
-        console.log("dataReady", this.state.cart);
+        // console.log("dataReady", this.state.cart);
       }),
     });
 
@@ -83,12 +83,6 @@ const Overview = class extends React.Component {
       refreshOutfit,
       ratingPercentage,
     } = this.props;
-    // const {
-    //   cartInformation,
-    //   cartStyles,
-    // } = this.state.cart;
-
-    console.log('overview render: ', this.state.cart);
 
     return (
       <div>
@@ -108,6 +102,7 @@ const Overview = class extends React.Component {
               selectStyle={this.selectStyle}
               expandView={this.expandView}
               showCart={this.showCart}
+              getCart={this.getCart}
             />
           )}
 
@@ -124,17 +119,17 @@ const Overview = class extends React.Component {
         </div>
         )}
 
-        {this.state.show === true && this.state.dataReady === true && (
+        {this.state.show === true && (
           <div>
             <ShoppingCart
               show={this.state.show}
+              style={this.state.style_photos}
               cartInfo={this.state.cartInfo}
               cart={this.state.cart}
-              style={this.state.style_photos}
+              dataReady={this.state.dataReady}
               clickHandler={this.props.clickHandler}
               onClose={this.showCart}
-              dataReady={this.state.dataReady}
-              // getCart={this.getCart}
+              getCart={this.getCart}
             >
               My Shopping Cart
             </ShoppingCart>

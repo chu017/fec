@@ -12,6 +12,9 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      sortedProductData: [],
+      sortedCartData: [],
+      readyToRender: false,
     };
 
     this.onClose = this.onClose.bind(this);
@@ -22,9 +25,28 @@ class ShoppingCart extends React.Component {
     const cartID = cartIDs.split(',');
     const { cart } = this.props;
     const { cartInformation, cartStyles } = cart;
-    console.log('shoppingcart DidMount: ', cartID, cartInformation[0]);
 
-    this.setState({ infor: cartInformation[0], style: cartStyles[0] });
+    const { cartInfo } = this.props;
+
+    console.log('shoppingcart Cart: ', cartInformation, cartStyles);
+    console.log('shoppingcart CartInfo: ', cartID, cartInfo);
+
+    const newSort = [];
+    if (cartInformation && cartStyles) {
+      for (let i = 0; i < cartID.length; i += 1) {
+        newSort.push({
+          cartInformation: cartInformation[i],
+          cartStyles: cartStyles[i],
+        });
+      }
+      console.log('sorted', newSort);
+      this.setState({ sortedProductData: newSort, dataR: true });
+
+      if (this.state.dataR) {
+        console.log('shoppingcart SortedData1: ', this.state.sortedProductData);
+      }
+    }
+    console.log('shoppingcart SortedData: ', this.state.sortedProductData);
   }
 
   onClose() {
@@ -32,7 +54,35 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    // console.log(this.state.infor);
+    if (this.state.dataR) {
+      console.log('shoppingcart SortedData1: ', this.state.sortedProductData);
+    }
+
+    if (this.state.dataR) {
+      return (
+        <div className="shopping-container">
+          {this.props.dataReady === true && (<div>Data Ready</div>)}
+          <h2>YOUR BAG</h2>
+          <button
+            type="button"
+            className="shopping-button"
+            onClick={this.onClose}
+          >
+            Back
+          </button>
+
+          {this.state.sortedProductData.map((item, index) => (
+            <Cart
+              item={item}
+              key={index}
+            />
+          ))}
+
+          <br />
+
+        </div>
+      );
+    }
     return (
       <div className="shopping-container">
         {this.props.dataReady === true && (<div>Data Ready</div>)}
@@ -44,13 +94,6 @@ class ShoppingCart extends React.Component {
         >
           Back
         </button>
-
-        {this.props.cartInfo.map((item, index) => (
-          <Cart
-            item={item}
-            key={index}
-          />
-        ))}
 
         <br />
 

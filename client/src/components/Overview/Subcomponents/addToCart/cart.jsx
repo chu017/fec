@@ -13,18 +13,23 @@ class Cart extends React.Component {
   }
 
   render() {
+    const { cartInformation, cartStyles } = this.props.item;
+
+    const { results } = cartStyles;
+    const { photos } = results[0];
+    const { url } = photos[0];
     return (
       <div className="cart">
 
-        {/* <img className="cart-img" alt="" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" /> */}
+        <img className="cart-img" alt="" src={url} />
 
         <div className="cart-text">
-          {/* <h2>Product: Camo Onesie</h2>
-          <div>Style: Camo Onesie</div> */}
-          <div>SKU: {this.props.item.sku_id}</div>
-          {/* <div>Sale price: $140</div>
-          <div>Size: M</div> */}
-          <div>Quntity: {this.props.item.count}</div>
+          <h2>Product: {cartInformation.name}</h2>
+          <div>Style: {results[0].name}</div>
+          {/* <div>SKU: {this.props.item.sku_id}</div> */}
+          <div>Sale price: {results[0].original_price}</div>
+          <div>Size: M</div>
+          {/* <div>Quntity: {this.props.item.count}</div> */}
         </div>
 
       </div>

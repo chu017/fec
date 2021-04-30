@@ -97,6 +97,11 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-right: 15%;
+}
+
+.review-post-star-rating-container {
+  margin: 0;
 }
 
 .star-rating {
@@ -121,6 +126,7 @@ a {
 .recommendation-percentage {
   font-weight: 200;
   font-size: 13px;
+  width: 85%;
 }
 
 .individual-ratings-container {
@@ -440,7 +446,7 @@ h4 {
   font-family: 'Bebas Neue', cursive;
   font-size: 1.4em;
   letter-spacing: .1em;
-  margin-bottom: 5px;
+  margin: 3% 15% 0 0;
 }
 
 .exit-photo-selector {

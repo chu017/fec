@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <button
+    className="review-btn"
+    data-testid="more-reviews"
+    onClick={[Function]}
+    type="button"
+  >
+    More Reviews
+  </button>
+</div>
+`;
+
+exports[`matches snapshot 2`] = `
+<div>
+  <button
+    className="review-btn"
+    data-testid="add-review"
+    onClick={[Function]}
+    type="button"
+  >
+    Add Review
+  </button>
+</div>
+`;

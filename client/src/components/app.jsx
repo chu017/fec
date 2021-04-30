@@ -26,6 +26,7 @@ class App extends React.Component {
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.updateRatingPercentage = this.updateRatingPercentage.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   componentDidMount() {
@@ -90,9 +91,10 @@ class App extends React.Component {
         });
       });
   }
+
   // eslint-disable-next-line class-methods-use-this
   clickHandler(element, widget) {
-    console.log('click handler:', element, widget)
+    console.log('click handler:', element, widget);
     const data = {
       element,
       widget,
@@ -226,6 +228,7 @@ class App extends React.Component {
               data={this.state.data}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
+              clickHandler={this.clickHandler}
             />
           )
           : <div />}

@@ -17,7 +17,14 @@ class MoreReviews extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick} className="review-btn" type="button">More Reviews</button>
+        <button
+          onClick={this.handleClick}
+          className="review-btn"
+          type="button"
+          data-testid="more-reviews"
+        >
+          More Reviews
+        </button>
       </div>
     );
   }

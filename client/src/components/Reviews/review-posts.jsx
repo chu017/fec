@@ -57,6 +57,7 @@ class ReviewPosts extends React.Component {
     return imgTags;
   }
 
+
   renderRecommendation() {
     if (this.props.recommend) {
       return (
@@ -98,7 +99,7 @@ class ReviewPosts extends React.Component {
       <div>
         <div className="review-post">
           <div className="review-post-top-row">
-            <div className="star-rating-container">
+            <div className="star-rating-container review-post-star-rating-container">
               <div className="star-container review-post-star-rating">
                 <div className="stars-outer">
                   <div style={starInnerWidth} className="stars-inner"></div>

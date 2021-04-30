@@ -1,3 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import ProductCharacteristics from './product-characteristics.jsx';
@@ -65,15 +68,7 @@ class ReviewForm extends React.Component {
   setStarRating(e) {
     this.setState({
       starsToFill: +e.target.id,
-    });
-  }
-
-  addCharacteristicsToState(name, description) {
-    const characteristics = this.state.characteristics;
-    characteristics[name] = description;
-    this.setState({
-      characteristics,
-    });
+    }, () => this.starProducer());
   }
 
   addCharacteristicsToState(name, description) {
@@ -132,7 +127,12 @@ class ReviewForm extends React.Component {
     for (let i = 0; i < table.length; i++) {
       currentRow = table[i];
       rows.push(
-        <ProductCharacteristics addToParentState={this.addCharacteristicsToState} name={currentRow[0]} description={currentRow} />,
+        <ProductCharacteristics
+          addToParentState={this.addCharacteristicsToState}
+          name={currentRow[0]}
+          description={currentRow}
+          key={Math.random() * 10000}
+        />,
       );
     }
     return rows;
@@ -161,6 +161,7 @@ class ReviewForm extends React.Component {
       return (
         <PhotoSelector
           exit={this.setPhotoSelectorState}
+          key={Math.random() * 10000}
         />
       );
     }

@@ -47,7 +47,7 @@ class ProductCharacteristics extends React.Component {
         description = '';
       }
       buttons.push(
-        <div className="product-characteristics-radio">
+        <div className="product-characteristics-radio" key={Math.random() * 10000}>
           <input onClick={this.setDescription} style={radioStyles} type="radio" name={this.props.name} value={i} />
           <div style={descriptionStyles}>{description}</div>
         </div>,

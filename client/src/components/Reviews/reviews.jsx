@@ -89,26 +89,6 @@ class Reviews extends React.Component {
     });
   }
 
-  addPosts(prevPosts) {
-    this.setState({
-      showPosts: prevPosts + 2,
-    });
-  }
-
-  filterReviews(newFilter) {
-    let filterByArr = this.state.filterBy;
-    if (!newFilter) {
-      filterByArr = [];
-    } else if (filterByArr.includes(newFilter)) {
-      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
-    } else {
-      filterByArr.push(newFilter);
-    }
-    this.setState({
-      filterBy: filterByArr,
-    });
-  }
-
   renderReviewForm() {
     if (this.state.renderForm) {
       return (
@@ -137,6 +117,7 @@ class Reviews extends React.Component {
             helpfulness={result.helpfulness}
             review_id={result.review_id}
             clickTracking={this.props.clickHandler}
+            key={Math.random() * 10000}
           />);
       }
       return this.state.sortedResults
@@ -154,11 +135,12 @@ class Reviews extends React.Component {
           helpfulness={result.helpfulness}
           review_id={result.review_id}
           clickTracking={this.props.clickHandler}
+          key={Math.random() * 10000}
         />);
     };
 
     return (
-      <div className="reviews">
+      <div className="reviews" data-testid="reviews">
         <div className="reviews-col-1">
           <RatingsReviews
             clickTracking={this.props.clickHandler}

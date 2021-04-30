@@ -22,6 +22,7 @@ class RatingsReviews extends React.Component {
     this.renderProductBreakdown = this.renderProductBreakdown.bind(this);
     this.getRating = this.getRating.bind(this);
     this.getRatingPercentage = this.getRatingPercentage.bind(this);
+    this.clickTracker = this.clickTracker.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +98,7 @@ class RatingsReviews extends React.Component {
       }
       ratingsCountBars.push(
         <RatingsCount
+          key={Math.random() * 10000}
           addPosts={this.props.addPosts}
           filter={this.props.filter}
           reviews={this.reviews}
@@ -122,9 +124,13 @@ class RatingsReviews extends React.Component {
     this.props.filter(null, this.showFilters);
   }
 
+  clickTracker() {
+    this.props.click(`${this.props.filterBy} star rating filter in ratings breakdown`, 'Reviews');
+  }
+
   showFilters() {
     if (this.props.filterBy.length) {
-      this.props.clickTracking(`${this.props.filterBy} star rating filter in ratings breakdown`, 'Reviews');
+      this.clickTracker();
       return (
         <div>
           <div className="underline filters-applied-title">Filters Applied:</div>
@@ -143,7 +149,13 @@ class RatingsReviews extends React.Component {
       let currentVal = Object.values(productArray[i]);
       let currentKey = Object.keys(productArray[i]);
       if (currentVal[0] !== null) {
-        components.push(<ProductBreakdown detailType={currentKey[0]} position={currentVal[0]} />);
+        components.push(
+          <ProductBreakdown
+            detailType={currentKey[0]}
+            position={currentVal[0]}
+            key={Math.random() * 10000}
+          />,
+        );
       }
     }
     this.setState({

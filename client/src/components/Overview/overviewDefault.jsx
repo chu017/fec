@@ -26,6 +26,7 @@ const OverviewDefault = class extends React.Component {
         <div className="header">
           <Header
             data={this.props.data}
+            dataReady={this.props.dataReady}
             showCart={this.props.showCart}
             toggleColorMode={this.props.toggleColorMode}
             clickHandler={this.props.clickHandler}

@@ -87,6 +87,7 @@ const Overview = class extends React.Component {
               data={data}
               outfitData={outfitData}
               refreshOutfit={refreshOutfit}
+              dataReady={this.state.dataReady}
               ratingPercentage={ratingPercentage}
               style={this.state.style_photos}
               defaultView={this.state.defaultView}

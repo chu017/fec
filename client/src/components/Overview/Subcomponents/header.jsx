@@ -54,13 +54,16 @@ const Header = class extends React.Component {
         </button>
 
         <div className="header-right">
-          <button
-            type="button"
-            className="shopping-bag"
-            onClick={this.props.showCart}
-          >
-            Bag
-          </button>
+
+          {this.props.dataReady === true && (
+            <button
+              type="button"
+              className="shopping-bag"
+              onClick={this.props.showCart}
+            >
+              Bag
+            </button>
+          )}
 
           <div className="search">
             search:

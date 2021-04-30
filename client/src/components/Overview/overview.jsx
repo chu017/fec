@@ -18,6 +18,7 @@ const Overview = class extends React.Component {
       style_photos: this.props.data.styles.results[0],
       defaultView: true,
       show: false,
+      cartData: null,
     };
 
     this.getCart = this.getCart.bind(this);
@@ -34,9 +35,9 @@ const Overview = class extends React.Component {
     const cartIDs = localStorage.getItem('cart');
     $.ajax({
       url: '/api/cart',
-      type: 'GET',
+      type: 'POST',
       data: { cartIDs },
-      success: (responseData) => this.setState({ cart: responseData }),
+      success: (responseData) => this.setState({ cartData: responseData }),
     });
   }
 
@@ -65,6 +66,8 @@ const Overview = class extends React.Component {
       refreshOutfit,
       ratingPercentage,
     } = this.props;
+    console.log(this.state.cartData);
+
     return (
       <div>
         {this.state.show === false && (
@@ -103,9 +106,9 @@ const Overview = class extends React.Component {
           <div>
             <ShoppingCart
               show={this.state.show}
+              cartStyles={cartStyles}
               style={this.state.style_photos}
               clickHandler={this.props.clickHandler}
-              cart={this.state.cart}
               onClose={this.showCart}
             >
               My Shopping Cart

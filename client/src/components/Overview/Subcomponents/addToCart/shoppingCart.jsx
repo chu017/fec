@@ -22,7 +22,8 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { cart } = this.props.cart;
+    const { cartStyles } = this.props.cartStyles;
+    console.log(cartStyles);
     return (
       <div className="shopping-container">
         <h2>YOUR BAG</h2>
@@ -34,12 +35,12 @@ class ShoppingCart extends React.Component {
           Back
         </button>
 
-        {cart.map((item, index) => (
+        {/* {cart.map((item, index) => (
           <Cart
             item={item}
             key={index}
           />
-        ))}
+        ))} */}
 
         <br />
 

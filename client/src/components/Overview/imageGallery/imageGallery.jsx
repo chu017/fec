@@ -6,9 +6,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import {
-  AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
-} from 'react-icons/ai';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { BsArrowsFullscreen } from 'react-icons/bs';
 import ImageGalleryItem from './imageGalleryItem.jsx';
 

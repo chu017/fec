@@ -4,7 +4,6 @@ const baseURL = require('./AtelierConfig.js');
 
 const cartPostHandler = (req, errorCB, successCB) => {
   const cartData = {};
-  // console.log(req.body.cartIDs);
   const { cartIDs } = req.body;
   const cartID = cartIDs.split(',');
   let infoLength = 0;
@@ -24,18 +23,14 @@ const cartPostHandler = (req, errorCB, successCB) => {
   styleLength = cartStyleRequests.length;
   axios.all(cartInformationRequests.concat(cartStyleRequests))
     .then((response) => {
-      // console.log("initial response: ", response);
       cartData.cart.cartInformation = [];
       cartData.cart.cartStyles = [];
       for (let i = 0; i < infoLength; i += 1) {
-        // console.log("first loop: ", response[i].data);
         cartData.cart.cartInformation.push(response[i].data);
       }
       for (let i = infoLength; i < infoLength + styleLength; i += 1) {
-        // console.log("second loop: ", response[i].data);
         cartData.cart.cartStyles.push(response[i].data);
       }
-      // console.log("final data: ", cartData);
       successCB(cartData);
     })
     .catch((response) => {

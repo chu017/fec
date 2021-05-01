@@ -28,14 +28,12 @@ class AddToCart extends React.Component {
   }
 
   addToCart(id) {
-    // get cart
     const { skuID } = this.state;
     if (skuID) {
       AddCart(skuID, () => {});
       const { getCart } = this.props;
 
       let string = localStorage.getItem('cart');
-      // save cart
       if (string === null) {
         localStorage.setItem('cart', id.toString());
       } else {
@@ -91,7 +89,7 @@ class AddToCart extends React.Component {
             });
           }}
         >
-          <option className="selection-box-font" value="" disabled selected hidden>select size</option>
+          <option className="selection-box-font" defaultValue="select size">select size</option>
           {Func.convertObjToArray(this.props.style.skus).map((item) => (
             <option
               key={item[0]}
@@ -111,7 +109,7 @@ class AddToCart extends React.Component {
             });
           }}
         >
-          <option className="selection-box-font" value="" disabled selected hidden>select quantity</option>
+          <option className="selection-box-font" defaultValue="select quantity">select quantity</option>
 
           {Func.renderNum(this.state.size_num).map((item, index) => {
             if (!item) {

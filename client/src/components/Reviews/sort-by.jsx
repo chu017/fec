@@ -10,7 +10,9 @@ class ReviewPosts extends React.Component {
   }
 
   change(e) {
+    console.log(e.target)
     this.props.changeSelected(e.target.value);
+    this.props.clickTracking(`${e.target.value} in sort-drop-down`, 'Reviews');
   }
 
   render() {
@@ -18,7 +20,7 @@ class ReviewPosts extends React.Component {
       <div className="sort-by-container">
         <label className="sort-by-label" htmlFor="sort-by">{this.props.data.reviews.reviews.results.length} reviews, sorted by</label>
         <select onChange={this.change} name="sort-by" className="sort-by" value={this.props.selected}>
-          <option value="relavance">relavence</option>
+          <option value="relavance">relevance</option>
           <option value="helpfulness">helpfulness</option>
           <option value="newest">newest</option>
         </select>

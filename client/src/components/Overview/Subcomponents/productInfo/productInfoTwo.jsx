@@ -8,14 +8,14 @@ import ProductInfoTwoItem from './productInfoTwoItem.jsx';
 
 const Ltext = styled.div`
 font-family: "Helvetica", Arial, sans-serif;
-font-size: 1.5rem;
+font-size: 1.6rem;
 `;
 
 const ConInfo = styled.div`
 margin: 10px;
 `;
 
-class ProductInfoTwo extends React.Component {
+const ProductInfoTwo = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +41,6 @@ class ProductInfoTwo extends React.Component {
 
     );
   }
-}
+};
 
 export default ProductInfoTwo;

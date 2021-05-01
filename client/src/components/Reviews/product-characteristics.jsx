@@ -10,12 +10,18 @@ class ProductCharacteristics extends React.Component {
 
     this.produceRadioButtons = this.produceRadioButtons.bind(this);
     this.setDescription = this.setDescription.bind(this);
+    this.addToFormState = this.addToFormState.bind(this);
+  }
+
+  addToFormState(e) {
+    this.props.addToParentState(this.props.name, this.state.description[e.target.value]);
   }
 
   setDescription(e) {
     this.setState({
       displayDescription: this.state.description[e.target.value],
     });
+    this.addToFormState(e);
   }
 
   produceRadioButtons() {
@@ -41,7 +47,7 @@ class ProductCharacteristics extends React.Component {
         description = '';
       }
       buttons.push(
-        <div className="product-characteristics-radio">
+        <div className="product-characteristics-radio" key={Math.random() * 10000}>
           <input onClick={this.setDescription} style={radioStyles} type="radio" name={this.props.name} value={i} />
           <div style={descriptionStyles}>{description}</div>
         </div>,
@@ -65,6 +71,6 @@ class ProductCharacteristics extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default ProductCharacteristics;

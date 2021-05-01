@@ -2,7 +2,6 @@
 /* eslint-disable one-var */
 import React from 'react';
 import helpers from './helpers.js';
-import Star from './star.jsx';
 import RatingsCount from './ratings-count.jsx';
 import ProductBreakdown from './product-breakdown.jsx'
 
@@ -21,13 +20,14 @@ class RatingsReviews extends React.Component {
     this.showFilters = this.showFilters.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
     this.renderProductBreakdown = this.renderProductBreakdown.bind(this);
+    this.getRating = this.getRating.bind(this);
+    this.getRatingPercentage = this.getRatingPercentage.bind(this);
+    this.clickTracker = this.clickTracker.bind(this);
   }
 
   componentDidMount() {
     const ratings = this.getRatings();
     this.setState({
-      ratingPercentage: this.props.ratingPercentage,
-      rating: ratings.rating,
       recommendationPercentage: ratings.recommendationPercentage,
       productDetails: [
         { fit: ratings.fit },
@@ -35,6 +35,20 @@ class RatingsReviews extends React.Component {
         { length: ratings.length },
         { quality: ratings.quality },
       ],
+    }, () => this.getRating());
+  }
+
+  getRating() {
+    const avgRating = helpers.getRating(this.state.avgRating, this.reviews.reviewMeta.ratings);
+    this.setState({
+      avgRating,
+    }, () => this.getRatingPercentage());
+  }
+
+  getRatingPercentage() {
+    const ratingPercentage = helpers.getRatingPercentage(this.state.avgRating);
+    this.setState({
+      ratingPercentage,
     }, () => this.renderProductBreakdown());
   }
 
@@ -51,7 +65,6 @@ class RatingsReviews extends React.Component {
   }
 
   getRatings() {
-    let rating = this.props.avgRating;
     let fit = null;
     let comfort = null;
     let length = null;
@@ -71,18 +84,7 @@ class RatingsReviews extends React.Component {
     const recommendationPercentage = this.getRecommendationPercentage();
     fit = fit * 94, comfort = comfort * 94, length = length * 94, quality = quality * 94;
 
-    if (rating.toString().length === 1) {
-      rating = rating.toString() + '.0';
-    }
-    return { rating, fit, comfort, recommendationPercentage, length, quality };
-  }
-
-  getRatingPercentage() {
-    let percentage = this.state.rating / 5;
-    percentage = percentage * 100;
-    this.setState({
-      ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
-    });
+    return { fit, comfort, recommendationPercentage, length, quality };
   }
 
   createRatingsCountBars() {
@@ -96,6 +98,7 @@ class RatingsReviews extends React.Component {
       }
       ratingsCountBars.push(
         <RatingsCount
+          key={Math.random() * 10000}
           addPosts={this.props.addPosts}
           filter={this.props.filter}
           reviews={this.reviews}
@@ -121,8 +124,13 @@ class RatingsReviews extends React.Component {
     this.props.filter(null, this.showFilters);
   }
 
+  clickTracker() {
+    this.props.click(`${this.props.filterBy} star rating filter in ratings breakdown`, 'Reviews');
+  }
+
   showFilters() {
     if (this.props.filterBy.length) {
+      this.clickTracker();
       return (
         <div>
           <div className="underline filters-applied-title">Filters Applied:</div>
@@ -141,7 +149,13 @@ class RatingsReviews extends React.Component {
       let currentVal = Object.values(productArray[i]);
       let currentKey = Object.keys(productArray[i]);
       if (currentVal[0] !== null) {
-        components.push(<ProductBreakdown detailType={currentKey[0]} position={currentVal[0]} />);
+        components.push(
+          <ProductBreakdown
+            detailType={currentKey[0]}
+            position={currentVal[0]}
+            key={Math.random() * 10000}
+          />,
+        );
       }
     }
     this.setState({
@@ -158,7 +172,7 @@ class RatingsReviews extends React.Component {
       <div>
         <h4 className="sub-heading">Ratings and Reviews</h4>
         <div className="star-rating-container">
-          <div className="star-rating-header">{this.state.rating}</div>
+          <div className="star-rating-header">{this.state.avgRating}</div>
           <div className="star-container">
             <div className="stars-outer">
               <div style={starInnerWidth} className="stars-inner"></div>

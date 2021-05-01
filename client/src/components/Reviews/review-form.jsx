@@ -1,6 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import ProductCharacteristics from './product-characteristics.jsx';
+import PhotoSelector from './photo-selector.jsx';
 import helpers from './helpers.js';
 
 class ReviewForm extends React.Component {
@@ -8,12 +12,16 @@ class ReviewForm extends React.Component {
     super(props);
 
     this.state = {
+      summary: '',
+      body: '',
+      displayPhotoSelector: false,
       reviewSummary: '',
       reviewBody: '',
       email: '',
       nickname: '',
       starInnerWidth: 0,
       formStars: [],
+      characteristics: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +31,8 @@ class ReviewForm extends React.Component {
     this.setStarRating = this.setStarRating.bind(this);
     this.produceProductCharacteristics = this.produceProductCharacteristics.bind(this);
     this.displayErrorMessage = this.displayErrorMessage.bind(this);
+    this.renderPhotoSelector = this.renderPhotoSelector.bind(this);
+    this.setPhotoSelectorState = this.setPhotoSelectorState.bind(this);
   }
 
   componentDidMount() {
@@ -32,11 +42,10 @@ class ReviewForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const errorMessage = 'You must enter the folowing';
-    if (!this.state.reviewSummary.length ||
-      !this.state.reviewBody.length ||
+    if (!this.state.summary.length ||
+      !this.state.body.length ||
       !this.state.email.length ||
       !this.state.nickname.length) {
-      console.log('yay');
       this.setState({
         error: errorMessage,
       });
@@ -60,6 +69,14 @@ class ReviewForm extends React.Component {
     this.setState({
       starsToFill: +e.target.id,
     }, () => this.starProducer());
+  }
+
+  addCharacteristicsToState(name, description) {
+    const characteristics = this.state.characteristics;
+    characteristics[name] = description;
+    this.setState({
+      characteristics,
+    });
   }
 
   starProducer() {
@@ -93,6 +110,13 @@ class ReviewForm extends React.Component {
     }
     this.setState({
       formStars: stars,
+      rating: stars.length,
+    });
+  }
+
+  updateRecommend(recommendation) {
+    this.setState({
+      recommend: recommendation,
     });
   }
 
@@ -103,7 +127,12 @@ class ReviewForm extends React.Component {
     for (let i = 0; i < table.length; i++) {
       currentRow = table[i];
       rows.push(
-        <ProductCharacteristics name={currentRow[0]} description={currentRow} />,
+        <ProductCharacteristics
+          addToParentState={this.addCharacteristicsToState}
+          name={currentRow[0]}
+          description={currentRow}
+          key={Math.random() * 10000}
+        />,
       );
     }
     return rows;
@@ -112,6 +141,29 @@ class ReviewForm extends React.Component {
   displayErrorMessage() {
     if (this.state.error) {
       return this.state.error;
+    }
+  }
+
+  setPhotoSelectorState() {
+    let newState;
+    if (this.state.displayPhotoSelector === true) {
+      newState = false;
+    } else {
+      newState = true;
+    }
+    this.setState({
+      displayPhotoSelector: newState,
+    });
+  }
+
+  renderPhotoSelector() {
+    if (this.state.displayPhotoSelector) {
+      return (
+        <PhotoSelector
+          exit={this.setPhotoSelectorState}
+          key={Math.random() * 10000}
+        />
+      );
     }
   }
 
@@ -148,18 +200,17 @@ class ReviewForm extends React.Component {
         <form className="form" onSubmit={this.handleSubmit}>
           <button onClick={this.hideForm} className="exit-form" type="button">X</button>
           <h3 className="write-review-heading">Write Your Review</h3>
-          <h4 style={error}>{this.displayErrorMessage()}</h4>
           <h4>About the product:</h4>
           <div className="form-inputs-container">
             <div className="form-row form-top-row">
               <label className="form-label">
                 Do you recommend this product?:
                 <label className="radio-label">
-                  <input type="radio" value="Yes" name="gender" />
+                  <input onClick={() => this.updateRecommend(true)} type="radio" value="Yes" name="gender" />
                   Yes
                 </label>
                 <label className="radio-label">
-                  <input type="radio" value="No" name="gender" />
+                  <input onClick={() => this.updateRecommend(false)} type="radio" value="No" name="gender" />
                   No
                 </label>
               </label>
@@ -183,12 +234,12 @@ class ReviewForm extends React.Component {
                 <textarea
                   className="text-inputs"
                   type="text"
-                  value={this.state.reviewSummary}
+                  value={this.state.summary}
                   placeholder="Example: Best Purchase Ever!"
                   maxLength="60"
                   rows="2"
                   onChange={this.handleChange}
-                  name="reviewSummary"
+                  name="summary"
                 />
               </label>
             </div>
@@ -198,13 +249,26 @@ class ReviewForm extends React.Component {
                 <textarea
                   className="text-inputs review-body"
                   type="text"
-                  value={this.state.reviewBody}
+                  value={this.state.body}
                   placeholder="Why did you like the product or not?"
                   minLength="50"
                   rows="6"
                   onChange={this.handleChange}
-                  name="reviewBody"
+                  name="body"
                 />
+              </label>
+            </div>
+            <div className="form-row">
+              <label className="form-label text-input-label">
+                Upload your photos:
+                <button
+                  className="photo-select-button"
+                  onClick={this.setPhotoSelectorState}
+                  name="photo-select"
+                  type="button"
+                >
+                  Choose Photos
+                </button>
               </label>
             </div>
             <div className="form-row">
@@ -236,9 +300,11 @@ class ReviewForm extends React.Component {
               </label>
             </div>
           </div>
+          <h4 style={error}>{this.displayErrorMessage()}</h4>
           <input className="submit-form" type="submit" value="Submit" />
         </form>
         <div onClick={this.hideForm} className="form-cover"></div>
+        <div>{this.renderPhotoSelector()}</div>
       </div>
     );
   }

@@ -11,12 +11,20 @@ class MoreReviews extends React.Component {
 
   handleClick() {
     this.props.addPosts(this.props.prevPosts);
+    this.props.clickTracking('more-reviews-button', 'Reviews');
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.handleClick} className="review-btn" type="button">More Reviews</button>
+        <button
+          onClick={this.handleClick}
+          className="review-btn"
+          type="button"
+          data-testid="more-reviews"
+        >
+          More Reviews
+        </button>
       </div>
     );
   }

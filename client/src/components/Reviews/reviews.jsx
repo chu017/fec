@@ -38,26 +38,6 @@ class Reviews extends React.Component {
     this.sortResults(this.state.selected);
   }
 
-  filterReviews(newFilter) {
-    let filterByArr = this.state.filterBy;
-    if (!newFilter) {
-      filterByArr = [];
-    } else if (filterByArr.includes(newFilter)) {
-      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
-    } else {
-      filterByArr.push(newFilter);
-    }
-    this.setState({
-      filterBy: filterByArr,
-    });
-  }
-
-  addPosts(prevPosts) {
-    this.setState({
-      showPosts: prevPosts + 2,
-    });
-  }
-
   changeSelected(value) {
     this.setState({
       selected: value,
@@ -86,15 +66,36 @@ class Reviews extends React.Component {
   changeFormState(formState) {
     this.setState({
       renderForm: formState,
-    }, () => this.renderReviewForm());
+    });
+  }
+
+  addPosts(prevPosts) {
+    this.setState({
+      showPosts: prevPosts + 2,
+    });
+  }
+
+  filterReviews(newFilter) {
+    let filterByArr = this.state.filterBy;
+    if (!newFilter) {
+      filterByArr = [];
+    } else if (filterByArr.includes(newFilter)) {
+      filterByArr.splice(filterByArr.indexOf(newFilter), 1);
+    } else {
+      filterByArr.push(newFilter);
+    }
+    this.setState({
+      filterBy: filterByArr,
+    });
   }
 
   renderReviewForm() {
     if (this.state.renderForm) {
       return (
-        <ReviewForm hideForm={this.changeFormState} />
+        <ReviewForm clickTracking={this.props.clickHandler} hideForm={this.changeFormState} />
       );
     }
+    return (<div />);
   }
 
   render() {
@@ -113,6 +114,10 @@ class Reviews extends React.Component {
             photos={result.photos}
             recommend={result.recommend}
             response={result.response}
+            helpfulness={result.helpfulness}
+            review_id={result.review_id}
+            clickTracking={this.props.clickHandler}
+            key={Math.random() * 10000}
           />);
       }
       return this.state.sortedResults
@@ -127,24 +132,28 @@ class Reviews extends React.Component {
           photos={result.photos}
           recommend={result.recommend}
           response={result.response}
+          helpfulness={result.helpfulness}
+          review_id={result.review_id}
+          clickTracking={this.props.clickHandler}
+          key={Math.random() * 10000}
         />);
     };
 
     return (
-      <div className="reviews">
-        {console.log('reviews:', this.reviews)}
+      <div className="reviews" data-testid="reviews">
         <div className="reviews-col-1">
           <RatingsReviews
-            avgRating={this.props.avgRating}
+            clickTracking={this.props.clickHandler}
             filterBy={this.state.filterBy}
             addPosts={this.addPosts}
             filter={this.filterReviews}
             data={this.props.data}
-            ratingPercentage={this.props.ratingPercentage}
+            updateParentPercentage={this.props.updateParentPercentage}
           />
         </div>
         <div className="reviews-col-2">
           <SortBy
+            clickTracking={this.props.clickHandler}
             selected={this.state.selected}
             data={this.props.data}
             changeSelected={this.changeSelected}
@@ -152,11 +161,16 @@ class Reviews extends React.Component {
           {renderReviewPosts()}
           <div className="reviews-btn-row">
             <MoreReviews
+              clickTracking={this.props.clickHandler}
               prevPosts={this.state.showPosts}
               addPosts={this.addPosts}
               data={this.props.data}
             />
-            <AddReview changeFormState={this.changeFormState} data={this.props.data} />
+            <AddReview
+              clickTracking={this.props.clickHandler}
+              changeFormState={this.changeFormState}
+              data={this.props.data}
+            />
           </div>
         </div>
         {this.renderReviewForm()}

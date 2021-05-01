@@ -20,7 +20,7 @@ const AddToCart = class extends React.Component {
       size_num: 8,
       skuID: null,
       quantity: null,
-      style_id: null,
+      alert: false,
     };
 
     this.addToCart = this.addToCart.bind(this);
@@ -30,25 +30,29 @@ const AddToCart = class extends React.Component {
   addToCart(id) {
     // get cart
     const { skuID } = this.state;
-    this.setState({ style_id: this.props.style.style_id });
-    const { getCart } = this.props;
-    let string = localStorage.getItem('cart');
-    console.log('current cart: ', string);
-    // save cart
-    if (string === null) {
-      localStorage.setItem('cart', id.toString());
-    } else {
-      this.currentCart = string.split(',');
-      if (this.currentCart.indexOf(id.toString()) === -1) {
-        this.currentCart.push(id.toString());
-        localStorage.setItem('cart', this.currentCart);
-      } else {
-        localStorage.setItem('cart', id.toString());
+    if (skuID) {
+      AddCart(skuID, () => {});
+      const { getCart } = this.props;
 
-        AddCart(skuID, () => {});
+      let string = localStorage.getItem('cart');
+      // console.log('current cart: ', string);
+      // save cart
+      if (string === null) {
+        localStorage.setItem('cart', id.toString());
+      } else {
+        this.currentCart = string.split(',');
+        if (this.currentCart.indexOf(id.toString()) === -1) {
+          this.currentCart.push(id.toString());
+          localStorage.setItem('cart', this.currentCart);
+        } else {
+          localStorage.setItem('cart', id.toString());
+        }
       }
+      this.props.getCart();
+      this.setState({ alert: false });
+    } else if (skuID === null) {
+      this.setState({ alert: true });
     }
-    this.props.getCart();
   }
 
   addToOutfit(id) {
@@ -143,6 +147,10 @@ const AddToCart = class extends React.Component {
           Outfit
         </button>
 
+        {this.state.alert && (
+          <div>Please select size and quantity</div>
+        )}
+
       </div>
 
     );
@@ -150,18 +158,3 @@ const AddToCart = class extends React.Component {
 };
 
 export default AddToCart;
-
-/*
-          {Func.convertObjToArray(this.props.style.skus).map((item) => {
-            console.log(item);
-            return (
-              <option
-                key={item[0]}
-                value={JSON.stringify(item)}
-                // value={JSON.stringify(item[1])}
-              >
-                {item[1].size}
-              </option>
-            );
-          })}
-*/

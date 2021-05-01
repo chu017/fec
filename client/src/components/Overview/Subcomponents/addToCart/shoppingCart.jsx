@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
@@ -13,8 +14,7 @@ class ShoppingCart extends React.Component {
     super(props);
     this.state = {
       sortedProductData: [],
-      sortedCartData: [],
-      readyToRender: false,
+      dataR: false,
     };
 
     this.onClose = this.onClose.bind(this);
@@ -26,11 +26,6 @@ class ShoppingCart extends React.Component {
     const { cart } = this.props;
     const { cartInformation, cartStyles } = cart;
 
-    const { cartInfo } = this.props;
-
-    console.log('shoppingcart Cart: ', cartInformation, cartStyles);
-    console.log('shoppingcart CartInfo: ', cartID, cartInfo);
-
     const newSort = [];
     if (cartInformation && cartStyles) {
       for (let i = 0; i < cartID.length; i += 1) {
@@ -39,14 +34,8 @@ class ShoppingCart extends React.Component {
           cartStyles: cartStyles[i],
         });
       }
-      console.log('sorted', newSort);
       this.setState({ sortedProductData: newSort, dataR: true });
-
-      if (this.state.dataR) {
-        console.log('shoppingcart SortedData1: ', this.state.sortedProductData);
-      }
     }
-    console.log('shoppingcart SortedData: ', this.state.sortedProductData);
   }
 
   onClose() {
@@ -55,13 +44,8 @@ class ShoppingCart extends React.Component {
 
   render() {
     if (this.state.dataR) {
-      console.log('shoppingcart SortedData1: ', this.state.sortedProductData);
-    }
-
-    if (this.state.dataR) {
       return (
         <div className="shopping-container">
-          {this.props.dataReady === true && (<div>Data Ready</div>)}
           <h2>YOUR BAG</h2>
           <button
             type="button"

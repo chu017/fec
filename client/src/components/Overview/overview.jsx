@@ -8,7 +8,6 @@ import React from 'react';
 import OverviewDefault from './overviewDefault.jsx';
 import OverViewExpanded from './overviewExpanded.jsx';
 import ShoppingCart from './Subcomponents/addToCart/shoppingCart.jsx';
-import AddCart from './Subcomponents/APIHandlers/addCart.js';
 // import sampleDataOutfit from '../sampleData_outfit.js';
 
 const Overview = class extends React.Component {
@@ -29,9 +28,6 @@ const Overview = class extends React.Component {
   }
 
   componentDidMount() {
-    // const { cartData } = this.props;
-    // console.log('overview DidMount: ', cartData);
-
     this.getCart();
   }
 
@@ -45,15 +41,6 @@ const Overview = class extends React.Component {
         cart: responseData.cart,
       }, () => {
         this.setState({ dataReady: true });
-        // console.log("dataReady", this.state.cart);
-      }),
-    });
-
-    $.ajax({
-      url: '/cart',
-      type: 'GET',
-      success: (responseData) => this.setState({
-        cartInfo: responseData.cart,
       }),
     });
   }
@@ -124,7 +111,6 @@ const Overview = class extends React.Component {
             <ShoppingCart
               show={this.state.show}
               style={this.state.style_photos}
-              cartInfo={this.state.cartInfo}
               cart={this.state.cart}
               dataReady={this.state.dataReady}
               clickHandler={this.props.clickHandler}

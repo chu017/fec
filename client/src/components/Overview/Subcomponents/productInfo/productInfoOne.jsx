@@ -1,42 +1,12 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import styled from 'styled-components';
-import helpers from './../../../Reviews/helpers.js'
+import helpers from '../../../Reviews/helpers.js';
+import styles from './styles.js';
 
 const Rtext = styled.div`
 font-size: 1rem;
 color: red;
-`;
-
-const StarsOuterBefore = styled.div`
-  &:before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 200;
-  }
-  & {
-    font-size: 12px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-  }
-`;
-
-const StarsInnerBefore = styled.div`
-  &:before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: #000;
-  }
-  & {
-    size: 12px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-  }
 `;
 
 class ProductInfoOne extends React.Component {
@@ -80,9 +50,9 @@ class ProductInfoOne extends React.Component {
 
     return (
       <div className="product-information">
-        <StarsOuterBefore>
-          <StarsInnerBefore style={{ width: this.state.ratingPercentage }}></StarsInnerBefore>
-        </StarsOuterBefore>
+        <styles.StarsOuterBefore>
+          <styles.StarsInnerBefore style={{ width: this.state.ratingPercentage }}></styles.StarsInnerBefore>
+        </styles.StarsOuterBefore>
         <a href="#reviews">Read all reviews</a>
         <br />
         <div>CATEGORY: {this.props.data.product.category}</div>
@@ -90,7 +60,7 @@ class ProductInfoOne extends React.Component {
         <div>Price: ${this.props.photos.original_price}</div>
         <div>
           {(this.props.photos.sale_price)
-          && <Rtext>Sale: ${this.props.photos.sale_price}</Rtext>}
+          && <styles.Rtext>Sale: ${this.props.photos.sale_price}</styles.Rtext>}
         </div>
       </div>
 

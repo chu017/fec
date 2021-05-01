@@ -202,7 +202,9 @@ class Carousel extends React.Component {
     } = this.state;
     const { name, id } = this.props.data.product;
     const { results } = this.props.data.styles;
-    const { refreshOutfit, addToOutfit, removeFromOutfit } = this.props;
+    const {
+      refreshOutfit, addToOutfit, removeFromOutfit, clickHandler,
+    } = this.props;
     return (
       <div>
         <styles.carouselWrapperDiv>
@@ -223,12 +225,15 @@ class Carousel extends React.Component {
                 defaultPrice={defaultStyle.original_price}
                 salePrice={defaultStyle.sale_price}
                 image={relatedStyles.results[0].photos[0].thumbnail_url}
+                key={relatedInformation.id}
                 id={relatedInformation.id}
                 modalVisible={modalVisible}
                 cardProductFeatures={relatedInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews}
                 overviewProduct={name}
+                overviewId={id}
+                clickHandler={clickHandler}
               />
             ))}
           </styles.carouselDiv>
@@ -254,6 +259,7 @@ class Carousel extends React.Component {
               image={results[0].photos[0].thumbnail_url}
               addToOutfit={addToOutfit}
               refreshOutfit={refreshOutfit}
+              clickHandler={clickHandler}
             />
             {sortedOutfitData.map(({
               outfitInformation, outfitStyles, reviews,
@@ -264,11 +270,13 @@ class Carousel extends React.Component {
                 defaultPrice={outfitStyles.results[0].original_price}
                 salePrice={outfitStyles.results[0].sale_price}
                 image={outfitStyles.results[0].photos[0].thumbnail_url}
+                key={outfitInformation.id}
                 id={outfitInformation.id}
                 cardProductFeatures={outfitInformation.features}
                 overviewFeatures={overviewFeatures}
                 reviews={reviews.results}
                 removeFromOutfit={removeFromOutfit}
+                clickHandler={clickHandler}
               />
             ))}
           </styles.carouselDiv>

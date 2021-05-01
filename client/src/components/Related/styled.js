@@ -1,15 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
 
-const body = styled.body`
-  background-color: #f7f7f7;
-`;
-
 const OutfitWrapperDiv = styled.div`
   position: relative;
   width: 100%;
   border-radius: 4px;
-  height: 320px;
+  height: 325px;
   padding-top 1%;
   padding-bottom 1%;
   display: block;
@@ -23,6 +19,7 @@ const carouselWrapperDiv = styled.div`
   padding-top 1%;
   padding-bottom 1%;
   display: block;
+  overflow: visible;
 `;
 
 const carouselDiv = styled.div`
@@ -36,7 +33,8 @@ const carouselDiv = styled.div`
   margin-left: 23%;
   margin-right: 23%;
   display: flex;
-  padding: 1%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   `;
 
 const cardComponentDiv = styled.div`
@@ -48,7 +46,7 @@ const cardComponentDiv = styled.div`
   min-width: 20%;
   min-height: 95%;
   max-height: 95%;
-  box-shadow: -1.5rem -2rem 3rem midnightblue;
+  box-shadow: -1rem 2rem 3rem midnightblue;
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
@@ -66,20 +64,20 @@ const outfitCardComponentDiv = styled.div`
   margin-right: 2.5%;
   margin-left: 2.5%;
   font-size: .2em;
-  box-shadow: -1.5rem -2rem 3rem #100e17;
+  box-shadow: -1rem 2rem 3rem #100e17;
   `;
 
 const nextComponentDiv = styled.div`
   position: absolute;
-  top: 40%;
-  right: 18%;
+  top: 57%;
+  right: 21%;
   z-index: 10;
   `;
 
 const prevComponentDiv = styled.div`
   position: absolute;
-  top: 40%;
-  left: 20%;
+  top: 57%;
+  left: 19%;
   z-index: 10;
   `;
 
@@ -198,7 +196,6 @@ const styles = {
   modalFirstRow,
   modalTitle,
   closeModal,
-  body,
   OutfitWrapperDiv,
   carouselWrapperDiv,
   carouselDiv,

@@ -4,7 +4,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import {
+  AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineArrowDown,
+} from 'react-icons/ai';
 import { BsArrowsFullscreen } from 'react-icons/bs';
 import ImageGalleryItem from './imageGalleryItem.jsx';
 

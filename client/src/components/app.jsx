@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import Overview from './Overview/overview.jsx';
 import Related from './Related/related.jsx';
 import Reviews from './Reviews/reviews.jsx';
@@ -22,7 +23,6 @@ class App extends React.Component {
 
     this.getRating = this.getRating.bind(this);
     this.ratingPercentage = this.ratingPercentage.bind(this);
-    this.refreshOutfit = this.refreshOutfit.bind(this);
     this.toggleColorMode = this.toggleColorMode.bind(this);
 
     this.addToOutfit = this.addToOutfit.bind(this);
@@ -108,6 +108,7 @@ class App extends React.Component {
     }, () => this.ratingPercentage());
   }
 
+  // eslint-disable-next-line class-methods-use-this
   clickHandler(element, widget) {
     const data = {
       element,
@@ -135,32 +136,6 @@ class App extends React.Component {
     percentage *= 100;
     this.setState({
       ratingPercentage: `${Math.round(percentage / 10) * 10}%`,
-    });
-  }
-
-  refreshOutfit() {
-    const outfitIDs = localStorage.getItem('outfit');
-    $.ajax({
-      url: '/outfit',
-      type: 'POST',
-      data: { outfitIDs },
-      success: (outfitData) => {
-        this.setState({
-          outfitData: outfitData.outfit,
-          related: true,
-          qa: true,
-          reviews: true,
-        });
-      },
-      error: (outfitData) => {
-        const outfit = { outfitInformation: [], outfitStyles: [], outfitReviews: [] };
-        this.setState({
-          outfitData: outfit,
-          related: true,
-          qa: true,
-          reviews: true,
-        });
-      },
     });
   }
 
@@ -280,12 +255,13 @@ class App extends React.Component {
             <Related
               data={this.state.data}
               outfitData={this.state.outfitData}
-              refreshOutfit={this.refreshOutfit}
               addToOutfit={this.addToOutfit}
               removeFromOutfit={this.removeFromOutfit}
               key={Math.random() * 1000000}
               colorMode={this.state.colorMode}
-              clickHandler={this.clickHandler}
+              clickHandler={(element) => {
+                this.clickHandler(element, 'Related');
+              }}
             />
           )
           : <div />}

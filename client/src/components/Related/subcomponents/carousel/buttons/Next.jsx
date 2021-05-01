@@ -5,7 +5,7 @@ import styles from '../../../styled.js';
 
 const Next = ({ scroll, className }) => (
   <styles.nextComponentDiv className={className}>
-    <styles.navButtons type="button" onClick={() => { scroll(); }}>{'>'}</styles.navButtons>
+    <styles.navButtons type="btn" onClick={() => { scroll(); }}>{'>'}</styles.navButtons>
   </styles.nextComponentDiv>
 );
 

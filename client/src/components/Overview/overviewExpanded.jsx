@@ -10,7 +10,7 @@ import Header from './Subcomponents/header.jsx';
 import ImageGallery from './Subcomponents/imageGallery/imageGallery.jsx';
 import ProductInfoTwo from './Subcomponents/productInfo/productInfoTwo.jsx';
 
-class OverViewExpanded extends React.Component {
+class OverviewExpanded extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,4 +46,4 @@ class OverViewExpanded extends React.Component {
   }
 }
 
-export default OverViewExpanded;
+export default OverviewExpanded;

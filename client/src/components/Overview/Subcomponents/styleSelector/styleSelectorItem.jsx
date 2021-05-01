@@ -4,7 +4,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
-const StyleSelectorItem = class extends React.Component {
+class StyleSelectorItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +34,6 @@ const StyleSelectorItem = class extends React.Component {
 
     );
   }
-};
+}
 
 export default StyleSelectorItem;

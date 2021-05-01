@@ -13,7 +13,7 @@ import StyleSelector from './Subcomponents/styleSelector/styleSelector.jsx';
 import AddToCart from './Subcomponents/addToCart/addToCart.jsx';
 import ProductInfoTwo from './Subcomponents/productInfo/productInfoTwo.jsx';
 
-const OverviewDefault = class extends React.Component {
+class OverviewDefault extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,6 +75,6 @@ const OverviewDefault = class extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default OverviewDefault;

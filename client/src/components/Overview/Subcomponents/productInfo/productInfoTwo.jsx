@@ -15,7 +15,7 @@ const ConInfo = styled.div`
 margin: 10px;
 `;
 
-const ProductInfoTwo = class extends React.Component {
+class ProductInfoTwo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +41,6 @@ const ProductInfoTwo = class extends React.Component {
 
     );
   }
-};
+}
 
 export default ProductInfoTwo;

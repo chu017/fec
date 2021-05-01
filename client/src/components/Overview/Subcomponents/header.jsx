@@ -7,7 +7,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 
-const Header = class extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,15 +55,13 @@ const Header = class extends React.Component {
 
         <div className="header-right">
 
-          {/* {this.props.dataReady === true && ( */}
-            <button
-              type="button"
-              className="shopping-bag"
-              onClick={this.props.showCart}
-            >
-              Bag
-            </button>
-          {/* )} */}
+          <button
+            type="button"
+            className="shopping-bag"
+            onClick={this.props.showCart}
+          >
+            Bag
+          </button>
 
           <div className="search">
             search:
@@ -77,6 +75,6 @@ const Header = class extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Header;

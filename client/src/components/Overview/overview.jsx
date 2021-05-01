@@ -10,7 +10,7 @@ import OverViewExpanded from './overviewExpanded.jsx';
 import ShoppingCart from './Subcomponents/addToCart/shoppingCart.jsx';
 // import sampleDataOutfit from '../sampleData_outfit.js';
 
-const Overview = class extends React.Component {
+class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -125,6 +125,6 @@ const Overview = class extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Overview;

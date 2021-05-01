@@ -12,7 +12,7 @@ import React from 'react';
 import Func from '../helpers.js';
 import AddCart from '../APIHandlers/addCart.js';
 
-const AddToCart = class extends React.Component {
+class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,6 @@ const AddToCart = class extends React.Component {
       const { getCart } = this.props;
 
       let string = localStorage.getItem('cart');
-      // console.log('current cart: ', string);
       // save cart
       if (string === null) {
         localStorage.setItem('cart', id.toString());
@@ -155,6 +154,6 @@ const AddToCart = class extends React.Component {
 
     );
   }
-};
+}
 
 export default AddToCart;

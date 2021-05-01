@@ -1,3 +1,3 @@
-const API_KEY = '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';
+const API_KEY = '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';
 
 module.exports = API_KEY;

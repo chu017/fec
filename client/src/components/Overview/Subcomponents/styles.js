@@ -264,13 +264,6 @@ const footer = styled.div`
   margin: 5px;
 `;
 
-const product_information_footer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  padding: 10px;
-`;
-
 const styles = {
   overview_default,
   overview_expanded,
@@ -300,7 +293,6 @@ const styles = {
   button_bag,
   button_outfit,
   footer,
-  product_information_footer,
 };
 
 export default styles;

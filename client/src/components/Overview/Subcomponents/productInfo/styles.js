@@ -3,7 +3,8 @@
 /* for overview / product information */
 import styled from 'styled-components';
 
-const product_information = styled.div`
+// productInfoOne
+const productInformation = styled.div`
   display: block;
   padding: 5px;
   margin: 5px;
@@ -41,7 +42,7 @@ const StarsInnerBefore = styled.div`
   }
 `;
 
-const title_size = styled.div`
+const titleSize = styled.h1`
   font-size: 2.3em;
   letter-spacing: 0.08em;
   font-family: 'Bebas Neue', cursive;
@@ -52,12 +53,39 @@ font-size: 1rem;
 color: red;
 `;
 
+// productInfoOne
+const Ltext = styled.div`
+font-family: "Helvetica", Arial, sans-serif;
+font-size: 1.6rem;
+`;
+
+const ConInfo = styled.div`
+margin: 10px;
+`;
+
+const productInformationFooter = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 10px;
+`;
+
+const fontDescription = styled.p`
+  font-family: Helvetica, Arial;
+  font-size: 1em;
+`;
+
 const styles = {
-  product_information,
+  productInformation,
   StarsOuterBefore,
   StarsInnerBefore,
-  title_size,
+  titleSize,
   Rtext,
+  Ltext,
+  ConInfo,
+  productInformationFooter,
+  fontDescription,
+
 };
 
 export default styles;

@@ -11,6 +11,7 @@
 import React from 'react';
 import Func from '../helpers.js';
 import AddCart from '../APIHandlers/addCart.js';
+import styles from './styles.js';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class AddToCart extends React.Component {
     const { data } = this.props;
     const { id } = data.product;
     return (
-      <div className="add-to-cart">
+      <styles.addToCart>
 
         <select
           className="select-size"
@@ -148,7 +149,7 @@ class AddToCart extends React.Component {
           <div>Please select size and quantity</div>
         )}
 
-      </div>
+      </styles.addToCart>
 
     );
   }

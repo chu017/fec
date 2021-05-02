@@ -90,7 +90,7 @@ class AddToCart extends React.Component {
             });
           }}
         >
-          <option className="selection-box-font" defaultValue="select size">select size</option>
+          <styles.selection_box_font defaultValue="select size">select size</styles.selection_box_font>
           {Func.convertObjToArray(this.props.style.skus).map((item) => (
             <option
               key={item[0]}
@@ -110,7 +110,7 @@ class AddToCart extends React.Component {
             });
           }}
         >
-          <option className="selection-box-font" defaultValue="select quantity">select quantity</option>
+          <styles.selection_box_font defaultValue="select quantity">select quantity</styles.selection_box_font>
 
           {Func.renderNum(this.state.size_num).map((item, index) => {
             if (!item) {
@@ -130,20 +130,19 @@ class AddToCart extends React.Component {
         <br />
 
         <button
-          type="button"
           className="button-bag"
+          type="button"
           onClick={() => { this.addToCart(id); }}
         >
           Add to Bag
         </button>
 
-        <button
+        <styles.button_outfit
           type="button"
-          className="button-outfit"
           onClick={() => { this.addToOutfit(id); }}
         >
           Outfit
-        </button>
+        </styles.button_outfit>
 
         {this.state.alert && (
           <div>Please select size and quantity</div>

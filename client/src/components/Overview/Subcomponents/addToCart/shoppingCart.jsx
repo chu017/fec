@@ -48,13 +48,12 @@ class ShoppingCart extends React.Component {
       return (
         <styles.shoppingContainer>
           <h2>YOUR BAG</h2>
-          <button
+          <styles.shopping_button
             type="button"
-            className="shopping-button"
             onClick={this.onClose}
           >
             Back
-          </button>
+          </styles.shopping_button>
 
           {this.state.sortedProductData.map((item, index) => (
             <Cart

@@ -9,27 +9,9 @@ const addToCart = styled.div`
   margin: 5px;
 `;
 
-// const select_size = styled.div`
-//   width: 150px;
-//   height: 30px;
-//   padding: 2px;
-//   margin: 2px;
-// `;
-
-// const select_quantity = styled.div`
-//   width: 150px;
-//   height: 30px;
-//   padding: 2px;
-//   margin: 2px;
-// `;
-
-const button_bag = styled.button`
-  width: 220px;
-  height: 50px;
-  padding: 2px;
-  margin: 2px;
-  background-color: black;
-  color: white;
+const selection_box_font = styled.option`
+  font-family: Helvetica, Arial;
+  font-size: 0.9em;
 `;
 
 const button_outfit = styled.button`
@@ -83,9 +65,7 @@ const cartText = styled.div`
 
 const styles = {
   addToCart,
-  // select_size,
-  // select_quantity,
-  button_bag,
+  selection_box_font,
   button_outfit,
   shoppingContainer,
   shopping_button,

@@ -1,17 +1,17 @@
 /* for overview */
 
 /* overview / header */
-.dark-mode {
-  background-color: #353131;
-  color: white;
-}
-
 .navbar {
   background-color: black;
   height: 25px;
   text-align: left;
   color: white;
   padding: 10px;
+}
+
+.dark-mode {
+  background-color: #353131;
+  color: white;
 }
 
 .navbar-dark {
@@ -151,32 +151,3 @@ img {
 }
 
 .button-bag:hover { background-color: #2ada71; color: black }
-
-.button-outfit {
-  width: 80px;
-  height: 50px;
-  padding: 2px;
-  margin: 2px;
-  font-family: Helvetica, Arial;
-  font-size: 0.8em;
-}
-
-.selection-box-font {
-  font-family: Helvetica, Arial;
-  font-size: 0.9em;
-}
-
-.shopping-container {
-  width: auto;
-  max-height:  1000px;
-  display: inline-block;
-  position: relative;
-  left: 350px;
-}
-
-.shopping-button {
-  display: block;
-  margin: 20px;
-  width: 50px;
-  height: 30px;
-}

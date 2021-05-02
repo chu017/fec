@@ -3,7 +3,6 @@
 /* for overview / product information */
 import styled from 'styled-components';
 
-// productInfoOne
 const productInformation = styled.div`
   display: block;
   padding: 5px;
@@ -53,7 +52,6 @@ font-size: 1rem;
 color: red;
 `;
 
-// productInfoOne
 const Ltext = styled.div`
 font-family: "Helvetica", Arial, sans-serif;
 font-size: 1.6rem;

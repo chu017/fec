@@ -130,6 +130,7 @@ class AddToCart extends React.Component {
         <br />
 
         <button
+          data-testid="button"
           className="button-bag"
           type="button"
           onClick={() => { this.addToCart(id); }}

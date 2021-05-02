@@ -194,12 +194,11 @@ img {
   font-family: 'Bebas Neue', cursive;
 }
 
-.style-selector {
+/* .style-selector {
   display: block;
-  /* border: 2px solid red; */
   padding: 5px;
   margin: 5px;
-}
+} */
 
 .circle {
   display: inline-block;
@@ -342,6 +341,7 @@ img {
   height: 30px;
 }
 
+/* style selector */
 .border-button {
   border: 1px solid black;
   transition: outline 0.1s linear;

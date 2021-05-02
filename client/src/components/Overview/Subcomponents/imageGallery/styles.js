@@ -73,16 +73,16 @@ const imageVertical = styled.div`
 // `;
 
 const styles = {
-  slider,
-  image,
-  image_expanded,
-  img_wrapper,
-  left_arrow,
-  right_arrow,
-  expand_view,
-  slider_vertical,
+  // slider,
+  // image,
+  // image_expanded,
+  // img_wrapper,
+  // left_arrow,
+  // right_arrow,
+  // expand_view,
+  // slider_vertical,
   imageVertical,
-  img,
+  // img,
 };
 
 export default styles;
